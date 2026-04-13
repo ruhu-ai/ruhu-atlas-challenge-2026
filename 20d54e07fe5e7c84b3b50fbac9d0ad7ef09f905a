@@ -1,0 +1,162 @@
+src/ruhu/livekit_worker.py
+  027650b65c94765f 5,1847-1851
+  f63c74cb462a1ffb 14,30,36-51,421-426,628,698-699,701-705,708,713-736,772-774,777,783-784,1009,1032,1094-1104,1121-1148,1165-1245,1469-1497,1568-1598,1600-1610,1612-1640,1768-1771,2265
+  78cd7ea259605453 52-84,398,418-420,427-431,437-440,453,737-748,752-757,762-765,786,892-902,906-912,915,917-926,1044-1050,2206
+  259be0a0fffdbd6d 227-234,500-504,642,644,646-649,651-654,658-684,686-695,700,775,779-782,785,787,789,810-812,832-835,837-842,865-868,873-876,940,1020-1021,1028,1265,1274,1337,1385-1391,1440,1446-1447,1455,1468,1513-1523
+  85e1a7fe5627fe20 16,1027,1340-1355,1363-1371,1499-1500,1503,1525,1527-1529,1545-1555,1563-1564,1867-1868,1871-1898,1902-1905,1910
+  877f8bd36983337c 1384,1392-1439,1441-1445,1456-1467,1498,1561-1562,1565-1567,1599,1611,1649-1650,1686-1687,1691-1692,1852-1866,1869,1899-1901,1906-1909,1911-1920,1925-1938,1946-1960,1968-1982,1984-1997,2205
+tests/test_livekit_worker.py
+  877f8bd36983337c 466-470,579,586,621,635,661-669,674-703,708-713,815,841-851,853-879
+  259be0a0fffdbd6d 11,13,178-181,367-465,670-673
+  85e1a7fe5627fe20 158-160,162-175,659-660,704-707
+  f63c74cb462a1ffb 7,46-52,55-58,60-61,64-75,88-136,196,220-223,273-292,317-318,471-472,571-572,714-814,816-840,852
+  027650b65c94765f 541-560
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.tsx
+  85e1a7fe5627fe20 347-357,378-382,388-389,835-844,897-899,916-924,926,961-968,970-977,1010
+  259be0a0fffdbd6d 47,53-54,229-271,279,305-308,318-321,337,362,383,408-414,544,571,576-577,601,690-691,693,700,702,706,713,759-762,782,880-881,883,886-887,890-895,902-912,914-915,927-928,930-933,937-939,941,944-948,950-960,982-987,990-992,994,996,1001-1002,1005-1006,1008-1009,1012-1017,1248-1258,1324,1328-1331,1335-1337,1355,1419,1610,1620,1632-1634,1637
+  9cb5aec2d21a1577 580-582,594-596,686-689,692,694-699,701,703-705,710-712,882,1326-1327,1332-1334,1338-1341,1356-1401,1404-1406
+  78cd7ea259605453 80-83,333-336,407,429,441-475,478,481-485,490,493,495-496,499-503,514-515,667-680,853-857,869,874,934-936,940,942,978-981,988-989,1011,1586,1588,1752-1763
+src/ruhu/response_generation.py
+  85e1a7fe5627fe20 76,331
+src/ruhu/realtime/bridge.py
+  85e1a7fe5627fe20 3-4,96-99,118
+frontend/src/features/customer-widget/voiceTranscriptDeduper.ts
+  85e1a7fe5627fe20 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "20d54e07fe5e7c84b3b50fbac9d0ad7ef09f905a",
+  "prompts": {
+    "027650b65c94765f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d8316-6560-71c0-9aa4-1fc7ba1c8436",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 92,
+      "overriden_lines": 0
+    },
+    "259be0a0fffdbd6d": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d79e1-b706-7002-bff4-6f8834654288",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 432,
+      "overriden_lines": 0
+    },
+    "2f691f4c9bf957e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "80734a8f-b291-46b6-b9ce-08250a75f302",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 17,
+      "total_deletions": 6,
+      "accepted_lines": 5053,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 1441,
+      "total_deletions": 336,
+      "accepted_lines": 4389,
+      "overriden_lines": 0
+    },
+    "78cd7ea259605453": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d100caa3-bed1-43e4-a913-79e8e4b1401a",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 16,
+      "total_deletions": 13,
+      "accepted_lines": 735,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 199,
+      "total_deletions": 61,
+      "accepted_lines": 179,
+      "overriden_lines": 0
+    },
+    "877f8bd36983337c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d86cc-82e6-76f0-ae86-aef4e643e61b",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 6488,
+      "overriden_lines": 0
+    },
+    "9cb5aec2d21a1577": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb68bbf9-e00d-489a-b658-adeff11b4e5e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 321,
+      "total_deletions": 124,
+      "accepted_lines": 5364,
+      "overriden_lines": 0
+    },
+    "cc35a3db6a00515f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5cd4c09f-0a8a-4e18-8c4f-0a14e0287273",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 21,
+      "total_deletions": 2,
+      "accepted_lines": 6402,
+      "overriden_lines": 0
+    },
+    "f63c74cb462a1ffb": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d796d-798f-7a21-9449-22bcc3c1f496",
+        "model": "gpt-5.3-codex-spark"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 864,
+      "overriden_lines": 0
+    }
+  }
+}
