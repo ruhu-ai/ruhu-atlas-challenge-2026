@@ -1,0 +1,85 @@
+tests/test_knowledge_index_status.py
+  85e1a7fe5627fe20 1-7,10,65,70,81,83,87,89,102,104,108-109,111,124,131,144,150,167,175,184
+frontend/src/features/knowledge-base/KnowledgeBaseLayout.tsx
+  85e1a7fe5627fe20 123,135,142,152,157,160
+src/ruhu/knowledge/models.py
+  85e1a7fe5627fe20 12-14,61,63-68
+src/ruhu/knowledge/service.py
+  85e1a7fe5627fe20 303,305-311,325,332-334,337
+frontend/src/features/agent-canvas/components/SupportingDocsView.tsx
+  85e1a7fe5627fe20 34,41,54,59,62,110
+frontend/src/api/services/knowledge-base.service.ts
+  85e1a7fe5627fe20 17-21,23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "4b6226f36ab3612667966fcf8377362c4a29d7cf",
+  "prompts": {
+    "2f691f4c9bf957e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "80734a8f-b291-46b6-b9ce-08250a75f302",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 2,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 957,
+      "total_deletions": 6,
+      "accepted_lines": 4723,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 70,
+      "total_deletions": 220,
+      "accepted_lines": 69,
+      "overriden_lines": 0
+    },
+    "877f8bd36983337c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d86cc-82e6-76f0-ae86-aef4e643e61b",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 75,
+      "overriden_lines": 0
+    },
+    "cc35a3db6a00515f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5cd4c09f-0a8a-4e18-8c4f-0a14e0287273",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 9,
+      "overriden_lines": 0
+    }
+  }
+}
