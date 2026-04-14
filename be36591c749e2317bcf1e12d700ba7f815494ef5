@@ -1,0 +1,47 @@
+src/ruhu/db.py
+  85e1a7fe5627fe20 6,8,14,18,152-185
+src/ruhu/response_generation.py
+  4accbeb5bffc589e 297-305,309,311
+  85e1a7fe5627fe20 9,17-25,175,181,191
+src/ruhu/db_async.py
+  85e1a7fe5627fe20 30,33,61-81,99
+src/ruhu/observability/metrics.py
+  85e1a7fe5627fe20 3,87-164
+src/ruhu/realtime/service.py
+  85e1a7fe5627fe20 5,9,77-81,475-479
+src/ruhu/realtime/store.py
+  85e1a7fe5627fe20 3,12,368-372
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "be36591c749e2317bcf1e12d700ba7f815494ef5",
+  "prompts": {
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 3,
+      "total_deletions": 5,
+      "accepted_lines": 817,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 5,
+      "total_deletions": 0,
+      "accepted_lines": 173,
+      "overriden_lines": 0
+    }
+  }
+}
