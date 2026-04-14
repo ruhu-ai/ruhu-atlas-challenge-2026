@@ -1,0 +1,183 @@
+docs/realtime-system/Attachment-Only-Turn-Kernel-Behavior.md
+  9cb5aec2d21a1577 1-802
+src/ruhu/simulator.py
+  85e1a7fe5627fe20 25,60,74
+tests/test_interpreters.py
+  85e1a7fe5627fe20 3,5-9,13,15-16
+tests/test_ticket_system.py
+  85e1a7fe5627fe20 16
+tests/test_simulator.py
+  85e1a7fe5627fe20 2-3
+src/ruhu/schemas.py
+  4accbeb5bffc589e 145-159,169-170,176-178,200-202
+src/ruhu/tools/provider_templates.py
+  4accbeb5bffc589e 148-165,168-221,229-232,234,268,295-312,316-327,329-334,337-350,370-374,387-391,398-406,411-450,459-462,467-468
+docs/tooling-and-llm-redesign/22-first-principles-artifact-intent-analysis.md
+  4accbeb5bffc589e 1-743
+src/ruhu/code_execution.py
+  4accbeb5bffc589e 1-297
+tests/_fixtures/legacy_graphs.py
+  85e1a7fe5627fe20 1-11,14
+  877f8bd36983337c 12-13,15-3659
+tests/test_journeys_store.py
+  85e1a7fe5627fe20 6
+docs/knowledge-base-seeds/ruhu-platform-overview.md
+  85e1a7fe5627fe20 1-230
+tests/test_graphs.py
+  85e1a7fe5627fe20 3,6-7
+tests/conftest.py
+  85e1a7fe5627fe20 13-23
+src/ruhu/db.py
+  9cb5aec2d21a1577 66
+tests/test_trace_and_dedupe.py
+  85e1a7fe5627fe20 3,5-6
+alembic/versions/20260414_0400_0040_connection_oauth_url_overrides.py
+  4accbeb5bffc589e 1-38
+alembic/versions/20260414_0500_0041_connection_oauth_client_creds.py
+  4accbeb5bffc589e 1-40
+frontend/src/features/agent-canvas/state-graph/StateInspector.tsx
+  4accbeb5bffc589e 810
+src/ruhu/tools_api.py
+  4accbeb5bffc589e 219-232,343-373,747,751-754,815,998-1012,1020-1024,1031-1033,1035-1039,1042
+alembic/versions/20260414_0500_0041_attachment_views_and_trust.py
+  9cb5aec2d21a1577 1-230
+src/ruhu/attachments/sqlalchemy_models.py
+  9cb5aec2d21a1577 3-5,12-14,32-34,36-38,40-50,57-98
+tests/test_api.py
+  85e1a7fe5627fe20 1452,2855
+tests/test_template_integration.py
+  4accbeb5bffc589e 1-847
+alembic/versions/20260414_0300_0039_control_state_json.py
+  4accbeb5bffc589e 1-29
+tests/test_provider_setup_config.py
+  4accbeb5bffc589e 1-153
+tests/test_registry.py
+  85e1a7fe5627fe20 6
+src/ruhu/kernel.py
+  4accbeb5bffc589e 19,21-22,288-320,334-337,1042-1051,1974-2145,3233-3237,3241-3242,3244-3246,3251-3267,3269-3270,3284-3293,3340-3346
+src/ruhu/registry.py
+  85e1a7fe5627fe20 370-378
+src/ruhu/heuristics.py
+  85e1a7fe5627fe20 4,9-26,78-83,86-88
+frontend/src/api/services/tools.service.ts
+  4accbeb5bffc589e 501-506,792-798,804-807,816-842
+src/ruhu/realtime/bridge.py
+  4accbeb5bffc589e 95-134
+pyproject.toml
+  4accbeb5bffc589e 14
+frontend/src/features/agent-canvas/state-graph/ActionConfigEditor.tsx
+  4accbeb5bffc589e 10,13,43,72,76-78,90-108,139-140,142-157,159-206
+tests/test_simulation_eval_store.py
+  85e1a7fe5627fe20 6
+frontend/src/features/agent-canvas/state-graph/AgentRulesView.tsx
+  cc35a3db6a00515f 224,264-267,272,363,899,927
+tests/_fixtures/legacy_interpreters.py
+  85e1a7fe5627fe20 1-35
+frontend/src/features/agent-canvas/components/AgentIntegrationsTab.tsx
+  4accbeb5bffc589e 155-165,167-176,180-182,191-194,197-234,325,334-339,351-462
+src/ruhu/db_models.py
+  4accbeb5bffc589e 51,1190-1203
+src/ruhu/tools/oauth.py
+  4accbeb5bffc589e 100,104-110,112-131,141,143,145,179-181,185-188,199,287,293,342-358,360,371-373,375,403,442,447,451-455,458-462,497-530,538-544,569-584
+src/ruhu/stores.py
+  4accbeb5bffc589e 13,97,186,197-203,216
+tests/test_kernel.py
+  4accbeb5bffc589e 17,1465-2646
+frontend/tsconfig.json
+  2f691f4c9bf957e3 23
+src/ruhu/api.py
+  877f8bd36983337c 2454-2455,2457-2462,2464-2467,2469-2472,2475-2483,2488-2489,2491
+  85e1a7fe5627fe20 2456,2463,2513,2648,9407,9413-9414
+tests/test_artifact_followup_v1.py
+  4accbeb5bffc589e 1-325,327-367,369-390,392-407,409-428,430-446,448-467,469-486,488-502
+src/ruhu/tools/oauth_providers.py
+  4accbeb5bffc589e 77-122,141-149
+docs/tooling-and-llm-redesign/20-intent-driven-focus-and-followups.md
+  877f8bd36983337c 628-687,689-703
+  4accbeb5bffc589e 1-91,99-262,264-273,276,281-501,510-627,704-714
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "355c2036a4fc2de3a9e9da8d39dfaf841fabcbc8",
+  "prompts": {
+    "2f691f4c9bf957e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "80734a8f-b291-46b6-b9ce-08250a75f302",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 1250,
+      "total_deletions": 161,
+      "accepted_lines": 6150,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 145,
+      "total_deletions": 92,
+      "accepted_lines": 359,
+      "overriden_lines": 0
+    },
+    "877f8bd36983337c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d86cc-82e6-76f0-ae86-aef4e643e61b",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 3680,
+      "total_deletions": 273,
+      "accepted_lines": 3751,
+      "overriden_lines": 0
+    },
+    "9cb5aec2d21a1577": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb68bbf9-e00d-489a-b658-adeff11b4e5e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 1238,
+      "total_deletions": 133,
+      "accepted_lines": 1100,
+      "overriden_lines": 0
+    },
+    "cc35a3db6a00515f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5cd4c09f-0a8a-4e18-8c4f-0a14e0287273",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 9,
+      "overriden_lines": 0
+    }
+  }
+}
