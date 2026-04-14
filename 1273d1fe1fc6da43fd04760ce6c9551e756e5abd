@@ -1,0 +1,55 @@
+tests/test_api.py
+  85e1a7fe5627fe20 25,1021,1024,1026-1031,1165-1169,1199,1202,1204,1206-1209,1215-1219,1259-1390,1394,1397,1399,1401-1404,1414,1457,1460,1462-1467,1544,3022,3025,3029-3033,3045-3050,4590,4594-4598,4852-4855
+tests/test_livekit_worker_cli.py
+  85e1a7fe5627fe20 21,37,54,68-71,101,107,109-112,170,175,234,239,276
+src/ruhu/api.py
+  85e1a7fe5627fe20 519,521,3666,9850-9851,9855-9867,9870-9871,9873-9884,9886,9889-9928,9930,9934-9938,9971,9984,9993,9995,10034
+tests/conftest.py
+  85e1a7fe5627fe20 3,5,8,15,71-111
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "1273d1fe1fc6da43fd04760ce6c9551e756e5abd",
+  "prompts": {
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 3745,
+      "total_deletions": 2,
+      "accepted_lines": 1784,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 357,
+      "total_deletions": 56,
+      "accepted_lines": 349,
+      "overriden_lines": 0
+    },
+    "9cb5aec2d21a1577": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb68bbf9-e00d-489a-b658-adeff11b4e5e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 773,
+      "total_deletions": 348,
+      "accepted_lines": 672,
+      "overriden_lines": 0
+    }
+  }
+}
