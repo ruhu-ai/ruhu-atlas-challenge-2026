@@ -1,0 +1,87 @@
+src/ruhu/intent_tags/webhooks.py
+  85e1a7fe5627fe20 339,357-361,363,410,446,512
+src/ruhu/journeys/tracker.py
+  85e1a7fe5627fe20 337,498,600
+src/ruhu/api.py
+  9cb5aec2d21a1577 24-29,2802-2804,2873-2874,2950-2951,3124-3134,3193-3194,5070,5496,5551,10546-10610,10616-10623,10625,10649,10761,10763-10764,10825,11168,11176,12201-12204,12213-12217,12485
+  85e1a7fe5627fe20 2749,2850,3369,3529-3545,3552-3557,3565-3567,3578-3580,5773-5778,8412,8555,8577,8594,8642,8751,8763,8793,8813,8854,8880,8896,8912,8928,8972,9019,9039,9068,9092,9101,9196,9238,9266,9287,9448,9476,9503,9522,9554,9574,9594,9615,9696,9790,9808,9827,9844,9853,12638,12682,12699,12710,12720
+src/ruhu/provider_costs.py
+  85e1a7fe5627fe20 76,93,108
+src/ruhu/journeys/store.py
+  85e1a7fe5627fe20 103,346,774,778-782,786
+tests/test_live_call_api.py
+  85e1a7fe5627fe20 130,236
+src/ruhu/kpi_console.py
+  85e1a7fe5627fe20 360,541
+src/ruhu/intent_tags_console.py
+  85e1a7fe5627fe20 347,590
+src/ruhu/kpi/analysis.py
+  85e1a7fe5627fe20 290,387
+src/ruhu/journeys/service.py
+  85e1a7fe5627fe20 94-96,100,649
+src/ruhu/tools/production.py
+  85e1a7fe5627fe20 100,125-137,139,248
+src/ruhu/kpi/measurement.py
+  85e1a7fe5627fe20 441,498-499,504-505
+src/ruhu/knowledge/runtime.py
+  85e1a7fe5627fe20 23-26,48-54,68-71
+tests/test_api.py
+  85e1a7fe5627fe20 915,1855,1928,1955,1991,2051,2103,2226,2237,2249,2372,2383,2395,3084,3245,3365,3495,3618,3803
+src/ruhu/journeys/runtime.py
+  85e1a7fe5627fe20 470,472
+src/ruhu/runtime_config.py
+  85e1a7fe5627fe20 71,267
+  9cb5aec2d21a1577 99-112,332-353,560-564
+src/ruhu/realtime/store.py
+  85e1a7fe5627fe20 29-35
+tests/test_knowledge_api.py
+  85e1a7fe5627fe20 44
+src/ruhu/intent_tags/runtime_integration.py
+  85e1a7fe5627fe20 197-201
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "8def56a6e4ded62f0559ea4c01c0cfcca3b7962d",
+  "prompts": {
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 136,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 192,
+      "total_deletions": 99,
+      "accepted_lines": 761,
+      "overriden_lines": 0
+    },
+    "9cb5aec2d21a1577": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb68bbf9-e00d-489a-b658-adeff11b4e5e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 1119,
+      "total_deletions": 24,
+      "accepted_lines": 1790,
+      "overriden_lines": 0
+    }
+  }
+}
