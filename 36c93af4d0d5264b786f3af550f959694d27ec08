@@ -1,0 +1,71 @@
+src/ruhu/kernel.py
+  85e1a7fe5627fe20 800,3033
+  4accbeb5bffc589e 19,21,79-80,259-276,315,359-362,525-575,905-907,927,929-937,941-943,946-970,1595-2282,2412-2417,2419-2420,2424-2427,2429-2434,2439-2442,2457,2473,2578-2588,2603,2734,2836-2845,2848-2849,2870-2890,2892,2895-2896,2915,2922,2991-3032,3034-3171
+  877f8bd36983337c 2462-2472,2897
+src/ruhu/api.py
+  85e1a7fe5627fe20 2849-2870,2876
+  4accbeb5bffc589e 9803-9863
+src/ruhu/tools/production.py
+  85e1a7fe5627fe20 3-5,28-32,101,108,110-124,128,237,243,251
+tests/test_knowledge_agent_scope.py
+  85e1a7fe5627fe20 1-147
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "36c93af4d0d5264b786f3af550f959694d27ec08",
+  "prompts": {
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 1718,
+      "total_deletions": 516,
+      "accepted_lines": 4169,
+      "overriden_lines": 1
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 206,
+      "total_deletions": 5,
+      "accepted_lines": 202,
+      "overriden_lines": 0
+    },
+    "877f8bd36983337c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d86cc-82e6-76f0-ae86-aef4e643e61b",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 76,
+      "total_deletions": 0,
+      "accepted_lines": 786,
+      "overriden_lines": 1
+    },
+    "cc35a3db6a00515f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5cd4c09f-0a8a-4e18-8c4f-0a14e0287273",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 9,
+      "overriden_lines": 0
+    }
+  }
+}
