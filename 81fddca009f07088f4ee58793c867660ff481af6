@@ -1,0 +1,40 @@
+src/ruhu/runtime_config.py
+  85e1a7fe5627fe20 94-96
+src/ruhu/db.py
+  85e1a7fe5627fe20 152-155,158-166
+src/ruhu/db_async.py
+  85e1a7fe5627fe20 85-87,90-92,94-96,100-102,105-107
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "81fddca009f07088f4ee58793c867660ff481af6",
+  "prompts": {
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 22,
+      "total_deletions": 15,
+      "accepted_lines": 813,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 35,
+      "total_deletions": 10,
+      "accepted_lines": 32,
+      "overriden_lines": 0
+    }
+  }
+}
