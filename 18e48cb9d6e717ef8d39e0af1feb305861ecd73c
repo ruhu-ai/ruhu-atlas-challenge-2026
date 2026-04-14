@@ -1,0 +1,49 @@
+src/ruhu/api.py
+  85e1a7fe5627fe20 28,2913,2917-2918,3075-3106,3130-3138,8883-8885,8888,8892-8898,10252,10261-10266,10268,10270,10281-10301,10305-10317,10320-10326,11532-11534,11537-11544,12425,12448-12449,12459-12461,12464-12471
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "18e48cb9d6e717ef8d39e0af1feb305861ecd73c",
+  "prompts": {
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 2308,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 146,
+      "total_deletions": 21,
+      "accepted_lines": 131,
+      "overriden_lines": 0
+    },
+    "cc35a3db6a00515f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5cd4c09f-0a8a-4e18-8c4f-0a14e0287273",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 5,
+      "total_deletions": 1,
+      "accepted_lines": 9,
+      "overriden_lines": 0
+    }
+  }
+}
