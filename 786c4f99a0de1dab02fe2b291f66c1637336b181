@@ -1,0 +1,72 @@
+src/ruhu/knowledge_api.py
+  85e1a7fe5627fe20 70,74,80-82,89,99,101,168-178,188,202-204,233,246-248,276,293-298
+src/ruhu/knowledge/__init__.py
+  85e1a7fe5627fe20 9,11,52,54
+src/ruhu/api.py
+  85e1a7fe5627fe20 9627,9643-9662
+src/ruhu/knowledge/service.py
+  85e1a7fe5627fe20 16,18,298-368
+src/ruhu/knowledge/models.py
+  85e1a7fe5627fe20 11-17,62-73
+tests/test_knowledge_index_status.py
+  85e1a7fe5627fe20 1-228
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "786c4f99a0de1dab02fe2b291f66c1637336b181",
+  "prompts": {
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 738,
+      "total_deletions": 2,
+      "accepted_lines": 3771,
+      "overriden_lines": 8
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 380,
+      "total_deletions": 5,
+      "accepted_lines": 379,
+      "overriden_lines": 0
+    },
+    "877f8bd36983337c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d86cc-82e6-76f0-ae86-aef4e643e61b",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 75,
+      "overriden_lines": 0
+    },
+    "cc35a3db6a00515f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5cd4c09f-0a8a-4e18-8c4f-0a14e0287273",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa <ijidailassa@Ijidais-MacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 9,
+      "overriden_lines": 0
+    }
+  }
+}
