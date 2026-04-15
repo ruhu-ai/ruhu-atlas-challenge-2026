@@ -1,0 +1,70 @@
+src/ruhu/rate_limit.py
+  85e1a7fe5627fe20 19,21,118-124,128-138,157-175,180
+tests/test_rate_limit.py
+  85e1a7fe5627fe20 228-251,257-264,266-267,275-276,283-292,294
+src/ruhu/api.py
+  85e1a7fe5627fe20 4401,4403-4410,4427-4437,4439-4449,10200-10204,10211,12860-12869,12923
+src/ruhu/runtime_config.py
+  85e1a7fe5627fe20 148-153,473-476,610
+src/ruhu/tools/oauth.py
+  85e1a7fe5627fe20 71-76,86,89-93,160-163,166,168-169,249-250
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "6521676239690407bbfa92caf112f6c5b7034fcc",
+  "prompts": {
+    "2f691f4c9bf957e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "80734a8f-b291-46b6-b9ce-08250a75f302",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 144,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 1130,
+      "total_deletions": 82,
+      "accepted_lines": 1499,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 169,
+      "total_deletions": 64,
+      "accepted_lines": 2131,
+      "overriden_lines": 0
+    },
+    "9cb5aec2d21a1577": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb68bbf9-e00d-489a-b658-adeff11b4e5e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 2174,
+      "overriden_lines": 0
+    }
+  }
+}
