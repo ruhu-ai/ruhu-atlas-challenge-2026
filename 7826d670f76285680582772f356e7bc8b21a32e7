@@ -1,0 +1,77 @@
+docs/pilot/00-first-contact-outreach.md
+  2f691f4c9bf957e3 1-383
+docs/pilot/README.md
+  2f691f4c9bf957e3 17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "7826d670f76285680582772f356e7bc8b21a32e7",
+  "prompts": {
+    "2f691f4c9bf957e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "80734a8f-b291-46b6-b9ce-08250a75f302",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 384,
+      "total_deletions": 0,
+      "accepted_lines": 496,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 136,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 100,
+      "total_deletions": 7,
+      "accepted_lines": 1112,
+      "overriden_lines": 6
+    },
+    "9cb5aec2d21a1577": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb68bbf9-e00d-489a-b658-adeff11b4e5e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 5,
+      "total_deletions": 5,
+      "accepted_lines": 3218,
+      "overriden_lines": 0
+    },
+    "e140c69d73bddd70": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d8e2f-8c59-7313-9086-8dca540aed57",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 20,
+      "total_deletions": 3,
+      "accepted_lines": 20,
+      "overriden_lines": 0
+    }
+  }
+}
