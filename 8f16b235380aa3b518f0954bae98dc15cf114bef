@@ -1,0 +1,82 @@
+docs/pilot/07-pilot-to-paid-conversion.md
+  2f691f4c9bf957e3 1-332
+docs/pilot/10-feature-request-triage.md
+  2f691f4c9bf957e3 1-332
+docs/pilot/08-failure-mode-runbooks.md
+  2f691f4c9bf957e3 1-500
+docs/pilot/02-pilot-onboarding-playbook.md
+  2f691f4c9bf957e3 1-214
+docs/pilot/06-support-model-and-sla.md
+  2f691f4c9bf957e3 1-274
+docs/pilot/05-weekly-checkin-template.md
+  2f691f4c9bf957e3 1-265
+docs/pilot/README.md
+  2f691f4c9bf957e3 1-125
+docs/pilot/03-demo-scripts.md
+  2f691f4c9bf957e3 1-267
+docs/pilot/01-pilot-agreement-template.md
+  2f691f4c9bf957e3 1-177
+docs/pilot/04-success-criteria-framework.md
+  2f691f4c9bf957e3 1-261
+docs/pilot/09-tenant-isolation-test-plan.md
+  2f691f4c9bf957e3 1-406
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "8f16b235380aa3b518f0954bae98dc15cf114bef",
+  "prompts": {
+    "2f691f4c9bf957e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "80734a8f-b291-46b6-b9ce-08250a75f302",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 3153,
+      "total_deletions": 0,
+      "accepted_lines": 3153,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 136,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 320,
+      "total_deletions": 43,
+      "accepted_lines": 1015,
+      "overriden_lines": 0
+    },
+    "9cb5aec2d21a1577": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb68bbf9-e00d-489a-b658-adeff11b4e5e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 1672,
+      "total_deletions": 7,
+      "accepted_lines": 3219,
+      "overriden_lines": 0
+    }
+  }
+}
