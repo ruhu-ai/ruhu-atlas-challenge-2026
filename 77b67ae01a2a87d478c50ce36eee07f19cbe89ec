@@ -1,0 +1,112 @@
+src/ruhu/api.py
+  85e1a7fe5627fe20 5970,5985
+  9cb5aec2d21a1577 2721-2729
+src/ruhu/realtime/models.py
+  85e1a7fe5627fe20 73
+src/ruhu/db_models.py
+  85e1a7fe5627fe20 18,127-139,141-144
+alembic/versions/20260415_0100_0043_realtime_idempotency_nullable_org.py
+  85e1a7fe5627fe20 1-134
+examples/evals/ci_suite.json
+  85e1a7fe5627fe20 8,16,24,32
+src/ruhu/realtime/service.py
+  85e1a7fe5627fe20 290
+src/ruhu/kpi_console.py
+  85e1a7fe5627fe20 432
+src/ruhu/studio.py
+  85e1a7fe5627fe20 569,1148
+tests/test_runtime_config.py
+  85e1a7fe5627fe20 5-6,252-260,271-277,280,288
+tests/test_api.py
+  85e1a7fe5627fe20 1479,4369,4374-4380
+src/ruhu/realtime/store.py
+  85e1a7fe5627fe20 28-42,54-57,444,471,479-480,542,571,604
+  9cb5aec2d21a1577 44-50
+src/ruhu/realtime_smoke.py
+  85e1a7fe5627fe20 462,552,916,928
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "77b67ae01a2a87d478c50ce36eee07f19cbe89ec",
+  "prompts": {
+    "2f691f4c9bf957e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "80734a8f-b291-46b6-b9ce-08250a75f302",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 185,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 272,
+      "total_deletions": 2,
+      "accepted_lines": 408,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 35,
+      "total_deletions": 4,
+      "accepted_lines": 1051,
+      "overriden_lines": 0
+    },
+    "877f8bd36983337c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d86cc-82e6-76f0-ae86-aef4e643e61b",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 6,
+      "total_deletions": 3,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "9cb5aec2d21a1577": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb68bbf9-e00d-489a-b658-adeff11b4e5e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 2194,
+      "overriden_lines": 0
+    },
+    "e140c69d73bddd70": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d8e2f-8c59-7313-9086-8dca540aed57",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    }
+  }
+}
