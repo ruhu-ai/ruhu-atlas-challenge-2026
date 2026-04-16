@@ -1,0 +1,468 @@
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.test.tsx
+  85e1a7fe5627fe20 19-32
+tests/test_attachment_conditions.py
+  9cb5aec2d21a1577 1-249
+tests_playwright/test_journeys_playwright.py
+  85e1a7fe5627fe20 39
+src/ruhu/tools/management.py
+  85e1a7fe5627fe20 243,253-254
+src/ruhu/simulation_eval/README.md
+  85e1a7fe5627fe20 41,49
+monitoring/runbooks/provider-health.md
+  4accbeb5bffc589e 1-33
+tests/test_observability_phase1.py
+  4accbeb5bffc589e 1-531
+tests/test_attachment_view_ready_worker.py
+  9cb5aec2d21a1577 1-602
+docs/observability-system/README.md
+  4accbeb5bffc589e 1-33
+tests/test_trace_and_dedupe.py
+  85e1a7fe5627fe20 5-6,11-12,36-37
+tests/test_realtime_smoke.py
+  85e1a7fe5627fe20 118,134,161,192,217,222,251,275,306,354,384,421
+src/ruhu/audit/retention.py
+  4accbeb5bffc589e 1-141
+src/ruhu/attachments/retention_worker.py
+  9cb5aec2d21a1577 1-242
+docs/simulation/simulation-evaluation-domain.md
+  85e1a7fe5627fe20 373
+src/ruhu/attachments/models.py
+  9cb5aec2d21a1577 10-18,33,47-73,89-91,136-143
+tests/test_provider_projection.py
+  85e1a7fe5627fe20 44,47,51,69,123,126,130,148
+docs/state-graph-spec/next-agent-handover.md
+  85e1a7fe5627fe20 430,449,458
+src/ruhu/templates/phrases/en/web_chat.json
+  4accbeb5bffc589e 1-15
+tests/conftest.py
+  85e1a7fe5627fe20 18,20-21,25
+docs/next-agent-handover.md
+  85e1a7fe5627fe20 430,449,458
+tests/test_simulation_eval_store.py
+  85e1a7fe5627fe20 6,52,90
+src/ruhu/knowledge_worker.py
+  85e1a7fe5627fe20 23
+tests/_fixtures/data/transcripts/sales.json
+  9e258f910d4f0b7f 1-6
+tests/test_interaction_pacing.py
+  4accbeb5bffc589e 1-35
+frontend/src/features/customer-widget/__tests__/WidgetChatPanel.test.tsx
+  9e258f910d4f0b7f 1-79
+src/ruhu/attachments/field_extractor.py
+  9cb5aec2d21a1577 1-307
+tests/test_livekit_adapter.py
+  85e1a7fe5627fe20 100,113
+tests/test_stores.py
+  85e1a7fe5627fe20 18-19,30,43,102-103
+docs/observability-system/Log-Schema.md
+  4accbeb5bffc589e 1-97
+tests/test_auth_shell.py
+  85e1a7fe5627fe20 63,67
+frontend/src/features/agent-canvas/state-graph/FollowupHandlersEditor.tsx
+  85e1a7fe5627fe20 1-328
+tests/test_livekit_worker_cli.py
+  85e1a7fe5627fe20 46,53,70,111
+tests/test_observability_s6_retention.py
+  4accbeb5bffc589e 1-516
+tests/test_kpi_analysis.py
+  85e1a7fe5627fe20 22,25,39,62,151,157,160,176,326,329,344,366,395
+frontend/src/pages/calls.lifecycle.ts
+  9e258f910d4f0b7f 1-51
+alembic/versions/20260415_0400_0046_audit_events_trace_id.py
+  4accbeb5bffc589e 1-44
+src/ruhu/db_async.py
+  4accbeb5bffc589e 75-80,88-108,112-116,123-125,128-131,133,137-143,146
+alembic/versions/20260415_0200_0044_attachment_view_deliveries.py
+  2f691f4c9bf957e3 1-27,31-38,41-78
+  9cb5aec2d21a1577 28-30,39-40
+monitoring/grafana/provisioning.yml
+  4accbeb5bffc589e 1-21
+frontend/src/api/services/widget.service.ts
+  85e1a7fe5627fe20 34
+src/ruhu/db.py
+  4accbeb5bffc589e 20-21,156-165,167,172,187-193,196,200-207,209-215,217,240-269,271-279
+  9cb5aec2d21a1577 70
+  9e258f910d4f0b7f 340-341
+  85e1a7fe5627fe20 24,175-184,291-301,308-321,332-339
+docs/Human-Like-Agent-Response-Design.md
+  85e1a7fe5627fe20 1-10,17-121,127,134,137-139,404,410,431,433,438,442,450,455,461,463,466,468,540,542,544,551,559,561,566,568,576,578,580,588,590,592,597,600,602,607,611,617,622,624,626,629,631,638,640,643,645,649,914-916,918-928
+  877f8bd36983337c 11-16,122-126,128-133,135-136,140-403,405-409,411-430,432,434-437,439-441,443-449,451-454,456-460,462,464-465,467,469-539,541,543,545-550,552-558,560,562-565,567,569-575,577,579,581-587,589,591,593-596,598-599,601,603-606,608-610,612-616,618-621,623,625,627-628,630,632-637,639,641-642,644,646-648,650-913,917
+src/ruhu/observability/metrics.py
+  4accbeb5bffc589e 182-216
+tests_playwright/test_tickets_playwright.py
+  85e1a7fe5627fe20 32,124
+docs/observability-system/Observability-System-First-Principles-And-Rebuild-Spec.md
+  85e1a7fe5627fe20 1-4,9,11-27,107-673,680-712,722-931,942-1034,1048-1057,1060,1064-1071,1073-1078,1081,1083-1085,1090,1092-1094,1099-1205,1207,1211,1213,1225-1229,1232-1237,1240-1243,1249,1267-1293
+  4accbeb5bffc589e 5-8,10,28-106,674-679,713-721,932-941,1035-1047,1058-1059,1061-1063,1072,1079-1080,1082,1086-1089,1091,1095-1098,1206,1208-1210,1212,1214-1224,1230-1231,1238-1239,1244-1248,1250-1266
+src/ruhu/observability/cost.py
+  4accbeb5bffc589e 1-129
+tests/test_intent_tags_read_models.py
+  85e1a7fe5627fe20 37,46,55,66,78,91,123,139,143,152
+docs/tooling-and-llm-redesign/23-human-like-interaction-runtime-spec.md
+  85e1a7fe5627fe20 1-72,81-97,99-114,118-146,154-240,242,245,252,254-260,263-364,375-386,401-427,464-525,529,533-540,543-544,569,656-672,675,683-706,713,724-742,747,766-786,792,839-845,908-919,951-985,987-990,994-995,1001-1019,1021
+  877f8bd36983337c 73-80,98,115-117,147-153,241,243-244,246-251,253,261-262,365-374,387-400,428-463,526-528,530-532,541-542,545-568,570-655,673-674,676-682,707-712,714-723,743-746,748-765,787-791,793-838,846-907,920-950,986,991-993,996-1000,1020
+README.md
+  85e1a7fe5627fe20 34,38,78-81,83-87,90-95,110-112,116-118,121-122,126-127,162,172,369,383,610-613,617-618,622
+tests/_fixtures/data/knowledge/sales.json
+  9e258f910d4f0b7f 1-22
+tests/test_observability_phase2.py
+  4accbeb5bffc589e 1-95
+frontend/src/features/customer-widget/WidgetUnifiedPanel.tsx
+  85e1a7fe5627fe20 13,15,22,30,105-114,360-366,371-375
+  877f8bd36983337c 254-265,446-458
+frontend/src/features/agent-canvas/CleanAgentCanvasLayout.tsx
+  85e1a7fe5627fe20 141-147,152,155,158,162
+tests/test_journeys_review.py
+  85e1a7fe5627fe20 84,113-114,162,184-185
+src/ruhu/realtime/bridge.py
+  85e1a7fe5627fe20 141
+  877f8bd36983337c 117-122
+  4accbeb5bffc589e 140,142-159
+  9e258f910d4f0b7f 177-178
+frontend/src/pages/calls.lifecycle.test.ts
+  9e258f910d4f0b7f 1-17
+frontend/src/features/customer-widget/ArtifactDisambiguationCard.tsx
+  9e258f910d4f0b7f 1-88
+tests/test_realtime_core.py
+  85e1a7fe5627fe20 16,19,33,86,89,95,147,163,166,180,211,214,228,304,307,340,343,357,381,389,402,406,414,447,450,465,505,508,521,556,559,573
+tests/test_evals.py
+  85e1a7fe5627fe20 9
+tests/test_auth_runtime.py
+  85e1a7fe5627fe20 83,94,118,143,147,167,180,211,230,254,266
+tests/test_playground_theme.py
+  85e1a7fe5627fe20 15,41,68
+src/ruhu/observability/tracing.py
+  4accbeb5bffc589e 1-180
+tests/test_auth_ui.py
+  85e1a7fe5627fe20 21
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.tsx
+  85e1a7fe5627fe20 15-16,44,47,552-553,593-616,656-667,758,769,1031-1032,1035,1039,1616-1621
+src/ruhu/attachments/view_ready_worker.py
+  9cb5aec2d21a1577 1-483
+tests/_fixtures/data/evals/ci_suite.json
+  9e258f910d4f0b7f 1-36
+monitoring/runbooks/db-pool.md
+  4accbeb5bffc589e 1-39
+monitoring/README.md
+  4accbeb5bffc589e 1-107
+tests/test_auth_email_smoke.py
+  85e1a7fe5627fe20 19
+tests/_fixtures/interpreters.py
+  85e1a7fe5627fe20 1,3-5,9,12-21,24-29
+frontend/src/pages/widget-settings.tsx
+  85e1a7fe5627fe20 189
+monitoring/alerts/ruhu-slo-alerts.yml
+  4accbeb5bffc589e 1-214
+tests/test_phone_provider_africastalking.py
+  85e1a7fe5627fe20 28,78,157,398,435
+tests/_fixtures/data/evals/legacy_voice_suite.json
+  9e258f910d4f0b7f 1-20
+monitoring/grafana/dashboards/ruhu-providers.json
+  4accbeb5bffc589e 1-152
+frontend/src/features/agent-canvas/state-graph/StateInspector.tsx
+  9e258f910d4f0b7f 1677-1678,1687-1688
+  85e1a7fe5627fe20 12,15,19-20,25-26,205-206,218,336,825-1111,1468-1504,1652-1676,1679-1686
+tests/_fixtures/data/transcripts/support_triage.json
+  9e258f910d4f0b7f 1-6
+frontend/src/features/agent-canvas/state-graph/utils.ts
+  85e1a7fe5627fe20 138-141,145-148,166-270,339,345,358-386
+tests/test_phone_numbers.py
+  85e1a7fe5627fe20 46,54
+docs/tooling-and-llm-redesign/20-intent-driven-focus-and-followups.md
+  9e258f910d4f0b7f 259-268,276-284,385-396,487-499
+monitoring/grafana/dashboards/ruhu-turn-runtime.json
+  4accbeb5bffc589e 1-178
+docs/notification-system/Notification-API-Contracts.md
+  9e258f910d4f0b7f 63,67
+tests/test_kpi_api.py
+  85e1a7fe5627fe20 19,38,96,137,192,196
+tests_playwright/conftest.py
+  85e1a7fe5627fe20 277,391,521,584,603
+src/ruhu/response_generation.py
+  4accbeb5bffc589e 98,428
+  9e258f910d4f0b7f 768-775
+tests/test_ticket_system.py
+  85e1a7fe5627fe20 16,214,224,253,265,280,372,431,457,468,480,511,522,690,701,786,798,972,983
+tests/test_artifact_followup_v1.py
+  85e1a7fe5627fe20 35,48-54,62,430-520,528-547
+  9e258f910d4f0b7f 548-641
+  877f8bd36983337c 521-527
+.env.development.example
+  85e1a7fe5627fe20 6
+monitoring/runbooks/api-latency.md
+  4accbeb5bffc589e 1-35
+tests/test_attachment_field_extractor.py
+  9cb5aec2d21a1577 1-409
+tests/test_simulation_eval_assertions.py
+  85e1a7fe5627fe20 34,46,59,118
+docs/state-graph-spec/Graph-Templates-Implementation-Spec.md
+  9e258f910d4f0b7f 722,732,783
+tests/test_knowledge_api.py
+  85e1a7fe5627fe20 28,32,146,189
+frontend/src/features/customer-widget/__tests__/WidgetProvider.test.tsx
+  9e258f910d4f0b7f 54,73
+tests/test_interpreters.py
+  85e1a7fe5627fe20 4-7,12-43,47,53-54
+tests/_fixtures/data/transcripts/legacy_voice_first_product_question.json
+  9e258f910d4f0b7f 1-5
+docs/tooling-and-llm-redesign/25-human-like-interaction-authoring-ui-spec.md
+  877f8bd36983337c 38,59-62,112-114,127,147-148,160-161,175,190-191
+  85e1a7fe5627fe20 1-37,39-58,63-111,115-126,128-146,149-159,162-174,176-189,192
+src/ruhu/tools_api.py
+  85e1a7fe5627fe20 18,22,175-179,510,514-516,852-905,1090-1107
+frontend/src/features/customer-widget/WidgetProvider.tsx
+  85e1a7fe5627fe20 7-8,11,26-30,37-40,86-91,96-97,136-139,223-264,360-364,383,402-407,436-439,572-573,582,591
+tests/test_attachment_producers.py
+  9cb5aec2d21a1577 1-361
+docs/observability-system/Observability-Implementation-Plan.md
+  4accbeb5bffc589e 1-548
+src/ruhu/templates/system/sales-agent.json
+  85e1a7fe5627fe20 2,32-33
+pyproject.toml
+  4accbeb5bffc589e 13
+tests/_fixtures/templates.py
+  85e1a7fe5627fe20 1-26
+tests/test_intent_tags_api.py
+  85e1a7fe5627fe20 57,77,90,102,119,132,142,153,166,184,204,220,232,242,255,289,327
+scripts/preflight_observability.py
+  4accbeb5bffc589e 1-126
+frontend/src/pages/__tests__/phone-numbers.test.tsx
+  85e1a7fe5627fe20 69,159,189
+frontend/src/pages/calls.tsx
+  85e1a7fe5627fe20 58-84,319-320,428,436,440-448,712-750,763-770,772,782-786,788-792
+docs/tooling-and-llm-redesign/24-human-like-interaction-implementation-sequence.md
+  877f8bd36983337c 32,60-63,79-83,95-103,108-109,129-131,159-160,173-178,183,188,191-194,214-215,237,256-263,272-277,296-304,313-315
+  85e1a7fe5627fe20 1-31,33-59,64-78,84-94,104-107,110-128,132-158,161-172,179-182,184-187,189-190,195-213,216-236,238-255,264-271,278-295,305-312,316-332
+src/ruhu/attachments/runtime.py
+  9cb5aec2d21a1577 77,80-85,90-91
+tests/test_live_call_api.py
+  85e1a7fe5627fe20 116,119,147,153,222,225,246
+frontend/src/features/customer-widget/WidgetChatPanel.tsx
+  877f8bd36983337c 15,17,95-106,159-162
+frontend/src/features/agent-canvas/state-graph/StateGraphWorkspace.tsx
+  85e1a7fe5627fe20 16,19,27-28,179-183,205-212,426,429-457
+frontend/src/features/agent-canvas/components/InteractionDebugPanel.tsx
+  85e1a7fe5627fe20 1-640
+tests/test_widget_projection_api.py
+  877f8bd36983337c 5,17,32-42,48-72,78,92-93,180-182
+  85e1a7fe5627fe20 26,208,217,273
+alembic/versions/20260415_0300_0045_turn_trace_observability_fields.py
+  4accbeb5bffc589e 1-136
+frontend/src/features/customer-widget/useWidgetChat.ts
+  9e258f910d4f0b7f 63-67,73-78,87-97,205-210,288-292,317-321,342-345
+src/ruhu/templates/phrases/en/phone.json
+  4accbeb5bffc589e 1-23
+tests/test_api.py
+  85e1a7fe5627fe20 291,303,307,323,325,345,362,447,461,484,505,556,594,650,667,723,775,838,844,882,885,894,910,914,920,925,1021,1026,1031,1059,1063,1068,1093,1097,1101,1104,1110,1124,1132,1138,1152,1155,1160,1167,1199,1204,1264,1269,1276,1283,1298,1303,1311,1326,1331,1344,1359,1365,1372,1380,1385,1394,1399,1404,1412,1457,1462,1467,1473,1476,1481,1484,1487,1492,1529,1532,1535,1537,1542,1573,1591,1619,1623,1629,1634,1648,1665,1693,1697,1707-1718,1740,1747,1761,1766,1795,1800,1823,1839,1850,1854,1923,1927,1950,1954,1986,1990,2002,2046,2050,2098,2102,2120,2130,2221,2225,2238,2367,2371,2384,2455,2464,2521,2581,2604,2618,2646,2654,2659,2714,2753,2762,2787,2807,2820,2824,2837,2849,2879,2902,2916,2963,2991,3030,3035,3040,3047,3055,3079,3083,3093,3104,3113,3137,3233,3254,3265,3271,3355,3357,3376,3383,3483,3485,3508,3515,3607,3609,3627,3638,3644,3668,3709,3716,3739,3749,3755,3799,3812,3823-3824,3829,3853,3863,3873,3887,3957,3967,4144,4151,4215,4253,4368-4369,4373,4385,4463,4467,4472,4594,4597,4600,4619,4809,4832,4839,4876
+src/ruhu/runtime_config.py
+  4accbeb5bffc589e 14-24,193-202,533-542
+  9cb5aec2d21a1577 124-131,388-403,629-632
+tests/test_auth_ui_flows.py
+  85e1a7fe5627fe20 21
+tests/test_realtime_bridge.py
+  877f8bd36983337c 83,91-107,123,130-135
+  9e258f910d4f0b7f 84-90,122
+  4accbeb5bffc589e 1-82,108-121,124-129
+monitoring/runbooks/turn-latency.md
+  4accbeb5bffc589e 1-28
+src/ruhu/widget_projection_api.py
+  877f8bd36983337c 39-40,95-96,124-125,136-137,140-197
+docs/templates/Graph-Templates-Implementation-Spec.md
+  9e258f910d4f0b7f 722,732,783
+tests/_fixtures/data/evals/reference_suite.json
+  9e258f910d4f0b7f 1-36
+src/ruhu/attachments/service.py
+  9cb5aec2d21a1577 4,7-8,10,20,25-29,117-254,267,281-283,294,412-413,483-484
+docs/journey-system/journey-system-first-principles-spec.md
+  85e1a7fe5627fe20 443
+docs/tooling-and-llm-redesign/21-artifact-system-implementation-spec.md
+  9e258f910d4f0b7f 221-223,240-247,291-298,317-325,358-359
+tests/test_phone_number_registry_api.py
+  85e1a7fe5627fe20 22,37,103,116,186,290,379,382,411,447,450,456,487,531,589
+src/ruhu/attachments/__init__.py
+  9cb5aec2d21a1577 9-11,32-34
+  85e1a7fe5627fe20 16,26
+.env.example
+  85e1a7fe5627fe20 6
+tests/test_loader.py
+  85e1a7fe5627fe20 5-6,9-13,18
+tests/test_async_db.py
+  4accbeb5bffc589e 1-403
+CLAUDE.md
+  85e1a7fe5627fe20 67,100
+frontend/src/features/agent-canvas/components/AgentIntegrationsTab.tsx
+  4accbeb5bffc589e 316
+  85e1a7fe5627fe20 2,4-9,12,22-24,38-44,64-82,105-121,125-139,142-144,149,151-163,165,167-172,174,176-179,183,186-201,203,205,207-211,213-222,225-235,238,240-241,243-244,248-282,284-286,288-315,317-369,383-384,389,441-443,446-451,454-458,460-462,467,469-481,483-484,494-498,502-503,506-507,511-512,516-518,520,522-524,528-529,533-534,537-540,542,550-564,566-580,591-815,817,820,822,826-847,852,855,862-1067
+tests_playwright/test_widget_voice_playwright.py
+  85e1a7fe5627fe20 59,79,157
+monitoring/runbooks/api-availability.md
+  4accbeb5bffc589e 1-54
+src/ruhu/kernel.py
+  877f8bd36983337c 6,10,25,27-29,89,260-287,325-360,611,635-646,921-927,937-945,1115-1142,1261,1405,1434-1440,1450,1469,1900,1924-1936,1963-1971,1974,1976-1982,1995-2031,2098-2105,2126-2128,2130-2138,2195,2197-2202,2209-2213,2281-2411,2427,2430-2513,2520-2521,2523,2550-2551,2568,2597-2607,2617-2626,2700-2701,2703,2706,2709,2711,2727,2741-2851,2854-3087,3209-3216,3266-3268,3364-3373,3379-3383,3425-3434,3440-3444,4542-4543,4545-4546,4567,4581,4622,4626,4795-4923
+  9e258f910d4f0b7f 4537-4541,4544,4550-4566,4568-4580,4617-4621,4623-4625,4632-4708,4744-4749,4751,4753,4755-4757,4760-4767,4769-4787,4794
+  85e1a7fe5627fe20 785,797,1005,1286,1301-1313,1315,1322,1325-1327,4400,4924
+  9cb5aec2d21a1577 119-125,136-139,493,746,1344,3581-3634,3942,3948,3957,3971-4003,4462
+  4accbeb5bffc589e 1031-1039,1198-1207,1227-1231,1233-1234,1262-1270,1288-1300,1316-1321,1323-1324,2526-2531,2533-2534,3330-3334,3336-3337,3388-3392,3394-3395,3449-3453,3455-3456,4032-4037,4039-4040,4075-4080,4082-4083,4203-4208,4212-4213,4217,4436-4441,4443-4444,4709-4743,4750,4752,4754,4758-4759,4768,4788-4793
+tests/_fixtures/data/graphs/support_triage.json
+  9e258f910d4f0b7f 1-103
+src/ruhu/attachments/store.py
+  9cb5aec2d21a1577 8,15,49-65,93-94,143-146,168-201,267-269,355-409,490-492,515-517,558-597
+  85e1a7fe5627fe20 116-117,131-132
+alembic/env.py
+  85e1a7fe5627fe20 7-8,20-62,97-99
+src/ruhu/attachments/producers.py
+  9cb5aec2d21a1577 1-235
+tests/test_simulator.py
+  85e1a7fe5627fe20 2-3,9,11,22,25
+tests/test_observability_s2_logging.py
+  4accbeb5bffc589e 1-438
+tests/test_graphs.py
+  85e1a7fe5627fe20 5-7,11-87,113-115,140,151,189,212
+tests/test_observability_s3_metrics.py
+  4accbeb5bffc589e 1-427
+scripts/release_hygiene_smoke.sh
+  85e1a7fe5627fe20 40,44
+tests/test_phone_provider_telnyx.py
+  85e1a7fe5627fe20 24,149,306
+tests/test_kernel.py
+  4accbeb5bffc589e 17-27,72,79-80,579-580,2019-2020,2552-2594
+  877f8bd36983337c 32,581-591,781-812,816,824,832,840,846,1164,1171-1175,1193,1200,1532-1619,2016-2018,2225-2226,2231-2507,2712-2716
+src/ruhu/api.py
+  9cb5aec2d21a1577 30,543,2611-2618,2622,2732-2737,2750,2823-2825,2896-2897,2975-2976,3160-3173,3234-3235
+  4accbeb5bffc589e 3895-3899,3901-3915,3917,3919,3931-3941,8844,8846,10881,10944,10973-10980,11738-11739
+  85e1a7fe5627fe20 5122-5163
+Makefile
+  9e258f910d4f0b7f 46,49
+tests/test_knowledge_sqlalchemy.py
+  85e1a7fe5627fe20 16
+frontend/src/features/agent-canvas/state-graph/utils.test.ts
+  9e258f910d4f0b7f 1-53
+tests/_fixtures/data/transcripts/legacy_voice_pricing_then_workflows.json
+  9e258f910d4f0b7f 1-6
+monitoring/grafana/dashboards/ruhu-api.json
+  4accbeb5bffc589e 1-139
+tests/test_registry.py
+  85e1a7fe5627fe20 6,10-11,14,16,23,27,31-34,36,41,45
+tests/test_attachment_retention.py
+  9cb5aec2d21a1577 1-311
+frontend/src/features/customer-widget/__tests__/useWidgetChat.test.tsx
+  9e258f910d4f0b7f 66
+tests/test_livekit_worker.py
+  85e1a7fe5627fe20 257,331,437
+src/ruhu/schemas.py
+  877f8bd36983337c 473-483,512-521,529-541
+  9cb5aec2d21a1577 8,54-55,109-116,122-127,189-213,260-264,338-341,345-352
+  4accbeb5bffc589e 435,441-448,583,585-586,589,595,598-602,606-687,741,743-744
+  85e1a7fe5627fe20 139-150,233-259
+src/ruhu/heuristics.py
+  85e1a7fe5627fe20 78,80-83
+src/ruhu/observability/retention.py
+  4accbeb5bffc589e 1-200
+src/ruhu/public_widget.py
+  85e1a7fe5627fe20 503
+  877f8bd36983337c 569-570,872,876-877,1271-1272,1276-1283
+alembic/versions/20260416_1000_0047_rename_demo_sales_template.py
+  85e1a7fe5627fe20 1-29
+src/ruhu/interaction_pacing.py
+  4accbeb5bffc589e 1-153
+frontend/src/types/state-graph.ts
+  85e1a7fe5627fe20 21-26,63-70,78-82,99-130,140
+alembic/versions/20260415_0100_0043_realtime_idempotency_nullable_org.py
+  85e1a7fe5627fe20 30-42
+src/ruhu/tools/oauth.py
+  85e1a7fe5627fe20 235-238
+tests/test_observability_s1_tracing.py
+  4accbeb5bffc589e 1-311
+monitoring/runbooks/trace-write.md
+  4accbeb5bffc589e 1-40
+tests/test_runtime_config.py
+  85e1a7fe5627fe20 70,135,256,350,363
+tests/test_journeys_store.py
+  85e1a7fe5627fe20 6,103
+src/ruhu/attachments/sqlalchemy_models.py
+  9cb5aec2d21a1577 39,101-142
+frontend/src/features/customer-widget/widget-types.ts
+  85e1a7fe5627fe20 147-170,177-180
+monitoring/grafana/dashboards/ruhu-database.json
+  4accbeb5bffc589e 1-130
+tests/test_attachment_projection_events.py
+  9cb5aec2d21a1577 1-296
+tests/test_knowledge_worker.py
+  85e1a7fe5627fe20 16
+tests/test_knowledge_service.py
+  85e1a7fe5627fe20 137,142,188
+tests/_fixtures/data/graphs/sales.json
+  9e258f910d4f0b7f 1-340
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "d7a0eeeaa4d5456c5a6208b8be695bb901752512",
+  "prompts": {
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 9879,
+      "overriden_lines": 1
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 76,
+      "total_deletions": 2,
+      "accepted_lines": 50319,
+      "overriden_lines": 0
+    },
+    "877f8bd36983337c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d86cc-82e6-76f0-ae86-aef4e643e61b",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 2463,
+      "overriden_lines": 0
+    },
+    "9cb5aec2d21a1577": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb68bbf9-e00d-489a-b658-adeff11b4e5e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 4203,
+      "overriden_lines": 0
+    },
+    "9e258f910d4f0b7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f541fae1-b952-42ea-acd3-d290270027a8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 1021,
+      "total_deletions": 3760,
+      "accepted_lines": 4327,
+      "overriden_lines": 0
+    }
+  }
+}
