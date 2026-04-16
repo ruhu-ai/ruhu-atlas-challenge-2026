@@ -1,0 +1,99 @@
+tests/_fixtures/data/graphs/sales.json
+  85e1a7fe5627fe20 1-340
+docs/agent-platform-improvements-spec.md
+  9e258f910d4f0b7f 1-290
+tests/_fixtures/data/evals/ci_suite.json
+  85e1a7fe5627fe20 4-31
+docs/state-graph-canvas-layout-spec.md
+  9e258f910d4f0b7f 1-268
+tests/_fixtures/data/transcripts/sales.json
+  85e1a7fe5627fe20 1-6
+tests/_fixtures/data/knowledge/sales.json
+  85e1a7fe5627fe20 1-22
+tests/_fixtures/data/transcripts/legacy_voice_first_product_question.json
+  85e1a7fe5627fe20 1-5
+tests/_fixtures/data/evals/legacy_voice_suite.json
+  85e1a7fe5627fe20 5-13
+tests/_fixtures/data/transcripts/legacy_voice_pricing_then_workflows.json
+  85e1a7fe5627fe20 1-6
+tests/_fixtures/data/evals/reference_suite.json
+  85e1a7fe5627fe20 4-29
+frontend/src/features/agent-canvas/components/InteractionDebugPanel.tsx
+  85e1a7fe5627fe20 1-442
+tests/_fixtures/data/graphs/support_triage.json
+  85e1a7fe5627fe20 1-103
+tests/_fixtures/data/transcripts/support_triage.json
+  85e1a7fe5627fe20 1-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "cf3beee0184d9b629f726cfb9d78b17cb0beae2f",
+  "prompts": {
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 16164,
+      "total_deletions": 7142,
+      "accepted_lines": 9874,
+      "overriden_lines": 3
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 50693,
+      "total_deletions": 5569,
+      "accepted_lines": 50659,
+      "overriden_lines": 76
+    },
+    "877f8bd36983337c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d86cc-82e6-76f0-ae86-aef4e643e61b",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 2598,
+      "total_deletions": 292,
+      "accepted_lines": 2464,
+      "overriden_lines": 0
+    },
+    "9cb5aec2d21a1577": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb68bbf9-e00d-489a-b658-adeff11b4e5e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 3225,
+      "total_deletions": 38,
+      "accepted_lines": 4203,
+      "overriden_lines": 0
+    },
+    "9e258f910d4f0b7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f541fae1-b952-42ea-acd3-d290270027a8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 558,
+      "total_deletions": 0,
+      "accepted_lines": 558,
+      "overriden_lines": 0
+    }
+  }
+}
