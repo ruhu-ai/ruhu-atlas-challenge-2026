@@ -1,0 +1,208 @@
+frontend/src/features/agent-canvas/state-graph/utils.ts
+  877f8bd36983337c 187-223
+src/ruhu/kernel.py
+  4accbeb5bffc589e 5106-5121,5148-5159,5173-5185,5187-5191,5194-5205,5212-5223
+  877f8bd36983337c 1199,1201,1229-1230,1232-1235,1245,1309,1327,1340,1501-1505,1535-1540,1542-1545,1556-1558,1566,1573
+  8a4a5d978c5a2e12 50-54,1541,1546-1555,1559-1565,1567-1572,1574-1587,2035,2054-2055,2061-2062,2068,2072-2073,2077,2079,2088-2091,2247,2566,2607,2681,2710,2730,2746,2751,2766-2778,2800-2802,2806,2811,2826-2845
+tests/test_validation.py
+  877f8bd36983337c 83-102
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.test.tsx
+  85e1a7fe5627fe20 33-41
+  877f8bd36983337c 1,77,147-223
+frontend/src/features/customer-widget/PendingToolInvocationsCard.tsx
+  8a4a5d978c5a2e12 1-62
+src/ruhu/widget_projection_api.py
+  8a4a5d978c5a2e12 46-50,95,108,121,130,139,148,157,189,211
+  4accbeb5bffc589e 293-299
+  85e1a7fe5627fe20 131-133,138,140-142,147,149-151,156
+  877f8bd36983337c 6,11,26,94,97-107,110-120,122-127,129,134-137,143-146,152-155,158-188,190-201,268
+docs/tooling-and-llm-redesign/25-human-like-interaction-authoring-ui-spec.md
+  4accbeb5bffc589e 150-176,189-195,210-211
+docs/tooling-and-llm-redesign/26-human-like-v1-support-matrix-and-closeout.md
+  85e1a7fe5627fe20 1-278
+src/ruhu/realtime/bridge.py
+  8a4a5d978c5a2e12 25-28
+  877f8bd36983337c 13-24,29-32,64-74,89-97,112-122,140-149,169-174,192-197,217-229
+  4accbeb5bffc589e 184
+frontend/src/features/agent-canvas/state-graph/utils.test.ts
+  877f8bd36983337c 1,53-109
+tests/test_api.py
+  4accbeb5bffc589e 4920-4963
+tests/test_livekit_adapter.py
+  4accbeb5bffc589e 236-239,252-255
+frontend/src/features/customer-widget/__tests__/WidgetProvider.test.tsx
+  877f8bd36983337c 141-146,148,178
+  85e1a7fe5627fe20 54-68,70-71,89-135,139,149-152,161-162
+src/ruhu/tools/executors/http.py
+  8a4a5d978c5a2e12 129-136
+frontend/src/features/customer-widget/widget-types.ts
+  85e1a7fe5627fe20 126-128
+  4accbeb5bffc589e 174-189,200-201
+  8a4a5d978c5a2e12 202-203
+src/ruhu/tools/provider_templates.py
+  877f8bd36983337c 100-102,148-156,213-221,306-307
+tests/test_kernel.py
+  877f8bd36983337c 504,2164-2264
+  4accbeb5bffc589e 1639-1647
+tests/test_tools_runtime.py
+  9a605b99fd4d289c 201-219,225,229-230
+  8a4a5d978c5a2e12 220-224,226-228
+tests/test_artifact_followup_v1.py
+  16852040f474a448 400-463,603-700,932-1107
+src/ruhu/livekit_worker.py
+  4accbeb5bffc589e 831-835,837-852,854,858-869
+  8a4a5d978c5a2e12 823-829
+frontend/src/features/customer-widget/VoiceInteractionPolicyCard.tsx
+  8a4a5d978c5a2e12 1-41
+src/ruhu/validation.py
+  877f8bd36983337c 36-124
+docs/tooling-and-llm-redesign/24-human-like-interaction-implementation-sequence.md
+  4accbeb5bffc589e 230,239-244,249-251,274-276
+tests/test_livekit_worker.py
+  4accbeb5bffc589e 423-479
+frontend/src/features/customer-widget/WidgetUnifiedPanel.tsx
+  877f8bd36983337c 22,165-166,188,313-332,443-448
+  85e1a7fe5627fe20 155-156
+frontend/src/features/customer-widget/WidgetProvider.tsx
+  8a4a5d978c5a2e12 8,13,33-34,45-46,146,255-278,283,321-323,393-395,434-436,526-573,620-629,665-666,675,681,688,696
+docs/tooling-and-llm-redesign/23-human-like-interaction-runtime-spec.md
+  4accbeb5bffc589e 952-1025
+src/ruhu/schemas.py
+  8a4a5d978c5a2e12 412-453,467
+tests/test_widget_projection_api.py
+  877f8bd36983337c 95,207
+  8a4a5d978c5a2e12 348-403
+  4accbeb5bffc589e 65-89,208-212
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.tsx
+  85e1a7fe5627fe20 16,678-701,1846
+  877f8bd36983337c 106-124,571-572,801,826,943-1010,1485,1513-1515,1530-1532,1617-1692,1804-1841
+frontend/src/features/customer-widget/__tests__/WidgetChatPanel.test.tsx
+  8a4a5d978c5a2e12 26,29-30,33-39,83,90-137
+frontend/src/features/agent-canvas/components/InteractionDebugPanel.test.tsx
+  8a4a5d978c5a2e12 1-74
+src/ruhu/api.py
+  8a4a5d978c5a2e12 4536-4571,8633-8637,8650,8671-8674,8703,10657-10664,10678,10699-10702,10729
+tests/test_realtime_bridge.py
+  877f8bd36983337c 157,164-171
+  8a4a5d978c5a2e12 10-11,92-104,130-140
+docs/Human-Like-Agent-Response-Design.md
+  8a4a5d978c5a2e12 16
+frontend/src/features/agent-canvas/state-graph/AgentPublishView.tsx
+  8a4a5d978c5a2e12 188-219
+frontend/src/features/customer-widget/useWidgetChat.ts
+  8a4a5d978c5a2e12 68-69,104-112,298-308,346,367,385-420,430-431
+frontend/src/features/customer-widget/WidgetChatPanel.tsx
+  877f8bd36983337c 23,75-84,88,169-188,223-228
+  85e1a7fe5627fe20 70-71
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "9067bc478cb3971b7fdcbeaecf69ed40b3d376e0",
+  "prompts": {
+    "16852040f474a448": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d9913-e319-7bf1-bfee-fd7a5be657eb",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 166,
+      "total_deletions": 1,
+      "accepted_lines": 166,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 1175,
+      "total_deletions": 8,
+      "accepted_lines": 2391,
+      "overriden_lines": 2
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 694,
+      "total_deletions": 53,
+      "accepted_lines": 4596,
+      "overriden_lines": 21
+    },
+    "877f8bd36983337c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d86cc-82e6-76f0-ae86-aef4e643e61b",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 919,
+      "total_deletions": 99,
+      "accepted_lines": 871,
+      "overriden_lines": 0
+    },
+    "8a4a5d978c5a2e12": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "35eed6b9-1653-44d6-a84d-5763435c0256",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 769,
+      "total_deletions": 99,
+      "accepted_lines": 768,
+      "overriden_lines": 0
+    },
+    "9a605b99fd4d289c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1a4035ed-bb23-42bd-bde8-c6c6dd227590",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 136,
+      "total_deletions": 98,
+      "accepted_lines": 129,
+      "overriden_lines": 0
+    },
+    "9cb5aec2d21a1577": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb68bbf9-e00d-489a-b658-adeff11b4e5e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    },
+    "9e258f910d4f0b7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f541fae1-b952-42ea-acd3-d290270027a8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 689,
+      "overriden_lines": 4
+    }
+  }
+}
