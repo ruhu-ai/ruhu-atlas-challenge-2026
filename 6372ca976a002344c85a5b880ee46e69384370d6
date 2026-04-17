@@ -1,0 +1,195 @@
+src/ruhu/attachments/runtime.py
+  3ae25ed52ba2b98f 5,16-45
+src/ruhu/observability/metrics.py
+  8a4a5d978c5a2e12 111-161,237
+frontend/src/features/agent-canvas/components/unified-test/voice-helpers.test.tsx
+  3ae25ed52ba2b98f 1-61
+src/ruhu/kernel.py
+  9a605b99fd4d289c 5529,5567,5592-5593
+  6feae09ff5fbc736 26,35,37-38,43-47,5254,5333-5339,5361,5377,5384-5528
+  3ae25ed52ba2b98f 3,5,11-13,1600-1601,1663-1716,1839-1847
+src/ruhu/audit/store.py
+  3ae25ed52ba2b98f 46,57,114,137
+src/ruhu/tools/reference.py
+  3ae25ed52ba2b98f 87
+src/ruhu/schemas.py
+  3ae25ed52ba2b98f 59-72,426-455,520,545-550,578-650,961,968-976
+src/ruhu/api.py
+  6feae09ff5fbc736 2685-2694,6229-6233
+  5413209a1312e20f 2885,13181
+  78374150abe23d17 2014-2019,10295,10299-10305,10415,10422,11225-11232,11234-11238
+tests/test_kernel.py
+  9a605b99fd4d289c 333-416,1687-1698,2634-2740,3091-3138
+src/ruhu/db.py
+  3ae25ed52ba2b98f 240,248-259,264,269,271-273
+tests/test_api.py
+  78374150abe23d17 22,1457-1508,1564-1611
+  3ae25ed52ba2b98f 1393-1456,1509-1563,1612-1661,3302,3307-3313,3315,3319,3324-3328
+src/ruhu/response_generation.py
+  78374150abe23d17 41,44,47,65,71-126,281,283,293-300,356-357,370,384,396-402,454,477,479,490-497,759,777,786,790,797-804
+  6feae09ff5fbc736 737
+  3ae25ed52ba2b98f 30-40,42-43,45-46,48-64,66-70,127-128
+src/ruhu/tools/production.py
+  3ae25ed52ba2b98f 233
+src/ruhu/stores.py
+  6feae09ff5fbc736 15-120,125,131,146,160,187-193,195,214-218,235-240,242-260,262,276,279-306,400,407-410,413,420-428,436
+tests/test_p0_confirmation_hotfix.py
+  3ae25ed52ba2b98f 1-21
+tests/test_response_generation.py
+  3ae25ed52ba2b98f 7,13,54-68,96-138,191-261
+tests/test_async_db.py
+  3ae25ed52ba2b98f 291,301,310-311
+tests/test_attachment_projection_events.py
+  3ae25ed52ba2b98f 227-228
+tests/test_live_call_api.py
+  16852040f474a448 174
+  8a4a5d978c5a2e12 62-64,72-78,143-144,168-173
+frontend/src/features/customer-widget/__tests__/useWidgetChat.test.tsx
+  3ae25ed52ba2b98f 5-6,39,44,60-73,88-89,139-164
+src/ruhu/attachments/service.py
+  3ae25ed52ba2b98f 10,117,147,160-182,415-423,448-456,460-468,491-499,524-533,536-544,565-574,649-666
+src/ruhu/observability/logging.py
+  8a4a5d978c5a2e12 11-54,62-67,72,113-117
+  3ae25ed52ba2b98f 4
+  4accbeb5bffc589e 68,73
+  9a605b99fd4d289c 78
+src/ruhu/audit/events.py
+  3ae25ed52ba2b98f 116,140,170
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "6372ca976a002344c85a5b880ee46e69384370d6",
+  "prompts": {
+    "16852040f474a448": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d9913-e319-7bf1-bfee-fd7a5be657eb",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    },
+    "3ae25ed52ba2b98f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99887804-0b50-49a8-a583-0bd17cad375d",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 406,
+      "total_deletions": 3,
+      "accepted_lines": 1002,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 133,
+      "overriden_lines": 0
+    },
+    "5413209a1312e20f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "417885aa-ba60-4a1d-bff7-2783a8876f32",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 2,
+      "overriden_lines": 0
+    },
+    "6feae09ff5fbc736": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d9977-81da-7ec2-9d43-a44b008f5aba",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 6595,
+      "overriden_lines": 0
+    },
+    "78374150abe23d17": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d997e-3a46-7441-abff-dc8e52f6aaff",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 226,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 349,
+      "overriden_lines": 0
+    },
+    "8a4a5d978c5a2e12": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "35eed6b9-1653-44d6-a84d-5763435c0256",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 143,
+      "overriden_lines": 0
+    },
+    "9a605b99fd4d289c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1a4035ed-bb23-42bd-bde8-c6c6dd227590",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1929,
+      "overriden_lines": 0
+    },
+    "9e258f910d4f0b7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f541fae1-b952-42ea-acd3-d290270027a8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 580,
+      "overriden_lines": 0
+    }
+  }
+}
