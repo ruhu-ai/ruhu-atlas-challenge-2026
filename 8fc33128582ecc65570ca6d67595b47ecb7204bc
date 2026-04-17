@@ -1,0 +1,153 @@
+src/ruhu/tools/store.py
+  35ce9c343ba3f394 4,13-15,59,61,74-103,106,113,117,147-152,160,164
+src/ruhu/runtime_config.py
+  35ce9c343ba3f394 189-212,555-589,738-750
+pyproject.toml
+  35ce9c343ba3f394 36,62-67
+  6feae09ff5fbc736 11
+  c2a823648926a8b7 12,19
+src/ruhu/tools/production.py
+  35ce9c343ba3f394 20,24,160,166-170,195,199-200,202
+  9a605b99fd4d289c 23,203-206
+src/ruhu/stores.py
+  35ce9c343ba3f394 6,15-17,182,184,197-212,215,225,260,264,277-327,335-342,352,354-355,414,425,465-470,481,483-484
+src/ruhu/audit/events.py
+  35ce9c343ba3f394 41
+src/ruhu/observability/metrics.py
+  9a605b99fd4d289c 71-85
+  6feae09ff5fbc736 86-113
+  35ce9c343ba3f394 266-302
+src/ruhu/tools/runtime.py
+  6feae09ff5fbc736 64-67,71-78,112-113,517,569,717-719,778-794
+  35ce9c343ba3f394 14,44,56,259-261,392-394,518-519,570-571,720-777
+  9a605b99fd4d289c 13,20,23-25,45,57,115-127,132-137,142-144,160-165,168-170,178-182,290-295,395-397,531-533,660-716,795-796
+  c2a823648926a8b7 195-212,501-515
+src/ruhu/api.py
+  c2a823648926a8b7 352-353,3132-3135,13675,13702-13707
+  6feae09ff5fbc736 3816-3819,4125-4264,4360,4363-4368,6506,12759-12821,13366-13413,13658-13674
+  35ce9c343ba3f394 346,2765-2770,2811,2822,13752
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "8fc33128582ecc65570ca6d67595b47ecb7204bc",
+  "prompts": {
+    "35ce9c343ba3f394": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02bbcb46-ee5a-4068-9a5f-da587c2e6ba3",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 2789,
+      "overriden_lines": 0
+    },
+    "3ae25ed52ba2b98f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99887804-0b50-49a8-a583-0bd17cad375d",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1180,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 69,
+      "overriden_lines": 0
+    },
+    "50acc866b9c7a689": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "702df9c5-c997-433b-b055-d2ff739baea9",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 155,
+      "overriden_lines": 0
+    },
+    "6feae09ff5fbc736": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d9977-81da-7ec2-9d43-a44b008f5aba",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 7873,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 173,
+      "overriden_lines": 0
+    },
+    "9a605b99fd4d289c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1a4035ed-bb23-42bd-bde8-c6c6dd227590",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 2047,
+      "overriden_lines": 0
+    },
+    "9e258f910d4f0b7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f541fae1-b952-42ea-acd3-d290270027a8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 542,
+      "overriden_lines": 0
+    },
+    "c2a823648926a8b7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "85b15bbc-9b2c-43fc-9741-31d0b79e5666",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 8337,
+      "overriden_lines": 0
+    }
+  }
+}
