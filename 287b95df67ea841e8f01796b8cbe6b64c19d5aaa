@@ -1,0 +1,387 @@
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.tsx
+  35ce9c343ba3f394 196-198,300,309,333-334,337-348,364-382
+src/ruhu/event_sourcing/projection_runner.py
+  c2a823648926a8b7 1-145
+src/ruhu/kernel.py
+  6feae09ff5fbc736 91,336,343,735-1012,1389,1425,1432,1462-1530,1584-1594,1601,1608-1610,1612,1681,1691-1699,2459-2461,2470,2480-2481,2487-2497,2617,2620-2622,2703-2708,3002,3010-3011,3141,3149-3150,3940,3948,4053,4064,4104,4115,4199-4201,4210,4224-4235,4715,4722-4723,4748,4755-4756,4864,4871-4872,4874-4876,4934,4941-4943,4945,4949,5071,5169-5171,5183-5184,5186-5189,5365-5369,5388,5401-5403,5417,5490-5498,5500,5600-5625,5627-5629,5710-5719,5740-5749,6039,6051-6055
+  35ce9c343ba3f394 6083
+  9a605b99fd4d289c 30,35,46,50,2753,2761,3977,4891,4902-4903,4905,4912,5344-5364,5370-5374,5411-5413,5446-5450,5461,5468,5478-5489,5499,5501-5599,5626,5630-5641,6026-6038,6040-6050,6056-6082
+src/ruhu/api.py
+  35ce9c343ba3f394 749,764-779,2803,2805,2807-2809,2815-2821,10359-10388,12031-12040,12042-12094
+  c2a823648926a8b7 13937,13939-13940
+  6feae09ff5fbc736 239,2301-2302,2320,2323-2325,2351-2353,2449,2472,2569,2579,2595,12020,12028
+src/ruhu/validation/schema.py
+  c2a823648926a8b7 1-95
+src/ruhu/domain/kpi.py
+  c2a823648926a8b7 1-282
+tests/test_rules_api_expression.py
+  35ce9c343ba3f394 1-311
+src/ruhu/validation/__init__.py
+  c2a823648926a8b7 1-13
+src/ruhu/event_sourcing/bootstrap.py
+  c2a823648926a8b7 1-36
+src/ruhu/rules_store.py
+  35ce9c343ba3f394 65-66,79,106,439,536,570,952,1219
+tests/test_kernel.py
+  9a605b99fd4d289c 391-394,701-783,1912,1921-1926,2920-2924,3352-3356
+  50acc866b9c7a689 933,942,962,981,2297,2305,2326,2345,2374,2376,2413,2421,2442,2461,2513,2521,2542,2561,2616,2624,2644,2663,2721,2734,2750,2791,2804,2817,2830,2832,2838,2898,2900,2960,2962,2998,3017,3019,3033-3034,3121,3132
+  6feae09ff5fbc736 2,6,31,35,92-103,784-899,1927-1929,2925,3357
+src/ruhu/tools/dlp_service.py
+  35ce9c343ba3f394 1-229
+test_e2e_simple.py
+  c2a823648926a8b7 1-163
+src/ruhu/tools/integration_worker.py
+  35ce9c343ba3f394 1-121,123-162,164-359
+  6feae09ff5fbc736 122,163
+src/ruhu/rate_limit.py
+  c2a823648926a8b7 101-221,374,378-381,384-387,397,399,404-405,421,431-436,439-462,474-480
+src/ruhu/schema_auth.py
+  c2a823648926a8b7 1-128
+monitoring/README.md
+  35ce9c343ba3f394 108-112
+src/ruhu/schemas.py
+  35ce9c343ba3f394 236
+src/ruhu/db_models.py
+  9a605b99fd4d289c 236-272
+  35ce9c343ba3f394 451
+src/ruhu/models/kpi/responses.py
+  c2a823648926a8b7 1-108
+tests/test_compiler_audit_on_compile.py
+  35ce9c343ba3f394 172-233
+src/ruhu/simulation_eval/models.py
+  35ce9c343ba3f394 7,85,90-101
+src/ruhu/kpi_api.py.backup
+  c2a823648926a8b7 1-763
+src/ruhu/tools/integration_store.py
+  6feae09ff5fbc736 32-38,67-83,85,119-132,156-157,166,210-235,238-256,314-328,366-368,376,419-469,473-477
+  9a605b99fd4d289c 1-31,39-66,84,86-118,133-155,158-165,167-209,236-237,257-313,329-365,369-375,377-418,470-472,478-604
+tests/test_api.py
+  50acc866b9c7a689 4483
+  6feae09ff5fbc736 28-31,308-523,531,1255-1260,2018-2022,2131-2136,2368-2369,2443-2444,3535,3545,3550,3618,3634-3635,3679,3707,3917-3918,4049-4050,4430-4434,4462,4537-4736,5248-5249,5292,5307,5317,5336,5338-5339
+  c2a823648926a8b7 1141-1142
+docs/api-key-and-probe-rollout-2026-04-17.md
+  35ce9c343ba3f394 1-77
+src/ruhu/validation/graphs.py
+  c2a823648926a8b7 1-242,252-273
+  35ce9c343ba3f394 243-251
+tests/test_tools_validators.py
+  35ce9c343ba3f394 68-118
+src/ruhu/intent_tags_api_production.py
+  6feae09ff5fbc736 188-219
+  c2a823648926a8b7 1-187,220-432
+src/ruhu/schema_registry/registry.py
+  c2a823648926a8b7 1-163
+src/ruhu/domain/attachments.py
+  c2a823648926a8b7 1-198
+src/ruhu/models/attachments/responses.py
+  c2a823648926a8b7 1-71
+src/ruhu/journeys/runtime.py
+  35ce9c343ba3f394 11,46-53,149-150,172-189,532-539
+src/ruhu/tools_api.py
+  35ce9c343ba3f394 23,151-168,288,359-363,444,483,626-661
+alembic/versions/20260417_1400_0052_tool_integration_jobs.py
+  9a605b99fd4d289c 1-92
+src/ruhu/projections/__init__.py
+  c2a823648926a8b7 1
+src/ruhu/tools/management.py
+  35ce9c343ba3f394 44,111,116,164-165,167,169-171,173-181,184,261,267-268,275-278,322,337-339,342-345,472-553,569-599,626-631,644-645,728-731,734-737
+src/ruhu/tools/mcp_client.py
+  35ce9c343ba3f394 1-312
+tests/test_schema_validation.py
+  c2a823648926a8b7 1-342
+tests/test_tool_integration_worker.py
+  35ce9c343ba3f394 1-484
+tests/test_tool_integration_runtime.py
+  9a605b99fd4d289c 1-182
+tests/test_schema_end_to_end.py
+  c2a823648926a8b7 1-263
+tests/test_tools_runtime.py
+  6feae09ff5fbc736 394-422,433
+  35ce9c343ba3f394 432,434-451
+src/ruhu/tools/ingestion.py
+  35ce9c343ba3f394 1-297
+test_runner.py
+  c2a823648926a8b7 1-175
+src/ruhu/event_sourcing/webhook_api.py
+  c2a823648926a8b7 1-120
+src/ruhu/rules_sqlalchemy_models.py
+  35ce9c343ba3f394 57
+src/ruhu/domain/intent_tags.py
+  c2a823648926a8b7 1-249
+src/ruhu/models/intent_tags/responses.py
+  c2a823648926a8b7 1-91
+src/ruhu/tools/validators.py
+  35ce9c343ba3f394 6-7,10-11,38-52,54-76,79-144,146,148-150,152-174,177-178,181-197,201,206-252,255-256,260-286
+frontend/src/api/services/__tests__/settings.service.test.ts
+  35ce9c343ba3f394 1-61
+src/ruhu/tools/executors/builtin.py
+  35ce9c343ba3f394 3,5,7,12-38,42-47,49,54-56,71-118
+alembic/versions/20260418_0100_0054_add_simulation_fixture_folder_path.py
+  35ce9c343ba3f394 1-42
+src/ruhu/tools/template_renderer.py
+  35ce9c343ba3f394 1-116
+tests/test_graphs.py
+  35ce9c343ba3f394 119,146,148,183
+alembic/versions/20260417_1300_0051_cleanup_removed_artifact_fields.py
+  3ae25ed52ba2b98f 1-78
+src/ruhu/event_sourcing/event_store.py
+  c2a823648926a8b7 1-115
+src/ruhu/simulation_eval/store.py
+  35ce9c343ba3f394 37,254,267-268
+src/ruhu/projections/attachments_projection.py
+  6feae09ff5fbc736 66
+  c2a823648926a8b7 1-65,67-68
+src/ruhu/tools/specs.py
+  c2a823648926a8b7 9,63-66,80-135
+src/ruhu/projections/kpi_event_handlers.py
+  c2a823648926a8b7 1-204
+src/ruhu/projections/attachments_event_handlers.py
+  c2a823648926a8b7 1-108
+src/ruhu/db_sqlmodel.py
+  c2a823648926a8b7 1-217
+src/ruhu/domain/__init__.py
+  c2a823648926a8b7 1
+src/ruhu/domain/shared.py
+  c2a823648926a8b7 1-41
+src/ruhu/billing/catalog.py
+  c2a823648926a8b7 27,48,69,92
+tests/_fixtures/data/graphs/sales.json
+  50acc866b9c7a689 36,40,67-69,116,118,138-140,201,203,223-225,251,253-254,265,272,278,280-281,284,289,296-298,303-305,310-312,318,324,326-327
+src/ruhu/event_sourcing/event_bus.py
+  c2a823648926a8b7 1-120
+src/ruhu/tools/compiler.py
+  35ce9c343ba3f394 19,23,107-123,131,133-137,167-168,226-227,230-315
+README.md
+  35ce9c343ba3f394 529
+src/ruhu/kpi_api_production.py
+  c2a823648926a8b7 1-504
+alembic/versions/20260417_1500_0053_drop_sales_demo_leads.py
+  50acc866b9c7a689 1-30
+src/ruhu/event_sourcing/__init__.py
+  c2a823648926a8b7 1
+src/ruhu/playground.py
+  35ce9c343ba3f394 326,605-606
+tests/test_tools_ingestion.py
+  35ce9c343ba3f394 1-130
+src/ruhu/models/attachments/requests.py
+  c2a823648926a8b7 1-71
+src/ruhu/projections/kpi_projection.py
+  c2a823648926a8b7 1-147
+src/ruhu/projections/intent_tags_projection.py
+  c2a823648926a8b7 1-76
+src/ruhu/models/intent_tags/__init__.py
+  c2a823648926a8b7 1
+src/ruhu/models/intent_tags/requests.py
+  c2a823648926a8b7 1-159
+src/ruhu/validation/errors.py
+  c2a823648926a8b7 1-34
+test_schema_verification.py
+  c2a823648926a8b7 1-76
+src/ruhu/tools/executors/http.py
+  6feae09ff5fbc736 3-6,8-9,12,14-15,26,40,49-56,58-68,98-108,153,157-165,236-238,249-251,255-263,274-275,282-455
+  35ce9c343ba3f394 138-152,154-156,166-179,217-235,239-248,252-254,264-273,276-281,456-606
+alembic/versions/20260418_1600_0055_add_rule_expression.py
+  35ce9c343ba3f394 1-27
+src/ruhu/tools/reference.py
+  50acc866b9c7a689 3
+  c2a823648926a8b7 38-43,55-60,68,70-74,77
+src/ruhu/event_sourcing/webhook_config.py
+  c2a823648926a8b7 1-133
+src/ruhu/models/__init__.py
+  c2a823648926a8b7 1-10
+src/ruhu/schema_registry/__init__.py
+  c2a823648926a8b7 1
+src/ruhu/rules_dsl.py
+  35ce9c343ba3f394 1-286
+src/ruhu/graph_upgrades.py
+  35ce9c343ba3f394 1-186
+src/ruhu/event_sourcing/observability_api.py
+  c2a823648926a8b7 1-59
+test_e2e_with_auth.py
+  c2a823648926a8b7 1-216
+test_api_integration.py
+  c2a823648926a8b7 1-159
+tests/test_kpi_schema_integration.py
+  c2a823648926a8b7 1-494
+src/ruhu/tools/integration_runtime.py
+  9a605b99fd4d289c 1-2,4-7,9,12,14-77,79-82,86-103,105-166,168-190,192-197,199-203,205-207,209-215,221-257,259-303,349-378,380-383,401-409,523-550,555-558,582-592
+  6feae09ff5fbc736 3,8,10-11,13,78,83-85,104,167,191,198,204,208,216-220,258,304-348,379,384-400,410-522,551-554,559-581
+src/ruhu/rules.py
+  35ce9c343ba3f394 210-211,216-227
+src/ruhu/tools/executors/mcp.py
+  35ce9c343ba3f394 5,17,26-42,48-52
+src/ruhu/tools/types.py
+  9a605b99fd4d289c 14,16-18,24,35-46,105-132
+tests/_fixtures/interpreters.py
+  c2a823648926a8b7 13,16-17
+src/ruhu/models/attachments/__init__.py
+  c2a823648926a8b7 1
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.test.tsx
+  35ce9c343ba3f394 9,34-36,39,71,227-250
+src/ruhu/event_sourcing/webhooks.py
+  c2a823648926a8b7 1-221
+src/ruhu/schema_routers.py
+  c2a823648926a8b7 1-104
+src/ruhu/loader.py
+  35ce9c343ba3f394 7,21
+tests/test_pii_redactor.py
+  35ce9c343ba3f394 1-57
+src/ruhu/event_sourcing/webhook_dispatch.py
+  c2a823648926a8b7 1-52
+src/ruhu/event_sourcing/metrics.py
+  c2a823648926a8b7 1-164
+src/ruhu/templates/system/sales-agent.json
+  50acc866b9c7a689 5,10,16,79,84,128,130-131,212,215,250,252-253,354,357,392,394-395,434,436-437,464,474,484,486-487,493,500,522,524-525,532,534-535,542,544-545,554,561,564,566-567,630
+src/ruhu/tools/deferred.py
+  35ce9c343ba3f394 1-62
+src/ruhu/models/kpi/__init__.py
+  c2a823648926a8b7 1-23
+src/ruhu/tools/production.py
+  35ce9c343ba3f394 35,54,56,58-59,63,185
+src/ruhu/tools/pii_redactor.py
+  35ce9c343ba3f394 1-5,10,13-14,18,22-23,33-40,44-49,51-79,103-183
+tests/test_rate_limit_tiers.py
+  c2a823648926a8b7 1-184
+src/ruhu/db.py
+  6feae09ff5fbc736 9,47,302-313
+monitoring/runbooks/api-availability.md
+  35ce9c343ba3f394 27-34,36,40,50-52
+tests/test_expression_dsl.py
+  35ce9c343ba3f394 1-304
+src/ruhu/registry.py
+  35ce9c343ba3f394 12,107,245,407,459,467,498-500,515,613,619
+src/ruhu/models/kpi/requests.py
+  c2a823648926a8b7 1-125
+src/ruhu/attachments_api_production.py
+  c2a823648926a8b7 1-363
+src/ruhu/response_generation.py
+  35ce9c343ba3f394 683-732,765,791-793
+tests/test_graph_upgrades.py
+  35ce9c343ba3f394 1-273
+src/ruhu/projections/intent_tags_event_handlers.py
+  c2a823648926a8b7 1-64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "287b95df67ea841e8f01796b8cbe6b64c19d5aaa",
+  "prompts": {
+    "35ce9c343ba3f394": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02bbcb46-ee5a-4068-9a5f-da587c2e6ba3",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 3937,
+      "total_deletions": 178,
+      "accepted_lines": 6238,
+      "overriden_lines": 0
+    },
+    "3ae25ed52ba2b98f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99887804-0b50-49a8-a583-0bd17cad375d",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1201,
+      "overriden_lines": 2
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 69,
+      "overriden_lines": 0
+    },
+    "50acc866b9c7a689": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "702df9c5-c997-433b-b055-d2ff739baea9",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 155,
+      "overriden_lines": 0
+    },
+    "6feae09ff5fbc736": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d9977-81da-7ec2-9d43-a44b008f5aba",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 7824,
+      "overriden_lines": 4
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 173,
+      "overriden_lines": 0
+    },
+    "9a605b99fd4d289c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1a4035ed-bb23-42bd-bde8-c6c6dd227590",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 1840,
+      "overriden_lines": 0
+    },
+    "9e258f910d4f0b7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f541fae1-b952-42ea-acd3-d290270027a8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 542,
+      "overriden_lines": 0
+    },
+    "c2a823648926a8b7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "85b15bbc-9b2c-43fc-9741-31d0b79e5666",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 493,
+      "total_deletions": 141,
+      "accepted_lines": 8889,
+      "overriden_lines": 0
+    }
+  }
+}
