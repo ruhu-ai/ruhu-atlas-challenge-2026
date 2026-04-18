@@ -1,0 +1,255 @@
+src/ruhu/tools/runtime.py
+  c2a823648926a8b7 9-10,22,35-46,213,223,239,256,271-274,357-372,388,407,423-424,532,542-545,557,578-601,613-616,627,640-643,646,651-655,681,690-711,734
+  78374150abe23d17 449-455,483-486,505-508,558,647,712-733,735
+tests/test_compiler_audit_on_compile.py
+  c2a823648926a8b7 73-96,138-143
+src/ruhu/templates/system/sales-agent.json
+  6feae09ff5fbc736 23
+  3ae25ed52ba2b98f 482-489,643-646
+src/ruhu/templates/system/telecom-billing-disputes-payment-plans.json
+  6feae09ff5fbc736 26
+frontend/src/pages/tools.tsx
+  78374150abe23d17 55-56,85-87,101-103,176-185,205-215,308-317,469-513
+src/ruhu/api.py
+  3ae25ed52ba2b98f 456,461,4073-4075,4086,4116-4145,4187
+frontend/src/features/agent-canvas/CleanAgentCanvasLayout.tsx
+  3ae25ed52ba2b98f 37,81-83
+docs/tooling-and-llm-redesign/34-llm-move-selection-implementation-spec.md
+  6feae09ff5fbc736 40-834
+frontend/src/features/agent-canvas/utils/agentDefaults.ts
+  3ae25ed52ba2b98f 1-72
+tests/test_observability_s3_metrics.py
+  3ae25ed52ba2b98f 16,34-35,39-43,180-181,264-322
+docs/tooling-and-llm-redesign/33-llm-move-selection-shipping-plan.md
+  6feae09ff5fbc736 32-481
+src/ruhu/tools/management.py
+  c2a823648926a8b7 44,603-637
+tests/fixtures/move_selection_replay/README.md
+  3ae25ed52ba2b98f 1-63
+docs/tooling-and-llm-redesign/38-p2-rollout-runbook.md
+  3ae25ed52ba2b98f 1-207
+tests/fixtures/move_selection_replay/sample_capture_proposal.json
+  3ae25ed52ba2b98f 1-31
+src/ruhu/runtime_config.py
+  3ae25ed52ba2b98f 213-218,596-599,761
+docs/anthropic-alignment/Anthropic-Aligned-Execution-Plan.md
+  3ae25ed52ba2b98f 371-372,377,390-398,405-407,413-414,422
+tests/test_tool_hardening_phase2.py
+  c2a823648926a8b7 1-196
+tests/test_tenant.py
+  c2a823648926a8b7 93-265
+docs/tooling-and-llm-redesign/31-llm-move-selection-runtime-validation-spec.md
+  6feae09ff5fbc736 22-686
+tests/test_tools_validators.py
+  c2a823648926a8b7 119-154
+tests/test_template_integration.py
+  3ae25ed52ba2b98f 12-13,16-17,31-88
+tests/test_api.py
+  78374150abe23d17 2212,2227,2241,2402-2450
+tests/test_schemas.py
+  3ae25ed52ba2b98f 1-2,6-25,84-454
+src/ruhu/tools/compiler.py
+  c2a823648926a8b7 137-142,323-364
+src/ruhu/schemas.py
+  3ae25ed52ba2b98f 4,228-474,527-533,558-561,651-660
+tests/test_runtime_config.py
+  3ae25ed52ba2b98f 407-443
+docs/tooling-and-llm-redesign/29-llm-proposed-transitions-spec.md
+  6feae09ff5fbc736 3-8
+  3ae25ed52ba2b98f 1-2,9-384
+tests/test_alembic_compat_p1_schemas.py
+  3ae25ed52ba2b98f 1-259
+tests/test_kernel_p2_short_circuit.py
+  6feae09ff5fbc736 142-153,225-236
+  3ae25ed52ba2b98f 1-141,154-224,237-280
+tests/test_kernel_p2_select_move.py
+  3ae25ed52ba2b98f 1-277
+tests/test_sales_agent_capture_loop_e2e.py
+  3ae25ed52ba2b98f 1-279
+docs/tooling-and-llm-redesign/35-human-likeness-completion-spec.md
+  3ae25ed52ba2b98f 1-457
+docs/tooling-and-llm-redesign/36-p1-work-items.md
+  3ae25ed52ba2b98f 2-25,34-75,80-92,95-97,101-191,194-288,305-402,410-477
+  6feae09ff5fbc736 1,26-33,76-79,93-94,98-100,192-193,289-304,403-409
+tests/test_response_generation.py
+  3ae25ed52ba2b98f 3-4,6,14,16-23,314-435
+frontend/src/api/services/tools.service.ts
+  78374150abe23d17 441-549
+tests/test_p0_confirmation_hotfix.py
+  3ae25ed52ba2b98f 1-13,17-92,97-100
+src/ruhu/stores.py
+  3ae25ed52ba2b98f 116,515
+tests/test_schema_validation.py
+  c2a823648926a8b7 180-185,198-222
+src/ruhu/response_generation.py
+  3ae25ed52ba2b98f 12-14,181-205,1117-1188
+src/ruhu/templates/system/ecommerce-returns-refunds.json
+  6feae09ff5fbc736 26
+src/ruhu/observability/metrics.py
+  3ae25ed52ba2b98f 47-60
+tests/conftest.py
+  3ae25ed52ba2b98f 276-333
+tests/test_tool_hardening.py
+  c2a823648926a8b7 322,343,363,384
+pyproject.toml
+  3ae25ed52ba2b98f 82-85
+tests/test_kernel_replay.py
+  3ae25ed52ba2b98f 1-215
+tests/fixtures/move_selection_replay/sample_sequence_apologize_then_repair.json
+  3ae25ed52ba2b98f 1-36
+src/ruhu/kernel.py
+  3ae25ed52ba2b98f 4,77-82,84,93-96,98-99,133-134,170-179,210-211,226-239,6602-6655,6662-6673,6676-6715,6717-6724,6726-6775,6797-6850,6852-6879,6881-6886,6888-6901,6904-6907,6909-6910,6912-6913,6915-6917,6921-6924,6926,6947-7020,7022-7065,7067-7196,7199,7201-7205,7207-7210,7212-7641
+  6feae09ff5fbc736 375,417-454,456-457,473,497,514-519,590-594,610,629,658-659,1136,1187,1208,1276,1320,1397,1427,1469,1489,1567,1637,1661,1742,1867,1887-1888,1894-1897,1917-1921,6656-6661,6674-6675,6716,6725,6776-6796,6851,6880,6887,6902-6903,6908,6911,6914,6918-6920,6925,6927-6946,7021,7066,7197-7198,7200,7206,7211
+docs/tooling-and-llm-redesign/32-redesign-supersession-matrix.md
+  6feae09ff5fbc736 13
+src/ruhu/tools/integration_runtime.py
+  c2a823648926a8b7 3,472-480
+tests/test_kernel_tool_outcome_projection.py
+  3ae25ed52ba2b98f 1-170
+docs/tooling-and-llm-redesign/37-p2-work-items.md
+  3ae25ed52ba2b98f 1-599
+frontend/src/api/services/__tests__/tools.service.test.ts
+  c2a823648926a8b7 1-10
+  78374150abe23d17 11-108
+frontend/src/features/agent-canvas/components/AgentSettingsPanel.tsx
+  3ae25ed52ba2b98f 190-193,208-230
+tests/test_kernel_p2_proposal_validation.py
+  3ae25ed52ba2b98f 1-535,537-551
+  6feae09ff5fbc736 536
+frontend/src/features/agent-canvas/utils/__tests__/agentDefaults.test.ts
+  3ae25ed52ba2b98f 1-35
+tests/test_tools_runtime.py
+  c2a823648926a8b7 90,111,116-138
+  78374150abe23d17 356-357,393-394
+tests/test_kernel_move_selection_stubs.py
+  6feae09ff5fbc736 112-123,455-474,534-536,539,541,543,546-553,555,557,559-566
+  3ae25ed52ba2b98f 1-111,124-454,475-533,537-538,540,542,544-545,554,556,558
+tests/test_kernel_p2_integration.py
+  3ae25ed52ba2b98f 1-17,19-169,178-184,217-251,273-320,346,353,377-451
+  6feae09ff5fbc736 18,170-177,185-216,252-272,321-345,347-352,354-376,452
+src/ruhu/db.py
+  c2a823648926a8b7 25-30
+docs/anthropic-alignment/Anthropic-Aligned-Implementation-Checklist.md
+  3ae25ed52ba2b98f 134-139,147
+frontend/src/features/agent-canvas/components/AgentIntegrationsTab.tsx
+  3ae25ed52ba2b98f 31,59-61,391-393,402-412,414-425,457-466,512-520,623-667
+src/ruhu/tools/circuit_breaker.py
+  c2a823648926a8b7 20,42-49,57,63-65,87-89,91-93,102-103,105-106,108-112,121-128,133-134,140,142-144,148-151
+frontend/src/types/state-graph.ts
+  3ae25ed52ba2b98f 182,186
+src/ruhu/templates/system/isp-customer-support.json
+  6feae09ff5fbc736 28
+src/ruhu/templates/system/healthcare-triage-scheduling.json
+  6feae09ff5fbc736 26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "8267cd291143f9197726147f25433866e27a6b76",
+  "prompts": {
+    "35ce9c343ba3f394": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02bbcb46-ee5a-4068-9a5f-da587c2e6ba3",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 641,
+      "overriden_lines": 2
+    },
+    "3ae25ed52ba2b98f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99887804-0b50-49a8-a583-0bd17cad375d",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 8662,
+      "total_deletions": 189,
+      "accepted_lines": 8008,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 69,
+      "overriden_lines": 0
+    },
+    "6feae09ff5fbc736": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d9977-81da-7ec2-9d43-a44b008f5aba",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 925,
+      "total_deletions": 108,
+      "accepted_lines": 899,
+      "overriden_lines": 0
+    },
+    "78374150abe23d17": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d997e-3a46-7441-abff-dc8e52f6aaff",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 294,
+      "total_deletions": 7,
+      "accepted_lines": 290,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 144,
+      "overriden_lines": 0
+    },
+    "9e258f910d4f0b7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f541fae1-b952-42ea-acd3-d290270027a8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 240,
+      "overriden_lines": 0
+    },
+    "c2a823648926a8b7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "85b15bbc-9b2c-43fc-9741-31d0b79e5666",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 772,
+      "total_deletions": 61,
+      "accepted_lines": 1007,
+      "overriden_lines": 0
+    }
+  }
+}
