@@ -1,0 +1,130 @@
+pyproject.toml
+  3ae25ed52ba2b98f 86
+tests/test_kernel_p2_proposal_validation.py
+  3ae25ed52ba2b98f 455-457,460,462,465-471,490-516
+tests/test_template_integration.py
+  3ae25ed52ba2b98f 74-77,87,89-90
+tests/test_capture_state_p3_e2e.py
+  3ae25ed52ba2b98f 280-281
+docs/tooling-and-llm-redesign/41-p4-work-items.md
+  3ae25ed52ba2b98f 1-440
+tests/test_kernel_p2_integration.py
+  3ae25ed52ba2b98f 440-448,457-483,486-487,489,492-494
+tests/test_kernel_p4_integration.py
+  3ae25ed52ba2b98f 1-491
+tests/test_kernel_p3_commit_semantics.py
+  3ae25ed52ba2b98f 283-307
+tests/test_kernel.py
+  3ae25ed52ba2b98f 1,901-1027
+tests/test_conversation_state_p4_e2e.py
+  3ae25ed52ba2b98f 1-299,301-345,347-356
+  6feae09ff5fbc736 300,346
+tests/test_kernel_p3_proactive.py
+  3ae25ed52ba2b98f 174,187-199,409-422
+src/ruhu/kernel.py
+  3ae25ed52ba2b98f 150-198,471,475-477,483,1023-1033,1077-1084,1994-2005,2717-2722,4055-4061,4088-4094,6765-6773,7566-7572,7617-7625,7627-7635,8311-8313,8361,8382,8388-8390,8394-8395,8403-8406,8465,8470-8491,8495,8505-8569,8625-8630
+  6feae09ff5fbc736 7334-7339,7341-7346,7348,7394-7411
+src/ruhu/templates/system/sales-agent.json
+  3ae25ed52ba2b98f 148-163
+docs/tooling-and-llm-redesign/42-p4-rollout-runbook.md
+  3ae25ed52ba2b98f 1-145,166,168-263
+  6feae09ff5fbc736 146-165,167
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "f08c038118d7dd3176c7a1aabbf88865bc71f098",
+  "prompts": {
+    "35ce9c343ba3f394": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02bbcb46-ee5a-4068-9a5f-da587c2e6ba3",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 641,
+      "overriden_lines": 0
+    },
+    "3ae25ed52ba2b98f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99887804-0b50-49a8-a583-0bd17cad375d",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 1940,
+      "total_deletions": 39,
+      "accepted_lines": 2295,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 69,
+      "overriden_lines": 0
+    },
+    "6feae09ff5fbc736": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d9977-81da-7ec2-9d43-a44b008f5aba",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 57,
+      "total_deletions": 29,
+      "accepted_lines": 57,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 135,
+      "overriden_lines": 0
+    },
+    "9e258f910d4f0b7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f541fae1-b952-42ea-acd3-d290270027a8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 240,
+      "overriden_lines": 0
+    },
+    "c2a823648926a8b7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "85b15bbc-9b2c-43fc-9741-31d0b79e5666",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 251,
+      "overriden_lines": 0
+    }
+  }
+}
