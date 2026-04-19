@@ -1,0 +1,126 @@
+src/ruhu/templates/system/isp-customer-support.json
+  6feae09ff5fbc736 136-137,139-142,152-153,155-158,465-491,601-628,699-725,848-874,957-984,1055-1081,1218-1245,1295-1326,1397-1423
+  3ae25ed52ba2b98f 1601-1681
+src/ruhu/api.py
+  3ae25ed52ba2b98f 2224-2245,2255,2303,2326-2342,2378-2382,2392,2617,2623,2640,2657,2662-2800,2806-2814,2825-2838,2849,3083-3084,6781-6831,6861-6880,13938-13992,14045-14058,14110-14118,14125,14127,14131-14147
+src/ruhu/templates/system/healthcare-triage-scheduling.json
+  6feae09ff5fbc736 132,136,139,148,152,155,208-239,549-576,653-684,776-802,906-937,1017-1043,1114-1140,1315-1342
+  3ae25ed52ba2b98f 1504-1561
+src/ruhu/templates/system/sales-agent.json
+  3ae25ed52ba2b98f 5,940-956
+  6feae09ff5fbc736 152-160,166-174,234-260,343-370,429-455,538-565,618-630,634-646,699,709,730-735,742-747,750-862
+src/ruhu/db_models.py
+  3ae25ed52ba2b98f 325
+tests/test_template_required_tools.py
+  3ae25ed52ba2b98f 1-273
+src/ruhu/templates/system/ecommerce-returns-refunds.json
+  3ae25ed52ba2b98f 1451-1538
+  6feae09ff5fbc736 134-135,137-140,150-151,153-156,406-437,539-565,615-646,725-751,823-849,932-959,1058-1084,1182-1208
+alembic/versions/20260419_1200_0058_add_required_tools_to_graph_templates.py
+  3ae25ed52ba2b98f 1-37
+docs/templates/Template-Required-Tools-Onboarding-Spec.md
+  3ae25ed52ba2b98f 1-946
+src/ruhu/templates/system/telecom-billing-disputes-payment-plans.json
+  6feae09ff5fbc736 134-135,137-140,150-151,153-156,453-479,562-589,639-670,761-787,858-884,955-981,1112-1143,1225-1251
+  3ae25ed52ba2b98f 1437-1516
+src/ruhu/graph_review.py
+  3ae25ed52ba2b98f 76-91,96,253-263
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "861bec5a4ae69f735b92982ab147a01aa38ea3a2",
+  "prompts": {
+    "35ce9c343ba3f394": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02bbcb46-ee5a-4068-9a5f-da587c2e6ba3",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 641,
+      "overriden_lines": 0
+    },
+    "3ae25ed52ba2b98f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99887804-0b50-49a8-a583-0bd17cad375d",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 2214,
+      "total_deletions": 239,
+      "accepted_lines": 2422,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 69,
+      "overriden_lines": 0
+    },
+    "6feae09ff5fbc736": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d9977-81da-7ec2-9d43-a44b008f5aba",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 1806,
+      "total_deletions": 174,
+      "accepted_lines": 1760,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 135,
+      "overriden_lines": 0
+    },
+    "9e258f910d4f0b7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f541fae1-b952-42ea-acd3-d290270027a8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 240,
+      "overriden_lines": 0
+    },
+    "c2a823648926a8b7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "85b15bbc-9b2c-43fc-9741-31d0b79e5666",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 251,
+      "overriden_lines": 0
+    }
+  }
+}
