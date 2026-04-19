@@ -1,0 +1,108 @@
+src/ruhu/templates/system/telecom-billing-disputes-payment-plans.json
+  3ae25ed52ba2b98f 127-152,231-257,351-378,1208-1211
+pyproject.toml
+  3ae25ed52ba2b98f 88
+docs/tooling-and-llm-redesign/46-p6-rollout-runbook.md
+  3ae25ed52ba2b98f 1-285
+src/ruhu/templates/system/ecommerce-returns-refunds.json
+  3ae25ed52ba2b98f 127-152,242-268,323-350,1222-1225
+src/ruhu/kernel.py
+  3ae25ed52ba2b98f 151-158,175-190,228-257,537,541-544,7673-7682,7688-7690
+src/ruhu/schemas.py
+  3ae25ed52ba2b98f 372-392,397
+tests/test_p6_e2e.py
+  3ae25ed52ba2b98f 1-381
+src/ruhu/templates/system/healthcare-triage-scheduling.json
+  3ae25ed52ba2b98f 131-137,144-150,282-308,402-429
+src/ruhu/templates/system/isp-customer-support.json
+  3ae25ed52ba2b98f 129-154,233-259,353-380,1349-1352
+docs/tooling-and-llm-redesign/45-p6-work-items.md
+  3ae25ed52ba2b98f 1-610
+tests/test_template_integration.py
+  3ae25ed52ba2b98f 73-76,86,88-89
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.0",
+  "base_commit_sha": "43ae32541acaf37aa07db6e82fa089e26afe3f69",
+  "prompts": {
+    "35ce9c343ba3f394": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02bbcb46-ee5a-4068-9a5f-da587c2e6ba3",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 641,
+      "overriden_lines": 0
+    },
+    "3ae25ed52ba2b98f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "99887804-0b50-49a8-a583-0bd17cad375d",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 1726,
+      "total_deletions": 64,
+      "accepted_lines": 2085,
+      "overriden_lines": 0
+    },
+    "4accbeb5bffc589e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "55750cfc-c4c9-4ac3-bcaa-5ff5db878a31",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 69,
+      "overriden_lines": 0
+    },
+    "85e1a7fe5627fe20": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3d813943-41ae-4d38-a7a5-07ce65572e48",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 135,
+      "overriden_lines": 0
+    },
+    "9e258f910d4f0b7f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f541fae1-b952-42ea-acd3-d290270027a8",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 240,
+      "overriden_lines": 0
+    },
+    "c2a823648926a8b7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "85b15bbc-9b2c-43fc-9741-31d0b79e5666",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 251,
+      "overriden_lines": 0
+    }
+  }
+}
