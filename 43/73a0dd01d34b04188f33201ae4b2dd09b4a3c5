@@ -1,0 +1,38 @@
+monitoring/runbooks/classifier.md
+  fccccb72e6353093 1-126
+monitoring/alerts/ruhu-classifier-alerts.yml
+  fccccb72e6353093 1-170
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "4373a0dd01d34b04188f33201ae4b2dd09b4a3c5",
+  "prompts": {
+    "296a7f98041a856b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019dcb0d-d07f-72e1-9ad2-48f5d6e19cac",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 2267,
+      "total_deletions": 0,
+      "accepted_lines": 2328,
+      "overriden_lines": 0
+    },
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 55282,
+      "total_deletions": 64179,
+      "accepted_lines": 57334,
+      "overriden_lines": 0
+    }
+  }
+}
