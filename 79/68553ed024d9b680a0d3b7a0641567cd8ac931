@@ -1,0 +1,27 @@
+tests/test_classifier_metrics.py
+  fccccb72e6353093 1-260
+src/ruhu/classifier/transformers_backend.py
+  fccccb72e6353093 107-111,212-285
+src/ruhu/observability/metrics.py
+  fccccb72e6353093 3-4,31,75,82,103-104,111,254-301,331-402,663-678
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "7968553ed024d9b680a0d3b7a0641567cd8ac931",
+  "prompts": {
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 55468,
+      "total_deletions": 64185,
+      "accepted_lines": 57520,
+      "overriden_lines": 0
+    }
+  }
+}
