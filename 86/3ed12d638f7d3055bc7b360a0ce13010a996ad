@@ -1,0 +1,48 @@
+src/ruhu/schemas.py
+  fccccb72e6353093 15,52,137-140,182-183,198,200-202,207,214-215,222,242,292,300,363,370,381,384-385,390-392,398,402,486-491,509,524,534-540,542-545,554-555,564-569,580,708,741,752-753,917-922,958,979,1034,1175,1178,1192,1201,1237,1239,1259-1260,1265,1278-1306,1314-1315,1326-1327,1335,1341,1345,1349,1355-1357,1361
+src/ruhu/stores.py
+  fccccb72e6353093 13-19,225-226,231,354-357,365,426-427,432,456-457,462,473-510,522-525,533,550-551,562-563,574
+tests/test_stores.py
+  fccccb72e6353093 9-21,29-31,41,54-56,102,113-116,133-247
+src/ruhu/db_models.py
+  fccccb72e6353093 45-46,51,72-75,83,274-275,277,290-291,293,297,299,306,312-313,315,324,335-529,594,596,633,635,644-645,698,700,704,706,882-885,913-914,1061,1393,1396,1499,1508,1559
+alembic/versions/20260430_1500_0067_add_turn_traces_classifier_json.py
+  fccccb72e6353093 1-37
+src/ruhu/gemma_local.py
+  fccccb72e6353093 223,263-270,276-277,288-302,309,329-332
+tests/test_gemma_local.py
+  fccccb72e6353093 331-369
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "863ed12d638f7d3055bc7b360a0ce13010a996ad",
+  "prompts": {
+    "35ce9c343ba3f394": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02bbcb46-ee5a-4068-9a5f-da587c2e6ba3",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 831,
+      "total_deletions": 1,
+      "accepted_lines": 1108,
+      "overriden_lines": 0
+    },
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 54465,
+      "total_deletions": 64466,
+      "accepted_lines": 56517,
+      "overriden_lines": 0
+    }
+  }
+}
