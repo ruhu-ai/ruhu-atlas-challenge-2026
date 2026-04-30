@@ -1,0 +1,42 @@
+src/ruhu/classifier/transformers_backend.py
+  fccccb72e6353093 1-206
+src/ruhu/classifier/protocol.py
+  fccccb72e6353093 1-72
+src/ruhu/classifier/constrained.py
+  fccccb72e6353093 1-185
+src/ruhu/classifier/__init__.py
+  fccccb72e6353093 1-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "de366488577a7ffb66856189d2e05c853d8bbfb4",
+  "prompts": {
+    "35ce9c343ba3f394": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02bbcb46-ee5a-4068-9a5f-da587c2e6ba3",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 671,
+      "total_deletions": 0,
+      "accepted_lines": 948,
+      "overriden_lines": 0
+    },
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 53632,
+      "total_deletions": 64552,
+      "accepted_lines": 55684,
+      "overriden_lines": 0
+    }
+  }
+}
