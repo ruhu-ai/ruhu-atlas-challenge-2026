@@ -1,0 +1,36 @@
+src/ruhu/kernel.py
+  fccccb72e6353093 820-827,869-870,872-875,883,4184-4190
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "d653ae008eeef3ff4fdbb7094b39e0029db78591",
+  "prompts": {
+    "c2a823648926a8b7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "85b15bbc-9b2c-43fc-9741-31d0b79e5666",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 46,
+      "total_deletions": 50,
+      "accepted_lines": 13592,
+      "overriden_lines": 8
+    },
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 29,
+      "total_deletions": 184,
+      "accepted_lines": 648,
+      "overriden_lines": 11
+    }
+  }
+}
