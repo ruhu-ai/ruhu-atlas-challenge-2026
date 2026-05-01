@@ -1,0 +1,40 @@
+src/ruhu/classifier/training/__init__.py
+  fccccb72e6353093 1-12
+src/ruhu/classifier/training/trace_export.py
+  fccccb72e6353093 1-495
+tests/test_classifier_training_trace_export.py
+  fccccb72e6353093 1-780
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "83341d24fc49e8273a7dff2dc434c5d4368b3e40",
+  "prompts": {
+    "296a7f98041a856b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019dcb0d-d07f-72e1-9ad2-48f5d6e19cac",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 26,
+      "total_deletions": 2,
+      "accepted_lines": 2354,
+      "overriden_lines": 0
+    },
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 59799,
+      "total_deletions": 66337,
+      "accepted_lines": 61848,
+      "overriden_lines": 0
+    }
+  }
+}
