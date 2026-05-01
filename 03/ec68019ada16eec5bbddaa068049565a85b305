@@ -1,0 +1,23 @@
+docs/pre-fill-intent-classifier-design/architecture-final.md
+  fccccb72e6353093 1-132
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "03ec68019ada16eec5bbddaa068049565a85b305",
+  "prompts": {
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 132,
+      "total_deletions": 0,
+      "accepted_lines": 3003,
+      "overriden_lines": 0
+    }
+  }
+}
