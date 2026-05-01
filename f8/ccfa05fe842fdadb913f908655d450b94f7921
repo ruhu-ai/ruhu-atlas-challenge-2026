@@ -1,0 +1,53 @@
+src/ruhu/api.py
+  fccccb72e6353093 2821,3514
+tests/test_runtime_config.py
+  fccccb72e6353093 16,90,464-527
+src/ruhu/runtime_config.py
+  fccccb72e6353093 27-35,89-98,240-242,261-274,293,369-396,708-714
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "f8ccfa05fe842fdadb913f908655d450b94f7921",
+  "prompts": {
+    "296a7f98041a856b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019dcb0d-d07f-72e1-9ad2-48f5d6e19cac",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 625,
+      "total_deletions": 7,
+      "accepted_lines": 12,
+      "overriden_lines": 0
+    },
+    "35ce9c343ba3f394": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02bbcb46-ee5a-4068-9a5f-da587c2e6ba3",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 25674,
+      "total_deletions": 50,
+      "accepted_lines": 20800,
+      "overriden_lines": 0
+    },
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 48430,
+      "total_deletions": 70941,
+      "accepted_lines": 48335,
+      "overriden_lines": 0
+    }
+  }
+}
