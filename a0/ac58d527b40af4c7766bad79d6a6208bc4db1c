@@ -1,0 +1,600 @@
+tests/test_live_call_api.py
+  fccccb72e6353093 126,240
+  c2a823648926a8b7 137,251
+frontend/src/api/services/agent-definition.service.ts
+  296a7f98041a856b 1-222
+src/ruhu/rules_sqlalchemy_models.py
+  c2a823648926a8b7 143-144
+infra/gcp/10-network.tf
+  296a7f98041a856b 1-72
+tests/test_atlas_generator_integration.py
+  296a7f98041a856b 1-40
+tests/test_oauth_refresh_backoff.py
+  296a7f98041a856b 1-345
+src/ruhu/evals.py
+  c2a823648926a8b7 9,16,19,27,57,59,65,69-70,74,76,90,140
+tests/test_oauth_pkce.py
+  296a7f98041a856b 1-308
+infra/aws/20-data.tf
+  296a7f98041a856b 1-158
+tests/test_atlas_api.py
+  296a7f98041a856b 1-2851
+src/ruhu/billing_api.py
+  c2a823648926a8b7 161,184,195,888-889,901,1100-1116,1121,1157-1159,1169-1170
+  fccccb72e6353093 1171
+frontend/src/features/agent-canvas/components/sidebar-types.ts
+  296a7f98041a856b 1-15
+src/ruhu/live_eval_sqlalchemy_models.py
+  c2a823648926a8b7 1-71
+src/ruhu/tools/executors/composite.py
+  296a7f98041a856b 1-146
+tests/test_oauth_requires_reauth.py
+  296a7f98041a856b 1-276
+src/ruhu/tools/db_catalog.py
+  c2a823648926a8b7 66-74,103,112,120-127
+src/ruhu/phone_provider_africastalking.py
+  c2a823648926a8b7 71-130,163,281-400,403-412,641-745
+infra/gcp/00-backend.tf
+  296a7f98041a856b 1-13
+src/ruhu/interpreters.py
+  c2a823648926a8b7 7,11,27-30,35-38,45,47,49-50,55-58,62,66-69,102,105,108-109,113-114,119,121
+src/ruhu/intent_tags/store.py
+  c2a823648926a8b7 50,63,76,206,211-212,233,238-239,260,264-265,448,471,496,521,543-544,595-596,610-611,694,721,727-728,744,773,779-780,796,820,827-828,844,899-900,1028-1029
+src/ruhu/intent_tags_api.py
+  c2a823648926a8b7 43,76,113,125,138,165,178,194,321,343,349,396,404,420,459,467,483,524,531,546,588,623,716,725,745,755,827,834,842,849
+src/ruhu/conversations_router.py
+  c2a823648926a8b7 3,14,18,26-27,67,83-85,88-93,95,100,105-106,109-111,113-115,117,139,143,147-149,151-152,157-158,163-164,166-168
+src/ruhu/knowledge/service.py
+  c2a823648926a8b7 22,661,678-682,691,703,725,728-729,731-749,751-761,763-779,781-783,787,817-932
+  fccccb72e6353093 933
+src/ruhu/observability/metrics.py
+  c2a823648926a8b7 611-646
+docs/generic-state-redesign/07-agent-scenario-runtime.md
+  296a7f98041a856b 1-381
+src/ruhu/tools/management.py
+  c2a823648926a8b7 81-97
+docs/atlas/_history/Atlas-System-Implementation-Plan.md
+  296a7f98041a856b 1-276
+src/ruhu/tools/ingestion.py
+  c2a823648926a8b7 17-84,91-232,260-281,291-317,319-328
+src/ruhu/tools/executors/code.py
+  296a7f98041a856b 1-92
+src/ruhu/simulation_eval/models.py
+  c2a823648926a8b7 27-28,34-35,73,79-80,136,153-154,179,182-183
+src/ruhu/ticketing_api.py
+  c2a823648926a8b7 44,279
+infra/aws/bootstrap/.terraform.lock.hcl
+  296a7f98041a856b 1-25
+infra/gcp/bootstrap/.terraform.lock.hcl
+  296a7f98041a856b 1-22
+src/ruhu/intent_tags/webhooks.py
+  c2a823648926a8b7 206,213,335,358,361-362,372,377,403,443,499,504,527,533
+src/ruhu/rules_migration.py
+  c2a823648926a8b7 41,420-421
+tests/test_openapi_combined_ingest.py
+  296a7f98041a856b 1-437
+docs/melonpay-demo/screenshot-inventory.md
+  296a7f98041a856b 1-124
+alembic/versions/20260501_1900_0077_add_oauth_refresh_backoff_columns.py
+  296a7f98041a856b 1-57
+src/ruhu/journeys/rules.py
+  c2a823648926a8b7 7,145-146,158,162,170,172,176-177,186,191-202,206-209,211,218-219,227-229,232,240,262-264,267,275,341,409-413,416,422,425-426
+src/ruhu/simulation_eval/qualification.py
+  c2a823648926a8b7 8-9,100
+alembic/versions/20260422_1500_0063_rename_graph_columns_to_agent_columns.py
+  296a7f98041a856b 1-191
+infra/gcp/bootstrap/main.tf
+  296a7f98041a856b 1-65
+tests/test_oauth_revoke.py
+  296a7f98041a856b 1-512
+frontend/e2e/atlas-panel-canonical.spec.ts
+  296a7f98041a856b 1-1233
+tests/test_phone_provider_telnyx.py
+  c2a823648926a8b7 22,153,310
+  fccccb72e6353093 149,306
+src/ruhu/loader.py
+  c2a823648926a8b7 7,15,19-40
+infra/aws/99-outputs.tf
+  296a7f98041a856b 1-55
+alembic/versions/20260421_1500_0061_rename_simulation_fixture_starting_fields.py
+  296a7f98041a856b 1-39
+.gitignore
+  296a7f98041a856b 31-34
+src/ruhu/knowledge/models.py
+  c2a823648926a8b7 21,132-138,146
+src/ruhu/kpi/measurement.py
+  c2a823648926a8b7 10,13,46-47,63,67,69,170-171,178,180,188-189,191-192,212-213,312-313,316-321,484-485,493,496-499
+frontend/src/api/client.ts
+  c2a823648926a8b7 21-31,228
+frontend/src/features/agent-canvas/components/CanvasView.tsx
+  296a7f98041a856b 1-93
+frontend/src/types/runtime-rules.ts
+  fccccb72e6353093 228-267
+  296a7f98041a856b 15-16
+infra/gcp/README.md
+  296a7f98041a856b 1-138
+src/ruhu/intent_tags/read_models.py
+  c2a823648926a8b7 77,192,197,202,205,217,234,252,273,286,373,378,383,391,394,398,435,526,540,549,552,560,574,578,600,609,633,640,663,672,699,702,705
+src/ruhu/tools_api.py
+  c2a823648926a8b7 163-184,190,300-316,554-597,628,747-762,967,986,1023,1050,1131
+src/ruhu/tools/runtime.py
+  c2a823648926a8b7 89-91,249
+src/ruhu/realtime/service.py
+  c2a823648926a8b7 55
+src/ruhu/journeys/review.py
+  c2a823648926a8b7 5,21-22,28-29,47-48,54-55,65-66,97-98
+src/ruhu/livekit_adapter.py
+  c2a823648926a8b7 749-750,787-788,1316,1339,1359,1374
+tests/test_registry.py
+  fccccb72e6353093 11
+src/ruhu/realtime_smoke.py
+  c2a823648926a8b7 56,72,75,93,235,240,426,438,450,462,476,486,494,510,513,526,535,538,552,575,585,611,627,649,680,724,750,774,841,861,916,928
+infra/aws/README.md
+  296a7f98041a856b 1-102
+src/ruhu/tools/oauth.py
+  c2a823648926a8b7 29-30,33,50-90,104-143,175,180-188,198-204,217,226-233,247,257-263,269,279-281,287,290-293,296,310,317-319,327-332,339,344-347,365-374,379-468,483,490-494,531,534-538,545,548-550,577-579,598-609,679-710,886-890,930-932,939-949,961-1012,1014-1044,1046-1107
+  fccccb72e6353093 933-938,950-960,1013,1045
+docs/fundraising/ruhu-investment-memo-v1.md
+  296a7f98041a856b 1-284
+tests/_fixtures/data/agents/support_triage.json
+  296a7f98041a856b 1-231
+src/ruhu/journeys/store.py
+  c2a823648926a8b7 1229-1232,1257-1260,1283-1286,1301-1302,1320-1321,1337-1338
+tests/test_notifications_fanout.py
+  296a7f98041a856b 1-450
+src/ruhu/atlas_generator.py
+  296a7f98041a856b 1-369
+src/ruhu/simulation_eval/store.py
+  c2a823648926a8b7 30,32,48,50,53,59-60,91,93,102,136,138,141,147,149,156-157,164-165,247,249,258,330,332,335,340,345-346,355-356,362-363,421,427-428,440,446-447,505,511-512,546-547,569-570,598,642-643,676
+tests/test_phone_provider_africastalking_sms.py
+  296a7f98041a856b 1-461
+src/ruhu/tools/specs.py
+  c2a823648926a8b7 94-99
+src/ruhu/atlas_protocol.py
+  296a7f98041a856b 1-498
+src/ruhu/ticket_system.py
+  c2a823648926a8b7 15,134,315,327,342-343,357,387,423,449,1892,1903-1904,1906-1907,1911-1912,1915,2004,2023-2024,2174,2179,2181,2267,2276,2405,2520,2555
+src/ruhu/tools/types.py
+  c2a823648926a8b7 9,71
+infra/aws/10-network.tf
+  296a7f98041a856b 1-164
+src/ruhu/tools/compiler.py
+  fccccb72e6353093 493
+  c2a823648926a8b7 100,105-117,166,170-252,473-492
+tests/test_atlas_generator.py
+  296a7f98041a856b 1-179
+docs/generic-state-redesign/05-agent-document-source-of-truth-and-canvas-projection.md
+  296a7f98041a856b 1-324
+src/ruhu/journey_context.py
+  fccccb72e6353093 5,8,16,18,21,24-29,36-41,52-53,57,61,65,67,72,74-75,81-84,87-97,99,104-112,122-123,130-131,142-143,146,154,162,166-171,179,182,186-191,193-195,197-198,203-220
+docs/atlas/_history/Atlas-System-First-Principles-Spec.md
+  296a7f98041a856b 1-291
+tests/test_intent_tags_api.py
+  fccccb72e6353093 57
+docs/melonpay-demo/README.md
+  296a7f98041a856b 1-124
+src/ruhu/permissions.py
+  c2a823648926a8b7 8-13,44,53-54,63-64
+src/ruhu/code_execution.py
+  c2a823648926a8b7 1,85-173,290,295,387-403
+infra/gcp/bootstrap/README.md
+  296a7f98041a856b 1-27
+src/ruhu/templates/system/healthcare-triage-scheduling.json
+  c2a823648926a8b7 5,19,35-99,101-108,110-126,128-142,145-166,168-192,195-216,218-242,245-260,262-271,273-317,320-336,338-343,345-408,411-427,429-433,435-488,491-507,509-517,520-541,543-567,570-585,587-596,598-652,655-671,673-681,684-700,702-709,712-733,735-759,762-777,779-788,790-834,837-852,854-863,865-899,902-918,920-927,930-946,948-955,958-974,976-983,987-1014,1016-1020,1022-1075,1078-1094,1096-1103,1106-1122,1124-1131,1133,1136,1219-1224,1226-1228,1230-1231
+src/ruhu/rules_store.py
+  c2a823648926a8b7 320-321,777-778,800,802,844-845,889-890,1087-1088,1207-1208,1247-1248
+frontend/src/features/agent-canvas/components/LibraryView.tsx
+  296a7f98041a856b 1-1386
+src/ruhu/rules_resolver.py
+  c2a823648926a8b7 21-22,31-32,46-47,54-55,131-132,160,162
+alembic/versions/20260429_1200_0065_add_billing_webhook_events.py
+  296a7f98041a856b 1-67
+tests/test_rules_compose_api.py
+  296a7f98041a856b 1-198
+src/ruhu/journeys/analytics.py
+  c2a823648926a8b7 43,63-65,71,300
+docs/atlas/Atlas-Agent-Document-Generator-Spec.md
+  296a7f98041a856b 1-375
+docs/atlas/Atlas-Agent-Document-Protocol.md
+  296a7f98041a856b 1-966
+src/ruhu/realtime/bridge.py
+  c2a823648926a8b7 42-44,82,87,94-95,117
+src/ruhu/db.py
+  c2a823648926a8b7 9,30,35-53,110-141,150-151,356-380,395-425
+docs/evaluation-page/01-evaluation-ui-backend-gap.md
+  296a7f98041a856b 1-172
+src/ruhu/notifications/fanout.py
+  296a7f98041a856b 1-365
+src/ruhu/registry.py
+  c2a823648926a8b7 11-14,21-29,31-33,36,44,48-49,62-76,79,87,89,97-147,149-167,169-199,201,203-221,224,239-245,247-254,256,263-264,266,275,277,282,289,291,296,303-304,308-309,315-316,331,333,336,338-340,355,358,360,362-364,367,374,377-378,380,383-386,388,392-395,397-398,405,407,412,418-420,424,434,436,446,454-455,469,471,477-486,489,493,495,497,503,507,509,513,516,518,523,528-560,573,575,577,579-591,594-599,601,607,610,614,618,621,630,633-634,643,645,647-648,650,655,667,670,673,675,682,686,690-691,693,695,697,702,713,716-717,720,722,727,737,739,743,750,753,756,759-760,762,768,777-778,780,786,789,791,797-803,807
+src/ruhu/simulator.py
+  c2a823648926a8b7 7,12-13,18,25-26,29-32,35-38,54-56,64,70-71,85,95,100-101,106,110,113
+tests/test_realtime_core.py
+  fccccb72e6353093 16,86,163,211,304,340,381,402,447,505,556
+  c2a823648926a8b7 24,103,171,219,312,348,385,404,455,512,564
+frontend/src/features/agent-canvas/components/AtlasAIPanel.test.tsx
+  296a7f98041a856b 1-556
+frontend/src/features/agent-canvas/utils/agentDocumentFactory.ts
+  296a7f98041a856b 1-93
+tests/test_playground_theme.py
+  fccccb72e6353093 15,41,70
+src/ruhu/atlas_docs_parser.py
+  296a7f98041a856b 1-426
+docs/fundraising/ruhu-pitch-deck-language-v1.md
+  296a7f98041a856b 1-215
+tests/test_phone_provider_africastalking.py
+  fccccb72e6353093 78,157,398,435
+  c2a823648926a8b7 26,82,161,402,439
+src/ruhu/simulation_eval/runtime.py
+  c2a823648926a8b7 8,38,103
+frontend/src/features/agent-canvas/components/atlas-shared.ts
+  296a7f98041a856b 1-100
+infra/gcp/envs/dev.tfvars
+  296a7f98041a856b 1-43
+frontend/public/ruhu-logo.svg
+  296a7f98041a856b 1-6
+tests/test_atlas_docs_parser.py
+  296a7f98041a856b 1-371
+src/ruhu/email_templates.py
+  c2a823648926a8b7 3,16-117
+tests/test_oauth_audit_events.py
+  296a7f98041a856b 1-360
+frontend/src/features/agent-canvas/hooks/useCallableUsageIndex.ts
+  296a7f98041a856b 1-104
+tests/test_oauth_routes.py
+  296a7f98041a856b 1-548
+src/ruhu/kpi/runtime.py
+  c2a823648926a8b7 7,29,37
+src/ruhu/interpreter.py
+  c2a823648926a8b7 5-6,20-23
+tests/test_live_eval.py
+  c2a823648926a8b7 1-672
+src/ruhu/rate_limit.py
+  296a7f98041a856b 126,395
+src/ruhu/templates/system/melonpay-support-demo.json
+  296a7f98041a856b 1-1804
+docs/tools/Deferred-Tool-Reconcile-Subsystem.md
+  296a7f98041a856b 1-183
+src/ruhu/agent_review.py
+  296a7f98041a856b 1-542
+infra/gcp/20-data.tf
+  296a7f98041a856b 1-150
+src/ruhu/auth_email_smoke.py
+  c2a823648926a8b7 150-154
+docs/atlas/_history/Implement-New-Atlas-Protocol-And-Models.md
+  296a7f98041a856b 1-349
+infra/aws/00-backend.tf
+  296a7f98041a856b 1-16
+tests/test_rules_api_expression.py
+  c2a823648926a8b7 47
+  fccccb72e6353093 45
+infra/gcp/30-compute.tf
+  296a7f98041a856b 1-261
+src/ruhu/templates/system/ecommerce-returns-refunds.json
+  c2a823648926a8b7 5,19,35-131,133-140,142-158,160-174,177-198,200-224,227-242,244-253,255-309,312-328,330-336,338-361,364-385,387-411,414-429,431-440,442-506,509-530,532-556,559-574,576-585,587-631,634-649,651-660,662-696,699-715,717-721,723-776,779-795,797-804,807-822,824-833,835-869,872-888,890-897,900-915,917-926,928-962,965-981,983-990,993-1009,1011-1018,1021-1037,1039-1046,1049-1065,1067-1074,1077-1093,1095-1103,1106-1122,1124-1131,1133,1136,1211-1216,1218-1220,1222-1223
+src/ruhu/audit/emitter.py
+  c2a823648926a8b7 14-15,58
+frontend/src/features/customer-widget/WidgetProvider.tsx
+  c2a823648926a8b7 68,70-74,77-81,84-91,93-95,101,446-453,465-470,477-495
+docs/atlas/_history/Atlas-Design-Review-Responses.md
+  296a7f98041a856b 1-351
+infra/gcp/.terraform.lock.hcl
+  296a7f98041a856b 1-62
+tests/_fixtures/data/agents/sales.json
+  296a7f98041a856b 1-820
+alembic/versions/20260422_1200_0062_rename_graph_tables_to_agent_tables.py
+  296a7f98041a856b 1-97
+src/ruhu/state_summary.py
+  fccccb72e6353093 3,6-10,12-43
+src/ruhu/policy.py
+  c2a823648926a8b7 53,55
+infra/aws/30-compute.tf
+  296a7f98041a856b 1-293
+src/ruhu/intent_tags/adapters.py
+  c2a823648926a8b7 13,16,24-28,255-261,267,271,279-280,357-360,369-372,565,620,634-638,657,666,669,697
+infra/aws/bootstrap/README.md
+  296a7f98041a856b 1-23
+src/ruhu/atlas_store.py
+  296a7f98041a856b 1-745
+tests/test_billing_webhook_idempotency.py
+  296a7f98041a856b 1-103
+tests/test_oauth_state_ttl.py
+  296a7f98041a856b 1-168
+tests/test_rules_compose.py
+  296a7f98041a856b 1-266
+infra/aws/bootstrap/main.tf
+  296a7f98041a856b 1-96
+src/ruhu/knowledge/__init__.py
+  c2a823648926a8b7 18-19,66-67
+frontend/src/features/agent-canvas/components/IdentityAndCapabilitiesCard.tsx
+  296a7f98041a856b 1-122
+frontend/src/features/customer-widget/widget-types.ts
+  c2a823648926a8b7 79-94
+alembic/versions/20260422_1700_0064_drop_workflow_view_storage_from_agent_tables.py
+  296a7f98041a856b 1-59
+frontend/src/features/agent-canvas/agent-definition/AgentRulesView.tsx
+  296a7f98041a856b 1-1866
+infra/aws/envs/staging.tfvars
+  296a7f98041a856b 1-38
+src/ruhu/atlas_models.py
+  296a7f98041a856b 1-136
+docs/platform-lessons/parloa.md
+  296a7f98041a856b 1-463
+src/ruhu/intent_tags/sqlalchemy_models.py
+  c2a823648926a8b7 29,37,39,70,78,80,117,119,146,148,152,245,247,251,326
+src/ruhu/templates/system/isp-customer-support.json
+  c2a823648926a8b7 5,37-126,128-135,137-153,155-169,172-193,195-219,222-237,239-248,250-294,297-313,315-320,322-385,388-403,405-414,416-460,463-479,481-488,491-507,509-513,515-568,571-586,588-597,599-633,636-652,654-661,664-680,682-689,692-707,709-718,720-754,757-773,775-779,781-834,837-852,854-863,865-899,902-918,920-927,930-946,948-955,958-985,987-990,992-1035,1038-1059,1061-1085,1088-1103,1105-1114,1116-1150,1153-1169,1171-1177,1181-1197,1199-1207,1210-1226,1228-1235,1237,1240,1331-1336,1338-1340,1342-1343
+tests/test_agent_review_publish_qualification.py
+  296a7f98041a856b 1-76
+src/ruhu/attachments/field_extractor.py
+  c2a823648926a8b7 236
+infra/aws/00-variables.tf
+  296a7f98041a856b 1-142
+src/ruhu/templates/system/sales-agent.json
+  c2a823648926a8b7 2,5,16,32-50,52-93,96-164,167-219,222-299,302-354,357-434,437-488,491-563,566-643,646-671,674-699,701,704,723-728,730-735
+frontend/src/features/customer-widget/WidgetChatPanel.tsx
+  c2a823648926a8b7 17,116-119,126-145,257-259,261-267,269-331,333-334
+src/ruhu/rules_compose.py
+  296a7f98041a856b 1-715
+frontend/src/api/services/atlas.service.ts
+  c2a823648926a8b7 11-58
+src/ruhu/_dev_server.py
+  c2a823648926a8b7 53-58,65
+src/ruhu/tools/oauth_providers.py
+  c2a823648926a8b7 44-56,89,125
+src/ruhu/rules.py
+  c2a823648926a8b7 59-60,251-252,260-261,263-264,352
+src/ruhu/rules_api.py
+  fccccb72e6353093 467
+  c2a823648926a8b7 13-21,62-76,344-345,358-359,407-408,425-466
+docs/atlas/Atlas-Agent-Document-Implementation-Plan.md
+  296a7f98041a856b 1-472
+tests/test_phone_number_registry_api.py
+  fccccb72e6353093 37,186,290,379,447,531,589
+  c2a823648926a8b7 20,41,190,294,387,464,535,593
+infra/gcp/99-outputs.tf
+  296a7f98041a856b 1-52
+docs/melonpay-demo/demo-narrative.md
+  296a7f98041a856b 1-162
+frontend/src/features/agent-canvas/agent-definition/AgentPublishView.tsx
+  296a7f98041a856b 1-272
+src/ruhu/attachments/view_ready_worker.py
+  c2a823648926a8b7 20,22,74,132-133,148,154,267,279-280,285-286,290,292-294,298,300-301,307,360-362
+src/ruhu/kpi_console.py
+  c2a823648926a8b7 431
+src/ruhu/notifications/service.py
+  fccccb72e6353093 137
+  c2a823648926a8b7 5,10-12,30,86,94-97,118,125-136
+src/ruhu/atlas_api.py
+  296a7f98041a856b 1-546
+docs/atlas/Atlas-Agent-Document-First-Principles.md
+  296a7f98041a856b 1-314
+src/ruhu/intent_tags/models.py
+  c2a823648926a8b7 94,138,177,219,254-272,275,277,348,392-393,478-479,498-499
+tests/test_api.py
+  c2a823648926a8b7 340,732,794,937,988,1026,1099,1207,1270,1316,1340,1454,1641,1706,1740,1768,1802,1836,1868,1900,1952,2011,2060,2106,2145,2208,2373,2614,2667,2709,2746,2821,2850,2886,2946,2998,3121,3267,3358,3517,3675,3815,3951,4012,4167,4287,4411,4528,4635,4714,4782,4875,4999,5080,5278,5350,5452,5572,5658,5823
+  fccccb72e6353093 730,790,933,984,1022,1095,1203,1266,1310,1338,1451,1638,1703,1737,1765,1798,1833,1865,1897,1949,2008,2056,2102,2142,2205,2371,2610,2663,2705,2744,2819,2848,2884,2944,2996,3119,3265,3353,3498,3670,3796,3947,4010,4158,4280,4402,4520,4622,4712,4776,4868,4992,5074,5272,5345,5416,5569,5656,5807
+frontend/src/features/agent-canvas/components/AtlasPermissionCard.tsx
+  296a7f98041a856b 1-164
+docs/canvas-redesign/03-code-callable-integration-spec.md
+  296a7f98041a856b 1-220
+src/ruhu/audit/events.py
+  c2a823648926a8b7 38-46
+frontend/src/api/services/tools.service.ts
+  c2a823648926a8b7 418,852-868
+frontend/src/features/agent-canvas/agent-definition/AgentEvaluationView.test.tsx
+  296a7f98041a856b 1-132
+alembic/versions/20260421_1400_0060_add_agent_document_json_to_graph_templates.py
+  296a7f98041a856b 1-28
+frontend/src/features/agent-canvas/components/ScenarioLanesCanvas.tsx
+  296a7f98041a856b 1-2059
+frontend/src/features/agent-canvas/agent-definition/AgentEvaluationView.tsx
+  296a7f98041a856b 1-697
+src/ruhu/journeys/service.py
+  c2a823648926a8b7 8,83,89,217,223-224,323,329-330,371,377-378,408,412-413,448,453-454,503,510-511,595,622-623,682,687-688,690,727,746,750-751,1192,1202,1212,1224,1234,1255,1270,1284,1299,1313,1328,1343,1354,1367,1377
+tests/test_auth_email_smoke.py
+  fccccb72e6353093 19
+src/ruhu/billing/sqlalchemy_models.py
+  c2a823648926a8b7 107-125
+src/ruhu/__init__.py
+  c2a823648926a8b7 18,30,46,107,124-125,127-128
+tests/test_livekit_worker_cli.py
+  c2a823648926a8b7 49
+  fccccb72e6353093 46
+frontend/src/features/agent-canvas/agent-definition/AgentVersionsView.tsx
+  296a7f98041a856b 1-292
+frontend/src/features/agent-canvas/components/StepDetailsPanel.tsx
+  296a7f98041a856b 1-749
+infra/aws/40-frontend.tf
+  296a7f98041a856b 1-113
+src/ruhu/phone_numbers.py
+  c2a823648926a8b7 56,137-139,180
+src/ruhu/intent_tags/service.py
+  c2a823648926a8b7 68,80,88,100,108,113,122,130,136,144,152,169,193,209,212,214,221,238,244-245,252,255,257,261,271,275,280,293,298,300,308,310,316,335,338,365-366,381-382,637-638,685,724,991-992
+tests/test_provider_projection.py
+  fccccb72e6353093 44,123
+  c2a823648926a8b7 59,138
+tests/test_auth_runtime.py
+  c2a823648926a8b7 90,114,173,223,258
+  fccccb72e6353093 83,143,167,211,254
+src/ruhu/journey_worker.py
+  c2a823648926a8b7 10,27,32-33,53,61,63-64,75-78,80,82,86,88-90,92-103,108,162,183,209,226
+src/ruhu/intent_tags/runtime_integration.py
+  c2a823648926a8b7 8,168-169,192-193,207-208,223-224,238,246,249-253,315-316,328-329,433,451-452,470
+src/ruhu/kpi/analysis.py
+  c2a823648926a8b7 334-335,340-341,344-346,349-351,358,362-364,366,550,552-554,557-558,565,569-571,573
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.tsx
+  c2a823648926a8b7 528-534,579-584,589-592,931-935,980-984
+infra/aws/envs/dev.tfvars
+  296a7f98041a856b 1-30
+tests/test_knowledge_api.py
+  fccccb72e6353093 23
+docs/melonpay-demo/what-this-looks-like-in-your-stack.md
+  296a7f98041a856b 1-89
+docs/platform-lessons/README.md
+  296a7f98041a856b 1-71
+frontend/src/features/agent-canvas/agent-definition/ToolRefCombobox.tsx
+  296a7f98041a856b 1-147
+infra/gcp/envs/staging.tfvars
+  296a7f98041a856b 1-41
+src/ruhu/atlas_coordinator.py
+  296a7f98041a856b 1-3129
+src/ruhu/atlas_provisioning.py
+  296a7f98041a856b 1-801
+tests/test_outbound_webhooks_dispatcher.py
+  296a7f98041a856b 1-453
+infra/README.md
+  296a7f98041a856b 1-138
+tests/test_auth_shell.py
+  fccccb72e6353093 63
+  c2a823648926a8b7 65
+src/ruhu/livekit_worker.py
+  c2a823648926a8b7 1025-1026,1040-1041,1063-1064
+frontend/src/api/services/runtime-rules.service.ts
+  c2a823648926a8b7 21-23,79-84
+docs/platform-lessons/implementation-backlog.md
+  296a7f98041a856b 1-349
+frontend/src/features/agent-canvas/state-graph/AgentRulesView.tsx
+  296a7f98041a856b 131-132
+infra/aws/.terraform.lock.hcl
+  296a7f98041a856b 1-45
+docs/canvas-redesign/02-known-gaps.md
+  296a7f98041a856b 1-159
+tests/test_tools_code_composite.py
+  296a7f98041a856b 1-297
+docs/canvas-redesign/01-authoring-surface-redesign.md
+  296a7f98041a856b 1-605
+src/ruhu/simulation_eval/service.py
+  c2a823648926a8b7 6-7,9,40-41,50-51,80-85,92,99-100,103,107-108,113-116,120-121,136-138,154,157-158,164,169-170,173,179-182,185-186,190-191,220,254,265-266,279,328-329,399,412-413,415,420,489,505,520-521,530,546,561-562,571
+frontend/src/types/agent-definition.ts
+  296a7f98041a856b 1-460
+src/ruhu/tools/production.py
+  c2a823648926a8b7 19-20,36,56,59,66,118,122-124,131-133,199,246,261-264,269-275,283
+frontend/src/features/customer-widget/useWidgetChat.ts
+  c2a823648926a8b7 11-31,104-109,145-156,164,173-176,219-225,329-333,351-352,356,362,373-378,388,400-417
+src/ruhu/provider_integrations.py
+  c2a823648926a8b7 17,73,79,81,84
+src/ruhu/live_eval.py
+  c2a823648926a8b7 1-716
+frontend/src/features/agent-canvas/contexts/AgentDocumentContext.tsx
+  296a7f98041a856b 1-306
+src/ruhu/billing/store.py
+  c2a823648926a8b7 5,7,10,20,24-26,76-98,107,230-263,282,475-513
+docs/platform-lessons/vapi.md
+  296a7f98041a856b 1-416
+src/ruhu/simulation_eval/README.md
+  296a7f98041a856b 37,41,49,78
+alembic/versions/20260502_1200_0079_add_live_turn_scores.py
+  c2a823648926a8b7 1-91
+infra/aws/00-versions.tf
+  296a7f98041a856b 1-27
+tests/test_agent_document.py
+  296a7f98041a856b 1-378
+src/ruhu/api.py
+  296a7f98041a856b 3402-3403
+  c2a823648926a8b7 475-483,12187-12217,12242-12285,12287-12291,12340-12344,13261-13280,13299-13303,13317-13321,14155-14193,14796-14800,14807-14815
+frontend/src/pages/rules-compose.tsx
+  296a7f98041a856b 1-731
+scripts/reset_non_auth_schema.py
+  296a7f98041a856b 1-56
+src/ruhu/templates/system/telecom-billing-disputes-payment-plans.json
+  c2a823648926a8b7 5,19,35-123,125-132,134-150,152-166,169-190,192-216,219-234,236-245,247-291,294-310,312-317,319-382,385-400,402-411,413-447,450-466,468-472,474-527,530-551,553-577,580-595,597-606,608-662,665-680,682-691,693-727,730-745,747-756,758-792,795-811,813-820,823-839,841-848,851-867,869-876,879-900,902-926,929-944,946-955,957-1001,1004-1020,1022-1029,1032-1048,1050-1058,1061-1077,1079-1086,1088,1091,1190-1195,1197-1199,1201-1202
+src/ruhu/phone_number_registry.py
+  c2a823648926a8b7 106,367,378,401,413-417,477,587
+tests/test_auth_ui.py
+  fccccb72e6353093 21
+src/ruhu/tools/__init__.py
+  c2a823648926a8b7 1
+src/ruhu/journeys/tracker.py
+  c2a823648926a8b7 278,281,469,611-614,659-660,707-708,1094,1174,1176,1179-1180
+tests/test_auth_ui_flows.py
+  fccccb72e6353093 21
+docs/platform-lessons/ruhu-baseline.md
+  296a7f98041a856b 1-254
+frontend/src/features/agent-canvas/agent-definition/AgentWidgetView.tsx
+  296a7f98041a856b 1-144
+infra/docker/.dockerignore
+  296a7f98041a856b 1-47
+infra/gcp/00-versions.tf
+  296a7f98041a856b 1-28
+alembic/versions/20260421_1200_0059_add_agent_documents_to_graph_versions.py
+  296a7f98041a856b 1-30
+infra/docker/Dockerfile
+  296a7f98041a856b 1-69
+src/ruhu/simulation_eval/assertions.py
+  c2a823648926a8b7 8,25,73-82,122-131,305-316,319,323-324,331-338,374,379,400-403,457,468,485,494,546,549-550,556,558-560
+infra/gcp/40-frontend.tf
+  296a7f98041a856b 1-70
+src/ruhu/intent_tags_console.py
+  c2a823648926a8b7 350-351,464,593-594,654-656,739,866,1008,1039,1068,1202
+tests/test_fastapi_signature_resolution.py
+  c2a823648926a8b7 95-96
+src/ruhu/email_transport.py
+  c2a823648926a8b7 3,16-17,54-56,59,70,95-104,163-262,326-327,333,342,410-414,430,436,439-440,469,472-473,477-499,501-522,524-529
+frontend/src/types/agent-document.ts
+  296a7f98041a856b 1-138
+Ruhu_Architecture.html
+  296a7f98041a856b 1-790
+src/ruhu/proactive_dispatch.py
+  c2a823648926a8b7 13,38
+src/ruhu/journeys/schemas.py
+  c2a823648926a8b7 97,180
+src/ruhu/simulation_eval/dev.py
+  c2a823648926a8b7 9-10,24,28-29,31-34,37,107,113,122,131,172-173,179-180,217,242,260
+src/ruhu/journeys/models.py
+  c2a823648926a8b7 44,69,212-215,235-236
+src/ruhu/db_models.py
+  c2a823648926a8b7 1457-1467
+frontend/src/features/agent-canvas/components/AgentFlowGraph.tsx
+  296a7f98041a856b 1-657
+infra/gcp/00-variables.tf
+  296a7f98041a856b 1-145
+tests/test_openapi_auth_scheme_detection.py
+  296a7f98041a856b 1-395
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "a0ac58d527b40af4c7766bad79d6a6208bc4db1c",
+  "prompts": {
+    "296a7f98041a856b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019dcb0d-d07f-72e1-9ad2-48f5d6e19cac",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 48393,
+      "total_deletions": 16,
+      "accepted_lines": 48397,
+      "overriden_lines": 0
+    },
+    "c2a823648926a8b7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "85b15bbc-9b2c-43fc-9741-31d0b79e5666",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 1126,
+      "total_deletions": 101,
+      "accepted_lines": 15985,
+      "overriden_lines": 0
+    },
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 13449,
+      "total_deletions": 104,
+      "accepted_lines": 16320,
+      "overriden_lines": 0
+    }
+  }
+}
