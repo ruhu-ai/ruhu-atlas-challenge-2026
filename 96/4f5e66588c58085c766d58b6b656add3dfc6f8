@@ -1,0 +1,40 @@
+tests/test_classifier_hot_load.py
+  fccccb72e6353093 1-311
+src/ruhu/classifier/hot_load.py
+  fccccb72e6353093 1-232
+src/ruhu/classifier/hot_load_api.py
+  fccccb72e6353093 1-129
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "964f5e66588c58085c766d58b6b656add3dfc6f8",
+  "prompts": {
+    "c2a823648926a8b7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "85b15bbc-9b2c-43fc-9741-31d0b79e5666",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 69,
+      "total_deletions": 3,
+      "accepted_lines": 69,
+      "overriden_lines": 0
+    },
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 672,
+      "total_deletions": 0,
+      "accepted_lines": 854,
+      "overriden_lines": 0
+    }
+  }
+}
