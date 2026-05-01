@@ -1,0 +1,110 @@
+frontend/src/api/services/browser-tasks.service.ts
+  fccccb72e6353093 1-212
+alembic/versions/20260501_1600_0072_add_browser_task_agent_id.py
+  296a7f98041a856b 3-4,13-14,20-21,25-26
+  fccccb72e6353093 1-2,5-12,15-19,22-24
+alembic/versions/20260501_1500_0071_add_browser_approval_context.py
+  296a7f98041a856b 3-4,13-14,20-21
+  fccccb72e6353093 1-2,5-12,15-19,22-25
+docs/browser-agent/Browser-Agent-Implementation-Spec.md
+  296a7f98041a856b 15-17,79-82
+docs/realtime-system/README.md
+  fccccb72e6353093 48-51
+alembic/versions/20260501_1300_0069_add_browser_task_pack_fields.py
+  fccccb72e6353093 1-32
+frontend/src/pages/browser-tasks.tsx
+  fccccb72e6353093 1-303
+docs/browser-agent/Browser-Agent-Execution-Checklist.md
+  296a7f98041a856b 15-18
+src/ruhu/browser_tasks/service.py
+  fccccb72e6353093 3-4,6,8-21,27-29,37,40-44,48,52-92,95,100-104,119-125,155,167,194,206,233-234,240-241,277-279,282-287,295-503,513-517,525-526,545-547,553-554,581-606,624,646-816
+src/ruhu/runtime_config.py
+  fccccb72e6353093 140-148,475-502,747-748
+src/ruhu/browser_tasks/artifacts.py
+  fccccb72e6353093 1-68
+src/ruhu/api.py
+  fccccb72e6353093 69-77
+src/ruhu/browser_tasks/task_packs.py
+  fccccb72e6353093 1-466
+tests/test_browser_playwright_adapter.py
+  fccccb72e6353093 1-328
+src/ruhu/browser_tasks/__init__.py
+  fccccb72e6353093 9-23,26-51,56-66,69-78,82-89,92-96
+src/ruhu/tools/management.py
+  fccccb72e6353093 51
+src/ruhu/browser_tasks/runtime.py
+  fccccb72e6353093 1-435
+src/ruhu/browser_tasks/store.py
+  fccccb72e6353093 3,6,25-62,118-218,241-246,254,268,273-277,281-283,320-431,444,447,473-481,483,487,493,499,512,517-521,525-527,543,548-552,556-558,579,582,597,600,612,627
+docs/browser-agent/Giga-Browser-Agent-Alignment-Review.md
+  296a7f98041a856b 1-190
+src/ruhu/browser_tasks_api.py
+  fccccb72e6353093 10-17,26,30-34,38,49-86,136-138,151-173,177-199,206-260,280-394,413-414,432-433
+docs/browser-agent/Browser-Agent-Completion-Roadmap.md
+  296a7f98041a856b 13-14,33
+docs/browser-agent/README.md
+  296a7f98041a856b 1-19
+src/ruhu/browser_tasks/sqlalchemy_models.py
+  fccccb72e6353093 3,13,18-22,26-28,52,55,70
+src/ruhu/browser_tasks/worker_contracts.py
+  fccccb72e6353093 1-207
+alembic/versions/20260501_1400_0070_add_browser_task_credential_refs.py
+  fccccb72e6353093 1-24
+src/ruhu/browser_tasks/playwright_adapter.py
+  fccccb72e6353093 1-238
+tests/test_browser_tasks_api.py
+  fccccb72e6353093 11-16,48,54-58,96-107,121-257,298-599
+tests/test_browser_task_packs.py
+  fccccb72e6353093 1-299
+src/ruhu/browser_tasks/models.py
+  fccccb72e6353093 29,34-38,42-44,64,67,78
+tests/test_browser_task_runtime.py
+  fccccb72e6353093 1-481
+tests/test_runtime_config.py
+  fccccb72e6353093 12,58-66,76,79-80,135-143,152-154,231,238,244,255,257-259,267,270-271,274,276,280-282,289,293,295-296,298,306,309,311-313,323,325,334,352,368,381,462-490
+docs/browser-agent/Browser-Agent-Worker-And-Task-Pack-Spec.md
+  296a7f98041a856b 1-405
+alembic/versions/20260501_1200_0068_harden_browser_tasks.py
+  fccccb72e6353093 1-122
+src/ruhu/browser_tasks/credentials.py
+  fccccb72e6353093 1-159
+tests/test_browser_tasks_service.py
+  fccccb72e6353093 3-30,32-69,115-987
+frontend/src/components/organisms/sidebar.tsx
+  fccccb72e6353093 19,54
+frontend/src/App.tsx
+  fccccb72e6353093 36,155-162
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "b5e1b8fae103f82d18e82cb3917827d6b5a36b68",
+  "prompts": {
+    "296a7f98041a856b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019dcb0d-d07f-72e1-9ad2-48f5d6e19cac",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 2747,
+      "total_deletions": 19,
+      "accepted_lines": 5075,
+      "overriden_lines": 0
+    },
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 61629,
+      "total_deletions": 66337,
+      "accepted_lines": 63671,
+      "overriden_lines": 0
+    }
+  }
+}
