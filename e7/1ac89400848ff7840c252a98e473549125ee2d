@@ -1,0 +1,55 @@
+src/ruhu/classifier/training_scheduler.py
+  fccccb72e6353093 1-233
+tests/test_classifier_training_scheduler.py
+  fccccb72e6353093 1-239
+src/ruhu/classifier/training_api.py
+  fccccb72e6353093 1-132
+tests/test_classifier_training_api.py
+  fccccb72e6353093 1-150
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "e71ac89400848ff7840c252a98e473549125ee2d",
+  "prompts": {
+    "296a7f98041a856b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019dcb0d-d07f-72e1-9ad2-48f5d6e19cac",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 8,
+      "total_deletions": 8,
+      "accepted_lines": 4,
+      "overriden_lines": 0
+    },
+    "35ce9c343ba3f394": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02bbcb46-ee5a-4068-9a5f-da587c2e6ba3",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 140,
+      "total_deletions": 3,
+      "accepted_lines": 140,
+      "overriden_lines": 0
+    },
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 754,
+      "total_deletions": 0,
+      "accepted_lines": 1053,
+      "overriden_lines": 0
+    }
+  }
+}
