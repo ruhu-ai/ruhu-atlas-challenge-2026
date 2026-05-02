@@ -1,0 +1,31 @@
+src/ruhu/templates/system/sales-agent.json
+  fccccb72e6353093 24
+tests/test_api.py
+  fccccb72e6353093 13,117,1313,1337,1451,1651,1659,1778,2270,2420,2637-2638,2641,2645,2649-2650,2654,2665,2708,2888,3501,4009,4014,4071,4830,5636,5714
+src/ruhu/templates/system/ecommerce-returns-refunds.json
+  fccccb72e6353093 27
+src/ruhu/templates/system/melonpay-support-demo.json
+  fccccb72e6353093 29
+src/ruhu/templates/system/isp-customer-support.json
+  fccccb72e6353093 29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "a6fefe28aa5db1053548485c04e682f1c2c9657b",
+  "prompts": {
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 31,
+      "total_deletions": 22,
+      "accepted_lines": 576,
+      "overriden_lines": 0
+    }
+  }
+}
