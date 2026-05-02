@@ -1,0 +1,78 @@
+tests/test_simulation_eval_store.py
+  fccccb72e6353093 56,83,95,108,120,167
+tests/test_knowledge_agent_scope.py
+  fccccb72e6353093 29-32
+tests/test_journeys_store.py
+  fccccb72e6353093 51
+tests/test_journeys_service.py
+  fccccb72e6353093 41,331,456,604,659
+tests/test_simulation_eval_io.py
+  fccccb72e6353093 9,27,33
+tests/test_journeys_review.py
+  fccccb72e6353093 36,99,177,240
+tests/test_livekit_worker.py
+  fccccb72e6353093 452,610
+tests/conftest.py
+  fccccb72e6353093 47
+tests/test_api.py
+  fccccb72e6353093 205,2774,2917,2968,3150,3296,3603,3647
+  35ce9c343ba3f394 2266
+tests/test_journeys_tracker.py
+  fccccb72e6353093 99,122,173,195,227,233,239,261,284,296,351,374,385,441,464,518,545,568,612,638,661,810,838,859,909
+tests/test_tenant.py
+  fccccb72e6353093 238,261,266
+tests/test_rules_sqlalchemy.py
+  fccccb72e6353093 101-102,182-183
+tests/test_realtime_smoke.py
+  fccccb72e6353093 134
+tests/test_simulation_eval_dev.py
+  fccccb72e6353093 89
+tests/test_rbac.py
+  fccccb72e6353093 64-65,79,88-89,100-101,108,120-121,144,163,169,175,178,191,193,209
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "cf76b1ba3a57354b2c98a8cd8717e06175bc62e5",
+  "prompts": {
+    "0043d679db30087a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019dcb10-ecc3-79d2-b8ea-fbd0079b28a8",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 22,
+      "total_deletions": 10,
+      "accepted_lines": 22,
+      "overriden_lines": 0
+    },
+    "35ce9c343ba3f394": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02bbcb46-ee5a-4068-9a5f-da587c2e6ba3",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 645,
+      "total_deletions": 21,
+      "accepted_lines": 927,
+      "overriden_lines": 6
+    },
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 70,
+      "total_deletions": 65,
+      "accepted_lines": 671,
+      "overriden_lines": 2
+    }
+  }
+}
