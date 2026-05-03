@@ -1,0 +1,27 @@
+frontend/src/features/customer-widget/__tests__/WidgetProvider.test.tsx
+  fcf44130d8d3bb6e 101,116,176
+frontend/src/features/agent-canvas/components/InteractionDebugPanel.test.tsx
+  fcf44130d8d3bb6e 18,40,42
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.test.tsx
+  fcf44130d8d3bb6e 161,247
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "a2d58e0a59c2446edc18d3bdb5316b772c9cb06d",
+  "prompts": {
+    "fcf44130d8d3bb6e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d13f2fc4-2eb8-418f-8a26-9cda16afae62",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 9178,
+      "total_deletions": 2777,
+      "accepted_lines": 6951,
+      "overriden_lines": 0
+    }
+  }
+}
