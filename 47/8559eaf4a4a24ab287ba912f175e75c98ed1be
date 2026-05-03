@@ -1,0 +1,127 @@
+src/ruhu/api.py
+  0043d679db30087a 13312-13331
+  c2a823648926a8b7 3158-3161,3171-3172,3251-3253
+  35ce9c343ba3f394 14836-14858
+src/ruhu/tools/oauth.py
+  35ce9c343ba3f394 265-273,279,285,321,331-337,381,488-612,628,640-647,945-992,1034,1048-1055,1063-1103,1109,1130,1315-1360
+src/ruhu/live_eval_judges.py
+  c2a823648926a8b7 1-489
+src/ruhu/live_eval.py
+  c2a823648926a8b7 444-480,546-548,553,557-569,571-588,592-593
+tests/test_intent_tags_sqlalchemy.py
+  fcf44130d8d3bb6e 4,30,166,289
+src/ruhu/runtime_config.py
+  c2a823648926a8b7 219,221-230,705-726,942
+src/ruhu/tools_api.py
+  35ce9c343ba3f394 968-973,993,1031-1036,1064
+tests/test_observability_s3_metrics.py
+  fcf44130d8d3bb6e 42,264,273,278,309
+src/ruhu/tools/compiler.py
+  35ce9c343ba3f394 135-141
+frontend/src/features/customer-widget/useWidgetChat.ts
+  fcf44130d8d3bb6e 452-453
+tests/test_response_generation.py
+  fcf44130d8d3bb6e 20,44-45,79-81,100-101,237,265-266,525,551,581-583,609-610,622-623,643-644,655-656,667,671-673,688-690,695-697,699,714,733-734
+frontend/src/features/customer-widget/WidgetProvider.tsx
+  fcf44130d8d3bb6e 344-345,473-474
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.tsx
+  fcf44130d8d3bb6e 990-998
+src/ruhu/live_eval_api.py
+  c2a823648926a8b7 22,25,150-161,165-169,174,212-241
+tests/test_kpi_analysis.py
+  fcf44130d8d3bb6e 16,21-23,25-26,39,62,102,151,156-158,160-161,176,255,325-327,329,344,366,395
+src/ruhu/rate_limit.py
+  0043d679db30087a 5,254,311
+tests/test_kpi_api.py
+  fcf44130d8d3bb6e 13,18-19,38,96,137,192,194
+src/ruhu/observability/metrics.py
+  c2a823648926a8b7 647-667
+tests/test_ticket_system.py
+  fcf44130d8d3bb6e 12,17,215,221,252,255,263,457,460,467,483,514,521,693,700,789,797,975,982
+tests/test_simulation_eval_store.py
+  fcf44130d8d3bb6e 6-7,29-30,51-57,61,88,94-100,105,118-120,130-131,151
+src/ruhu/tools/production.py
+  35ce9c343ba3f394 224-225,267-288,295
+tests/test_trace_and_dedupe.py
+  fcf44130d8d3bb6e 5,11,13,26,32,36,38,50-51
+tests/test_simulator.py
+  fcf44130d8d3bb6e 2,9,17,22
+tests/test_journeys_store.py
+  fcf44130d8d3bb6e 6,23,102-108
+src/ruhu/tools/executors/http.py
+  35ce9c343ba3f394 31-49,53-71,78-88,96-98,103-104,123-150
+tests/test_graph_review_publish_qualification.py
+  fcf44130d8d3bb6e 5-6,10,14,49,53
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "478559eaf4a4a24ab287ba912f175e75c98ed1be",
+  "prompts": {
+    "0043d679db30087a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019dcb10-ecc3-79d2-b8ea-fbd0079b28a8",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 22,
+      "overriden_lines": 0
+    },
+    "35ce9c343ba3f394": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "02bbcb46-ee5a-4068-9a5f-da587c2e6ba3",
+        "model": "claude-haiku-4-5-20251001"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 3336,
+      "overriden_lines": 0
+    },
+    "c2a823648926a8b7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "85b15bbc-9b2c-43fc-9741-31d0b79e5666",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 677,
+      "overriden_lines": 0
+    },
+    "fccccb72e6353093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5c90207a-b53a-4ec3-84b9-adf06a58150e",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 545,
+      "overriden_lines": 0
+    },
+    "fcf44130d8d3bb6e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d13f2fc4-2eb8-418f-8a26-9cda16afae62",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 184,
+      "total_deletions": 169,
+      "accepted_lines": 168,
+      "overriden_lines": 0
+    }
+  }
+}
