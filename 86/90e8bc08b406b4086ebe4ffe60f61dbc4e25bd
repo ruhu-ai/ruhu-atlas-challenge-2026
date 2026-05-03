@@ -1,0 +1,25 @@
+frontend/src/pages/__tests__/phone-numbers.test.tsx
+  fcf44130d8d3bb6e 72,159
+frontend/src/pages/phone-numbers.tsx
+  fcf44130d8d3bb6e 571,665,682,693,744,746,767,1149,1153,1203,1270,1272
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "8690e8bc08b406b4086ebe4ffe60f61dbc4e25bd",
+  "prompts": {
+    "fcf44130d8d3bb6e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d13f2fc4-2eb8-418f-8a26-9cda16afae62",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 14,
+      "total_deletions": 2241,
+      "accepted_lines": 6957,
+      "overriden_lines": 0
+    }
+  }
+}
