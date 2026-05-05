@@ -1,0 +1,43 @@
+frontend/src/features/agent-canvas/components/AgentCanvasSidebar.tsx
+  3e3049ba2ae25fa1 37-38,128,387
+frontend/src/features/agent-canvas/state-graph/StateCardNode.tsx
+  3e3049ba2ae25fa1 6,16,34,52,57
+frontend/src/features/agent-canvas/state-graph/utils.test.ts
+  3e3049ba2ae25fa1 4-10,14,18-20,22,26,29,49,63,70-72
+frontend/src/features/agent-canvas/state-graph/StateGraphWorkspace.tsx
+  3e3049ba2ae25fa1 28,33-34,136,216
+frontend/src/pages/rules.tsx
+  3e3049ba2ae25fa1 11,43
+frontend/src/features/agent-canvas/state-graph/StateInspector.tsx
+  3e3049ba2ae25fa1 43,45,52-53,167,173,176,182-183,204,206,209,227,243,329,611,614,618-624,626-630,663,687,690,692,701,703,709,711,719,734,833,860,874,897,1045,1070,1108,1340,1489,1510
+frontend/src/types/state-graph.ts
+  3e3049ba2ae25fa1 93-96
+frontend/src/api/services/state-graph.service.ts
+  3e3049ba2ae25fa1 33-38,77,137-139
+frontend/src/features/agent-canvas/state-graph/FollowupHandlersEditor.tsx
+  3e3049ba2ae25fa1 28,68-69,217
+frontend/src/features/agent-canvas/state-graph/AgentRulesView.tsx
+  3e3049ba2ae25fa1 1359
+frontend/src/features/agent-canvas/state-graph/utils.ts
+  3e3049ba2ae25fa1 13-34,96-99,130-136,140,147,153,158,160-161,163,179-180,211-214,216-217,220,222-223,225,229,231-232,238-239,242,254,301,303,307,327-328,333,338,361,494
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "2eb9db8a85517c571b642749b937b4c294e33de1",
+  "prompts": {
+    "3e3049ba2ae25fa1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 3553,
+      "total_deletions": 141,
+      "accepted_lines": 7782,
+      "overriden_lines": 0
+    }
+  }
+}
