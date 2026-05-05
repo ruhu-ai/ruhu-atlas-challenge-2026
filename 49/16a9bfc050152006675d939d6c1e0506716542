@@ -1,0 +1,465 @@
+tests/test_attachments_service.py
+  3e3049ba2ae25fa1 23
+docs/realtime-system/Realtime-Storage-ADR.md
+  3e3049ba2ae25fa1 72,80-82
+docs/state-graph-spec/graph-assembly-model.md
+  3e3049ba2ae25fa1 12
+frontend/src/features/agent-canvas/components/AgentFlowGraph.tsx
+  3e3049ba2ae25fa1 48,280,314,328-329,340,376,448,454,461,550,562,588,617,624,648
+docs/notification-system/Notification-Schema-And-Models.md
+  3e3049ba2ae25fa1 61-63,95
+frontend/src/features/agent-canvas/components/AtlasAIPanel.tsx
+  3e3049ba2ae25fa1 2233,2239,2248
+frontend/src/features/templates/components/TemplateGallery.tsx
+  3e3049ba2ae25fa1 4,111
+frontend/src/pages/dashboard.tsx
+  3e3049ba2ae25fa1 4,132,165,167,169,171,174,176,180,183,186,189,192
+src/ruhu/templates/system/telecom-billing-disputes-payment-plans.json
+  3e3049ba2ae25fa1 26
+docs/browser-agent/Browser-Agent-Completion-Roadmap.md
+  3e3049ba2ae25fa1 113,306,583
+tests/test_sentiment_worker.py
+  3e3049ba2ae25fa1 55,79
+tests/test_intent_tags_sqlalchemy.py
+  3e3049ba2ae25fa1 31,33,45-46,68-69,85,95,102,111-112,167,169,181-182,202,212,223,234,238,243-244,290,292,304-305,325,334,343,346,351-352
+frontend/src/features/agent-canvas/agent-definition/utils.test.ts
+  3e3049ba2ae25fa1 14,17,32,54,56
+docs/canvas-redesign/02-known-gaps.md
+  fc2ab0fa23c224f3 79
+tests/test_intent_tags_api.py
+  3e3049ba2ae25fa1 57,61
+docs/atlas/Atlas-System-Implementation-Plan.md
+  3e3049ba2ae25fa1 8,13,22,30,56,67,70,124-127,154,165-166,187,194-196,203,205,211,217,222,228,235,238,240,261,269
+frontend/src/features/agent-canvas/hooks/useAgentConfig.ts
+  3e3049ba2ae25fa1 62
+tests_playwright/test_widget_voice_playwright.py
+  3e3049ba2ae25fa1 79,157
+tests_playwright/test_tickets_playwright.py
+  3e3049ba2ae25fa1 32
+tests/test_rules_api_expression.py
+  fc2ab0fa23c224f3 88
+  3e3049ba2ae25fa1 45,47
+frontend/src/features/agent-canvas/agent-definition/AgentDefinitionWorkspace.tsx
+  3e3049ba2ae25fa1 118-120,468,494
+src/ruhu/attachments/sqlalchemy_models.py
+  3e3049ba2ae25fa1 32,34-35
+docs/generic-state-redesign/05-agent-document-source-of-truth-and-canvas-projection.md
+  fc2ab0fa23c224f3 8,45,60,91,153,170,216,279,281,288,309,322
+docs/pre-fill-intent-classifier-design/03-implementation-plan.md
+  3e3049ba2ae25fa1 129,169,217,311
+  fc2ab0fa23c224f3 193,215,218-219,221,225,283
+docs/generic-state-redesign/06-generic-step-work-items.md
+  fc2ab0fa23c224f3 53,158,163,166,170,176,203,247,278,339,360
+tests/test_phone_numbers.py
+  3e3049ba2ae25fa1 74,79
+frontend/src/features/agent-canvas/components/AgentCanvasSidebar.tsx
+  3e3049ba2ae25fa1 118,127,132,152,157,327,336-337,340-341,350,398,455
+  fc2ab0fa23c224f3 403,454
+src/ruhu/templates/system/melonpay-support-demo.json
+  3e3049ba2ae25fa1 28
+tests/test_classifier_vertex_gemini_backend.py
+  3e3049ba2ae25fa1 1,3-5
+docs/now/02-tool-gateway-and-semantic-discovery.md
+  3e3049ba2ae25fa1 115,132,158
+docs/live-call-system/README.md
+  3e3049ba2ae25fa1 3,28,31
+src/ruhu/conversations/outbox.py
+  3e3049ba2ae25fa1 70,82-83,129-134
+docs/realtime-system/Realtime-API-And-Transport-Contracts.md
+  3e3049ba2ae25fa1 113,130-131
+docs/scalability-design-spec/03-architecture-rfc.md
+  fc2ab0fa23c224f3 19,75,106,262
+docs/state-graph-spec/INDEX.md
+  3e3049ba2ae25fa1 11-12,57,67,69
+docs/platform-lessons/vapi.md
+  fc2ab0fa23c224f3 173
+docs/observability-system/Observability-Implementation-Plan.md
+  3e3049ba2ae25fa1 79-80,173,181,191,197,325
+docs/scalability-design-spec/README.md
+  3e3049ba2ae25fa1 54
+docs/voice-bridge/Voice-Bridge-Detailed-Spec.md
+  3e3049ba2ae25fa1 14,28,30,74,81,83,112,137,200,251,301,319,337,394,426,535,551,555,559,573,669,749,751,783,796
+tests/test_intent_classification_request_fields.py
+  3e3049ba2ae25fa1 1,4-6
+frontend/src/features/agent-canvas/components/AgentIntegrationsTab.tsx
+  3e3049ba2ae25fa1 4
+frontend/src/features/agent-canvas/agent-definition/AgentWidgetView.tsx
+  3e3049ba2ae25fa1 107
+docs/atlas/Atlas-Agent-Document-First-Principles.md
+  3e3049ba2ae25fa1 11,48,54-55,182,214,217,224-225
+tests/test_auth_shell.py
+  3e3049ba2ae25fa1 63,65
+docs/observability-system/Log-Schema.md
+  3e3049ba2ae25fa1 38,97
+docs/tooling-and-llm-redesign/25-human-like-interaction-authoring-ui-spec.md
+  fc2ab0fa23c224f3 16,26,94
+tests/test_intent_tags_service.py
+  3e3049ba2ae25fa1 20,34,37,40,55,57,69,79,84,92,168,178,189,200,211,216,221-222,237-238,259-260,289,298,307,310,315-316,360-361,382,391,401,411,414,418-419,436-437
+docs/phone-number-system/Phone-Number-System-Handover.md
+  3e3049ba2ae25fa1 16
+docs/pre-fill-intent-classifier-design/06-evaluation-spec.md
+  3e3049ba2ae25fa1 158
+docs/atlas/Atlas-Agent-Document-Protocol.md
+  3e3049ba2ae25fa1 28,955
+frontend/src/types/agent-definition.ts
+  3e3049ba2ae25fa1 100
+docs/realtime-system/Realtime-Schema-And-Models.md
+  3e3049ba2ae25fa1 82,91-92,95
+docs/realtime-system/Unified-Realtime-Architecture.md
+  3e3049ba2ae25fa1 34,134
+frontend/src/features/agent-canvas/components/ScenarioEditor.tsx
+  3e3049ba2ae25fa1 5,209,215,259,262-263,268
+frontend/src/pages/__tests__/phone-numbers.test.tsx
+  3e3049ba2ae25fa1 24-26,43,46,67,189,229-230
+tests/test_phone_provider_africastalking.py
+  3e3049ba2ae25fa1 78,82,157,161,398,402,435,439
+src/ruhu/public_widget.py
+  3e3049ba2ae25fa1 904
+docs/simulation/simulation-evaluation-domain.md
+  3e3049ba2ae25fa1 15,30,37,78,84-85,92,102-103,107,118,150,156,168-169,171,173,220,226-227,325,373-374,377,391,393,422,439,452,458,462,464,486,488,494,521,523,525,528,532,558-559,569,575,585-586,625-626,646-648,721,724,728,750,787,791,795,818,836,853,881,897-898,910-911,916
+src/ruhu/schemas.py
+  fc2ab0fa23c224f3 156,1288-1290
+docs/generic-state-redesign/05-scenario-document-source-of-truth-and-canvas-projection.md
+  fc2ab0fa23c224f3 8,18,26,43,58,89,148,150,165,167,169,185,211,213,226,228,267,271,273,278,280,282,301,308,314
+docs/kpi-system/KPI-Intervention-And-Execution-Boundary.md
+  3e3049ba2ae25fa1 191,247
+tests/test_auth_runtime.py
+  3e3049ba2ae25fa1 83,90,114,167,173,211,223,254,258
+docs/rules-system/Rules-API-And-Runtime-Contracts.md
+  3e3049ba2ae25fa1 385-386,423,458-459,495-496,539-540,640,822
+docs/tooling-and-llm-redesign/Ruhu-Tooling-System-Redesign.md
+  3e3049ba2ae25fa1 723
+docs/platform-lessons/parloa.md
+  3e3049ba2ae25fa1 115
+tests/test_template_required_tools.py
+  3e3049ba2ae25fa1 42-43,48,50-52,183-197,217-246
+  fc2ab0fa23c224f3 10,377-379,441
+docs/atlas/README.md
+  3e3049ba2ae25fa1 9-10,21,43,59-60
+src/ruhu/templates/system/healthcare-triage-scheduling.json
+  3e3049ba2ae25fa1 26
+src/ruhu/auth_deps.py
+  3e3049ba2ae25fa1 43
+docs/pilot/10-feature-request-triage.md
+  fc2ab0fa23c224f3 66
+tests/test_journeys_tracker.py
+  3e3049ba2ae25fa1 109-110,182-183,248-249,271-272,361-362,451-452,532-533,555-556,625-626,648-649,738-739,825-826,918-919
+docs/phone-number-system/Phone-Number-System-First-Principles-Spec.md
+  3e3049ba2ae25fa1 48,62-63,113,116,124,139,142,149,153,229,236,261,280,306,329,349,366
+frontend/src/features/agent-canvas/agent-definition/StepCardNode.tsx
+  3e3049ba2ae25fa1 6,34
+docs/pre-fill-intent-classifier-design/02-architecture-spec.md
+  fc2ab0fa23c224f3 74-75,309,311,317,323,326,328,331,342,344,353,397,399,405,407,411
+  3e3049ba2ae25fa1 115,329
+docs/next-agent-handover.md
+  fc2ab0fa23c224f3 19-20,31,36,40,171,346,428,447,456,493,501,508,512-513,515
+docs/platform-lessons/implementation-backlog.md
+  fc2ab0fa23c224f3 36
+docs/anthropic-alignment/Anthropic-Aligned-Execution-Plan.md
+  3e3049ba2ae25fa1 81
+tests/test_auth_email_smoke.py
+  3e3049ba2ae25fa1 19,27
+docs/scalability-design-spec/10-phase-1-implementation-plan.md
+  fc2ab0fa23c224f3 219,232
+README.md
+  3e3049ba2ae25fa1 7,34,43,78-81,84,87,90-91,110-111,115,125,153,364,378,530-531,592
+  fc2ab0fa23c224f3 5,289-290,292,460-461,549
+docs/now/01-continuous-evaluation-loop.md
+  3e3049ba2ae25fa1 14,47,77,89,118,135,144,151,173
+docs/pre-fill-intent-classifier-design/07-work-items.md
+  fc2ab0fa23c224f3 211,216,218,223,225,416
+  3e3049ba2ae25fa1 141
+docs/Human-Like-Agent-Response-Design.md
+  3e3049ba2ae25fa1 925
+docs/state-graph-spec/next-agent-handover.md
+  3e3049ba2ae25fa1 12-13
+tests/test_trace_and_dedupe.py
+  3e3049ba2ae25fa1 11,13,26,36,38,50-51
+frontend/src/features/agent-canvas/CleanAgentCanvasLayout.tsx
+  3e3049ba2ae25fa1 76-78,80,111,119,122,125,128,132,341,372-374,376,379-383,387-393,397-398,482,586,622,627
+docs/pilot/03-demo-scripts.md
+  fc2ab0fa23c224f3 54,177,179,262
+tests/test_phone_number_registry_api.py
+  3e3049ba2ae25fa1 37,41,182,186,190,219,290,294,379,387,447,464,531,535,589,593
+docs/evaluation-page/01-evaluation-ui-backend-gap.md
+  3e3049ba2ae25fa1 46,59-65,69-70,77-79,83
+docs/notification-system/Notification-First-Principles.md
+  3e3049ba2ae25fa1 77,137,142
+docs/generic-state-redesign/07-agent-scenario-runtime.md
+  fc2ab0fa23c224f3 7,26,94,347,349,360-361,377
+frontend/src/features/agent-canvas/utils/autoLayout.ts
+  3e3049ba2ae25fa1 4,66,86
+tests/test_auth_ui.py
+  3e3049ba2ae25fa1 21,29
+docs/audit-log-system/Audit-Log-First-Principles-Analysis-And-Spec.md
+  3e3049ba2ae25fa1 39,47,87,147,262,265
+docs/notification-system/Notification-Emission-Points.md
+  3e3049ba2ae25fa1 140,142,144,146,153,156-158,160-161,163-164,173,175,177,184,187-189,191-192,194-195,321-323,329-330,353,355,361-362,387,389,395-396,538
+docs/now/05-service-decomposition.md
+  3e3049ba2ae25fa1 53
+tests/test_realtime_bridge.py
+  3e3049ba2ae25fa1 49-50
+docs/kpi-system/KPI-Implementation-Handoff.md
+  3e3049ba2ae25fa1 88
+src/ruhu/kernel.py
+  fc2ab0fa23c224f3 769,847-848,861,5739-5740
+  3e3049ba2ae25fa1 816-819
+frontend/src/types/analytics.ts
+  3e3049ba2ae25fa1 157,181
+src/ruhu/attachments/service.py
+  3e3049ba2ae25fa1 517,712-713
+tests/test_api.py
+  3e3049ba2ae25fa1 731,733,750-752,790,794,933,937,984,988,1022,1026,1095,1099,1203,1207,1266,1270,1310,1316,1337,1340,1402,1405,1436,1439,1460,1464,1467,1493,1497,1501,1532,1535,1564,1567,1596,1599,1648,1651,1707,1710,1755,1759,1801,1805,1841,1844,1904,1907,2071,2073,2116,2132,2146,2165-2167,2308,2310,2314,2360,2362,2435,2437,2464,2466,2499,2501,2551,2553,2674,2676,2692,2820,2822,2838,2908,2913,3048,3052,3054,3057,3067,3069,3071,3074-3075,3085-3086,3178,3197,3329,3333,3428,3437,3550,3557,3672,3681,3790,3798,3892,3905,3982,3984,4046,4052,4138,4145,4262,4269,4344,4350,4542,4548,4615,4620,4686,4722,4839,4842,4926,4928
+  fc2ab0fa23c224f3 1494,1499,1507
+frontend/src/pages/phone-numbers.tsx
+  3e3049ba2ae25fa1 27,32,611-613,665,672-673,682,687,690,693,695,744,1145,1149,1155,1183,1191,1203,1268,1276,1279-1281,1506-1508
+docs/tooling-and-llm-redesign/48-journey-aware-bounded-route-control-adr.md
+  3e3049ba2ae25fa1 401
+docs/agent-canvas-layout-spec.md
+  fc2ab0fa23c224f3 9,15,17,21-22,24,28,39,44,46,49-55,67,69,71,73,75-77,87,90,92-93,95-97,100,103-105,107-108,118,125,127,129,136,141,143-145,149,151,156,158,162,169,181,187-190,195,199,201,206,214,219-221,224-226,229,232,236,240-243
+docs/atlas/Implement-New-Atlas-Protocol-And-Models.md
+  3e3049ba2ae25fa1 9,16,22,26,30,34,76,94,133,150,159,161,163,165-170,174-176,180,201,218,226,262,271,293,308
+src/ruhu/classifier/training_api.py
+  3e3049ba2ae25fa1 19
+docs/pilot/09-tenant-isolation-test-plan.md
+  fc2ab0fa23c224f3 42,85-87,104,107,111,123
+docs/scalability-design-spec/08-first-principles-classification.md
+  fc2ab0fa23c224f3 302
+docs/now/03-runtime-isolation-and-turn-execution.md
+  3e3049ba2ae25fa1 87
+frontend/src/pages/templates.tsx
+  3e3049ba2ae25fa1 10
+src/ruhu/agent_review.py
+  3e3049ba2ae25fa1 261
+docs/templates/Graph-Templates-Implementation-Spec.md
+  3e3049ba2ae25fa1 1,3-4,6,8,10,12,14-20,22,24-33,35,37,39-42,46,48,50,52,54,56,58-61,63,65,67,69,71-74,76,78,80-84
+docs/voice-bridge/Voice-Bridge-Design-Philosophy.md
+  3e3049ba2ae25fa1 7,10,25,44,55,64,89,113,168,171-172,226,245,247,290,333,356
+tests/test_response_generation.py
+  3e3049ba2ae25fa1 633-634
+docs/realtime-system/LiveKit-Agents-Adapter-Spec.md
+  3e3049ba2ae25fa1 71,206-207
+tests/test_rate_limit.py
+  3e3049ba2ae25fa1 122
+docs/notification-system/Notification-Implementation-Handoff.md
+  3e3049ba2ae25fa1 241,245,366
+frontend/src/features/agent-canvas/components/AtlasAIPanel.test.tsx
+  3e3049ba2ae25fa1 1,4-26,31-40,44-46,48-64,66-73,75-100,102-117,121,136-145,151-158,160-163,167-175,177-185,187-190,192-203,207-219,221,225-233,235-242,245-246,248-250,253-258,261,263-265,268-291,294,296-301,304-308,312-328,331,333-335,338-341,346-354,356-362,365-366,368-373,375-383,385-386,389-396
+tests/test_simulation_eval_io.py
+  3e3049ba2ae25fa1 9,27,33
+src/ruhu/attachments/models.py
+  3e3049ba2ae25fa1 33
+docs/Review-of-Ruhu-Platform-Scalability-Audit.md
+  3e3049ba2ae25fa1 203,281,344,382,413,450
+docs/agent-platform-improvements-spec.md
+  3e3049ba2ae25fa1 19-20,22,24,28,36,42-44,49,52-53,59,63,72,76,87,201,246,248,252,260-262,272,284
+tests/test_phone_provider_telnyx.py
+  3e3049ba2ae25fa1 149,153,306,310
+docs/knowledge-base-seeds/ruhu-platform-overview.md
+  fc2ab0fa23c224f3 5,21,45,47,49,223
+docs/pilot/01-pilot-agreement-template.md
+  fc2ab0fa23c224f3 108
+frontend/src/types/canvas.ts
+  fc2ab0fa23c224f3 13
+  3e3049ba2ae25fa1 76,160
+docs/atlas/Atlas-Design-Review-Responses.md
+  3e3049ba2ae25fa1 3,8,19,32,63,92,104,110,126,137,164,171,227,261,313,351
+tests/test_realtime_core.py
+  3e3049ba2ae25fa1 16,24,82,86,103,163,171,211,219,304,312,340,348,381,385,404,412,447,449,492,500,550,557,601,609
+tests/test_provider_projection.py
+  3e3049ba2ae25fa1 44,59,123,138
+src/ruhu/templates/system/ecommerce-returns-refunds.json
+  3e3049ba2ae25fa1 26
+frontend/src/features/agent-canvas/agent-definition/FollowupHandlersEditor.tsx
+  3e3049ba2ae25fa1 2,8,31,54,56,61,65,68-69,72,141,217,291,297,309,314
+tests/test_live_eval.py
+  3e3049ba2ae25fa1 793,795
+docs/generic-state-redesign/01-generic-step-canvas-adr.md
+  fc2ab0fa23c224f3 41,114
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.tsx
+  3e3049ba2ae25fa1 178,182,185,188,195,198,1368
+docs/production-implementation-matrix.md
+  3e3049ba2ae25fa1 34,69,76,78,87-89,99-100,102,130,150,163,347,369,381,412,424-425,427,434
+docs/phone-number-system/AT-Telnyx-Implementation-Plan.md
+  3e3049ba2ae25fa1 11,163,170,176,288,293,361
+tests/test_simulation_eval_store.py
+  3e3049ba2ae25fa1 29
+docs/journey-system/journey-system-implementation-spec.md
+  3e3049ba2ae25fa1 14,180-183,233-234,390,639,661,741,759,802,807,811
+docs/atlas/Atlas-Agent-Document-Implementation-Plan.md
+  3e3049ba2ae25fa1 9,82-84,177
+tests/test_knowledge_api.py
+  3e3049ba2ae25fa1 23,34
+test_sales_agent_template.py
+  3e3049ba2ae25fa1 2,4,7,10,12,15-17,20-22,24,26,28,32-33,42,44-46,48-50,55-103,105-122,124,126-128
+docs/live-call-system/Live-Call-System-Spec.md
+  3e3049ba2ae25fa1 9,16,20,73,80,89,94,102,116-117,200-201,212,231,245,251,253,261-263,269,271,273,341
+tests/test_auth_ui_flows.py
+  3e3049ba2ae25fa1 21,29
+docs/anthropic-alignment/Anthropic-Aligned-Implementation-Checklist.md
+  3e3049ba2ae25fa1 17,75,164,174,202,207,220
+docs/generic-state-redesign/02-generic-step-canvas-spec.md
+  fc2ab0fa23c224f3 13,196,283,299
+  3e3049ba2ae25fa1 198
+docs/templates/Graph-Templates-First-Principles.md
+  3e3049ba2ae25fa1 1,4,8,56,73,82-83,85-86,93,98,106,154,160,184-185,196,204,206-208,210,214-217,237-238,246-247,251,253,255,258,280,294,297
+frontend/e2e/calls-inspection.spec.ts
+  3e3049ba2ae25fa1 74-75,127-128
+tests/test_credential_cipher.py
+  3e3049ba2ae25fa1 147-148
+pyproject.toml
+  3e3049ba2ae25fa1 92-93
+frontend/src/features/agent-canvas/agent-definition/StepInspector.tsx
+  3e3049ba2ae25fa1 226-227,239,243,323
+docs/tooling-and-llm-redesign/46-p6-rollout-runbook.md
+  3e3049ba2ae25fa1 169-170
+docs/live-call-system/Live-Call-First-Principles.md
+  3e3049ba2ae25fa1 25,34,43,46,49,52,63,73,83
+src/ruhu/api.py
+  fc2ab0fa23c224f3 2315-2316,4617-4620,5521,7132-7134,12126-12127,12243-12247
+  3e3049ba2ae25fa1 394-395,12065,12067-12069,12088,12090-12092
+frontend/src/features/agent-canvas/components/CanvasView.tsx
+  3e3049ba2ae25fa1 11-12,15,23,50,53
+tests/test_journeys_service.py
+  3e3049ba2ae25fa1 382,443-444,591-592
+src/ruhu/heuristics.py
+  3e3049ba2ae25fa1 87-88
+docs/simulation/simulation-evaluation-implementation-spec.md
+  3e3049ba2ae25fa1 12,67,69,78,89,155,157,161,163,270-271,273-274,306,386,392,407,417-418,422,432,487-488,523,539,543,582-583,587,597-598,616,630,647,702-703,716,720,727-729,742,744,750-751,754,778,781,792,803,809,813,817,844,850,853,871,875,890,893,938
+docs/agent-definition-model.md
+  fc2ab0fa23c224f3 6,14,17,22,28,69,76,164,170,173-174,176,178,180,187-200,231,386-388,506,920-922,949-950,964-968,1008,1029,1039,1053-1055,1067,1127-1128,1135,1141,1147,1161,1163,1165
+src/ruhu/templates/system/sales-agent.json
+  3e3049ba2ae25fa1 23
+src/ruhu/agent_document.py
+  3e3049ba2ae25fa1 100,103
+docs/agent-definition-ui-authoring.md
+  fc2ab0fa23c224f3 10,14,79,98,116,129,138,303,321,415,421-422,509,511,568,585,599,611,615,624
+tests/test_live_call_api.py
+  3e3049ba2ae25fa1 126,137,240,251
+docs/generic-state-redesign/03-generic-step-implementation-spec.md
+  fc2ab0fa23c224f3 18,142,257,270,276
+docs/Issues-and-implementation-plan.md
+  3e3049ba2ae25fa1 5,249,286,298-300,306,532
+docs/canvas-redesign/01-authoring-surface-redesign.md
+  fc2ab0fa23c224f3 48,135,337,392
+docs/browser-agent/Browser-Agent-Execution-Checklist.md
+  3e3049ba2ae25fa1 313
+docs/tooling-and-llm-redesign/10-llm-response-redesign-spec.md
+  3e3049ba2ae25fa1 201-202
+docs/rules-system/Rule-Library-And-Rules-System.md
+  3e3049ba2ae25fa1 67,99-100,216-217,223-224,231
+docs/agent-implementation-cleanup.md
+  3e3049ba2ae25fa1 1-178
+frontend/e2e/journeys-workspace.spec.ts
+  3e3049ba2ae25fa1 16,63,521
+docs/state-graph-spec/Graph-Assembly-Delta-Review.md
+  3e3049ba2ae25fa1 33,36
+docs/realtime-system/Attachment-Only-Turn-Kernel-Behavior.md
+  3e3049ba2ae25fa1 33,53,94,133,140,147,196,205,216,321-322,366,419,442,514,574,704,717,723,758
+tests/test_playground_theme.py
+  3e3049ba2ae25fa1 15,18,41,44
+docs/platform-lessons/ruhu-baseline.md
+  fc2ab0fa23c224f3 5
+  3e3049ba2ae25fa1 237
+src/ruhu/playground.py
+  3e3049ba2ae25fa1 581
+tests_playwright/test_journeys_playwright.py
+  3e3049ba2ae25fa1 39,74,107
+docs/pilot/06-support-model-and-sla.md
+  fc2ab0fa23c224f3 87,155,238-239
+frontend/src/features/agent-canvas/utils/agentDefaults.ts
+  3e3049ba2ae25fa1 18,31,44
+docs/pilot/02-pilot-onboarding-playbook.md
+  3e3049ba2ae25fa1 65
+  fc2ab0fa23c224f3 92
+docs/pilot/08-failure-mode-runbooks.md
+  fc2ab0fa23c224f3 19,153,171,191,201,209
+docs/live-call-system/Live-Call-Implementation-Handoff.md
+  3e3049ba2ae25fa1 20-23,44-45,55,66,71-72,82,116,130,132,186,188,190
+docs/templates/Template-Required-Tools-Onboarding-Spec.md
+  3e3049ba2ae25fa1 358
+frontend/src/types/agent-document.ts
+  3e3049ba2ae25fa1 118-121
+docs/tooling-and-llm-redesign/27-runtime-llm-coordination-spec.md
+  3e3049ba2ae25fa1 405-406
+docs/kpi-system/KPI-Schema-And-Models.md
+  3e3049ba2ae25fa1 26
+docs/pilot/00-first-contact-outreach.md
+  fc2ab0fa23c224f3 270
+tests/test_conversations.py
+  3e3049ba2ae25fa1 47
+frontend/src/features/agent-canvas/components/ScenarioLanesCanvas.tsx
+  3e3049ba2ae25fa1 182,562-563,1250,1895
+src/ruhu/classifier/hot_load_api.py
+  3e3049ba2ae25fa1 20-21
+docs/pilot/05-weekly-checkin-template.md
+  fc2ab0fa23c224f3 78
+docs/pre-fill-intent-classifier-design/01-first-principles.md
+  3e3049ba2ae25fa1 17,70
+docs/atlas/Atlas-System-First-Principles-Spec.md
+  3e3049ba2ae25fa1 14,24,41,52,78,105,117,119,132,154,186,201-202,235,256,266,268-270,273,276,278,284
+frontend/src/features/agent-canvas/components/InteractionDebugPanel.tsx
+  3e3049ba2ae25fa1 5,239-240,247,322-324
+tests/test_attachment_projection_events.py
+  3e3049ba2ae25fa1 226
+docs/live-call-system/Live-Call-API-Contracts.md
+  3e3049ba2ae25fa1 22,34-35,50,52,55,57,116,171-172,250,257
+frontend/src/features/customer-widget/widget-types.ts
+  fc2ab0fa23c224f3 430
+  3e3049ba2ae25fa1 8
+docs/rules-system/Rules-Schema-And-Models.md
+  3e3049ba2ae25fa1 25,181-182,339-340,361-362,385-386,487
+docs/tooling-and-llm-redesign/18-runtime-implementation-sequence.md
+  3e3049ba2ae25fa1 487
+docs/voice-bridge/Voice-Bridge-Design-Response.md
+  3e3049ba2ae25fa1 18,23,25,32,49,140,211,214,240,253
+docs/notification-system/Notification-API-Contracts.md
+  3e3049ba2ae25fa1 61,67
+frontend/src/features/agent-canvas/components/ClassifierEvalCard.tsx
+  3e3049ba2ae25fa1 22-23
+docs/scalability-design-spec/07-implementation-workstreams.md
+  fc2ab0fa23c224f3 230,257
+tests/test_conversation_sweep.py
+  3e3049ba2ae25fa1 33
+src/ruhu/templates/system/isp-customer-support.json
+  3e3049ba2ae25fa1 28
+docs/now/04-natural-language-policy-authoring.md
+  3e3049ba2ae25fa1 128
+tests/test_atlas_api.py
+  3e3049ba2ae25fa1 358-359
+frontend/src/api/services/tools.service.ts
+  3e3049ba2ae25fa1 948-952,968
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "4916a9bfc050152006675d939d6c1e0506716542",
+  "prompts": {
+    "3e3049ba2ae25fa1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 1698,
+      "total_deletions": 18678,
+      "accepted_lines": 31810,
+      "overriden_lines": 2
+    },
+    "fc2ab0fa23c224f3": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019df63f-6d7c-7280-8124-7407f346d8d7",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 8742,
+      "total_deletions": 410,
+      "accepted_lines": 10846,
+      "overriden_lines": 26
+    }
+  }
+}
