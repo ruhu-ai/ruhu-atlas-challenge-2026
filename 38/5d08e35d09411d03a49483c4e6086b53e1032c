@@ -1,0 +1,25 @@
+src/ruhu/intent_tags/adapters.py
+  3e3049ba2ae25fa1 6,14-15,583-609,613-633,670,679-681,683
+src/ruhu/classifier/transformers_backend.py
+  3e3049ba2ae25fa1 75-80
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "385d08e35d09411d03a49483c4e6086b53e1032c",
+  "prompts": {
+    "3e3049ba2ae25fa1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 62,
+      "total_deletions": 2,
+      "accepted_lines": 30428,
+      "overriden_lines": 0
+    }
+  }
+}
