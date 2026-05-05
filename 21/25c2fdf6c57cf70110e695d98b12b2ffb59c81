@@ -1,0 +1,27 @@
+frontend/src/api/services/template.service.ts
+  3e3049ba2ae25fa1 38
+docs/anthropic-alignment/Anthropic-Aligned-Implementation-Checklist.md
+  3e3049ba2ae25fa1 17,63
+docs/anthropic-alignment/Anthropic-Aligned-Execution-Plan.md
+  3e3049ba2ae25fa1 97,109,111,115-116,120-121,125-126,168,191,202,216,221-223,229,249,256-257,280,459,463,644
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "2125c2fdf6c57cf70110e695d98b12b2ffb59c81",
+  "prompts": {
+    "3e3049ba2ae25fa1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa",
+      "messages": [],
+      "total_additions": 653,
+      "total_deletions": 4,
+      "accepted_lines": 30414,
+      "overriden_lines": 0
+    }
+  }
+}
