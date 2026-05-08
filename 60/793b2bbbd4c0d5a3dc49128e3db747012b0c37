@@ -1,0 +1,21 @@
+src/ruhu/api.py
+  s_3e3049ba2ae25f::t_c8ae978d95d760 4638-4643,4645-4647
+tests/test_api.py
+  s_3e3049ba2ae25f::t_b044f8c42e0639 3498-3500,3503-3509,3515
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "60793b2bbbd4c0d5a3dc49128e3db747012b0c37",
+  "prompts": {},
+  "sessions": {
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
