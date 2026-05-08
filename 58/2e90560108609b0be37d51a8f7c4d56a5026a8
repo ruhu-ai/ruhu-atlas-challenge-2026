@@ -1,0 +1,25 @@
+tests/test_trace_legacy.py
+  s_3e3049ba2ae25f::t_ffaba157180c65 1-158
+tests/test_migrate_to_edge_outcomes.py
+  s_3e3049ba2ae25f::t_52185a15d50558 1-347
+src/ruhu/observability/trace_legacy.py
+  s_3e3049ba2ae25f::t_c2edd2e11368cc 1-82
+scripts/migrate_to_edge_outcomes.py
+  s_3e3049ba2ae25f::t_8180083a8aac8b 1-404
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "582e90560108609b0be37d51a8f7c4d56a5026a8",
+  "prompts": {},
+  "sessions": {
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
