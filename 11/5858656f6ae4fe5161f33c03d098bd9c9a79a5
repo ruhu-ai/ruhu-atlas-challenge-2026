@@ -1,0 +1,41 @@
+frontend/package.json
+  s_859b13211fe21a::t_4762840d01a9f1 86
+  s_859b13211fe21a::t_d617112b4e704b 15-16
+frontend/src/features/agent-canvas/CleanAgentCanvasLayout.tsx
+  s_859b13211fe21a::t_f8ed9b744ff708 792
+  s_859b13211fe21a::t_14418de9ebdbde 675
+  s_859b13211fe21a::t_fd7051e2b248d2 32
+frontend/src/features/agent-canvas/components/AgentFlowGraph.tsx
+  s_859b13211fe21a::t_050af70c053bbb 1-8
+  s_859b13211fe21a::t_161ff36a0ea417 615
+frontend/src/features/agent-canvas/__tests__/canvas-graph-surface.test.tsx
+  s_859b13211fe21a::t_c8a6b39974aec9 1-29,57-154
+  s_859b13211fe21a::t_8eb1301ac5d82e 30-56
+frontend/jest.config.cjs
+  s_859b13211fe21a::t_535ce585ea1709 8-10
+frontend/src/__mocks__/styleMock.cjs
+  s_859b13211fe21a::t_7a5822cb18bc82 1
+frontend/src/features/agent-canvas/agent-definition/AgentDefinitionWorkspace.tsx
+  s_859b13211fe21a::t_6ae5dbfad026f7 26
+  s_859b13211fe21a::t_29af81955305c8 464-465,467-476,478-485,488-493,496
+frontend/src/features/agent-canvas/contexts/AgentDocumentContext.tsx
+  s_859b13211fe21a::t_05f18216fd1c77 1-8
+frontend/knip.json
+  s_859b13211fe21a::t_0a4430b736e488 1-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "115858656f6ae4fe5161f33c03d098bd9c9a79a5",
+  "prompts": {},
+  "sessions": {
+    "s_859b13211fe21a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "514f7187-ea50-4c24-bed1-224deaf3f787",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
