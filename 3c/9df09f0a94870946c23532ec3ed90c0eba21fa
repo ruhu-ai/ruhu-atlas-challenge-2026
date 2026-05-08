@@ -1,0 +1,138 @@
+frontend/src/features/agent-canvas/components/AgentSettingsPanel.tsx
+  s_3e3049ba2ae25f::t_db441ed9fb06b9 185,192,203-204,207-213
+frontend/src/features/agent-canvas/components/index.ts
+  s_3e3049ba2ae25f::t_48c804e8749c8f 27
+frontend/src/features/agent-canvas/agent-definition/document-editor/deserialize.ts
+  s_3e3049ba2ae25f::t_a7c3eca2b52aa2 176-187
+  s_3e3049ba2ae25f::t_26040c61ca094a 200,205
+  3e3049ba2ae25fa1 1-175,188-199,201-204,206-276
+frontend/src/features/agent-canvas/agent-definition/document-editor/ConditionPicker.tsx
+  s_3e3049ba2ae25f::t_00713677e1da11 77-78
+  3e3049ba2ae25fa1 1-8,10,12-76,79-101,105-106,113,130-131,178-215,238,248,251-283,289,297-307,321-325,338-359
+  s_3e3049ba2ae25f::t_cf8b8ba89a7d01 102-104,107-112,114-129,132-133,162-177
+  s_3e3049ba2ae25f::t_440506f1402d94 134-161
+  s_3e3049ba2ae25f::t_03a939a952b519 216-237,239-247,249-250
+  s_3e3049ba2ae25f::t_c82cb51c477b65 308-320
+  s_3e3049ba2ae25f::t_9e4b322f8ad734 326-337
+  s_3e3049ba2ae25f::t_f9d840665fc72c 284-288,290-296
+  s_3e3049ba2ae25f::t_847256595ecf93 9,11
+frontend/src/features/agent-canvas/agent-definition/AgentDocumentEditor.tsx
+  3e3049ba2ae25fa1 1-25,27-131,150-152,155-197
+  s_3e3049ba2ae25f::t_e9e1c1a36bf2ab 26
+  s_3e3049ba2ae25f::t_d45711822fb7b3 132-149,153-154
+frontend/src/features/customer-widget/widget-types.ts
+  s_3e3049ba2ae25f::t_7420d17487f42e 107,111,125-131
+frontend/package.json
+  s_3e3049ba2ae25f::t_219a497854e79f 46
+frontend/src/features/agent-canvas/CleanAgentCanvasLayout.tsx
+  s_3e3049ba2ae25f::t_d093f74512d40d 121-139
+  s_3e3049ba2ae25f::t_4c17fcccad0372 561
+  s_3e3049ba2ae25f::t_e1cc287b5768ba 560
+  s_3e3049ba2ae25f::t_991b9c81ec0c7b 639
+  3e3049ba2ae25fa1 4,27,69-70,77,112-117,400-415,489,628,712-742
+  s_3e3049ba2ae25f::t_aa4f9b13dc9c2a 82-83
+  s_3e3049ba2ae25f::t_1e1250503e4e60 668-670
+  s_3e3049ba2ae25f::t_304c54baaca386 419-420
+  s_3e3049ba2ae25f::t_90424ec4a57dd4 28
+frontend/src/features/customer-widget/__tests__/WidgetChatPanel.test.tsx
+  s_3e3049ba2ae25f::t_7420d17487f42e 140-198
+frontend/src/features/agent-canvas/agent-definition/document-editor/EventHintsNodeView.tsx
+  3e3049ba2ae25fa1 1-94
+frontend/src/features/agent-canvas/utils/fingerprint.ts
+  s_3e3049ba2ae25f::t_f0cf99bedde9c4 52
+  s_3e3049ba2ae25f::t_090cc892e3341e 12
+frontend/src/features/agent-canvas/agent-definition/document-editor/node-views.tsx
+  3e3049ba2ae25fa1 1-232
+frontend/src/features/agent-canvas/agent-definition/document-editor/SlashMenu.tsx
+  s_3e3049ba2ae25f::t_6de04129239290 1-225
+frontend/src/features/customer-widget/WidgetChatPanel.tsx
+  s_3e3049ba2ae25f::t_7420d17487f42e 109-110,422
+frontend/src/features/agent-canvas/agent-definition/document-editor/commands.ts
+  s_3e3049ba2ae25f::t_a663d43aa020dc 231-275
+  3e3049ba2ae25fa1 1-230,276-326
+frontend/src/features/agent-canvas/agent-definition/document-editor/extensions.ts
+  s_3e3049ba2ae25f::t_af2116fe651eed 239-240,252
+  s_3e3049ba2ae25f::t_f4c370db0b37af 194-196
+  3e3049ba2ae25fa1 1-3,5-193,197-204,206-238,241-251,253
+  s_3e3049ba2ae25f::t_a48a81197a7f11 205
+  s_3e3049ba2ae25f::t_f6181bbcd9b6f8 4
+scripts/migrate_classifier_strategy.py
+  s_3e3049ba2ae25f::t_e2ebcac380c8e2 156-158
+  s_3e3049ba2ae25f::t_5e3f233eea52fa 118-122,160-163
+  s_3e3049ba2ae25f::t_8ce95f3cb1184b 36,42
+  s_3e3049ba2ae25f::t_9a16c7924e6799 1-35,37-41,43-117,123-155,159,164-177
+frontend/src/features/agent-canvas/agent-definition/AgentDefinitionWorkspace.tsx
+  s_3e3049ba2ae25f::t_e7cba2ec248dd5 124-144
+  s_3e3049ba2ae25f::t_227787531c8cb5 105,200,245,254,260,311,332,363,420,548
+  3e3049ba2ae25fa1 3-4,28,31-35,73-74,84-85,99,107-108,239-240,369-373,383,416-417,511-541
+  s_3e3049ba2ae25f::t_54ed6179ab243f 213-220,224-227,229-236
+  s_3e3049ba2ae25f::t_3681b7691fd5bf 49
+  s_3e3049ba2ae25f::t_3b1b9b8d59bf60 43-46,59-60,70
+  s_3e3049ba2ae25f::t_1ce0ddbf8c776a 276-277
+  s_3e3049ba2ae25f::t_70b51b1ac956c9 405-411,423,425
+frontend/src/types/agent-definition.ts
+  s_3e3049ba2ae25f::t_2897c26b420b28 221-233,236
+frontend/src/features/agent-canvas/agent-definition/document-editor/styles.css
+  s_3e3049ba2ae25f::t_87a37c6a79f713 236,238-239,243-250
+  s_3e3049ba2ae25f::t_7a708c2ba7f136 275-276,278-281,285-302
+  3e3049ba2ae25fa1 1-174,176-186,211-235,237,240-242,251-274,277,282-284,303-304,346-412,427-432,464-573
+  s_3e3049ba2ae25f::t_b7d90652687665 413-426,433-463
+  s_3e3049ba2ae25f::t_b66d9aa7495f06 305-345
+  s_3e3049ba2ae25f::t_41048477cb6684 175,187-210
+scripts/upgrade_agent_from_template.py
+  s_3e3049ba2ae25f::t_ce3b6185d09659 1-167
+frontend/src/features/agent-canvas/components/AgentCanvasSidebar.tsx
+  s_3e3049ba2ae25f::t_5e249c43141ee9 14-15,17-18,20-22,24
+  s_3e3049ba2ae25f::t_7fbcbf10919bd1 77-80
+  s_3e3049ba2ae25f::t_d0a05214f30b45 251
+  s_3e3049ba2ae25f::t_3d27b22cf00d67 284,286-294,297-298,301-302,311-316,320-321,326
+  s_3e3049ba2ae25f::t_7a92527411d776 31-35
+  s_3e3049ba2ae25f::t_d9a6c9e61102e9 57-64
+frontend/src/features/agent-canvas/agent-definition/document-editor/EventHintNodeView.tsx
+  s_3e3049ba2ae25f::t_1ee1f891b49ca3 1-71
+frontend/src/features/agent-canvas/agent-definition/document-editor/serialize.ts
+  3e3049ba2ae25fa1 1-141
+frontend/src/features/agent-canvas/hooks/useAgentConfig.ts
+  s_3e3049ba2ae25f::t_026d5e188c94c5 12,22
+  s_3e3049ba2ae25f::t_4c5c17ffb150ce 109
+  s_3e3049ba2ae25f::t_517af15ac568b3 61-65
+  s_3e3049ba2ae25f::t_62fc12d0682305 81
+frontend/src/features/agent-canvas/utils/__tests__/agentDefaults.test.ts
+  s_3e3049ba2ae25f::t_8ed3e1f5707fdd 4-7,9,12,23
+frontend/src/features/agent-canvas/agent-definition/document-editor/slash-extension.ts
+  s_3e3049ba2ae25f::t_f81785bd7e8cdf 1-115
+frontend/src/features/agent-canvas/utils/agentDefaults.ts
+  s_3e3049ba2ae25f::t_a88848122637d5 31,44
+  s_3e3049ba2ae25f::t_076f71983569ce 18
+docs/sample-knowledge/ruhu-sales-knowledge.md
+  s_3e3049ba2ae25f::t_8792b7dfb1bd4e 1-255
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "3c9df09f0a94870946c23532ec3ed90c0eba21fa",
+  "prompts": {
+    "3e3049ba2ae25fa1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>",
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 4570,
+      "overriden_lines": 0
+    }
+  },
+  "sessions": {
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
