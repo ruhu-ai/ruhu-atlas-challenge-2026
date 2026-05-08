@@ -1,0 +1,70 @@
+docs/pre-fill-intent-classifier-design/05-training-pipeline.md
+  s_3e3049ba2ae25f::t_ccb0684f323604 188-189,195-197,203,205,212
+  s_3e3049ba2ae25f::t_a415b58d02b654 106-108
+  s_3e3049ba2ae25f::t_5e96f7a55a74f7 123
+  s_3e3049ba2ae25f::t_5d493dbc957c95 336
+docs/pre-fill-intent-classifier-design/07-work-items.md
+  s_3e3049ba2ae25f::t_0cf402e21ee30f 186
+  s_3e3049ba2ae25f::t_530b8c111c7bdb 23
+  s_3e3049ba2ae25f::t_59d3a1650aa8ab 216,218
+  s_3e3049ba2ae25f::t_f0c602e24a545a 28
+  s_3e3049ba2ae25f::t_7235972898c4f0 13
+  s_3e3049ba2ae25f::t_99e1a322691c08 50
+  s_3e3049ba2ae25f::t_b73dcec9a75987 162
+  s_3e3049ba2ae25f::t_5aa4822b8f924a 165,167-168
+docs/pre-fill-intent-classifier-design/02-architecture-spec.md
+  s_3e3049ba2ae25f::t_213bd5ee3f4efc 82,84,86-98,102,104,116,127
+  s_3e3049ba2ae25f::t_bdbfa9eb09950f 233,238-242,245-246,251
+  s_3e3049ba2ae25f::t_7e1e6218380e6b 300,303-304
+  s_3e3049ba2ae25f::t_398a5eeffe9794 396-397
+  s_3e3049ba2ae25f::t_75a80b64be5ccf 183-186,192,197,200-201,211
+  s_3e3049ba2ae25f::t_fc492c955cdecc 347,353,355-356
+  s_3e3049ba2ae25f::t_844ab28b9debd5 281,283-284
+  s_3e3049ba2ae25f::t_f182b9a38f4dd1 416,418,420
+  s_3e3049ba2ae25f::t_e085cbdc4273b2 426
+  s_3e3049ba2ae25f::t_1517670426739e 222-223
+docs/pre-fill-intent-classifier-design/README.md
+  s_3e3049ba2ae25f::t_9dbe0ef6786fa8 38
+  s_3e3049ba2ae25f::t_5d493dbc957c95 31
+  s_3e3049ba2ae25f::t_faaa870cf0d99d 86,92,94
+docs/pre-fill-intent-classifier-design/06-evaluation-spec.md
+  s_3e3049ba2ae25f::t_5d493dbc957c95 42
+docs/pre-fill-intent-classifier-design/08-base-model-spec.md
+  s_3e3049ba2ae25f::t_01878d469941b4 65
+  s_3e3049ba2ae25f::t_e957de26602572 326
+docs/pre-fill-intent-classifier-design/01-first-principles.md
+  s_3e3049ba2ae25f::t_7be6058d5c8f18 70
+  s_3e3049ba2ae25f::t_3fc82cdf625a00 77
+  s_3e3049ba2ae25f::t_9d0f0215f77d5a 199
+  s_3e3049ba2ae25f::t_5d493dbc957c95 17,20,42,91
+  s_3e3049ba2ae25f::t_22df513786668d 92
+  s_3e3049ba2ae25f::t_6beda3bce59a30 97
+docs/pre-fill-intent-classifier-design/03-implementation-plan.md
+  s_3e3049ba2ae25f::t_83e4883ae950f5 150
+  s_3e3049ba2ae25f::t_dca7b4b4105149 83,91
+  s_3e3049ba2ae25f::t_ef9ff985384f3b 36
+  s_3e3049ba2ae25f::t_3465cdd9ca5f70 20,22
+  s_3e3049ba2ae25f::t_703ae711095d00 155,164
+  s_3e3049ba2ae25f::t_1c5b4804600fed 251
+  s_3e3049ba2ae25f::t_ddf0aca84e5091 283
+docs/pre-fill-intent-classifier-design/04-runtime-spec.md
+  s_3e3049ba2ae25f::t_3cbc4c4f97c3bd 338,340
+  s_3e3049ba2ae25f::t_882e6e39633698 229,241-242
+  s_3e3049ba2ae25f::t_827ff2746b4e5d 170-171
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "104d8275207d8179cff3ed80d7ed67cbcb3b932d",
+  "prompts": {},
+  "sessions": {
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
