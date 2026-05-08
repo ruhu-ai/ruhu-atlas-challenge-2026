@@ -1,0 +1,304 @@
+tests/test_kernel_cross_scenario_transition.py
+  s_3e3049ba2ae25f::t_d18434286bb25d 13
+  s_3e3049ba2ae25f::t_6047565b89572c 31,52
+  s_3e3049ba2ae25f::t_d9c2e65119f5c1 1-10,12,14-30,32-46,56-92
+  s_3e3049ba2ae25f::t_1a798d158c955f 47-51,53-55
+  s_3e3049ba2ae25f::t_dcf5f102805e9f 93
+  s_3e3049ba2ae25f::t_8edaf449ed3cb8 11
+tests/test_step_classifier_uses_facts.py
+  s_3e3049ba2ae25f::t_94ce4e6ca17e94 84,127,191
+  s_3e3049ba2ae25f::t_bc9279181acfe0 96
+tests/test_gemma_local.py
+  s_3e3049ba2ae25f::t_eb4d11954af6d0 3-11,13-14,16,21,31-35,39,50-53,57-90,101,105,108,111-112,114,117-119,124-125,127,131-137,139-140,145,148-149,154-155,157,160-164,168-174,178,181-189,191-206,208,211-212,214,217-218,220,223-226,228,231,233,236-237,242-243,245,248-251,254,256,259-260,265-266,268,271-274,277,279,282-283,288-289,291,294-296,299-316,319-323,328-331,335-339
+  s_3e3049ba2ae25f::t_f25884805b82b7 138
+tests/test_classifier_training_trace_export.py
+  s_3e3049ba2ae25f::t_98310a27422a9e 219-223
+  s_3e3049ba2ae25f::t_46933f7eda7873 38,46
+  s_3e3049ba2ae25f::t_c2060efacf3e98 678-682,698
+  s_3e3049ba2ae25f::t_8f2fd65f4a9a32 545-553,563,570
+  s_3e3049ba2ae25f::t_144fcd42e3d754 66-68,72
+  s_3e3049ba2ae25f::t_f2ad9eaa125c5a 292-296
+  s_3e3049ba2ae25f::t_3727a48eb29cb9 61,63-65,69-71,73-76,81-82
+  s_3e3049ba2ae25f::t_2a7cbb217f5abf 152,154-157,160-162,164,167-175
+tests/test_stores.py
+  s_3e3049ba2ae25f::t_55328db2c74249 164,173
+  s_3e3049ba2ae25f::t_9affeaca332971 184-185,189-190,194,201
+tests/test_simulation_eval_service.py
+  s_3e3049ba2ae25f::t_ead0f774df8598 15,59,71,76
+src/ruhu/classifier/benchmark/trace_export.py
+  s_3e3049ba2ae25f::t_5cdd2d86347ace 266
+  s_3e3049ba2ae25f::t_83dca87d5be196 121-122,133
+  s_3e3049ba2ae25f::t_83afaa53397b3f 10,15,18,51,135,148,199,201,378
+tests/test_classifier_strategy.py
+  s_3e3049ba2ae25f::t_35e203496b16f2 192
+  s_3e3049ba2ae25f::t_547e835186bdec 295-311,313,335-336
+  s_3e3049ba2ae25f::t_73a563799d9481 1-2,5-6,12,15,17-39,41-49,54-57,59-117,120-121,127-144,148-162,164-165,168-174,207-216,219-223,225,227-241,243,246-247,252-253,279-289,292-293,337-352,354-375,379-397,400,402-418,421,423-428,430,432-435,437-445,447,449-451,454-455,457-458,460-470,472-475,477-490
+  s_3e3049ba2ae25f::t_f2df4ca87de805 3-4,7-11,13-14,16,40,50-53,58,118-119,122-126,145-147,163,166-167,175-191,193-206,217-218,224,226,242,244-245,248-251,254-278,290-291,294,314-334,353,376-378,398-399,401,419-420,422,429,431,436,446,448,452-453,456,459,471,476,491
+  s_3e3049ba2ae25f::t_01d184c4fc3972 312
+tests/test_agent_document.py
+  s_3e3049ba2ae25f::t_aa6e5366584cf2 233-250,252-278
+  s_3e3049ba2ae25f::t_574082a2e75fc3 397-646
+  s_3e3049ba2ae25f::t_e7876003644db8 53,64,77,90,193,205,216,251,296,320
+  s_3e3049ba2ae25f::t_d0581755f8b610 1-3,16-26
+tests/test_classifier_teacher_relabel.py
+  s_3e3049ba2ae25f::t_f1e40baa0dbea6 283,294-295
+  s_3e3049ba2ae25f::t_c4e36d92317f24 53-70
+  s_3e3049ba2ae25f::t_b679130eada912 38
+  s_3e3049ba2ae25f::t_07b9c501c28cbe 128,159,177,446,469,495,512
+  s_3e3049ba2ae25f::t_00e61264f2b62e 14
+src/ruhu/classifier/benchmark/_synthetic.py
+  s_3e3049ba2ae25f::t_5da6f513e4e39d 68,70,104,107,121
+tests/test_atlas_api.py
+  s_3e3049ba2ae25f::t_a5defa018c49e3 2572-2576,2584-2588
+  s_3e3049ba2ae25f::t_ed083969d6a709 2611-2612,2614-2615
+  s_3e3049ba2ae25f::t_067c9d7d42b612 2681-2682
+  s_3e3049ba2ae25f::t_6367121a79d706 2691-2693
+  s_3e3049ba2ae25f::t_d781117a6c951d 2415-2418
+  s_3e3049ba2ae25f::t_aeac6e292a8274 2473-2475,2481-2482
+src/ruhu/classifier_strategy.py
+  s_3e3049ba2ae25f::t_b5f016a249deb8 1,6,9-10,22-36,46,53,264-269,292,313-314,324,326-330,333-338,342-343,352,356,358,362-363,365-366,368,370-373,379-381,383-384,386,389,392-393,401,413-414,417-421,431-437,441
+  s_3e3049ba2ae25f::t_06783c44e90247 2-5,7-8,11-21,37-45,47-52,54-148,150-189,191-195,197-239,241-244,260-263,270-280,282-291,293-306,308-310,312,315-322,325,331-332,340-341,344-347,349-351,369,395-399,402-412,415-416,422-425,427-430,438-440,442-450
+  s_3e3049ba2ae25f::t_b1bc0f81c4d5e8 190,196,259,281,307,348,364,382,426
+  s_3e3049ba2ae25f::t_e2b3845dd4c1be 311,339
+  s_3e3049ba2ae25f::t_8403c878ac0fe0 323,387
+  s_3e3049ba2ae25f::t_6ecd21b2ebc145 353,359-361,367,374-378,385
+  s_3e3049ba2ae25f::t_d0849d6d6ed55f 149
+  s_3e3049ba2ae25f::t_0dda676c7347ef 240,245-258
+  s_3e3049ba2ae25f::t_a67a45dee7531f 354-355,357,388,390-391,394
+  s_3e3049ba2ae25f::t_5db548ed49eae3 400
+tests/test_classifier_prompt.py
+  s_3e3049ba2ae25f::t_6843c3e8ced0c9 151,156
+  s_3e3049ba2ae25f::t_a5593784e4aca4 1,3-13,28,32,35,60-64,79-150,152-155,157-232,234-237,239-248,250-253,255-340,342-404
+  s_3e3049ba2ae25f::t_8d864a52a5721c 233,238,249,254,341
+src/ruhu/classifier/training/teacher_relabel.py
+  s_3e3049ba2ae25f::t_4dc4f2f3de006f 417-433,435-446
+  s_3e3049ba2ae25f::t_14a17d6e93d66d 388-393,395-397
+  s_3e3049ba2ae25f::t_723a952621b4e0 46,72,105,132,148,285,303,458,483,537
+src/ruhu/api_models.py
+  s_3e3049ba2ae25f::t_0198e9d7b68128 132-134,136-138,144,148-149,153
+  s_3e3049ba2ae25f::t_a15f8e05303ffa 201-213
+  s_3e3049ba2ae25f::t_205e78163696eb 139-143,145-147
+src/ruhu/atlas_coordinator.py
+  s_3e3049ba2ae25f::t_a5a6eeadb489ba 2027-2028,2036,2054
+  s_3e3049ba2ae25f::t_88d4c8969da612 145-155
+  s_3e3049ba2ae25f::t_6c6f963f225b86 1909-1910,1918,1932
+  s_3e3049ba2ae25f::t_f34d81d2afa233 1991-1992,1999,2016
+  s_3e3049ba2ae25f::t_8bb42f2da18f1d 1855-1856,1863,1880
+src/ruhu/classifier/training/trace_export.py
+  s_3e3049ba2ae25f::t_ce9f2a2b288409 12-13
+  s_3e3049ba2ae25f::t_4567ca511216c2 189
+  s_3e3049ba2ae25f::t_21d19729d45b1b 376,413
+  s_3e3049ba2ae25f::t_4a733aa768ec56 220-221
+tests/test_classifier_dispatcher.py
+  s_3e3049ba2ae25f::t_0ee3db6dacad2e 40,42,54-68,73
+  s_3e3049ba2ae25f::t_d2f7824d978dce 186,188,197
+  s_3e3049ba2ae25f::t_3ec7db1c9c06fc 12,25
+  s_3e3049ba2ae25f::t_7a83c3f64ea526 152,161-170
+tests/test_classifier_metrics.py
+  s_3e3049ba2ae25f::t_ec7a5ab0ba3879 252
+  s_3e3049ba2ae25f::t_07b9c501c28cbe 23,50,62,81,101,128,153,182,195,206,218
+src/ruhu/observability/metrics.py
+  s_3e3049ba2ae25f::t_31a71f78fd0520 269-275,281
+src/ruhu/attachments/service.py
+  s_3e3049ba2ae25f::t_7420d17487f42e 482-485,513-516
+tests/test_api.py
+  s_3e3049ba2ae25f::t_bac429b15f9ba8 2319
+  s_3e3049ba2ae25f::t_bd47cd33bd1660 3538-3556
+  s_3e3049ba2ae25f::t_7a8be5ae2ddbb5 2540
+  s_3e3049ba2ae25f::t_48faa601c5bc7f 3567
+  s_3e3049ba2ae25f::t_d7bc23be1691f9 2527
+  s_3e3049ba2ae25f::t_eabbed3ccc7178 2303,2333
+  859b13211fe21a42 11,1754-1806,1819-1821,2037-2084
+  fc2ab0fa23c224f3 1807-1818,1822-1890
+  s_3e3049ba2ae25f::t_21d2b4820f86e6 3487
+tests/test_classifier_vertex_gemini_backend.py
+  s_3e3049ba2ae25f::t_42361b2753cbeb 310,320-323
+  s_3e3049ba2ae25f::t_e1e3f5a2c431ee 27,37,39-40,81,173,184,195,225,239,343
+  s_3e3049ba2ae25f::t_4702bf6c1ac962 219
+tests/test_classifier_benchmark.py
+  s_3e3049ba2ae25f::t_0252a26ef4b387 150,152,173,175,210,248,457-458
+  s_3e3049ba2ae25f::t_07b9c501c28cbe 208,232,246
+src/ruhu/heuristics.py
+  s_3e3049ba2ae25f::t_b0b0561ca8d865 56-60,63,69-73,76-77,79-80,83-86
+src/ruhu/schemas.py
+  s_3e3049ba2ae25f::t_0d48677521f74f 132-147,150-155,159-197,205-208,210-247
+  s_3e3049ba2ae25f::t_10d51f3210e53a 3,6
+  s_3e3049ba2ae25f::t_61f480dd8d14dc 49-53,55,57,66-69
+  s_3e3049ba2ae25f::t_daff361628a9db 1363,1370
+  s_3e3049ba2ae25f::t_252ab9836a8193 198-204,209
+tests/test_response_generation.py
+  s_3e3049ba2ae25f::t_0cd47ff0c1ad73 13
+  s_3e3049ba2ae25f::t_27e000631b306d 711-799
+tests/test_interpreters.py
+  s_3e3049ba2ae25f::t_2e60e6b697c15e 73-84
+src/ruhu/classifier/publish_gate.py
+  s_3e3049ba2ae25f::t_4c487e9ed567ea 41,52,54-59,72-76
+  s_3e3049ba2ae25f::t_685ff830ce84b4 3-5,9-10,19,60-62,77,79-80,85,87-90,106
+tests/test_classifier_vllm_backend.py
+  s_3e3049ba2ae25f::t_4702bf6c1ac962 201
+  s_3e3049ba2ae25f::t_e1e3f5a2c431ee 29,40,42-43,100,197,207,241,252,354
+tests/test_journeys_review.py
+  s_3e3049ba2ae25f::t_ead0f774df8598 14,93,111
+tests/test_simulation_eval_runtime.py
+  s_3e3049ba2ae25f::t_ead0f774df8598 14,40
+src/ruhu/kernel.py
+  s_3e3049ba2ae25f::t_ad6819ecb55df2 4522-4533,4535,4537,4539
+  s_3e3049ba2ae25f::t_1e8425d29ab6bc 1180-1191,1193-1201
+  s_3e3049ba2ae25f::t_9f2acb071a6355 2819-2822,2826-2833
+  s_34ac67265ceb32::t_0ecf1e4ffdb0d1 2883
+  s_3e3049ba2ae25f::t_bca6884930fd7b 4400-4401,4403-4419,4421-4431,4438-4456,4468
+  s_3e3049ba2ae25f::t_ef47ba8f8c9dbf 874-877,879-881,893,895,899-910,912-915,917-918,920
+  s_3e3049ba2ae25f::t_c0695a75dcab40 659-664
+  s_34ac67265ceb32::t_d9cf36f8215048 2722,2767
+  s_3e3049ba2ae25f::t_528b7334d6327b 960,962-969,983,993-999,1003-1018
+  s_3e3049ba2ae25f::t_584271a8c41724 2723-2727
+  s_3e3049ba2ae25f::t_6f263e057279b9 74-75,79-81,85,94-95,103,107
+  s_3e3049ba2ae25f::t_1ab1798e54ec37 1347-1356,1358-1367
+  s_3e3049ba2ae25f::t_c1e876e5ca35e2 2712-2721,2728-2765,2768-2772
+  s_3e3049ba2ae25f::t_c3b3cd0c31dfd5 619-627
+  s_3e3049ba2ae25f::t_d6c89714c8d2d1 2844-2852,2856-2860
+  s_34ac67265ceb32::t_65f72159ffb957 2905-2910
+  859b13211fe21a42 1174-1177,1179,1192,1202-1208,2420,2778,2783-2785
+  s_3e3049ba2ae25f::t_670dc26fdbf9f0 2766
+  s_3e3049ba2ae25f::t_d7727d6bbf9cb3 5139-5143,5145-5154
+  s_3e3049ba2ae25f::t_80c1f4fedad378 861-872,878,882,885,887-888,891,894,896-898,916,919,921,933-936
+  s_3e3049ba2ae25f::t_4458f19dfa7001 630-638
+src/ruhu/response_generation.py
+  s_3e3049ba2ae25f::t_1eee0696f6b8f5 1058-1069
+  s_3e3049ba2ae25f::t_a61b65a0bf9f5d 248
+  s_3e3049ba2ae25f::t_cc8e904bb74abc 1001-1004
+src/ruhu/classifier/factory.py
+  s_3e3049ba2ae25f::t_67dad142d252d6 185,187-192,194-197,207
+src/ruhu/classifier/dispatcher.py
+  s_3e3049ba2ae25f::t_97b977ecd15fbe 80,96
+  s_3e3049ba2ae25f::t_f2e4e3d996d7f3 132-134,136,138
+src/ruhu/agent_document.py
+  s_3e3049ba2ae25f::t_53de669db7bcf4 249-251
+  s_3e3049ba2ae25f::t_e9639e4039b017 15-16,19
+  s_3e3049ba2ae25f::t_b59412f8935444 575
+  s_3e3049ba2ae25f::t_193354185a05f3 69-72,90,93-148
+src/ruhu/api.py
+  s_3e3049ba2ae25f::t_08d4154f4efe9f 136-139
+  s_3e3049ba2ae25f::t_00bc187a85852d 5
+  s_3e3049ba2ae25f::t_b43a6e23e90eda 134
+  s_3e3049ba2ae25f::t_bddf21f18c0981 3499-3502,3510,3514
+  s_3e3049ba2ae25f::t_3f46b00199c2c4 4802
+  s_3e3049ba2ae25f::t_5993147776f0bb 4667-4673
+  s_3e3049ba2ae25f::t_1639430377a22c 3493-3498,3503-3509
+  s_3e3049ba2ae25f::t_67641d7c44c598 3041-3120,3125,3127-3149
+  s_3e3049ba2ae25f::t_91ff0e02d88fc8 3121-3124,3126
+  s_3e3049ba2ae25f::t_e1673e85bbcf82 7298-7337
+  s_3e3049ba2ae25f::t_09340c7acf2b81 10488-10496
+  s_3e3049ba2ae25f::t_43f8f26b22916c 11233-11240
+src/ruhu/classifier/benchmark/runner.py
+  s_3e3049ba2ae25f::t_83afaa53397b3f 63-64,86
+tests/test_knowledge_service.py
+  s_34ac67265ceb32::t_5206cfbcf1fb34 162-187
+src/ruhu/classifier/transformers_backend.py
+  s_3e3049ba2ae25f::t_92e811397035bd 74,106,108,118,154,185,244,248,272
+  s_3e3049ba2ae25f::t_685c62b7204995 182,184,186,188,195,204
+src/ruhu/classifier/vertex_gemini_backend.py
+  s_3e3049ba2ae25f::t_3d9b320ca9a808 3-14,27-28,32-35
+  s_3e3049ba2ae25f::t_92e811397035bd 31,79,81,101,162,164,201,211,226,233,235,243
+  s_3e3049ba2ae25f::t_c3c05c4673d6dc 47-50
+src/ruhu/gemma_local.py
+  s_3e3049ba2ae25f::t_a730eed8f8d5d1 3-18,29-30,35,40-43,46-47,52,54,141-142,145-154,160-165,185-186,199,204,206-207,209
+tests/test_simulator.py
+  s_34ac67265ceb32::t_fcce933cba6128 20-35
+tests/test_attachment_conditions.py
+  s_3e3049ba2ae25f::t_d34d7ec3e8ecec 118
+  s_3e3049ba2ae25f::t_202dc1ed8fda10 216-218
+  s_3e3049ba2ae25f::t_ead0f774df8598 13,60,67,74,80,94,136,148,163,173,183,194
+tests/test_kernel_observability.py
+  s_3e3049ba2ae25f::t_6efa46cc11cab1 1-29,36-91,95-98,100-125,129-133,135-147,149-181,183-188,193-216
+  s_3e3049ba2ae25f::t_ab9ddccdc73d9f 92-94,99,126-128
+  s_3e3049ba2ae25f::t_a626ef6f811dc3 134
+  s_3e3049ba2ae25f::t_5a374a97d4ac4e 148
+  s_3e3049ba2ae25f::t_7098d1ed2a90d5 30-35
+  s_3e3049ba2ae25f::t_756f4c0f5a7376 189-192
+  s_3e3049ba2ae25f::t_2d94da0d1076f2 182
+tests/test_simulation_eval_assertions.py
+  s_3e3049ba2ae25f::t_ead0f774df8598 18,198
+tests/test_simulation_eval_dev.py
+  s_3e3049ba2ae25f::t_ead0f774df8598 13,118,130,135
+src/ruhu/classifier/benchmark/eval_set.py
+  s_3e3049ba2ae25f::t_83afaa53397b3f 3,17,22,47,49,64,91,93-95
+src/ruhu/classifier/protocol.py
+  s_3e3049ba2ae25f::t_ec8750aefac900 3-10,12-20,34-44,53,63-64,66-70,73,80,89,92
+src/ruhu/classifier/prompt.py
+  s_3e3049ba2ae25f::t_06d1c2bc3b7a07 1,16-20,27,34-59,98-99,117,145-146,150-158,160,162-167,177,179-180,192
+tests/test_classifier_trace_export.py
+  s_3e3049ba2ae25f::t_fd4d60fe838b3b 1-7,25,32,35-40,43,45-48,50-51,57,60-63,65-81,84,87,90,93,152-170,173,183,189-190,194,198-199,204-205,212-213,220-221,225,227,233-236,238,421,450,459,463,467,478,482,491,511,521,526,531,544,549,553,566-567,576,581,595,599
+  s_3e3049ba2ae25f::t_0252a26ef4b387 193,208,216,254,256,319,321,331,343,345,473,486,636
+tests/test_classifier_publish_gate.py
+  s_3e3049ba2ae25f::t_fd4230edccf0ba 1-7,12-18,24-32,39-40,43-53,57,82,84,93,95,100,104,106,113,125-126,129-137,141,155,167,181-183,196,201,218-232,239
+src/ruhu/knowledge/service.py
+  s_34ac67265ceb32::t_07d66ea806452a 570
+  s_34ac67265ceb32::t_e81ab0d952ac6a 699,934-974
+src/ruhu/atlas_generator.py
+  s_3e3049ba2ae25f::t_f398132a3033cc 348
+src/ruhu/classifier/vllm_backend.py
+  s_3e3049ba2ae25f::t_92e811397035bd 20,62,64,72,79,103,152,162,176
+  s_3e3049ba2ae25f::t_685c62b7204995 174,177,180,189-190,201
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "5289d83e00f3f5c8ee52e17dfae17653f5210414",
+  "prompts": {
+    "3e3049ba2ae25fa1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>",
+      "total_additions": 4517,
+      "total_deletions": 1480,
+      "accepted_lines": 4566,
+      "overriden_lines": 6
+    },
+    "859b13211fe21a42": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "514f7187-ea50-4c24-bed1-224deaf3f787",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>",
+      "total_additions": 995,
+      "total_deletions": 31,
+      "accepted_lines": 298,
+      "overriden_lines": 0
+    },
+    "fc2ab0fa23c224f3": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019df63f-6d7c-7280-8124-7407f346d8d7",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>",
+      "total_additions": 514,
+      "total_deletions": 13,
+      "accepted_lines": 423,
+      "overriden_lines": 0
+    }
+  },
+  "sessions": {
+    "s_34ac67265ceb32": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019df272-e688-7263-8ec3-9866c544f859",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    },
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
