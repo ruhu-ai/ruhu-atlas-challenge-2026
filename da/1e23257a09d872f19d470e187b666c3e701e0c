@@ -1,0 +1,23 @@
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.tsx
+  s_3e3049ba2ae25f::t_04dc0f0fd4d0a4 1408
+frontend/src/features/agent-canvas/components/InteractionDebugPanel.tsx
+  s_3e3049ba2ae25f::t_248115b52d0713 244-248
+  s_3e3049ba2ae25f::t_e8a7c9627ed6ab 256
+  s_3e3049ba2ae25f::t_429d91994804a5 264-307
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "da1e23257a09d872f19d470e187b666c3e701e0c",
+  "prompts": {},
+  "sessions": {
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
