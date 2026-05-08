@@ -1,0 +1,38 @@
+src/ruhu/api_models.py
+  s_859b13211fe21a::t_a1a64b0b98103c 340-352,360-366
+  s_859b13211fe21a::t_8942ffc24ea185 39
+frontend/src/features/agent-canvas/components/InteractionDebugPanel.test.tsx
+  s_859b13211fe21a::t_2bc44a2a81168e 53-57
+frontend/src/features/agent-canvas/components/ReasoningTimeline.tsx
+  s_859b13211fe21a::t_987621aa193412 1-288
+frontend/src/api/services/voice-session.service.ts
+  s_859b13211fe21a::t_646990c67816e5 70-80,91-108,112-113
+tests/test_api.py
+  s_859b13211fe21a::t_c5a8d217748c97 779-797
+frontend/src/features/agent-canvas/components/__tests__/ReasoningTimeline.test.tsx
+  s_859b13211fe21a::t_a46681001c0f5e 1-131
+src/ruhu/api.py
+  s_859b13211fe21a::t_1558a5ee1bca28 1468-1471
+frontend/src/features/agent-canvas/components/InteractionDebugPanel.tsx
+  s_859b13211fe21a::t_02be22c3396ffb 282,291-294,299
+  s_859b13211fe21a::t_e57b1bbfaea973 263-266
+  s_859b13211fe21a::t_5272498542066d 331,340-343,348
+  s_859b13211fe21a::t_1a1ca055c4473d 15-16
+  s_859b13211fe21a::t_bed87d5bfb172e 537-543
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "d7f7994b2145a5448ede60246002bcb62cc21a79",
+  "prompts": {},
+  "sessions": {
+    "s_859b13211fe21a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "514f7187-ea50-4c24-bed1-224deaf3f787",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
