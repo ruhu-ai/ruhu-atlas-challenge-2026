@@ -1,0 +1,45 @@
+src/ruhu/observability/metrics.py
+  s_3e3049ba2ae25f::t_181fffc2e649d4 247-277
+tests/test_knowledge_grounding_policy.py
+  s_3e3049ba2ae25f::t_d3a85803beb3ca 52
+  s_3e3049ba2ae25f::t_c47a1120dc6e1a 1-51,53-221
+src/ruhu/kernel.py
+  s_3e3049ba2ae25f::t_520e2cf47f7800 5650-5652,5669-5671
+  s_3e3049ba2ae25f::t_ed578e95125e33 56
+  s_3e3049ba2ae25f::t_acd98f2e3ddeee 5025-5027
+  s_3e3049ba2ae25f::t_bb42aadf4b746e 2877-2881
+  s_3e3049ba2ae25f::t_0f93746d79a75a 11
+  s_3e3049ba2ae25f::t_79c39893444061 45
+  s_3e3049ba2ae25f::t_ffcb887a4ccbd9 2893-2901,2908-2918
+  s_3e3049ba2ae25f::t_7a28d0de7d55c5 2791-2811,2813-2819
+  s_3e3049ba2ae25f::t_0d5a557edba8eb 2842-2865,2876,2882-2892,2902-2907,2919-2948,2977-2979,2986-2998
+  s_3e3049ba2ae25f::t_03d752eabfd348 4806-4808
+  s_3e3049ba2ae25f::t_54367bec0b5412 2949-2955
+  s_3e3049ba2ae25f::t_cd8e2b187d7d00 2705-2790,2812,2820
+src/ruhu/response_generation.py
+  s_3e3049ba2ae25f::t_a6cc68d79ad138 677-698
+  s_3e3049ba2ae25f::t_ebca5a8e0420d8 1062-1075,1081-1083,1087,1094-1104,1111
+  s_3e3049ba2ae25f::t_19b014f4ed35d4 994-1004,1008
+  s_3e3049ba2ae25f::t_13c1f4040eb5f4 1076-1080,1084-1086,1088-1093,1105-1110
+  s_3e3049ba2ae25f::t_4cfedcae4d7b29 147-219
+  s_3e3049ba2ae25f::t_c5792e14a660b4 942
+src/ruhu/schemas.py
+  s_3e3049ba2ae25f::t_4e2f6625a5c8d3 1171-1179
+  s_3e3049ba2ae25f::t_1679ff5d661236 119-206,218-220
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "f94299e70f04625a4522380cc41c3461ed0e2441",
+  "prompts": {},
+  "sessions": {
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
