@@ -1,0 +1,102 @@
+frontend/src/features/agent-canvas/components/PersonaSummaryCard.tsx
+  s_c79e27ee24e8d1::t_0a93a76ed4f573 1-74
+frontend/src/api/services/agent-definition.service.ts
+  s_c79e27ee24e8d1::t_6c30a06fee917c 8-9,34
+  s_c79e27ee24e8d1::t_e891f1a3d18c6f 389-431
+src/ruhu/persona.py
+  s_c79e27ee24e8d1::t_d8187e4d556ec3 136
+  s_c79e27ee24e8d1::t_3bd72de2dc3160 32,54-55,57-58,60-68,83,87-89,94-110,112
+  s_c79e27ee24e8d1::t_5589800d53297a 150-151,154,160-162,165
+  s_c79e27ee24e8d1::t_31bd7e594aa0a7 190
+  s_c79e27ee24e8d1::t_f22aeb0fbf97a7 40-51,59,69-82,84-86,111
+  s_c79e27ee24e8d1::t_cdd915abf24b1b 1-31,33-39,52-53,56,90-93,113-135,137-149,152-153,155-159,163-164,166-189,191-304
+frontend/src/features/agent-canvas/components/__tests__/PersonaTab.test.tsx
+  s_c79e27ee24e8d1::t_5aec6e42effbb0 1-195
+frontend/src/features/agent-canvas/CleanAgentCanvasLayout.tsx
+  s_c79e27ee24e8d1::t_17768e72dd617a 38,43-53
+  s_c79e27ee24e8d1::t_86dc9e04c473da 522
+  s_c79e27ee24e8d1::t_41d465867983bf 579-582
+tests/test_persona.py
+  s_3e3049ba2ae25f::t_99d6e8d582b4c2 1-371
+src/ruhu/agent_document.py
+  s_c79e27ee24e8d1::t_fb0725b66ac2eb 8
+  s_c79e27ee24e8d1::t_3de0fd44ba311c 177-186,195-212
+docs/persona/README.md
+  s_c79e27ee24e8d1::t_e1315ffbc788ea 51-52
+  s_c79e27ee24e8d1::t_13795c6617bf16 31
+  s_c79e27ee24e8d1::t_310866826c3904 1-30,32-50,53-64,66-75
+  s_c79e27ee24e8d1::t_f451e49706bf7b 65
+src/ruhu/api.py
+  s_3e3049ba2ae25f::t_38871c56c10971 560-566,4810-4834,4839-4842,5297-5315,5326-5329,7739-7747
+src/ruhu/api_models.py
+  s_c79e27ee24e8d1::t_041109b65c1df4 49
+  s_c79e27ee24e8d1::t_374caa578fe803 186-189,196-211,220,232,234
+frontend/src/types/agent-definition.ts
+  s_c79e27ee24e8d1::t_208efa2348e6ad 250-284,292-294,310
+docs/persona/phase-3.md
+  s_c79e27ee24e8d1::t_88d374a0503002 201,203,205,207
+  s_c79e27ee24e8d1::t_5d45083281cf86 57
+  s_c79e27ee24e8d1::t_fa3680fe981023 1-16,18,20,22-56,58-142,144-147,160,163-200,202,204,206,208-217,219-253,256-572,578-579,581-582,586-614,625-628
+  s_c79e27ee24e8d1::t_a63b5007354fb8 17,19,21
+  s_c79e27ee24e8d1::t_7dd63b30682798 615-624
+  s_c79e27ee24e8d1::t_0267e33b18e9f9 573-577,580,583-585
+  s_c79e27ee24e8d1::t_099c4b9b59da44 143,148-159,161-162
+  s_c79e27ee24e8d1::t_f451e49706bf7b 218,254-255
+frontend/src/features/agent-canvas/components/AgentSettingsPanel.tsx
+  s_c79e27ee24e8d1::t_a0e9584708261c 13,24-27,37
+  s_c79e27ee24e8d1::t_3d4180bdf04c48 109-115
+frontend/src/features/agent-canvas/components/PersonaTab.tsx
+  s_c79e27ee24e8d1::t_11b9d12d52b35c 5
+  s_c79e27ee24e8d1::t_62527bf0044a01 1-4,6-694
+docs/persona/phase-2.md
+  s_c79e27ee24e8d1::t_a582f57b0177b9 822
+  s_c79e27ee24e8d1::t_f2eea79dda3bf0 461
+  s_c79e27ee24e8d1::t_629913031f329c 227,229-232,238-239,241-242,244-254,256-259,268-269,271
+  s_c79e27ee24e8d1::t_6bc260bed08112 169-170,172-173,175-176
+  s_c79e27ee24e8d1::t_2124e8ff1805c6 810
+  s_c79e27ee24e8d1::t_7131ed868710f5 285-291,293
+  s_c79e27ee24e8d1::t_bf1385620bf763 773-775
+  s_c79e27ee24e8d1::t_dba79e1ad1f912 797-809,811-813
+  s_c79e27ee24e8d1::t_fa3680fe981023 1-63,65,77-78,83-84,86-94,101,103-105,107-108,128-129,132-133,135-137,141-144,152-153,155-168,171,174,177-226,228,233-237,240,243,255,260-267,270,272-284,292,294-406,410,412-428,430-440,442-460,462-464,466-582,594-597,606-609,611-772,776-796,814-821,823-862,867-868,870-871,873,877,883-885,887-978
+  s_c79e27ee24e8d1::t_8037389b6da9b1 64,66-76,79-82,85
+  s_c79e27ee24e8d1::t_74adcd9febf83b 583-593,598-605,610
+  s_c79e27ee24e8d1::t_a40c4d879198b6 863-866
+  s_c79e27ee24e8d1::t_90f43fdf31ddb7 869,872,874-876,878-882
+  s_c79e27ee24e8d1::t_82935a5d0adab1 407-409,411,429,441
+  s_c79e27ee24e8d1::t_4bb3526277da0e 886
+  s_c79e27ee24e8d1::t_4d05d2868afa81 95-100,102,106,109-127,130-131,134,138-140,145-151,154
+  s_c79e27ee24e8d1::t_c732143916ae49 465
+frontend/src/features/agent-canvas/components/AgentCanvasSidebar.tsx
+  s_c79e27ee24e8d1::t_834ede05d51dc8 40
+  s_3e3049ba2ae25f::t_dd96be023c2ccf 25
+  s_c79e27ee24e8d1::t_4ef9922892cc1b 124-137,139-142
+  s_3e3049ba2ae25f::t_4ff69e9f087d34 138
+docs/persona/phase-1.md
+  s_c79e27ee24e8d1::t_dfcbe2a8b11235 306
+tests/test_api.py
+  s_3e3049ba2ae25f::t_38871c56c10971 2307,2338
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "34dfcb0609290e8d60072e948bb7e40701046c64",
+  "prompts": {},
+  "sessions": {
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    },
+    "s_c79e27ee24e8d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "229bf12e-4f7a-439b-8eea-d204852e78a2",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
