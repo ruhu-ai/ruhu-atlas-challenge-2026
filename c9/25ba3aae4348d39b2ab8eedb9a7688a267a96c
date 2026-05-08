@@ -1,0 +1,19 @@
+src/ruhu/heuristics.py
+  s_3e3049ba2ae25f::t_9ef1e759b7c153 70,72-73,83-93
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.1",
+  "base_commit_sha": "c925ba3aae4348d39b2ab8eedb9a7688a267a96c",
+  "prompts": {},
+  "sessions": {
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
