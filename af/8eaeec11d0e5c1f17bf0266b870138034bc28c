@@ -1,0 +1,43 @@
+frontend/src/features/agent-canvas/components/UnifiedTestInterface.tsx
+  s_859b13211fe21a::t_d3f0160b84c81e 108-116
+  s_859b13211fe21a::t_e4aa31f756e74a 86
+frontend/src/features/agent-canvas/hooks/useConversationTraces.ts
+  s_859b13211fe21a::t_406c7c288e050f 1-100
+frontend/src/features/agent-canvas/agent-definition/AgentDefinitionWorkspace.tsx
+  s_859b13211fe21a::t_25a9798f14564e 27
+  s_859b13211fe21a::t_07d8a5d48e4570 493
+  s_859b13211fe21a::t_b1dfab314d2602 69-74
+  s_859b13211fe21a::t_d0b4737797c49c 87-91
+  s_859b13211fe21a::t_54836763af9687 106
+  s_859b13211fe21a::t_2dc8a174728e41 474-491,494-497
+  s_859b13211fe21a::t_14d5a1889cefa5 492
+frontend/src/features/agent-canvas/components/unified-test/types.ts
+  s_859b13211fe21a::t_0520585416b823 10-14
+frontend/src/features/agent-canvas/components/ReasoningTimelinePane.tsx
+  s_859b13211fe21a::t_897094bebac54d 1-75
+frontend/src/features/agent-canvas/components/__tests__/ReasoningTimelinePane.test.tsx
+  s_859b13211fe21a::t_dbb594372a26ca 1-82
+frontend/src/features/agent-canvas/components/TestSurface.tsx
+  s_859b13211fe21a::t_167de2065f9b56 1-64
+frontend/src/features/agent-canvas/CleanAgentCanvasLayout.tsx
+  s_859b13211fe21a::t_7acb5e34b0bed7 793-805
+  s_859b13211fe21a::t_da3c9038a9e388 516
+  s_859b13211fe21a::t_91cf6d524af0a6 420-429
+  s_859b13211fe21a::t_f281bbd62f0368 83-87
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "af8eaeec11d0e5c1f17bf0266b870138034bc28c",
+  "prompts": {},
+  "sessions": {
+    "s_859b13211fe21a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "514f7187-ea50-4c24-bed1-224deaf3f787",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
