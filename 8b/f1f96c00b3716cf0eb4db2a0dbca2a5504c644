@@ -1,0 +1,39 @@
+frontend/src/api/services/agent-definition.service.ts
+  s_c79e27ee24e8d1::t_7a3ba47f13085e 547-577
+alembic/versions/20260509_1300_0081_add_persona_avatar_blobs.py
+  s_c79e27ee24e8d1::t_31d943e6777a5a 1-65
+src/ruhu/api.py
+  s_c79e27ee24e8d1::t_4ce576f5588a92 9848-10012
+src/ruhu/persona_avatar.py
+  s_c79e27ee24e8d1::t_de939ae6e844d6 1-266
+src/ruhu/db_models.py
+  s_c79e27ee24e8d1::t_7f44b9e828759e 1822-1850
+frontend/src/features/agent-canvas/components/__tests__/PersonaTab.test.tsx
+  s_c79e27ee24e8d1::t_437a27f8fb373f 168-169
+  s_c79e27ee24e8d1::t_813f1c26fc57d3 114
+  s_c79e27ee24e8d1::t_3e2f3a49ff58a5 30,38
+  s_c79e27ee24e8d1::t_50eaf5c77ae0de 401-524
+tests/test_persona_avatar.py
+  s_c79e27ee24e8d1::t_b3f669b896fdf9 1-329
+frontend/src/features/agent-canvas/components/PersonaTab.tsx
+  s_c79e27ee24e8d1::t_56bb3218a72e8c 338-414
+  s_c79e27ee24e8d1::t_e846804e098293 581-582,586-622
+  s_c79e27ee24e8d1::t_6d38d088307b91 583
+  s_c79e27ee24e8d1::t_97e525352adf3b 20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "8bf1f96c00b3716cf0eb4db2a0dbca2a5504c644",
+  "prompts": {},
+  "sessions": {
+    "s_c79e27ee24e8d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "229bf12e-4f7a-439b-8eea-d204852e78a2",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
