@@ -1,0 +1,79 @@
+frontend/src/features/agent-canvas/agent-definition/document-editor/commands.ts
+  s_3e3049ba2ae25f::t_7b5bec2c550a3d 276-334
+frontend/src/api/services/tools.service.ts
+  s_3e3049ba2ae25f::t_987df6c9d08714 872-882
+frontend/src/features/agent-canvas/agent-definition/document-editor/serialize.ts
+  s_3e3049ba2ae25f::t_8b625c73d4224e 8-21,24-29,31-35
+  s_3e3049ba2ae25f::t_55f393b0f228bd 115-141
+frontend/src/features/agent-canvas/components/LibraryView.tsx
+  s_3e3049ba2ae25f::t_dc7516e41135b3 7
+  s_3e3049ba2ae25f::t_8ad0539c23fac6 1127
+  s_3e3049ba2ae25f::t_cae875668eec3e 826-893
+  s_3e3049ba2ae25f::t_d52b3ade5d9498 613,626-648,650
+  s_3e3049ba2ae25f::t_dd3b3a18e2eea2 10
+  s_3e3049ba2ae25f::t_67f3f47b093cf5 938-942,945,951-961,993,1034-1039,1041-1043,1046,1068,1070,1074-1083
+  s_3e3049ba2ae25f::t_cc48f1b8f8dea5 335-342,350-373
+  s_3e3049ba2ae25f::t_ebae495415eb0f 502-504
+  s_3e3049ba2ae25f::t_a49b276c7c3afe 1086-1087,1089-1121
+  s_3e3049ba2ae25f::t_dd54aa34582c8d 409-431,433,435-450,454,460,473
+  s_3e3049ba2ae25f::t_e366c865b73479 475-494,498
+  s_3e3049ba2ae25f::t_8a3f899ee19e98 508-564,568,577
+  s_3e3049ba2ae25f::t_527ea099318fed 167-226
+  s_3e3049ba2ae25f::t_52cf8a77c60c93 1228-1247,1257-1262,1265-1275,1283-1297,1308-1440
+  s_3e3049ba2ae25f::t_567a19a7c0c390 672-673
+  s_3e3049ba2ae25f::t_3b115551825c0f 283-290,300-308
+  s_3e3049ba2ae25f::t_cfb3993a9d2614 27-36
+  s_3e3049ba2ae25f::t_e4d732ac4b8ac9 40,50
+  s_3e3049ba2ae25f::t_85f39663ec3003 586
+  s_3e3049ba2ae25f::t_dcc913abbd6ebd 1124-1126,1128-1176,1179-1190
+  s_3e3049ba2ae25f::t_bcac0cd8a344cd 946-950,962-992,994-1033
+frontend/src/features/agent-canvas/components/AgentIntegrationsTab.tsx
+  s_3e3049ba2ae25f::t_a8ae829afc0c15 628
+  s_3e3049ba2ae25f::t_14df7fe1182e5b 848-854
+  s_3e3049ba2ae25f::t_d24bea3fabef42 451,453-454,460,468,470,473,477-478,483-487,492,494-498,501-509
+  s_3e3049ba2ae25f::t_72c1dc4aa5c199 378-401,438-440,443
+  s_3e3049ba2ae25f::t_3d1e7444893743 568-572,577
+frontend/src/features/agent-canvas/agent-definition/document-editor/deserialize.ts
+  s_3e3049ba2ae25f::t_483c6de890e708 233,245,258
+  s_3e3049ba2ae25f::t_9e9cb3a5933f3c 152-167
+frontend/src/features/agent-canvas/agent-definition/document-editor/node-views.tsx
+  s_3e3049ba2ae25f::t_7091e36c2b251a 1-2,8,10-11
+  s_3e3049ba2ae25f::t_ef06fd4def3eb9 241-337,339-360,370-372,374-408
+  s_859b13211fe21a::t_2053d7c638ac0d 9
+  s_3e3049ba2ae25f::t_d35a0a261f9fe0 338
+  s_3e3049ba2ae25f::t_6d1827a669db82 361-369,373
+  s_3e3049ba2ae25f::t_0a3e37337b9c6e 409-516
+frontend/src/features/agent-canvas/agent-definition/document-editor/condition-roundtrip.test.ts
+  s_3e3049ba2ae25f::t_ab18f9c9398919 190-301
+frontend/src/features/agent-canvas/agent-definition/document-editor/extensions.ts
+  s_3e3049ba2ae25f::t_6e87eeb27fbb11 327-328
+  s_3e3049ba2ae25f::t_6ad9d38b72f24f 6,9-10
+  s_3e3049ba2ae25f::t_ad051c851e6635 128-132,143-147,159-161,165-221
+frontend/src/features/agent-canvas/agent-definition/document-editor/SlashMenu.tsx
+  s_3e3049ba2ae25f::t_5f009c454b03e0 14,22
+  s_3e3049ba2ae25f::t_d7c00e93b30530 140-152
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "0a82f69c74ab320c4502ea16f48d765cb8443c09",
+  "prompts": {},
+  "sessions": {
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    },
+    "s_859b13211fe21a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "514f7187-ea50-4c24-bed1-224deaf3f787",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
