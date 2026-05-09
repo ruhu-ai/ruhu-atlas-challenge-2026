@@ -1,0 +1,24 @@
+frontend/src/features/agent-canvas/components/AgentFlowGraph.tsx
+  s_859b13211fe21a::t_ebac0246953751 154-155,163,167,178-179,186-187
+  s_859b13211fe21a::t_5e86cba7c58b82 268-270
+  s_859b13211fe21a::t_0d3e2c00a217dc 338-343
+  s_859b13211fe21a::t_97451c0d5b9d4d 280
+  s_859b13211fe21a::t_b16dea7bb439fe 74-83,95,100-101,106-107,112-113
+  s_859b13211fe21a::t_367d9c60d7ede8 203-207
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "10c5815849dfb601a21162603e27ebf694a5b361",
+  "prompts": {},
+  "sessions": {
+    "s_859b13211fe21a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "514f7187-ea50-4c24-bed1-224deaf3f787",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
