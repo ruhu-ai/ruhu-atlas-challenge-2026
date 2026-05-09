@@ -1,0 +1,19 @@
+frontend/src/features/agent-canvas/components/AgentFlowGraph.tsx
+  s_859b13211fe21a::t_2b996325098f15 502-513,518-520,522-527
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "9f734415564188c685079c29deb1681ec19e9927",
+  "prompts": {},
+  "sessions": {
+    "s_859b13211fe21a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "514f7187-ea50-4c24-bed1-224deaf3f787",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
