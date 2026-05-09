@@ -1,0 +1,33 @@
+docs/persona/README.md
+  s_c79e27ee24e8d1::t_f8dfefed893e16 69-74,76,79,83-86
+  s_c79e27ee24e8d1::t_abce31fb8637ac 9-16
+  s_c79e27ee24e8d1::t_155cfb19faa0d5 33-35,37
+  s_c79e27ee24e8d1::t_8592b0e25ec11b 56-58
+docs/persona/phase-3.md
+  s_c79e27ee24e8d1::t_96515d532b939c 519,525
+docs/persona/phase-2.md
+  s_c79e27ee24e8d1::t_487a2b12dc5931 914-915,918-919,921,924-934,937-940,945-946,949-952,955-956
+  s_c79e27ee24e8d1::t_856d003a0ad120 802-804,807,816,818-824,827
+  s_c79e27ee24e8d1::t_555269372ccc7c 3,5,7-11,13-15
+  s_c79e27ee24e8d1::t_17f89a2baeaa78 582,584,586,588,590-598,600,604-634,638-645,649,653,655-656,658,661-675,679-687,689,691,693,695,697-708,713-714,719-735,742-773
+  s_c79e27ee24e8d1::t_d17bac1fbf4822 67,69-70,73-77,82-85,88
+  s_c79e27ee24e8d1::t_c2b93c9c36bde8 788-793
+  s_c79e27ee24e8d1::t_6166a8cb6233b8 425-428
+  s_c79e27ee24e8d1::t_43657366196589 51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "0c1394887c0510600b8dc749333fb1f3c17ddcef",
+  "prompts": {},
+  "sessions": {
+    "s_c79e27ee24e8d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "229bf12e-4f7a-439b-8eea-d204852e78a2",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
