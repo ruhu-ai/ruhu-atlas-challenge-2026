@@ -1,0 +1,51 @@
+frontend/src/features/agent-canvas/components/PersonaTab.tsx
+  s_c79e27ee24e8d1::t_0bf0fcb9f60cdc 47
+  s_c79e27ee24e8d1::t_28b8ae09f78de2 682-727
+  s_c79e27ee24e8d1::t_b53b7018fc3b60 252-257
+  s_c79e27ee24e8d1::t_e1da80148e9892 218-222
+frontend/src/features/agent-canvas/components/__tests__/PersonaTab.test.tsx
+  s_c79e27ee24e8d1::t_96011760e96c4c 78-80,88-91
+  s_c79e27ee24e8d1::t_748c56290a76a0 253-285
+  s_c79e27ee24e8d1::t_f3725136223e1c 185-190
+src/ruhu/voice/__init__.py
+  s_c79e27ee24e8d1::t_f458cbed5bf294 1-33
+frontend/src/features/agent-canvas/components/__tests__/VoicePicker.test.tsx
+  s_c79e27ee24e8d1::t_737c504500209d 1-255
+src/ruhu/voice/vertex_gemini_provider.py
+  s_c79e27ee24e8d1::t_d1b8c1d0e52ec4 1-281
+src/ruhu/api.py
+  s_c79e27ee24e8d1::t_cbe9da92040cd9 9290-9409
+  s_c79e27ee24e8d1::t_0b0aefa369b300 620-643
+frontend/src/types/agent-definition.ts
+  s_c79e27ee24e8d1::t_31b9df04596ea3 285-312,318-321,329-332
+src/ruhu/voice/protocol.py
+  s_c79e27ee24e8d1::t_d12b1d3e0ac071 1-219
+frontend/src/api/services/agent-definition.service.ts
+  s_c79e27ee24e8d1::t_a37abbc7c9189f 452-476
+  s_c79e27ee24e8d1::t_86098b955ca7e0 33-34
+  s_c79e27ee24e8d1::t_635b77c471e8a9 414-421
+frontend/src/features/agent-canvas/components/VoicePicker.tsx
+  s_c79e27ee24e8d1::t_a12ab3edb3f0e1 1-242
+src/ruhu/persona.py
+  s_c79e27ee24e8d1::t_e4158f595fdee8 205,209-220
+tests/test_voice_providers.py
+  s_c79e27ee24e8d1::t_917d0dbb1c2af3 1-334
+src/ruhu/voice/factory.py
+  s_c79e27ee24e8d1::t_fd7d46964d1b50 1-58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "b48e530606965400598427521158789052e2eedc",
+  "prompts": {},
+  "sessions": {
+    "s_c79e27ee24e8d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "229bf12e-4f7a-439b-8eea-d204852e78a2",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
