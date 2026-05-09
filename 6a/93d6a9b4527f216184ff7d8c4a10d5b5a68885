@@ -1,0 +1,71 @@
+src/ruhu/voice/protocol.py
+  s_c79e27ee24e8d1::t_f610c777d72a2b 261,272-308
+  s_c79e27ee24e8d1::t_384c1b0b24b935 133-184
+  s_c79e27ee24e8d1::t_8d2beb7136f0e2 316-317
+  s_c79e27ee24e8d1::t_af474606c62e0f 193-194,202-212
+frontend/src/api/services/agent-definition.service.ts
+  s_c79e27ee24e8d1::t_f759f1eb3cc1b0 34
+  s_c79e27ee24e8d1::t_860c8451a54c5a 478-516
+src/ruhu/voice/__init__.py
+  s_c79e27ee24e8d1::t_3c99441f4a2a49 19-20,31-32
+alembic/versions/20260509_1200_0080_add_voice_clones.py
+  s_c79e27ee24e8d1::t_2f57e9b6cb5c9e 1-109
+frontend/src/types/agent-definition.ts
+  s_c79e27ee24e8d1::t_0950c0985fb929 313-335
+src/ruhu/voice/vertex_gemini_provider.py
+  s_c79e27ee24e8d1::t_ad230a8b43becb 228-435
+  s_c79e27ee24e8d1::t_b6af062ff8dc4b 32-33
+  s_c79e27ee24e8d1::t_2a7a2ce8a12bf0 111
+frontend/src/features/agent-canvas/components/VoicePicker.tsx
+  s_c79e27ee24e8d1::t_f0771598284bdf 145-176
+  s_c79e27ee24e8d1::t_f762a25f354643 21-22,40
+  s_c79e27ee24e8d1::t_4a2a2d8e90b123 50-57
+  s_c79e27ee24e8d1::t_6223c354837500 231-234,245,250-254,256-260
+  s_c79e27ee24e8d1::t_1ed9d8d726046d 304-316
+  s_c79e27ee24e8d1::t_9600023f7032d4 71-72,74,78
+  s_c79e27ee24e8d1::t_2a88a03d648fdb 131-142
+frontend/src/features/agent-canvas/components/__tests__/VoiceCloningWizard.test.tsx
+  s_c79e27ee24e8d1::t_25f2453947b8d6 280,290,300,310,320
+  s_c79e27ee24e8d1::t_a30db20ad226bc 25-34
+  s_c79e27ee24e8d1::t_670d01d068de65 1-24,35-72,75-192,199-279,281-289,291-299,301-309,311-319,321-335
+  s_c79e27ee24e8d1::t_20c49065253306 193-198
+  s_c79e27ee24e8d1::t_b7fac7c39be502 73-74
+frontend/src/features/agent-canvas/components/PersonaTab.tsx
+  s_c79e27ee24e8d1::t_07126162d24f24 699
+frontend/src/features/agent-canvas/components/__tests__/VoicePicker.test.tsx
+  s_c79e27ee24e8d1::t_d499ddfbd0263b 266-380
+  s_c79e27ee24e8d1::t_f841d8d2709300 21,27,31-36
+src/ruhu/voice_cloning.py
+  s_c79e27ee24e8d1::t_9055ce015b658b 1-381
+src/ruhu/api.py
+  s_c79e27ee24e8d1::t_d1499d516defc1 21
+  s_c79e27ee24e8d1::t_8783d58b789f54 9383-9400
+  s_c79e27ee24e8d1::t_e38de657073750 9476-9477,9525-9530,9532-9533,9535-9546,9558-9573,9593,9598-9600,9604-9617,9635-9655,9666-9667,9672,9689-9724,9726-9731,9737-9745,9759-9760
+  s_c79e27ee24e8d1::t_5cdfa23955ed9c 9478-9524,9531,9534,9547-9557,9574-9592,9594-9597,9601-9603,9618-9634,9656-9665,9668-9671,9673-9688,9725,9732-9736,9746-9758
+  s_c79e27ee24e8d1::t_e249ecf3ca3074 644-661
+  s_c79e27ee24e8d1::t_3dd94166639f39 9320-9328,9330-9331,9343-9345,9347-9349
+  s_c79e27ee24e8d1::t_bf2e8b24ef6c43 9329,9332-9342,9346
+frontend/src/features/agent-canvas/components/VoiceCloningWizard.tsx
+  s_c79e27ee24e8d1::t_0fd2d170a462db 282
+  s_c79e27ee24e8d1::t_fa94466a407cee 1-52,67-281,283-469
+  s_c79e27ee24e8d1::t_58a5e3f91b0783 53-66
+tests/test_voice_cloning.py
+  s_c79e27ee24e8d1::t_a7e658574cb042 1-46,53,55-503
+  s_c79e27ee24e8d1::t_cfce5ea450a604 47-52,54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "6a93d6a9b4527f216184ff7d8c4a10d5b5a68885",
+  "prompts": {},
+  "sessions": {
+    "s_c79e27ee24e8d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "229bf12e-4f7a-439b-8eea-d204852e78a2",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
