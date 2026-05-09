@@ -1,0 +1,23 @@
+frontend/src/features/agent-canvas/CleanAgentCanvasLayout.tsx
+  s_859b13211fe21a::t_60333439c514af 86-90
+  s_859b13211fe21a::t_dbfdbc9b6f9905 436-438
+  s_859b13211fe21a::t_47bb3287b975ec 760-764
+frontend/src/features/agent-canvas/agent-definition/AgentDefinitionWorkspace.tsx
+  s_859b13211fe21a::t_76f5dfe00f97c2 105
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "95523eef8cd2809f1320ac2dbf7292cc809bb7a3",
+  "prompts": {},
+  "sessions": {
+    "s_859b13211fe21a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "514f7187-ea50-4c24-bed1-224deaf3f787",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
