@@ -1,0 +1,42 @@
+src/ruhu/api.py
+  s_3e3049ba2ae25f::t_a5bca2ef09a2d3 2985
+src/ruhu/templates/system/ecommerce-returns-refunds.json
+  s_3e3049ba2ae25f::t_a5bca2ef09a2d3 46,61,76,91,107,122
+frontend/src/features/agent-canvas/components/AgentCanvasSidebar.tsx
+  s_3e3049ba2ae25f::t_220b4995816332 19
+  s_3e3049ba2ae25f::t_b09d89efaa8b21 44
+  s_3e3049ba2ae25f::t_230d2cc5207ae4 191-195,197,200,205-206
+  s_3e3049ba2ae25f::t_d77c9a24c98743 385-386,389-390
+src/ruhu/templates/system/isp-customer-support.json
+  s_3e3049ba2ae25f::t_a5bca2ef09a2d3 47,61,75,89,101,117
+frontend/src/features/agent-canvas/components/SetupChecklist.tsx
+  s_3e3049ba2ae25f::t_e305dbd358dc25 90-91
+frontend/src/features/agent-canvas/CleanAgentCanvasLayout.tsx
+  s_3e3049ba2ae25f::t_ce68d2045b1677 38-39
+  s_3e3049ba2ae25f::t_94c4b517f1e7c5 50
+  s_3e3049ba2ae25f::t_774cb735b5de29 614-623,626-637
+src/ruhu/templates/system/healthcare-triage-scheduling.json
+  s_3e3049ba2ae25f::t_a5bca2ef09a2d3 46,61,76,90
+tests/test_template_required_tools.py
+  s_3e3049ba2ae25f::t_e1fa52db0d8dea 291,324,326
+src/ruhu/templates/system/sales-agent.json
+  s_3e3049ba2ae25f::t_a5bca2ef09a2d3 41
+src/ruhu/templates/system/telecom-billing-disputes-payment-plans.json
+  s_3e3049ba2ae25f::t_a5bca2ef09a2d3 45,60,74,86,100,114
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "b6e6f515743935a50fcb99f6d19ca969cc2e9d37",
+  "prompts": {},
+  "sessions": {
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
