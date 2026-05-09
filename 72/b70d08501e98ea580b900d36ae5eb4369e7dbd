@@ -1,0 +1,52 @@
+scripts/topic_enforcement_rollout.py
+  s_c79e27ee24e8d1::t_ac5ff2116a7eb1 1-222
+frontend/src/types/agent-definition.ts
+  s_c79e27ee24e8d1::t_67e3d361136034 271-284,289,296
+tests/test_topic_enforcement.py
+  s_c79e27ee24e8d1::t_118110e58b58d0 86-88
+  s_c79e27ee24e8d1::t_3548921008dc9a 89
+  s_c79e27ee24e8d1::t_c7aa9cbe7a0737 301,323
+  s_c79e27ee24e8d1::t_3e27580654f1b9 1-85,90-296,299-300,302-305,307-322,324-564,691-714
+  s_c79e27ee24e8d1::t_fa35a0f1af10ed 565-576,581,583-584,588-593,595-690
+  s_c79e27ee24e8d1::t_6cc58a02aeea43 297-298
+  s_c79e27ee24e8d1::t_fad92562c1faf2 306
+  s_c79e27ee24e8d1::t_a408571fc1f397 577-580,582,585-587,594
+frontend/src/features/agent-canvas/components/PersonaTab.tsx
+  s_c79e27ee24e8d1::t_0b4350ae56f087 577,582-610,614
+  s_c79e27ee24e8d1::t_07f4b23e3c04fe 724-748
+  s_c79e27ee24e8d1::t_29175aa02ac5ae 45
+  s_c79e27ee24e8d1::t_a70dc3e13138c3 15-18
+tests/test_persona.py
+  s_c79e27ee24e8d1::t_ecb95ec7bc85d6 194,200,209-238,240-259
+src/ruhu/topic_enforcement.py
+  s_c79e27ee24e8d1::t_a5cbbf75a10f53 1-420
+frontend/src/features/agent-canvas/components/__tests__/PersonaTab.test.tsx
+  s_c79e27ee24e8d1::t_eb1c55dc4e5472 81-86
+  s_c79e27ee24e8d1::t_2505bec0caac07 175-178,185-218
+src/ruhu/api.py
+  s_c79e27ee24e8d1::t_36973f20585f30 3588-3591
+  s_c79e27ee24e8d1::t_8d13b0900c8e43 3522-3578
+src/ruhu/persona.py
+  s_c79e27ee24e8d1::t_5df505889af80a 305-316
+  s_c79e27ee24e8d1::t_bbdd614d0a8bcb 33
+  s_c79e27ee24e8d1::t_d229094f318726 342
+  s_c79e27ee24e8d1::t_c01ea5e7c362f2 170-194,205-210,212
+frontend/src/api/services/agent-definition.service.ts
+  s_c79e27ee24e8d1::t_2effe442629606 409-411
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "72b70d08501e98ea580b900d36ae5eb4369e7dbd",
+  "prompts": {},
+  "sessions": {
+    "s_c79e27ee24e8d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "229bf12e-4f7a-439b-8eea-d204852e78a2",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
