@@ -1,0 +1,131 @@
+frontend/src/features/agent-canvas/agent-definition/ActionConfigEditor.tsx
+  s_3e3049ba2ae25f::t_536dfd6784c0bb 460
+  s_3e3049ba2ae25f::t_6ea29b37fec37a 431,433-434
+  s_3e3049ba2ae25f::t_defa8ea6bdd4a0 247
+  s_3e3049ba2ae25f::t_383ada10108749 359,367
+  s_3e3049ba2ae25f::t_b116d9cfadc932 262
+src/ruhu/tools/specs.py
+  s_3e3049ba2ae25f::t_f7ab70708c5ab1 146,149-175
+  s_3e3049ba2ae25f::t_7d1d6cacd98089 100-112
+src/ruhu/tools/ingestion.py
+  s_3e3049ba2ae25f::t_7d1b4d2f9a1482 451
+src/ruhu/tools/production.py
+  s_3e3049ba2ae25f::t_46d4f6e484402b 263-265,268
+  s_3e3049ba2ae25f::t_d7b41a340c493b 299
+scripts/prototype_composite_to_code.py
+  s_3e3049ba2ae25f::t_2f9e8becacefdb 60-62,70-79
+  s_3e3049ba2ae25f::t_130ec2cb63369f 296,310,376,390,473,487
+  s_859b13211fe21a::t_78429741fa774a 1-59,63-69,80-90,92-150,152-158,160-169,171-195,197-203,205-295,297-309,311-375,377-389,391-472,474-486,488-555
+  s_3e3049ba2ae25f::t_4ba84ccc174688 151,159
+  s_3e3049ba2ae25f::t_1c1a8b2cf3fd69 91
+  s_3e3049ba2ae25f::t_a6ec1bcfea67da 170
+  s_3e3049ba2ae25f::t_9192a35867a4bc 196,204
+src/ruhu/tools/management.py
+  s_3e3049ba2ae25f::t_2766647e485ef5 665
+alembic/versions/20260510_1200_0082_rename_tool_kind_values.py
+  s_3e3049ba2ae25f::t_9ff3f58e51b89e 1-55
+tests/test_tools_api.py
+  s_3e3049ba2ae25f::t_2148d05d3c27d0 52-58
+frontend/src/api/services/tools.service.ts
+  s_3e3049ba2ae25f::t_e64e5365e6d26b 418
+  s_3e3049ba2ae25f::t_efd0c5fbf69321 586,588
+  s_3e3049ba2ae25f::t_54a0c0920503f2 268
+src/ruhu/tools_api.py
+  s_3e3049ba2ae25f::t_fee597827f48ad 342
+  s_3e3049ba2ae25f::t_cc2bd9a8493c3e 623-645,649-656
+  s_3e3049ba2ae25f::t_38eef06ce116cc 124
+  s_3e3049ba2ae25f::t_245f9c5fc1ae64 242,244
+  s_3e3049ba2ae25f::t_4c8688cdfabe92 847
+  s_3e3049ba2ae25f::t_2827cd561513f3 1177,1179,1183,1202-1203,1210-1211,1214-1215,1217,1223,1226
+  s_3e3049ba2ae25f::t_82f52fdc2a2576 1240,1242
+tests/test_tools_code_composite.py
+  s_3e3049ba2ae25f::t_a45cb47bec57df 594-609
+  s_859b13211fe21a::t_29bc7e13e3334c 277-413,417-421,423-430,432-593,610-644
+  s_3e3049ba2ae25f::t_2fe69e2c46611a 414-416,422,431
+frontend/src/features/agent-canvas/agent-definition/ActionConfigEditor.test.tsx
+  s_3e3049ba2ae25f::t_c15ee9f4cd4d52 53,55,57,60
+frontend/src/features/agent-canvas/components/LibraryView.tsx
+  s_3e3049ba2ae25f::t_c54bce0182f449 1131-1134,1139
+  s_3e3049ba2ae25f::t_9fbff5aec7bb72 999-1000
+  s_3e3049ba2ae25f::t_8795e7f7e951c8 1268-1322
+  s_3e3049ba2ae25f::t_078a9035fb7db4 982-983
+  s_3e3049ba2ae25f::t_805621fe565851 9-10,16
+  s_3e3049ba2ae25f::t_739867448033c6 44-51
+  s_3e3049ba2ae25f::t_ceca2dc970dca4 947-948
+  s_3e3049ba2ae25f::t_1e277748740ff9 1014-1019,1024
+  s_3e3049ba2ae25f::t_0f28871cb026af 1120-1130,1135-1138,1140-1143
+  s_3e3049ba2ae25f::t_d36bc93afb326f 535,540,542,544
+  s_3e3049ba2ae25f::t_7b1bd854b062c9 270-281,288,302,309-313,323,329
+  s_3e3049ba2ae25f::t_844e6417a24a93 41
+  s_3e3049ba2ae25f::t_e040dd12da7399 984-985
+  s_3e3049ba2ae25f::t_c5fbf8ba8b32c9 784-812
+  s_3e3049ba2ae25f::t_26b770e2853b58 239-244
+  s_3e3049ba2ae25f::t_e3238a974fd7d4 613-685,688
+  s_3e3049ba2ae25f::t_e4f1d4ede2efd1 746,748
+  s_3e3049ba2ae25f::t_acf0de3ccc782e 1109-1119
+  s_3e3049ba2ae25f::t_25a39e6b3f6b7f 718
+  s_3e3049ba2ae25f::t_261148bf128a6b 835-836
+  s_3e3049ba2ae25f::t_83840232d1e561 68
+  s_3e3049ba2ae25f::t_4f9455de56b503 949-958
+  s_3e3049ba2ae25f::t_d55df6b966b017 389,400-421,425-439,444-446,453,455-456,461-462,464,466-472,475-478
+  s_3e3049ba2ae25f::t_25e3e4605ad5ec 882-884,892-896,904
+  s_3e3049ba2ae25f::t_acf8e31c4cd912 334-347,349-353,356-376
+  s_3e3049ba2ae25f::t_5b81b58b20660e 282-287,289-290,297,299-300
+  s_3e3049ba2ae25f::t_26fe6515c63214 1539-1542,1544-1560,1563-1566,1568-1584
+  s_3e3049ba2ae25f::t_b14e013798a762 134-141,144-145,149-150,167,174,185
+  s_3e3049ba2ae25f::t_d9c4edd574dcfe 67
+  s_3e3049ba2ae25f::t_8091ff4549899d 1634-1696,1700-1703,1705-1710,1712-1714,1716-1753,1755-1767,1772-1829,1833-1836,1838-1843,1845-1847,1849-1900,1902-1914
+  s_3e3049ba2ae25f::t_7e9bd5e04ccf34 262
+  s_3e3049ba2ae25f::t_28c6a3edb6be48 379-383
+src/ruhu/tools/compiler.py
+  s_3e3049ba2ae25f::t_a40db53a2e9cee 184,215-216
+  s_3e3049ba2ae25f::t_afe10297355feb 505-539
+frontend/src/pages/tools.tsx
+  s_3e3049ba2ae25f::t_9113617a770478 168
+  s_3e3049ba2ae25f::t_7f99bfd27c0733 127-128
+frontend/src/utils/callable-aliases.test.ts
+  s_3e3049ba2ae25f::t_34da52efb91d95 1-36,42,44,47-48,52-63
+  s_3e3049ba2ae25f::t_7e60ca40e691d5 37-41,43,45-46,49-51
+src/ruhu/tools/executors/code.py
+  s_3e3049ba2ae25f::t_ee157536266aab 14-19,29,34-37,42-95,99-109,121-139,143-211,215-216,222-227,233,251-256,264
+frontend/src/utils/feature-flags.ts
+  s_3e3049ba2ae25f::t_5ce83c9f9af952 1-21
+src/ruhu/db_models.py
+  s_3e3049ba2ae25f::t_fc926bd7ece860 1498-1499
+frontend/src/features/agent-canvas/__tests__/library-view.test.tsx
+  s_3e3049ba2ae25f::t_c19192c2eb058f 107-112,117-118,121-122
+  s_3e3049ba2ae25f::t_7a85d9af961b41 239,256
+  s_3e3049ba2ae25f::t_94f353bcfee7b8 113-116,119-120
+  s_3e3049ba2ae25f::t_8c531d674a41ec 387-582,592-593
+  s_3e3049ba2ae25f::t_408ca36b5cdef4 198,201,203
+  s_3e3049ba2ae25f::t_97505a514fe5f2 583
+  s_3e3049ba2ae25f::t_0d2a9015ab82cd 15-18
+  s_3e3049ba2ae25f::t_348a33efbe15fe 584-591
+  s_3e3049ba2ae25f::t_6f509282607d56 1-14,19-106,123-197,199-200,202,204-238,240-255,257-386
+frontend/src/utils/callable-aliases.ts
+  s_3e3049ba2ae25f::t_751e72a839ca67 1-57
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "9475c5df69f52390b2149f9fdcc0d3f7dc320d7e",
+  "prompts": {},
+  "sessions": {
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    },
+    "s_859b13211fe21a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "514f7187-ea50-4c24-bed1-224deaf3f787",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
