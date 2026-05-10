@@ -1,0 +1,41 @@
+frontend/src/pages/__tests__/tickets-reasoning.test.tsx
+  s_859b13211fe21a::t_ca9ad984393a63 1-75,80-98,111-149
+  s_859b13211fe21a::t_e93658a35309e5 76-79
+  s_859b13211fe21a::t_48e205d1896aff 99-110
+frontend/src/pages/tickets.tsx
+  s_859b13211fe21a::t_5b9250e01ed99e 166-178
+  s_859b13211fe21a::t_7933ca866e5bc6 259-273
+  s_3e3049ba2ae25f::t_c4c717ae29cec1 25-26,31,34-35,143-147,149-150,157
+  s_859b13211fe21a::t_8f37a3dd414261 148
+frontend/src/pages/calls.tsx
+  s_859b13211fe21a::t_de3bf1c8f497f7 44
+  s_859b13211fe21a::t_4677fb5fcaa554 812-845
+frontend/src/features/agent-canvas/hooks/useConversationTraces.ts
+  s_859b13211fe21a::t_2fd8bcd3f72ba4 108
+  s_859b13211fe21a::t_42d9ae0a20f07b 90-96
+  s_859b13211fe21a::t_d997f2bba05705 35-42,44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "1ecb5156ec9ca14d3b6e864379b606ad1bf46c58",
+  "prompts": {},
+  "sessions": {
+    "s_3e3049ba2ae25f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f11a4a53-e94c-44f9-97ab-fb44c6e92a3b",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    },
+    "s_859b13211fe21a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "514f7187-ea50-4c24-bed1-224deaf3f787",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
