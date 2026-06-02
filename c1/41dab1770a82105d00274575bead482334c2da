@@ -1,0 +1,127 @@
+src/ruhu/capture/llm_extractor.py
+  s_a633e324d3f053::t_3567e5a02ffd0b 11
+  s_a633e324d3f053::t_fec43b8982c387 154-160
+src/ruhu/capture/pipeline.py
+  s_a633e324d3f053::t_b93bb7c7efe7ec 546
+  s_a633e324d3f053::t_b232a7dc400b6a 604-650
+  s_a633e324d3f053::t_9819729c2aea7e 98,104,106-116
+src/ruhu/agent_document.py
+  s_a633e324d3f053::t_b5865a0a275486 420-422
+  s_a633e324d3f053::t_36d553951b09e9 176-205,222
+frontend/src/pages/agent-analysis.tsx
+  s_a633e324d3f053::t_268a09a840f0f8 1-327
+frontend/src/api/services/citations.service.ts
+  s_a633e324d3f053::t_eb2e2ad6c6392f 1-60
+tests/test_analysis_sweep_api.py
+  s_a633e324d3f053::t_9b5e69f97b5f11 1-25,28-55,57-159
+  s_a633e324d3f053::t_4b086b17e0f6dd 26-27,56
+src/ruhu/analysis_sweep.py
+  s_a633e324d3f053::t_ed187d20ee9eb7 1-176
+frontend/src/features/citations/components/CitationView.test.tsx
+  s_a633e324d3f053::t_40dae2ea076c47 1-128
+frontend/src/features/citations/components/CitationView.tsx
+  s_a633e324d3f053::t_27f990856ae618 1-205
+src/ruhu/admin_audit/sqlalchemy_models.py
+  s_7097abd5fa4e0b::t_cda7d6e72f0080 1-75
+tests/admin_audit/test_filter.py
+  s_7097abd5fa4e0b::t_ec9172f51603d0 1-72
+src/ruhu/citations.py
+  s_a633e324d3f053::t_2f1ff0cb51e82d 1-182
+frontend/src/features/citations/index.ts
+  s_a633e324d3f053::t_b7479a245a68d5 1
+frontend/src/types/agent-document.ts
+  s_a633e324d3f053::t_247aa36233f66b 218-229,236
+frontend/src/pages/calls.tsx
+  s_a633e324d3f053::t_447726dd2ace6f 847-848
+  s_a633e324d3f053::t_5e89dfa84206ea 45
+tests/admin_audit/test_writer.py
+  s_7097abd5fa4e0b::t_5bf9ecccc6abe3 1-100
+tests/test_citations_api.py
+  s_a633e324d3f053::t_4a30bf1830165a 31-32,34-41,43,48-55
+  s_a633e324d3f053::t_05cfc9be5dcfe3 1-22,24-30,33,42,44-47,56-84,86-110,112-116
+  s_a633e324d3f053::t_0b035fcbecbb68 23,85,111
+src/ruhu/admin_audit/__init__.py
+  s_7097abd5fa4e0b::t_4e77d563cdbe0a 1-44
+tests/admin_audit/test_middleware.py
+  s_7097abd5fa4e0b::t_a1b0dc3be766fa 1-3,5-26,28-31,33-99,104-327
+  s_7097abd5fa4e0b::t_f78e5d8e00c4b4 4,27,32
+  s_7097abd5fa4e0b::t_ad5f6c2ce02b92 100-103
+src/ruhu/admin_audit/middleware.py
+  s_7097abd5fa4e0b::t_0db93606cb36c2 1-345
+src/ruhu/api.py
+  s_a633e324d3f053::t_9f07e2ef9737c2 15470-15474,15483-15485,15494-15497,15507-15511
+  s_a633e324d3f053::t_bef34d3db6daba 15475-15482,15486-15493
+  s_a633e324d3f053::t_03bbcbdca567c9 15498-15506,15512-15531
+  s_a633e324d3f053::t_2268670b5bff17 15532-15577
+src/ruhu/admin_audit/filter.py
+  s_7097abd5fa4e0b::t_6cd13b35d473b8 1-95
+src/ruhu/admin_audit/writer.py
+  s_7097abd5fa4e0b::t_8db83a97a9fe3e 1-127
+tests/capture/test_analysis_sweep.py
+  s_a633e324d3f053::t_d2b6bd880a7551 1-74,76-82,84-86,89-180
+  s_a633e324d3f053::t_42038531bf8d83 75,83,87-88
+tests/capture/test_transcript_spans.py
+  s_a633e324d3f053::t_f76d2aace5a71e 112-113,117-120,128-132,153-157
+  s_a633e324d3f053::t_8856a0c19d7352 1-111,114-116,121-127,133-152,158-308
+src/ruhu/capture/deterministic.py
+  s_a633e324d3f053::t_0632aeaed682b0 452-466
+  s_36c31333f33a82::t_37e125a6872a43 23,37,78,81,85,130-132,320-323,358-370,378-379
+  s_a633e324d3f053::t_bcb01de1825926 120-126
+  s_36c31333f33a82::t_6df12b17deb359 133-141
+  s_a633e324d3f053::t_e13e5642060f82 162-168
+  s_36c31333f33a82::t_07def692e4478d 238-239
+  s_a633e324d3f053::t_35f087ec79be62 30-35,42-47,54-60,67-68,70-76
+  s_a633e324d3f053::t_dd66a26f744097 142-148
+  s_a633e324d3f053::t_888df7b331e614 95-101
+  s_36c31333f33a82::t_39aeee928612cf 104,106-107,109-111,127
+  s_36c31333f33a82::t_47f8a536892a06 384,386-389
+  s_36c31333f33a82::t_e0fa636336254b 215-222,237,262,291-294,298-306,309-319,324-357,371-377,380-383
+  s_36c31333f33a82::t_88a425d63bd6fc 385
+frontend/src/App.tsx
+  s_a633e324d3f053::t_dd0871419685fc 35
+  s_a633e324d3f053::t_f6ab8fcb44710e 149-155
+frontend/src/pages/__tests__/agent-analysis.test.tsx
+  s_a633e324d3f053::t_4dca18a4634dd5 1-152
+src/ruhu/admin_audit/types.py
+  s_7097abd5fa4e0b::t_209df645fa3572 1-95
+frontend/src/pages/agents.tsx
+  s_a633e324d3f053::t_27527c8327120f 35
+  s_a633e324d3f053::t_9e37d7ee0661d0 289-293
+alembic/versions/20260602_1200_0085_admin_audit.py
+  s_7097abd5fa4e0b::t_e1f96e1a084d2a 1-80
+src/ruhu/capture/types.py
+  s_a633e324d3f053::t_7ff50b23b7dffc 80
+  s_a633e324d3f053::t_0e30ddc72d5cc2 26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "c141dab1770a82105d00274575bead482334c2da",
+  "prompts": {},
+  "sessions": {
+    "s_36c31333f33a82": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019e6ec4-ef69-7553-b7b3-7d5b7096921b",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    },
+    "s_7097abd5fa4e0b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d99df6a8-6f4d-452c-a8de-df6a48f7c8ff",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    },
+    "s_a633e324d3f053": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d0487302-39cb-4817-bb95-e8d3050728aa",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
