@@ -1,0 +1,19 @@
+docs/admin-audit-log/README.md
+  s_7097abd5fa4e0b::t_e1a9f0099027c7 1-658
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "6adf89be763cd3fbc5cc4b157709c73018d41f4d",
+  "prompts": {},
+  "sessions": {
+    "s_7097abd5fa4e0b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d99df6a8-6f4d-452c-a8de-df6a48f7c8ff",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
