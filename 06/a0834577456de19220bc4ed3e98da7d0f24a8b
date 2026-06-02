@@ -1,0 +1,23 @@
+tests/test_auth_jwt_codec.py
+  s_7097abd5fa4e0b::t_54d221ab83e536 31-33
+  s_7097abd5fa4e0b::t_5c01c021f56442 1-30,34-103
+src/ruhu/auth.py
+  s_7097abd5fa4e0b::t_ce356b0c27ac69 11
+  s_7097abd5fa4e0b::t_05167ed6d84de8 212-213,218-221
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "06a0834577456de19220bc4ed3e98da7d0f24a8b",
+  "prompts": {},
+  "sessions": {
+    "s_7097abd5fa4e0b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d99df6a8-6f4d-452c-a8de-df6a48f7c8ff",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
