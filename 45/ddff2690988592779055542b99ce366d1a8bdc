@@ -1,0 +1,45 @@
+src/ruhu/db.py
+  s_8c0900d80ac544::t_df6f72845abb8a 30
+src/ruhu/jobs/__init__.py
+  s_8c0900d80ac544::t_1bdfc7b9094829 1-29
+src/ruhu/jobs/store.py
+  s_8c0900d80ac544::t_bd383ec1fbfab2 1-87,97-244,250-414
+  s_8c0900d80ac544::t_313514d7122478 88-96
+  s_8c0900d80ac544::t_670ef3462d1473 245-249
+src/ruhu/jobs/runtime.py
+  s_8c0900d80ac544::t_1fd29f655bec35 1-128
+src/ruhu/worker.py
+  s_8c0900d80ac544::t_9ac37a7264aef6 1-69
+alembic/versions/20260609_1500_0087_add_jobs_table.py
+  s_8c0900d80ac544::t_3b6ab00990f944 1-41,49-57
+  s_8c0900d80ac544::t_45d8d3123d2f08 42-48
+src/ruhu/jobs/models.py
+  s_8c0900d80ac544::t_91e22ed48f8a9c 1-40
+src/ruhu/jobs/policy.py
+  s_8c0900d80ac544::t_3dd5ee0565e3e6 1-38
+src/ruhu/jobs/sqlalchemy_models.py
+  s_8c0900d80ac544::t_2b31d55d2548f6 13,23-32
+  s_8c0900d80ac544::t_19af2b513917fe 1-12,14-22,33-51
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_91556af672fe3a 36
+  s_8c0900d80ac544::t_da903d0377a7f2 40
+tests/test_jobs.py
+  s_8c0900d80ac544::t_dbe48d0eae3310 110-119
+  s_8c0900d80ac544::t_583e7ee8d1e859 1-109,120-260
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "45ddff2690988592779055542b99ce366d1a8bdc",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
