@@ -1,0 +1,62 @@
+frontend/src/utils/callable-aliases.ts
+  s_8c0900d80ac544::t_501d091e102cb3 43
+frontend/e2e/multimodal-voice-restart.spec.ts
+  s_8c0900d80ac544::t_36c0e77ad5d798 9,51
+frontend/src/features/customer-widget/WidgetChatPanel.tsx
+  s_8c0900d80ac544::t_e32db24fd07d4a 27
+Makefile
+  s_8c0900d80ac544::t_f337bb63946690 13-16
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_eacc10c48418cf 1-78
+pyproject.toml
+  s_8c0900d80ac544::t_6c89e9e12cd5b7 6
+  s_8c0900d80ac544::t_2bbe0ef53064ca 29
+  s_8c0900d80ac544::t_e3db31c4d845d9 60-61
+  s_8c0900d80ac544::t_2eb46725fa9df8 13-14,22
+  s_8c0900d80ac544::t_76cf0e4ca75cf2 64
+  s_8c0900d80ac544::t_425ffd37f1940e 43-44
+frontend/src/components/atoms/skeleton.tsx
+  s_8c0900d80ac544::t_170040dab9f279 9
+frontend/src/features/agent-canvas/components/RichStepEditor.tsx
+  s_8c0900d80ac544::t_7cf7534e4af17b 554-558,565-570,611-616,862-908
+.github/dependabot.yml
+  s_8c0900d80ac544::t_70f8e3da7e5cf3 1-20
+tests/test_conversations.py
+  s_8c0900d80ac544::t_45ed3bb8aac56f 180,191
+  s_8c0900d80ac544::t_f15cadccd3fd87 220,229,243-244
+  s_8c0900d80ac544::t_2d2e1110b82426 33
+scripts/ratchets/check_line_budgets.py
+  s_8c0900d80ac544::t_b35a839ca21bc7 1-91
+tests/test_playground_theme.py
+  s_8c0900d80ac544::t_5177afa3240143 61-62,64
+frontend/.eslintrc.cjs
+  s_8c0900d80ac544::t_9e06d11860f627 1-8,53-58,60-82
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_11f96562f6f814 1-41
+frontend/src/features/agent-canvas/components/ScenarioLanesCanvas.tsx
+  s_8c0900d80ac544::t_7cf7534e4af17b 1537-1543
+tests/test_auth_shell.py
+  s_8c0900d80ac544::t_ca2d7f3c56667b 306-309
+frontend/src/features/agent-canvas/components/ScenarioEditor.tsx
+  s_8c0900d80ac544::t_79db80d16df2bf 1268
+.github/workflows/ci.yml
+  s_8c0900d80ac544::t_774522b3688d30 82
+  s_8c0900d80ac544::t_c312a2371d8629 1-45,47-48,50-81,83-95
+  s_8c0900d80ac544::t_8e27c07cf7f799 46,49
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "16163afa3ff4474f65a9301de10d699bdd41d640",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
