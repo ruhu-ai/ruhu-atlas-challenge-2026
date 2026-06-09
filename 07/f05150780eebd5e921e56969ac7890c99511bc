@@ -1,0 +1,54 @@
+src/ruhu/jobs/store.py
+  s_8c0900d80ac544::t_046c37ddbf7083 49-50
+  s_8c0900d80ac544::t_284caefe39233b 57
+  s_8c0900d80ac544::t_e59ed276435e3d 199,208
+  s_8c0900d80ac544::t_fcb4e989a237e9 369-379
+  s_8c0900d80ac544::t_90877775571636 186-192
+  s_8c0900d80ac544::t_dfa555d0cc5cd8 386,388-389
+tests/test_conversation_sweep.py
+  s_8c0900d80ac544::t_b22c3e6cd21911 1,9,58,80,99,125,145,172,197,209,218-225,227-236,238-241,243-253,256-259,261,263-264,266,268-271,274-276,278-284
+src/ruhu/worker.py
+  s_8c0900d80ac544::t_0e1a1e56416086 6-7,21-23,25-26,31-36,39-40,43-68,75,78,81-84,87,90
+src/ruhu/api.py
+  s_8c0900d80ac544::t_c50f3836113eed 3985
+  s_8c0900d80ac544::t_ee2122df1743d3 4545-4547
+  s_8c0900d80ac544::t_3e69c96d38e077 3612
+  s_8c0900d80ac544::t_2f5fd380c8ee8d 3211
+  s_8c0900d80ac544::t_324049df8a0fc2 3696
+  s_8c0900d80ac544::t_c5d423214141e7 4484-4485
+  s_8c0900d80ac544::t_60d5b844e52066 345
+  s_8c0900d80ac544::t_a67c834db3cee1 265
+  s_8c0900d80ac544::t_2a3bf790d26163 4486
+src/ruhu/conversation_sweep.py
+  s_8c0900d80ac544::t_28e399de3e1ce5 1,11-13,22-25,31,35,45-46,64-65,91
+src/ruhu/jobs/__init__.py
+  s_8c0900d80ac544::t_0cc19441cbd724 34,38,41-42
+  s_8c0900d80ac544::t_0657eb80de5a44 16-23
+  s_8c0900d80ac544::t_1f784edab82475 35,40
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_58b6da8e73efad 41-44
+src/ruhu/jobs/runtime.py
+  s_8c0900d80ac544::t_4d7dcc5f81b4bb 9
+  s_8c0900d80ac544::t_bf1ea2bf6b40fa 65,72,75-76
+src/ruhu/jobs/recurring.py
+  s_8c0900d80ac544::t_8f94d7773800c1 46-80
+  s_8c0900d80ac544::t_6fc1e16df2a59e 1-45,81-115
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_8c1b2a85517770 40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "07f05150780eebd5e921e56969ac7890c99511bc",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
