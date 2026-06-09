@@ -1,0 +1,22 @@
+.github/workflows/ci.yml
+  s_8c0900d80ac544::t_69eda25379dbf0 54-61
+tests/test_observability_s6_retention.py
+  s_8c0900d80ac544::t_b6c5c8e27ee2a2 376
+  s_8c0900d80ac544::t_0e98a726e9f986 17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "918797aec6838be5a3c54f0ed76604d0aa06ad21",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
