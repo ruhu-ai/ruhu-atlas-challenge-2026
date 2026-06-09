@@ -1,0 +1,32 @@
+src/ruhu/tools/oauth.py
+  s_8c0900d80ac544::t_48b85f2fb937ae 101-102,658,660-663,702
+tests/test_oauth_scope_verification.py
+  s_8c0900d80ac544::t_48b85f2fb937ae 421,487
+src/ruhu/worker.py
+  s_8c0900d80ac544::t_c0b6d27f1ec82b 162-197
+  s_8c0900d80ac544::t_33ec11eee3660e 23-24
+tests/test_oauth_requires_reauth.py
+  s_8c0900d80ac544::t_48b85f2fb937ae 13,213,216,237,250,270
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_4338e8f7bc5aac 47-48
+tests/test_worker_registry.py
+  s_8c0900d80ac544::t_fcedbcfb8ce5b5 36-37,43-44,57-61
+tests/test_oauth_refresh_backoff.py
+  s_8c0900d80ac544::t_48b85f2fb937ae 215,254,297
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "281c75b667b693823576ce54db2573d7e20dc0b9",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
