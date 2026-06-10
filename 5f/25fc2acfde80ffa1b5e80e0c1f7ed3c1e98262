@@ -1,0 +1,35 @@
+scripts/export_openapi.py
+  s_8c0900d80ac544::t_4ac837adc23555 1-52
+frontend/.eslintrc.cjs
+  s_8c0900d80ac544::t_70c939abe49e32 82
+frontend/src/api/generated/openapi.d.ts
+  s_8c0900d80ac544::t_cda59daf04dd0b 1-26228
+.gitignore
+  s_8c0900d80ac544::t_70c939abe49e32 38-40
+frontend/package.json
+  s_8c0900d80ac544::t_6f70ba264c078a 82,90
+  s_8c0900d80ac544::t_70c939abe49e32 16-17
+Makefile
+  s_8c0900d80ac544::t_07d67b60009a50 13
+  s_8c0900d80ac544::t_742a4094b7cfa5 18-21
+frontend/package-lock.json
+  s_8c0900d80ac544::t_70f841fcaa70e6 81,4145-4220,5948-5957,6645-6651,6803-6809,8882-8894,10663-10672,11781-11845,12200-12209,12966-12975,14351-14357,14905-14910
+.github/workflows/ci.yml
+  s_8c0900d80ac544::t_fc4eb33feb8dd9 65-74
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "5f25fc2acfde80ffa1b5e80e0c1f7ed3c1e98262",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
