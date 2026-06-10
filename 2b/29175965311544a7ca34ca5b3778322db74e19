@@ -1,0 +1,20 @@
+pyproject.toml
+  s_8c0900d80ac544::t_0c4137efc6bfe4 43-44
+  s_8c0900d80ac544::t_9a346a2d89887c 15-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "2b29175965311544a7ca34ca5b3778322db74e19",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
