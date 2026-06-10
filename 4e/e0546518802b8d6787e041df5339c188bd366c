@@ -1,0 +1,31 @@
+src/ruhu/services/conversation_turns.py
+  s_8c0900d80ac544::t_43bcc036099f2e 1-427
+src/ruhu/api.py
+  s_5e028d52f1879a::t_6a80af4985b795 7472-7473
+src/ruhu/services/channel_ingress.py
+  s_8c0900d80ac544::t_43bcc036099f2e 1-558
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "4ee0546518802b8d6787e041df5339c188bd366c",
+  "prompts": {},
+  "sessions": {
+    "s_5e028d52f1879a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49126765-88de-4ea4-8675-83be3940a8e6",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    },
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
