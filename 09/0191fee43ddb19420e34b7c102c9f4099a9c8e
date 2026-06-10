@@ -1,0 +1,35 @@
+tests/test_atlas_docs_parser.py
+  s_5e028d52f1879a::t_870bbd9afdd141 28-31,37-69
+  s_5e028d52f1879a::t_c9a24fdd10bc63 87-93,99
+  s_5e028d52f1879a::t_36843252a82759 382-536
+src/ruhu/atlas_provisioning.py
+  s_5e028d52f1879a::t_35fe1c62a7c3c1 108-163,168-171
+src/ruhu/atlas_docs_parser.py
+  s_5e028d52f1879a::t_8f2abf82627584 161-163
+  s_5e028d52f1879a::t_f0874e5850b56f 110-114,118-119,121-132,136
+  s_5e028d52f1879a::t_b6da1aec003049 269-276,291,293-296,305,315,319,322
+  s_5e028d52f1879a::t_7cc8e2b7982040 68-77
+  s_5e028d52f1879a::t_88d56d6533a905 224-226
+  s_5e028d52f1879a::t_08afeaf77319f7 363-371
+  s_5e028d52f1879a::t_c876e54f02ad4b 391-393,404-405,413,419,427,431-432
+  s_5e028d52f1879a::t_dd11e1149bd173 451-456
+tests/test_atlas_provisioning_fetch.py
+  s_5e028d52f1879a::t_3ad6a26baa85f4 1-25,27-217
+  s_5e028d52f1879a::t_83b4606df031e8 26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "090191fee43ddb19420e34b7c102c9f4099a9c8e",
+  "prompts": {},
+  "sessions": {
+    "s_5e028d52f1879a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49126765-88de-4ea4-8675-83be3940a8e6",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
