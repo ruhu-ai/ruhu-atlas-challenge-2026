@@ -1,0 +1,32 @@
+frontend/src/features/agent-canvas/components/CompositeEditors.tsx
+  s_8c0900d80ac544::t_8d432e56d4ffc9 1-275
+frontend/src/features/agent-canvas/components/CallableDetailTabs.tsx
+  s_8c0900d80ac544::t_7ff78d7495984f 1-545
+frontend/src/features/agent-canvas/components/CallableDetailPanel.tsx
+  s_8c0900d80ac544::t_b278be9ec4486c 1-89,102-579
+  s_8c0900d80ac544::t_63c8b94ada273e 90-101
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_1572e7b1006686 14
+frontend/src/features/agent-canvas/components/library-view-helpers.ts
+  s_8c0900d80ac544::t_6e52279dfd546a 1-375
+frontend/src/features/agent-canvas/components/LibraryView.tsx
+  s_8c0900d80ac544::t_52272e3f15ec3d 1-15,42,46,49-62
+frontend/src/features/agent-canvas/hooks/useCallableDetailEditor.ts
+  s_8c0900d80ac544::t_b266d66bdeeb0d 1-281
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "bcd6b150465ca8dde181cf7e3879bd3e23df19cd",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
