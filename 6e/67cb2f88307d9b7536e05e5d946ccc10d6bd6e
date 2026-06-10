@@ -1,0 +1,27 @@
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_851424593c4d77 62
+src/ruhu/routes/phone_numbers.py
+  s_8c0900d80ac544::t_953ec897e59e81 1-87,89-1046
+  s_8c0900d80ac544::t_0e1f15e1c8d992 88
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_b2208ef4e32d1d 39
+src/ruhu/api.py
+  s_8c0900d80ac544::t_6aee42be304e6f 206-207
+  s_8c0900d80ac544::t_6164571151d322 8773-8792
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "6e67cb2f88307d9b7536e05e5d946ccc10d6bd6e",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
