@@ -1,0 +1,57 @@
+tests/test_async_db_postgres.py
+  s_8c0900d80ac544::t_50c96209361d20 1-240
+src/ruhu/realtime/pg_notify.py
+  s_8c0900d80ac544::t_ca7177c9a2af7a 149,152-155,161-164,166,169-175,184-185
+tests/test_db_async.py
+  s_8c0900d80ac544::t_c312d7fe1fd2fd 4
+tests/test_pg_notify.py
+  s_8c0900d80ac544::t_d5be5faa8b0ddb 58,76,91-93,109,113,144,166
+src/ruhu/api.py
+  s_8c0900d80ac544::t_8dc2ba9590a8ce 3376
+  s_8c0900d80ac544::t_17a7dbafdbb4c4 3282,3289-3290
+  s_8c0900d80ac544::t_5d5a758d56a022 3374-3375
+  s_8c0900d80ac544::t_11d61661960af4 3287-3288
+  s_8c0900d80ac544::t_8a301d042ab741 12835
+  s_8c0900d80ac544::t_decc9295c2b237 12836
+  s_8c0900d80ac544::t_ec3114680d2102 14640
+  s_8c0900d80ac544::t_b8a56a48e968f0 39
+  s_8c0900d80ac544::t_30f8a72c32d0b9 14641
+src/ruhu/services/kernel_executor.py
+  s_8c0900d80ac544::t_346e4858d7de0c 1-51,53-57,59,64-65,67,71-74
+  s_8c0900d80ac544::t_911debcc4c2948 52,58,60-63,66,68-70
+tests/test_async_db.py
+  s_8c0900d80ac544::t_7ef11e97d7fb31 29-30,33-49,57-91
+  s_8c0900d80ac544::t_4e8ed4e97bf3e7 50-56
+  s_8c0900d80ac544::t_befedfde3dd619 181
+  s_8c0900d80ac544::t_1f89e92e518140 208-209,211-243,246,248-252,263,270,272-273,275-276,278-281,283-285,287-292,294-296
+  s_8c0900d80ac544::t_7741652246432a 180
+  s_8c0900d80ac544::t_cdd39b3e8c37c9 7,9,11
+  s_8c0900d80ac544::t_646b87b056e9bb 264
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_96ea517965811f 55
+  s_8c0900d80ac544::t_fd20a0ad1e71b6 29
+tests/test_readiness.py
+  s_8c0900d80ac544::t_e70954ce4dafa4 37
+  s_8c0900d80ac544::t_465ee9933a42a2 69-74
+  s_8c0900d80ac544::t_43530df47daf3b 8,13-18,20-27,29
+  s_8c0900d80ac544::t_9dc9bff5bf0b7b 62
+  s_8c0900d80ac544::t_0adcb1f71018b1 50
+src/ruhu/db_async.py
+  s_8c0900d80ac544::t_9507de511486a4 128-136,140-153,162-175
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "29e852f2491813f3e14db514bc0a647f0d441ff0",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
