@@ -1,0 +1,46 @@
+tests/test_atlas_api.py
+  s_2290422b1b3507::t_6b65c57a08a28c 1177
+  s_2290422b1b3507::t_6df33aaa221951 1120,2460,2680
+  s_2290422b1b3507::t_df5b92c83731e4 2540
+  s_2290422b1b3507::t_ae25ec77cb7048 2742
+src/ruhu/atlas_coordinator.py
+  s_2290422b1b3507::t_a6e31bcf34ccf9 3416
+  s_2290422b1b3507::t_4bccea8c5e2427 3-4
+  s_2290422b1b3507::t_e799bdc04f4b62 3149-3161,3163-3166
+  s_2290422b1b3507::t_ef18a3b6f3328a 2422,2431-2438
+  s_2290422b1b3507::t_99496d149209cb 3392-3397,3400
+  s_2290422b1b3507::t_7c3ade3aaf1fb4 105-117
+  s_2290422b1b3507::t_21d3ed56d5b344 3377-3391,3398-3399,3401-3415,3417
+  s_2290422b1b3507::t_f6b624cd2b1ac5 2649-2652
+  s_2290422b1b3507::t_d8295483a496b7 2704,2706-2709,2713
+src/ruhu/db_models.py
+  s_2290422b1b3507::t_4b4fa10007fa45 494
+src/ruhu/atlas_models.py
+  s_2290422b1b3507::t_6f47d16a9c8b1f 103-106
+alembic/versions/20260610_1900_0088_add_atlas_review_decision_payload_hash.py
+  s_2290422b1b3507::t_7d10d1a033e94c 1-34
+tests/test_atlas_coordinator_fixes.py
+  s_2290422b1b3507::t_53828b7cf752bf 298-300
+  s_2290422b1b3507::t_3779b7d83c729a 336,344
+  s_2290422b1b3507::t_a7f0733013623f 17
+  s_2290422b1b3507::t_3e800eb1b0d8b5 495-562
+src/ruhu/atlas_store.py
+  s_2290422b1b3507::t_0bbe8788a1c434 606
+  s_2290422b1b3507::t_e99c53e23ec5fc 240
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "bd9a4dbac3811bd4eb1e2b5f69135191b15d4268",
+  "prompts": {},
+  "sessions": {
+    "s_2290422b1b3507": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf6f2e34-6183-4855-8872-a23bd557caeb",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
