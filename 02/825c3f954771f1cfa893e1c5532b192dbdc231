@@ -1,0 +1,36 @@
+src/ruhu/api.py
+  s_8c0900d80ac544::t_fa815856c4b8f5 183
+  s_8c0900d80ac544::t_255612b3cddc32 134
+  s_8c0900d80ac544::t_111d3388d1830c 6378-6390,6392,6394-6397,6399,6402-6403,6405-6408,6410-6412,6414-6420,6425-6429
+  s_8c0900d80ac544::t_ab867fe38b4439 230
+src/ruhu/routes/auth_sessions.py
+  s_8c0900d80ac544::t_f4c7f9a195f8f8 1-739
+tests/test_auth_ui.py
+  s_8c0900d80ac544::t_16918470d90c72 158,180
+  s_8c0900d80ac544::t_59e8e15c66d477 159,181
+tests/test_api.py
+  s_8c0900d80ac544::t_59e8e15c66d477 4975,4977-4978
+tests/test_auth_ui_flows.py
+  s_8c0900d80ac544::t_16918470d90c72 188
+  s_8c0900d80ac544::t_59e8e15c66d477 189-190,192-193,302
+src/ruhu/routes/internal_admin.py
+  s_8c0900d80ac544::t_cbc9d3eb704fdb 1-389
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_e92e553db76bd6 62
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "02825c3f954771f1cfa893e1c5532b192dbdc231",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
