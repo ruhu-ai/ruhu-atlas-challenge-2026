@@ -1,0 +1,29 @@
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_943171272fbea2 56
+src/ruhu/services/readiness.py
+  s_8c0900d80ac544::t_c580f3c63ec6f8 1-85
+src/ruhu/api.py
+  s_8c0900d80ac544::t_8fd2f538a228e7 407
+  s_8c0900d80ac544::t_9214d9ccc1cd77 7144-7151
+tests/test_readiness.py
+  s_8c0900d80ac544::t_1b10be49edd03a 1-6,9-16,24-28,30-35,37-47,49-65,67-72,74-78,80-90
+  s_8c0900d80ac544::t_95dec3d4127fdd 7-8
+  s_8c0900d80ac544::t_5ed885364ffda1 17-23,29,48,66,79
+  s_8c0900d80ac544::t_f2cd22e8622fca 36,73
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "d572d07cdcf7932894a3b6ab88211dd9ea85e4ad",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
