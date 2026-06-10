@@ -1,0 +1,35 @@
+frontend/src/features/phone-numbers/utils/phone-helpers.ts
+  s_8c0900d80ac544::t_a8bdc05ce60f52 1-202
+frontend/src/pages/phone-numbers.tsx
+  s_8c0900d80ac544::t_cb33272c26a1a2 7-11,15,22-37,53,56-57,60,62,64,70,75,83,100-102,154-180,344-365,372-392
+frontend/src/features/phone-numbers/components/AddNumberDialog.tsx
+  s_8c0900d80ac544::t_0ffab1fbbac467 1-542
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_0e693b8cc12170 33
+frontend/src/features/phone-numbers/components/PhoneNumberDetailPanel.tsx
+  s_8c0900d80ac544::t_6ecbf2f268d8dd 1-532
+frontend/src/features/phone-numbers/hooks/usePhoneRegistryQueries.ts
+  s_8c0900d80ac544::t_cac6d97abad86a 1-66
+frontend/src/features/phone-numbers/components/AfricasTalkingSyncCard.tsx
+  s_8c0900d80ac544::t_2394ef9289e993 1-258
+frontend/src/features/phone-numbers/components/PhoneBadges.tsx
+  s_8c0900d80ac544::t_b65fb4403be6b1 1-140
+frontend/src/features/phone-numbers/hooks/usePhoneRegistryMutations.ts
+  s_8c0900d80ac544::t_010cdd567b120b 1-276
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "e02c7df425b51ad03b68821e4a076b0b48f195cf",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
