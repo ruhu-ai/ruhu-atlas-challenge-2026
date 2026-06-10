@@ -1,0 +1,29 @@
+docs/runbooks/pool-exhaustion.md
+  s_8c0900d80ac544::t_18cb75ab3d05a8 1-38
+docs/runbooks/migration-stall.md
+  s_8c0900d80ac544::t_16cb0facc16ceb 1-42
+docs/runbooks/jobs-backlog.md
+  s_8c0900d80ac544::t_5ac3a018cfe86b 1-39
+docs/runbooks/classifier-outage.md
+  s_8c0900d80ac544::t_de5c0f12a00fe0 1-44
+docs/runbooks/README.md
+  s_8c0900d80ac544::t_019fa9fbbea3a3 1-23
+tests/test_credential_cipher.py
+  s_8c0900d80ac544::t_45b437001b2588 212-283
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "331df60f8eeb13225b8cdc0248669a8d409c5261",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
