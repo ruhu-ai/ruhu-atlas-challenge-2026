@@ -1,0 +1,25 @@
+tests/test_atlas_api.py
+  s_5e028d52f1879a::t_88f30f0e21ba9e 1108,1112-1114
+  s_5e028d52f1879a::t_dfc02abbfbb85e 1311
+  s_5e028d52f1879a::t_7ded2b510c3f89 1461-1462
+  s_5e028d52f1879a::t_669388f66b49a1 1188-1190,1193-1194,1197-1198,1201-1203,1208,1215,1224-1225,1229,1232,1235-1244
+src/ruhu/atlas_api.py
+  s_5e028d52f1879a::t_76dc2ab7319aa6 85-86
+  s_5e028d52f1879a::t_c2c2689dd818fc 63-64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "21a6380694ac0daa443550e9ef2030ec94fd6130",
+  "prompts": {},
+  "sessions": {
+    "s_5e028d52f1879a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49126765-88de-4ea4-8675-83be3940a8e6",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
