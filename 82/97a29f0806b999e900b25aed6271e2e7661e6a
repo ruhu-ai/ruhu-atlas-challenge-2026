@@ -1,0 +1,30 @@
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_c263ff2c7b2ffb 62
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_ea7f206b010d16 40
+src/ruhu/api.py
+  s_8c0900d80ac544::t_70af5b20753b54 2979-2982,2984,2987-2992,2994,3006-3009
+  s_8c0900d80ac544::t_33d76155de7292 75
+  s_8c0900d80ac544::t_908507374b0dae 3155-3157,3159
+  s_8c0900d80ac544::t_9ad583fb14abbe 3056-3058
+  s_8c0900d80ac544::t_b433da8438072f 69
+src/ruhu/composition.py
+  s_8c0900d80ac544::t_ec2499b0689482 15-16,23-30,37,39,42,59
+  s_8c0900d80ac544::t_aa094dd4da8ddd 352-747
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "8297a29f0806b999e900b25aed6271e2e7661e6a",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
