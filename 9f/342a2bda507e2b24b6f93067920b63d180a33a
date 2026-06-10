@@ -1,0 +1,30 @@
+docs/atlas/Atlas-System-Implementation-Plan.md
+  s_5e028d52f1879a::t_c3fc2beecaf1a5 201-206
+frontend/src/features/agent-canvas/hooks/useAtlasTurnActions.ts
+  s_5e028d52f1879a::t_3be331a4c8fe07 201
+  s_5e028d52f1879a::t_75cec1e4cedf4a 9-11
+frontend/src/features/agent-canvas/components/AtlasAIPanel.test.tsx
+  s_5e028d52f1879a::t_e99cc5c2802218 291-295,304-315,327-329
+frontend/src/features/agent-canvas/components/AtlasPanelMessages.tsx
+  s_5e028d52f1879a::t_d63ca8d44b94cd 174
+docs/atlas/Atlas-System-First-Principles-Spec.md
+  s_5e028d52f1879a::t_bb1a014b636313 215,218,224-227
+docs/atlas/Atlas-Agent-Document-Implementation-Plan.md
+  s_5e028d52f1879a::t_6c119bf1efe545 262-269
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "9f342a2bda507e2b24b6f93067920b63d180a33a",
+  "prompts": {},
+  "sessions": {
+    "s_5e028d52f1879a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49126765-88de-4ea4-8675-83be3940a8e6",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
