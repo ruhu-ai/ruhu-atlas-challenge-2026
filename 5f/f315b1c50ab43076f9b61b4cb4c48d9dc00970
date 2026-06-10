@@ -1,0 +1,24 @@
+src/ruhu/api.py
+  s_8c0900d80ac544::t_8557828a29ce96 5298-5311,5313-5314,5316-5328,5330
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_abaf69a81e7f0e 39
+src/ruhu/routes/voice_sessions.py
+  s_8c0900d80ac544::t_4f37ce3b96cae7 30
+  s_8c0900d80ac544::t_61c608adab0782 1-29,31-619
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "5ff315b1c50ab43076f9b61b4cb4c48d9dc00970",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
