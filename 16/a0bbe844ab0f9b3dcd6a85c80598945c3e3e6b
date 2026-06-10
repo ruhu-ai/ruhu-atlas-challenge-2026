@@ -1,0 +1,36 @@
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_137f906bce723d 39
+src/ruhu/routes/widget_analytics.py
+  s_8c0900d80ac544::t_38e9dfa3b16bde 1-105
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_6ca284b4fa2692 62
+src/ruhu/api.py
+  s_8c0900d80ac544::t_9ee33deb7cc7fe 5976-5980,5985-5990
+  s_8c0900d80ac544::t_d3725e80125123 6564-6572,6574-6581,6583,6604-6621,6623,6718-6726
+  s_8c0900d80ac544::t_4ede4c346293b0 7994-8001,8003
+  s_8c0900d80ac544::t_7e9ac64fc2e0cb 4180-4183
+  s_8c0900d80ac544::t_8b9049b5ec6aaf 6005-6014
+  s_8c0900d80ac544::t_f86c69677c7a61 153
+  s_8c0900d80ac544::t_6308f4ba014627 248,257-258
+  s_8c0900d80ac544::t_f3a5f3d2ecd8f3 276-279,282-284
+src/ruhu/services/agent_presentation.py
+  s_8c0900d80ac544::t_bed4b188eb3791 3-8,12-19,24,27-38,41,44-52,55-57,63-456
+src/ruhu/routes/agents.py
+  s_8c0900d80ac544::t_666fc73ee5921f 1-592
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "16a0bbe844ab0f9b3dcd6a85c80598945c3e3e6b",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
