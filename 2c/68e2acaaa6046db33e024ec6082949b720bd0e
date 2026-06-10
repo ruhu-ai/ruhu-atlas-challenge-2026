@@ -1,0 +1,20 @@
+tests/test_widget_analytics_api.py
+  s_48b496514cc4be::t_79e47fe0601ee9 1-117,121-454
+  s_48b496514cc4be::t_fc86e315b05c5f 118-120
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "2c68e2acaaa6046db33e024ec6082949b720bd0e",
+  "prompts": {},
+  "sessions": {
+    "s_48b496514cc4be": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9a5128c1-f73c-4f2c-bb2a-42a1720b4a6d",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
