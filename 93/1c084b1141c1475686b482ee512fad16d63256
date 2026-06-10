@@ -1,0 +1,41 @@
+frontend/src/features/journeys/components/JourneyDefinitionDialogs.tsx
+  s_8c0900d80ac544::t_ff189f56d1933f 1-358
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_fe407ea3612f98 32,40
+frontend/src/features/journeys/utils/journey-editor-state.ts
+  s_8c0900d80ac544::t_2e97266181cf4f 9
+  s_8c0900d80ac544::t_1eac3bf644f166 1-8,10-17,19-348
+  s_8c0900d80ac544::t_dbf5d01c96c678 18
+frontend/src/pages/journeys.tsx
+  s_8c0900d80ac544::t_65e8fd3d462787 1-2,10,41-61,99-118,133-159,702-712
+frontend/src/features/journeys/components/JourneyVersionEditorDialog.tsx
+  s_8c0900d80ac544::t_0076147e7f682f 1-221
+frontend/src/features/journeys/components/JourneyRuntimeViews.tsx
+  s_8c0900d80ac544::t_7617e6c0afbd37 1-296
+frontend/src/features/journeys/hooks/useJourneyMutations.ts
+  s_8c0900d80ac544::t_eb8bf45074f894 1-298
+frontend/src/features/journeys/utils/journey-helpers.ts
+  s_8c0900d80ac544::t_1bd41586c77607 1-96
+frontend/src/features/journeys/hooks/useJourneyQueries.ts
+  s_8c0900d80ac544::t_7c589fc4f822e8 1-126
+frontend/src/features/journeys/components/JourneyAnalyticsTab.tsx
+  s_8c0900d80ac544::t_8c115c94bd9930 1-317
+frontend/src/features/journeys/components/JourneyRulesEditors.tsx
+  s_8c0900d80ac544::t_9320ad9f75338b 1-494
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "931c084b1141c1475686b482ee512fad16d63256",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
