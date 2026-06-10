@@ -1,0 +1,36 @@
+src/ruhu/atlas_store.py
+  s_5e028d52f1879a::t_f2fbaa8ed7e553 858-859,866-903,909
+src/ruhu/atlas_api.py
+  s_5e028d52f1879a::t_4baaeae14eee22 4,9,14-15
+  s_5e028d52f1879a::t_fc7c87f6d88449 486-490
+  s_5e028d52f1879a::t_623cb0f1e4ec46 95-96,103-107
+  s_5e028d52f1879a::t_f8c7b301318ac5 469,471-473
+  s_5e028d52f1879a::t_bc1e09d79a9d6c 540-541
+  s_5e028d52f1879a::t_9b7c45fbcf3baf 644
+  s_5e028d52f1879a::t_d9fa5de08a596f 394-403
+scripts/ratchets/line_budgets.json
+  s_5e028d52f1879a::t_8555eb8599c3e6 12
+tests/test_atlas_api.py
+  s_5e028d52f1879a::t_ff1f5aeefc852d 1470-1472,1474-1475,1479
+  s_5e028d52f1879a::t_4e3321b18662c2 3998-4000,4014-4031
+  s_5e028d52f1879a::t_d404d088881ec5 1087-1096
+  s_5e028d52f1879a::t_8fec869deebe4d 1332-1333,1336-1343,1346,1401,1405-1406,1408,1410
+  s_5e028d52f1879a::t_b4198d33e1614e 1476-1478,1480-1485
+  s_5e028d52f1879a::t_c42864156ec18e 3664-3997,4001-4013,4032-4087
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "08bcca681d818489d793b9e7885965e64daebfbe",
+  "prompts": {},
+  "sessions": {
+    "s_5e028d52f1879a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49126765-88de-4ea4-8675-83be3940a8e6",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
