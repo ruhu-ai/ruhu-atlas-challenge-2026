@@ -1,0 +1,50 @@
+src/ruhu/browser_tasks_api.py
+  s_8c0900d80ac544::t_030e3a8508234b 126-143
+  s_8c0900d80ac544::t_67f513d3fa6da4 307-308,310-318,320,324,326-327
+  s_8c0900d80ac544::t_777439318f6c81 16,25
+  s_8c0900d80ac544::t_f35030102a4058 190
+frontend/src/api/generated/openapi.d.ts
+  s_8c0900d80ac544::t_49b5bb5d09ce68 6992-6998,7004-7013,7016-7019,7021,7024,19898,19922
+src/ruhu/worker.py
+  s_8c0900d80ac544::t_b111d9ac8daa95 199-292
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_434444368817cb 40
+tests/test_browser_tasks_api.py
+  s_8c0900d80ac544::t_9cd864ae3e78b4 602-664
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_8b32367e6efe19 49-50
+tests/test_worker_registry.py
+  s_8c0900d80ac544::t_ab99256723407c 41-42,46
+  s_8c0900d80ac544::t_e978d2e9f314ef 73-76
+src/ruhu/browser_tasks/runtime.py
+  s_8c0900d80ac544::t_df40f794e608d6 147
+  s_8c0900d80ac544::t_69f5f4898ffbed 4,7
+  s_8c0900d80ac544::t_667094107fe903 25-28
+  s_8c0900d80ac544::t_ec275ce60e357f 474
+  s_8c0900d80ac544::t_1d94dc2bfec209 65-73
+tests/test_browser_task_runtime.py
+  s_8c0900d80ac544::t_a3d6a4ac64b032 2
+  s_8c0900d80ac544::t_594eecfbab2cf2 352-355,357,370-377,381-387,395-402
+src/ruhu/api.py
+  s_8c0900d80ac544::t_49bf86c383d881 15742
+  s_8c0900d80ac544::t_aeee029e1962de 4083-4085
+src/ruhu/browser_tasks/__init__.py
+  s_8c0900d80ac544::t_19dc89ff0194ad 61
+  s_8c0900d80ac544::t_88f9da3486c9b0 21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "571710eaf89aaf311a484fe3e9b5fb638ed4ebbe",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
