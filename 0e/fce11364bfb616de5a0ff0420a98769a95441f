@@ -1,0 +1,29 @@
+tests/test_atlas_readiness.py
+  s_2290422b1b3507::t_4548039dceb1b8 93-107
+  s_2290422b1b3507::t_e39f864f0657cd 859-866,868-875,877-883,885-890
+  s_2290422b1b3507::t_b5fcdd8ebaabd5 848-858,867,876,884
+src/ruhu/atlas_readiness_models.py
+  s_2290422b1b3507::t_20f11f52212874 114-123
+  s_2290422b1b3507::t_7c77fe6c0e57a2 96-101,106
+src/ruhu/atlas_readiness_mcp.py
+  s_2290422b1b3507::t_9df662c799cd7d 143-151
+  s_2290422b1b3507::t_455fb102f89691 101-105,109
+src/ruhu/atlas_voice_harness.py
+  s_2290422b1b3507::t_51db13eb5f91ec 192-197
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "0efce11364bfb616de5a0ff0420a98769a95441f",
+  "prompts": {},
+  "sessions": {
+    "s_2290422b1b3507": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf6f2e34-6183-4855-8872-a23bd557caeb",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
