@@ -1,0 +1,40 @@
+src/ruhu/routes/persona.py
+  s_8c0900d80ac544::t_e866a8cce419e9 1-682
+src/ruhu/api.py
+  s_8c0900d80ac544::t_9ba4c5b9030d55 31,136
+  s_8c0900d80ac544::t_2e3f4053c79417 6397-6403,6405-6414,6417-6420,6424-6433,6436-6442,6444,6446-6450,6452-6457,6459,6461-6466,6468,6495-6497,6499-6504,6506
+  s_8c0900d80ac544::t_d385cb86fdba14 20-21
+tests/test_auth_ui.py
+  s_8c0900d80ac544::t_269ab99d5d8b37 160,182
+src/ruhu/routes/widget_admin.py
+  s_8c0900d80ac544::t_e866a8cce419e9 1-272
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_0cc37f5e4f7aaa 62
+src/ruhu/routes/organization.py
+  s_8c0900d80ac544::t_922a89bfec23e5 602,804
+  s_8c0900d80ac544::t_e0209e50054490 1-601,603-803,805
+tests/test_auth_ui_flows.py
+  s_8c0900d80ac544::t_269ab99d5d8b37 191,303
+src/ruhu/routes/api_keys.py
+  s_8c0900d80ac544::t_922a89bfec23e5 1-242
+tests/test_api.py
+  s_8c0900d80ac544::t_269ab99d5d8b37 4976
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_188fc82afb8052 39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "ee1662f20ec1d2a64af76c873ef2be8bfff2e82b",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
