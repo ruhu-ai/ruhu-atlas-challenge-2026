@@ -1,0 +1,22 @@
+alembic/versions/20260604_1200_0085_add_atlas_readiness_tables.py
+  s_5e028d52f1879a::t_8e3191a5d748f3 14
+  s_5e028d52f1879a::t_546581b6b05789 4
+alembic/versions/20260604_1100_0084a_add_atlas_core_tables.py
+  s_5e028d52f1879a::t_5086a834f20285 1-316
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "9cec806455281677d21254a9eff9c4ba953ec3f2",
+  "prompts": {},
+  "sessions": {
+    "s_5e028d52f1879a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49126765-88de-4ea4-8675-83be3940a8e6",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
