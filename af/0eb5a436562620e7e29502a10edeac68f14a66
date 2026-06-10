@@ -1,0 +1,41 @@
+src/ruhu/services/widget_config.py
+  s_8c0900d80ac544::t_c490e20e6e17c8 1-77
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_eee41fa99d5837 39
+src/ruhu/api.py
+  s_8c0900d80ac544::t_7e4582baa8a085 5314-5343,5349-5350
+  s_8c0900d80ac544::t_1c6c75419e7dd7 4895-4906
+  s_8c0900d80ac544::t_202a9f8b27a162 5359-5369,5371
+  s_8c0900d80ac544::t_aa9f7d84335517 282
+  s_8c0900d80ac544::t_8631d0c912faa1 6774
+  s_8c0900d80ac544::t_5bcf49dd0418d8 6913
+  s_8c0900d80ac544::t_9fd6a860c42af5 5156-5165,5167-5175,5177
+  s_8c0900d80ac544::t_273ebaf72952c6 5189-5195
+  s_8c0900d80ac544::t_f51394bb9e0a23 4987-4990
+  s_8c0900d80ac544::t_44cfc15f5d01a6 5075-5077
+  s_8c0900d80ac544::t_4de5563e5618b0 1860-1861
+  s_8c0900d80ac544::t_9953a51b7b5976 4289-4294
+  s_8c0900d80ac544::t_ff2c501342367a 3628-3636,3642-3643
+src/ruhu/services/widget_sessions.py
+  s_8c0900d80ac544::t_e4f2f928650715 1-199
+src/ruhu/routes/public_widget.py
+  s_8c0900d80ac544::t_554482d06daf3b 1-1288
+src/ruhu/routes/conversations_lifecycle.py
+  s_8c0900d80ac544::t_f663bee9182166 1-476
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "af0eb5a436562620e7e29502a10edeac68f14a66",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
