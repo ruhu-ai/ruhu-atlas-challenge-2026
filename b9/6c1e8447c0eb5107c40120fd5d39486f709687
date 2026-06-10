@@ -1,0 +1,39 @@
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_a8f958508e98e8 39
+src/ruhu/routes/agent_templates.py
+  s_8c0900d80ac544::t_887454c39c2fb4 1-43,45-341
+  s_8c0900d80ac544::t_82ff8c0d8c9f6c 44
+src/ruhu/services/agent_presentation.py
+  s_8c0900d80ac544::t_c1b71237351945 1-148
+src/ruhu/routes/journeys.py
+  s_8c0900d80ac544::t_76855efe5dfa28 1-812
+src/ruhu/api.py
+  s_8c0900d80ac544::t_7814456e948f40 367
+  s_8c0900d80ac544::t_28df4495abfad7 10404-10419
+  s_8c0900d80ac544::t_b81b6fe414219b 13619-13622,13624-13631
+  s_8c0900d80ac544::t_401209f3b9e12d 368-371
+  s_8c0900d80ac544::t_b850e5bc5a92ee 12328-12332,12334-12339,12341-12352,12354
+  s_8c0900d80ac544::t_81535802bb89a6 6722-6733
+src/ruhu/routes/simulation_fixtures.py
+  s_8c0900d80ac544::t_ae123c64eedc5a 1-354
+src/ruhu/routes/evaluation_runs.py
+  s_8c0900d80ac544::t_f642ab42c8d9a1 1-260
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_60d1b984422607 62
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "b96c1e8447c0eb5107c40120fd5d39486f709687",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
