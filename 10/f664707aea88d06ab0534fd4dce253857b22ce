@@ -1,0 +1,31 @@
+infra/gcp/00-versions.tf
+  s_8c0900d80ac544::t_e5ecedc393ad36 7,11
+infra/gcp/30-compute.tf
+  s_8c0900d80ac544::t_4cd8c5e4884a87 316-325
+  s_8c0900d80ac544::t_8822597e897660 202-211,216-218,220,226-295
+  s_8c0900d80ac544::t_ba64096c6cd8ca 212-215,219,221-225
+infra/gcp/README.md
+  s_8c0900d80ac544::t_b5a4d0bfe5509a 121,125-139
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_945d63e11f7d12 54
+infra/gcp/00-variables.tf
+  s_8c0900d80ac544::t_bdfdcec3662707 46-63
+infra/gcp/.terraform.lock.hcl
+  s_8c0900d80ac544::t_3bb320af1540f3 5-6,8-18,20,25-26,28-39,45,48-55,57-61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "10f664707aea88d06ab0534fd4dce253857b22ce",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
