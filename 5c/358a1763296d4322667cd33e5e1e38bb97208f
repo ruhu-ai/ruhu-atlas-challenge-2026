@@ -1,0 +1,35 @@
+frontend/src/features/agent-canvas/components/atlas-panel-helpers.ts
+  s_8c0900d80ac544::t_321be6aec17cbe 1-239
+frontend/src/features/agent-canvas/hooks/useAtlasComposer.ts
+  s_8c0900d80ac544::t_7e1a8b81b3387b 1-73
+frontend/src/features/agent-canvas/components/AtlasAIPanel.tsx
+  s_8c0900d80ac544::t_648d5bf7f02bcc 13-17,36-39,41-50,53,68-137,139-160,483,530
+frontend/src/features/agent-canvas/hooks/useAtlasSession.ts
+  s_8c0900d80ac544::t_7f9bb868081948 1-343
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_a631a245ee1316 12
+frontend/src/features/agent-canvas/hooks/useAtlasReadiness.ts
+  s_8c0900d80ac544::t_d964e44e17106e 1-215
+frontend/src/features/agent-canvas/components/AtlasPanelCards.tsx
+  s_8c0900d80ac544::t_d5c8df1523abf6 1-345
+frontend/src/features/agent-canvas/hooks/useAtlasTurnActions.ts
+  s_8c0900d80ac544::t_41dbb8e80688a5 1-310
+frontend/src/features/agent-canvas/components/AtlasPanelMessages.tsx
+  s_8c0900d80ac544::t_e50221d51e656c 1-299
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "5c358a1763296d4322667cd33e5e1e38bb97208f",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
