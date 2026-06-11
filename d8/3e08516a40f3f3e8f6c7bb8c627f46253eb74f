@@ -1,0 +1,26 @@
+src/ruhu/atlas_coordinator.py
+  s_2290422b1b3507::t_d6762177a818f1 1073-1094
+  s_2290422b1b3507::t_fe75573a980ace 3450-3463
+  s_2290422b1b3507::t_2fa3b503ddec11 1039,1045
+  s_2290422b1b3507::t_85197ab4b6eab4 980-984
+tests/test_atlas_coordinator_fixes.py
+  s_2290422b1b3507::t_1ba576a5822a2c 522-567,570-575,578,580-587
+  s_2290422b1b3507::t_a82ab529462725 568-569,579
+  s_2290422b1b3507::t_55b9f09cc84bbb 576-577
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "d83e08516a40f3f3e8f6c7bb8c627f46253eb74f",
+  "prompts": {},
+  "sessions": {
+    "s_2290422b1b3507": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf6f2e34-6183-4855-8872-a23bd557caeb",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
