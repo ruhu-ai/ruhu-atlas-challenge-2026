@@ -23,7 +23,7 @@ dependencies = [
   "RestrictedPython>=7,<9",
   "SQLAlchemy>=2.0,<3",
   "sqlmodel>=0.0.14,<1",
-  "structlog>=24,<26",
+  "structlog>=24,<27",
 ]
 
 [project.optional-dependencies]
