@@ -1,0 +1,35 @@
+tests/test_atlas_docs_parser.py
+  s_2290422b1b3507::t_c7d4cb8915bac8 227-241
+tests/test_atlas_generator_integration.py
+  s_2290422b1b3507::t_bb724a315a7ab9 34-36
+tests/test_atlas_generator.py
+  s_2290422b1b3507::t_eaaf2589eadabb 112-123
+tests/test_atlas_coordinator_fixes.py
+  s_2290422b1b3507::t_524de3dadd34df 442-476
+tests/test_atlas_api.py
+  s_2290422b1b3507::t_8dbb31b81abb78 415-416,422-423
+src/ruhu/atlas_generator.py
+  s_2290422b1b3507::t_ee5a78b34b2228 94-98
+  s_2290422b1b3507::t_ad54b9eab73a50 277-288
+src/ruhu/atlas_coordinator.py
+  s_2290422b1b3507::t_8a151b2b42a92b 3212-3218
+src/ruhu/atlas_docs_parser.py
+  s_2290422b1b3507::t_dcaf254b5092ec 230-249
+  s_2290422b1b3507::t_bcd3c7d5aa57bd 261,267-268
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "b7577d3ceb7162e15eae6f0fe14514be8ab6a607",
+  "prompts": {},
+  "sessions": {
+    "s_2290422b1b3507": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf6f2e34-6183-4855-8872-a23bd557caeb",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": null
+    }
+  }
+}
