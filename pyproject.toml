@@ -49,7 +49,7 @@ api = [
   "opentelemetry-exporter-otlp>=1.33,<2",
 ]
 knowledge = [
-  "pypdf>=4,<6",
+  "pypdf>=4,<7",
   "weaviate-client>=4,<5",
 ]
 storage-gcs = [
