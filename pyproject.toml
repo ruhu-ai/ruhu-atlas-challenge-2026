@@ -1,0 +1,117 @@
+[project]
+name = "ruhu"
+version = "0.1.0"
+description = "Greenfield state-native runtime for Ruhu agents"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.12"
+dependencies = [
+  "cryptography>=42,<46",
+  "google-cloud-secret-manager>=2.20,<3",
+  "httpx>=0.28,<1",
+  "Jinja2>=3.1,<4",
+  "jsonschema>=4.23,<5",
+  "Pillow>=10,<13",
+  "prometheus-client>=0.20,<1",
+  # Compatible-release pin: pydantic minor versions change OpenAPI schema
+  # generation (Input/Output model splitting), which breaks the RP-4.2 type
+  # drift gate nondeterministically. Bumps land via Dependabot PRs where the
+  # gate forces regenerated types in the same change.
+  "pydantic>=2.12,<2.13",
+  "PyJWT>=2.4,<3",
+  "psycopg[binary]>=3.2,<4",
+  "RestrictedPython>=7,<9",
+  "SQLAlchemy>=2.0,<3",
+  "sqlmodel>=0.0.14,<1",
+  "structlog>=24,<26",
+]
+
+[project.optional-dependencies]
+dev = [
+  "alembic>=1.13,<2",
+  "aiosqlite>=0.20,<1",
+  "anyio>=4,<5",
+  "pytest>=8.3,<9",
+  "pytest-asyncio>=0.24,<1",
+]
+browser-e2e = [
+  "playwright>=1.54,<2",
+  "pytest-playwright>=0.7,<1",
+  "uvicorn>=0.27,<1",
+]
+api = [
+  # Same reasoning as the pydantic pin: fastapi minors reshape the schema.
+  "fastapi>=0.135,<0.136",
+  "python-multipart>=0.0.18,<1",
+  "uvicorn>=0.27,<1",
+  "opentelemetry-instrumentation-httpx>=0.45b0,<1",
+  "opentelemetry-sdk>=1.33,<2",
+  "opentelemetry-exporter-otlp>=1.33,<2",
+]
+knowledge = [
+  "pypdf>=4,<6",
+  "weaviate-client>=4,<5",
+]
+storage-gcs = [
+  "google-cloud-storage>=3.11,<4",
+]
+gemma-local = [
+  "accelerate>=1.10,<2",
+  "safetensors>=0.6,<1",
+  "torch>=2.7,<3",
+  "transformers>=5.5,<6",
+]
+livekit = [
+  "google-cloud-speech>=2.26,<3",
+  "google-cloud-texttospeech>=2.16,<3",
+  "livekit==1.1.5",
+  "livekit-agents==1.5.2",
+  "livekit-api==1.1.0",
+  "livekit-protocol>=1,<2",
+  "livekit-plugins-google==1.5.1",
+  "livekit-plugins-openai==1.5.1",
+  "livekit-plugins-silero==1.5.1",
+  "livekit-plugins-turn-detector==1.5.1",
+  "livekit-plugins-noise-cancellation>=0.2,<1",
+]
+google-agent = [
+  "google-adk>=2.2,<3",
+  "mcp>=1.27,<2",
+  # google-adk pulls google-auth[pyopenssl]. pyOpenSSL 26 requires
+  # cryptography>=46, which conflicts with Ruhu's current cryptography cap.
+  "pyOpenSSL<26",
+]
+yaml = [
+  "PyYAML>=6,<7",
+]
+pii = [
+  "presidio-analyzer>=2.2,<3",
+  "presidio-anonymizer>=2.2,<3",
+  "spacy>=3.7,<4",
+  "en_core_web_lg @ https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.7.1/en_core_web_lg-3.7.1-py3-none-any.whl",
+  "google-cloud-dlp>=3.15,<4",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+markers = [
+  "regression_p0: pins P0 baseline behavior (e.g., confirmation hotfix); a failure here blocks the build",
+  "regression_p2: pins P2 invariants (LLM-selected capture-state moves); a failure here blocks the build",
+  "regression_p3: pins P3 invariants (full capture-state move vocabulary, multi-move, proactive triggers); a failure here blocks the build",
+  "regression_p4: pins P4 invariants (LLM-selected conversation-state moves); a failure here blocks the build",
+  "regression_p5: pins P5 invariants (LLM-selected propose_tool_use in action states); a failure here blocks the build",
+  "regression_p6: pins P6 invariants (LLM-selected moves in entry/handoff/terminal + per-agent defaults + template smoke); a failure here blocks the build",
+  "integration: marks tests that exercise integration paths or external-style boundaries",
+]

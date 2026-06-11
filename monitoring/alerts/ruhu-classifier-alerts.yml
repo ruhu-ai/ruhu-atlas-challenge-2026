@@ -1,0 +1,170 @@
+# Ruhu prefill-first classifier alert rules.
+#
+# Pairs with monitoring/grafana/dashboards/ruhu-classifier.json. Targets the
+# six ruhu_classifier_* metrics emitted by TransformersClassifierBackend
+# (and, in Stage 3+, the vLLM backend).
+#
+# SLO targets (see docs/pre-fill-intent-classifier-design/04-runtime-spec.md):
+#   p95 classifier latency:    < 250 ms (steady state, prefix-cache warm)
+#   Unknown rate:              < 10%   (well-tuned label catalog)
+#   Prefix-cache hit ratio:    > 80%   (steady state)
+#   Error rate:                < 0.1%  (driven by backend availability)
+#
+# Alert thresholds are deliberately set above the SLO targets. SLO targets are
+# the dashboard goal; alerts fire when we are clearly out-of-SLO and need a
+# human to look. A new agent at cold-start will sit below the cache-hit SLO
+# until prefixes warm up — alerts use longer windows to absorb that.
+#
+# Routing: all alerts carry `team=ruhu-platform` for AlertManager.
+
+groups:
+  # ── Latency ──────────────────────────────────────────────────────────────
+  - name: ruhu_classifier_latency
+    rules:
+      - record: ruhu:classifier_latency_p95:5m
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum by (le, backend) (
+              rate(ruhu_classifier_request_duration_seconds_bucket[5m])
+            )
+          )
+
+      - alert: RuhuClassifierLatencyHigh
+        expr: ruhu:classifier_latency_p95:5m > 0.5
+        for: 10m
+        labels:
+          severity: warning
+          team: ruhu-platform
+          component: classifier
+        annotations:
+          summary: "Classifier p95 latency high (backend={{ $labels.backend }})"
+          description: |
+            5-minute p95 classifier latency is {{ $value | humanizeDuration }}
+            on backend {{ $labels.backend }} — above the 500 ms warning
+            threshold (SLO target: 250 ms). Likely causes: cold prefix cache,
+            GPU contention, or oversized label catalog forcing longer decodes.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/classifier.md#latency"
+
+      - alert: RuhuClassifierLatencyCritical
+        expr: ruhu:classifier_latency_p95:5m > 1.0
+        for: 2m
+        labels:
+          severity: critical
+          team: ruhu-platform
+          component: classifier
+        annotations:
+          summary: "Classifier p95 latency critical (backend={{ $labels.backend }})"
+          description: |
+            5-minute p95 classifier latency is {{ $value | humanizeDuration }}
+            on backend {{ $labels.backend }}. Turns are stalling on intent
+            classification. Check GPU utilisation and queue depth; consider
+            failover to main_llm classifier engine via
+            RUHU_CLASSIFIER_FAILOVER_TO_MAIN_LLM=true.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/classifier.md#latency"
+
+  # ── Decision quality ─────────────────────────────────────────────────────
+  - name: ruhu_classifier_quality
+    rules:
+      - record: ruhu:classifier_unknown_ratio:10m
+        expr: |
+          sum(rate(ruhu_classifier_unknown_total[10m]))
+          /
+          clamp_min(
+            sum(rate(ruhu_classifier_unknown_total[10m]))
+            + sum(rate(ruhu_classifier_decisions_total[10m])),
+            0.0001
+          )
+
+      - alert: RuhuClassifierUnknownRateHigh
+        expr: ruhu:classifier_unknown_ratio:10m > 0.2
+        for: 15m
+        labels:
+          severity: warning
+          team: ruhu-platform
+          component: classifier
+        annotations:
+          summary: "Classifier unknown rate high"
+          description: |
+            10-minute unknown rate is {{ $value | humanizePercentage }} —
+            above the 20% warning threshold (SLO target: < 10%). The label
+            catalog likely doesn't cover the inbound traffic distribution.
+            Slice by step_id in the dashboard to find the offending step.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/classifier.md#unknown-rate"
+
+      - alert: RuhuClassifierConfidenceLow
+        expr: |
+          histogram_quantile(
+            0.50,
+            sum by (le) (rate(ruhu_classifier_confidence_bucket[1h]))
+          ) < 0.6
+        for: 1h
+        labels:
+          severity: warning
+          team: ruhu-platform
+          component: classifier
+        annotations:
+          summary: "Classifier median confidence low"
+          description: |
+            1-hour median (p50) classifier confidence is {{ $value }}, below
+            0.6. The model is borderline on a sustained majority of turns —
+            usually a sign of label-catalog drift or a base-model mismatch.
+            If a LoRA was just deployed, consider rolling back.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/classifier.md#confidence-drift"
+
+  # ── Prefix-cache efficiency ──────────────────────────────────────────────
+  - name: ruhu_classifier_efficiency
+    rules:
+      - record: ruhu:classifier_request_rate:5m
+        expr: |
+          sum(rate(ruhu_classifier_request_duration_seconds_count[5m]))
+
+      - record: ruhu:classifier_cache_hit_ratio:30m
+        expr: |
+          sum(rate(ruhu_classifier_prefill_tokens_total{cache_hit="true"}[30m]))
+          /
+          clamp_min(sum(rate(ruhu_classifier_prefill_tokens_total[30m])), 0.0001)
+
+      - alert: RuhuClassifierPrefixCacheBroken
+        # Catastrophic threshold — caching is the load-bearing prefill-first
+        # claim. A 50% hit ratio in steady state means the cache key is
+        # changing per-request (prompt drift, version churn, etc.).
+        expr: |
+          ruhu:classifier_cache_hit_ratio:30m < 0.5
+          and
+          ruhu:classifier_request_rate:5m > 1.0
+        for: 30m
+        labels:
+          severity: warning
+          team: ruhu-platform
+          component: classifier
+        annotations:
+          summary: "Classifier prefix-cache hit ratio collapsed"
+          description: |
+            30-minute prefix-cache hit ratio is {{ $value | humanizePercentage }},
+            below 50%. With sustained traffic, this means the prefix is
+            changing per turn — usually a prompt template that embeds the
+            user message in the prefix, or an agent_version_id that's
+            cycling. Cost and latency will both regress sharply.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/classifier.md#prefix-cache"
+
+  # ── Errors ───────────────────────────────────────────────────────────────
+  - name: ruhu_classifier_errors
+    rules:
+      - alert: RuhuClassifierErrorRateHigh
+        expr: |
+          sum by (error_kind, backend) (rate(ruhu_classifier_errors_total[5m])) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          team: ruhu-platform
+          component: classifier
+        annotations:
+          summary: "Classifier errors {{ $labels.error_kind }} on {{ $labels.backend }}"
+          description: |
+            Classifier error rate for kind={{ $labels.error_kind }} on
+            backend={{ $labels.backend }} is {{ $value }} errors/s. If this
+            persists, agents on this backend will fall back to main_llm
+            classification (when RUHU_CLASSIFIER_FAILOVER_TO_MAIN_LLM is
+            enabled) or return unknown.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/classifier.md#errors"

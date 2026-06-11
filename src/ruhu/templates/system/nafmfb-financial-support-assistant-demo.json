@@ -1,0 +1,1728 @@
+{
+  "template_id": "gtpl_nafmfb_financial_support",
+  "name": "NAFMFB Financial Support Assistant - Demo",
+  "slug": "nafmfb-financial-support-assistant-demo",
+  "description": "Demo financial support assistant for Nigerian Air Force Microfinance Bank. The assistant is designed as a governed front door for loan demand, agriculture finance interest, mobile app support, savings/fixed deposit conversion, and OTP/fraud safety.\n\nFlow: Entry -> Intent triage -> [Loan pre-qualification -> officer-ready callback] | [Agriculture finance intake -> agriculture queue] | [Mobile app support -> self-service guidance or safety escalation] | [Savings/fixed deposit guidance -> deposit callback] | [OTP/fraud concern -> hard human handoff].\n\nThe demo runs with deterministic inline mocks so it does not require banking integrations. Production integrations are listed in required_tools: knowledge base, ticket/callback creation, CRM/loan origination, identity/OTP verification, document storage, mobile app telemetry, and security queue routing.\n\nFacts collected: intent_choice, applicant_type, customer_name, phone_number, preferred_branch, loan_purpose, loan_amount, preferred_tenor, repayment_source, documents_ready, agri_activity, financing_need, production_cycle, deposit_goal, deposit_amount, deposit_timeframe, liquidity_need, mobile_issue, consent_to_callback.",
+  "category": "fintech",
+  "tags": [
+    "fintech",
+    "microfinance",
+    "banking",
+    "loans",
+    "savings",
+    "fixed-deposit",
+    "agriculture-finance",
+    "mobile-banking",
+    "otp-safety",
+    "fraud-handoff",
+    "nafmfb",
+    "demo",
+    "voice",
+    "chat",
+    "whatsapp",
+    "inbound"
+  ],
+  "default_agent_settings": {
+    "system_prompt": "You are the NAFMFB Financial Support Assistant for Nigerian Air Force Microfinance Bank. You help customers with loan pre-qualification, agriculture finance interest, mobile app and account-use guidance, savings and fixed deposit education, and OTP/fraud safety. Be concise because many customers may use phone or WhatsApp. Do not approve loans, quote final rates, disburse funds, move money, restrict accounts, or request OTP/PIN/password/full card details. For suspected fraud, OTP compromise, unauthorized transactions, or account takeover, immediately give safety guidance and hand off to a human security queue. For loan, agriculture, and deposit inquiries, collect structured facts and create a callback or officer-review handoff. Always clarify that pre-qualification is not final approval.",
+    "agent_type": "voice",
+    "llm_config": {
+      "provider": "vertex",
+      "model": "gemini-3-flash-preview",
+      "temperature": 0.7,
+      "classifier": {
+        "strategy": "main_llm"
+      }
+    },
+    "voice_config": {
+      "voice_id": "en-US-Chirp3-HD-Kore"
+    }
+  },
+  "is_featured": false,
+  "required_tools": [
+    {
+      "tool_ref": "crm.create_callback",
+      "display_name": "Callback / ticket creation",
+      "description": "Creates structured callback tasks for loan officers, deposit officers, agriculture finance reviewers, and support staff.",
+      "category": "crm",
+      "provider_hints": [
+        "hubspot",
+        "salesforce",
+        "zendesk",
+        "freshdesk",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=crm.create_callback",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "loan.create_prequalification",
+      "display_name": "Loan origination intake",
+      "description": "Pushes officer-ready loan pre-qualification facts into NAFMFB's loan origination or officer-review workflow.",
+      "category": "loan",
+      "provider_hints": [
+        "loan_origination_system",
+        "core_banking",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=loan.create_prequalification",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "identity.verify_otp",
+      "display_name": "Customer identity / OTP verification",
+      "description": "Verifies a customer through an approved bank authentication flow before any account-specific support is provided.",
+      "category": "identity",
+      "provider_hints": [
+        "core_banking",
+        "otp_provider",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=identity.verify_otp",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "documents.upload_application_file",
+      "display_name": "Document upload / KYC storage",
+      "description": "Stores applicant documents such as ID, payslip, employment evidence, business records, or agriculture finance documents.",
+      "category": "documents",
+      "provider_hints": [
+        "s3",
+        "google_cloud_storage",
+        "sharepoint",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=documents.upload_application_file",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "mobile_app.lookup_support_state",
+      "display_name": "Mobile app support telemetry",
+      "description": "Checks non-sensitive app support state such as registration progress or failed onboarding events to guide customers faster.",
+      "category": "mobile_app",
+      "provider_hints": [
+        "firebase",
+        "mobile_backend",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=mobile_app.lookup_support_state",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "security.create_fraud_case",
+      "display_name": "Fraud / OTP safety queue",
+      "description": "Creates urgent security handoff cases for OTP compromise, suspected fraud, unauthorized transactions, or account takeover reports.",
+      "category": "security",
+      "provider_hints": [
+        "zendesk",
+        "freshdesk",
+        "jira",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=security.create_fraud_case",
+      "documentation_url": null,
+      "required": false
+    }
+  ],
+  "agent_document": {
+    "version": "3.0",
+    "start_scenario_id": "triage",
+    "scenarios": [
+      {
+        "id": "triage",
+        "name": "Triage and Safety Routing",
+        "start_step_id": "entry",
+        "summary": "Shared front door for NAFMFB support. Routes customers into loan, agriculture finance, mobile app support, savings/fixed deposit, or urgent OTP/fraud safety workflows.",
+        "order": 0,
+        "entry_channels": [],
+        "resources": {},
+        "steps": [
+          {
+            "id": "entry",
+            "name": "Greeting and Intent Triage",
+            "transitions": [
+              {
+                "id": "t_entry_fraud",
+                "when": {
+                  "kind": "outcome",
+                  "event": "fraud_or_otp_risk",
+                  "description": "The customer says they shared an OTP or PIN, saw an unauthorized transaction, suspects fraud, received a suspicious call, or thinks their account was compromised."
+                },
+                "to_step_id": "fraud_handoff",
+                "label": "Fraud, OTP compromise, unauthorized transactions, or account takeover go directly to safety handoff.",
+                "priority": 1
+              },
+              {
+                "id": "t_entry_loan",
+                "when": {
+                  "kind": "outcome",
+                  "event": "loan_inquiry",
+                  "description": "The customer asks about a loan, quick loan, school fees loan, salary loan, business loan, emergency loan, eligibility, or documents needed to borrow."
+                },
+                "to_step_id": "set_intent_loan",
+                "label": "They want loan help or loan pre-qualification.",
+                "priority": 10
+              },
+              {
+                "id": "t_entry_agri",
+                "when": {
+                  "kind": "outcome",
+                  "event": "agriculture_finance",
+                  "description": "The customer asks about farming finance, NAF Farms, BOA-linked finance, poultry, crop inputs, mechanization, livestock, irrigation, processing, or farm equipment funding."
+                },
+                "to_step_id": "set_intent_agri",
+                "label": "They want agriculture finance intake.",
+                "priority": 10
+              },
+              {
+                "id": "t_entry_mobile",
+                "when": {
+                  "kind": "outcome",
+                  "event": "mobile_app_support",
+                  "description": "The customer needs help with NAF Mobile app registration, login, transfer, beneficiary setup, bill payment, airtime/data, electricity payment, PIN, biometrics, or first transaction."
+                },
+                "to_step_id": "set_intent_mobile",
+                "label": "They need mobile app or account-use support.",
+                "priority": 10
+              },
+              {
+                "id": "t_entry_deposit",
+                "when": {
+                  "kind": "outcome",
+                  "event": "savings_or_fixed_deposit",
+                  "description": "The customer asks about saving, investment, fixed deposit, keeping money aside, deposit interest, or where to put funds for a period."
+                },
+                "to_step_id": "set_intent_deposit",
+                "label": "They are a savings or fixed deposit opportunity.",
+                "priority": 10
+              },
+              {
+                "id": "t_entry_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "The customer is ending the conversation with no further request."
+                },
+                "to_step_id": "closed",
+                "label": "Customer is done.",
+                "priority": 20
+              },
+              {
+                "id": "t_entry_otherwise",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "entry",
+                "label": "Stay in triage until the customer's intent is clear.",
+                "priority": 100
+              }
+            ],
+            "description": "Open the conversation and route to one of the five demo lanes.",
+            "say": "Hello, you have reached NAFMFB support. I can help with loan inquiries, agriculture finance interest, mobile app support, savings or fixed deposit questions, and urgent OTP or fraud concerns. What can I help you with today?",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "I can help with loans, agriculture finance, mobile app support, savings or fixed deposits, and urgent OTP or fraud concerns. Which one do you need?",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "I can help with loans, agriculture finance, mobile app support, savings or fixed deposits, and urgent OTP or fraud concerns. Which one do you need?",
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "closed",
+            "name": "Closed",
+            "transitions": [],
+            "description": "Polite close.",
+            "say": "Thank you for contacting NAFMFB. Please use only official bank channels and never share your OTP or PIN.",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": false,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "closed",
+              "summary": "Customer ended the conversation."
+            }
+          }
+        ],
+        "flow_layout": {
+          "entry": {
+            "x": 0,
+            "y": 0
+          },
+          "closed": {
+            "x": 300,
+            "y": 220
+          }
+        }
+      },
+      {
+        "id": "loan_prequalification",
+        "name": "Loan Pre-Qualification",
+        "start_step_id": "set_intent_loan",
+        "summary": "Captures applicant category, purpose, amount, tenor, repayment source, and document readiness before creating an officer-ready loan callback.",
+        "order": 1,
+        "entry_channels": [],
+        "resources": {},
+        "steps": [
+          {
+            "id": "set_intent_loan",
+            "name": "Set Intent: Loan",
+            "transitions": [
+              {
+                "id": "t_set_loan_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_recorded"
+                },
+                "to_step_id": "loan_collect_applicant",
+                "label": "Loan lane selected.",
+                "priority": 5
+              },
+              {
+                "id": "t_set_loan_fallback",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "loan_collect_applicant",
+                "label": "Proceed to loan lane.",
+                "priority": 100
+              }
+            ],
+            "description": "Record that the customer wants loan support.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "intent_choice = \"loan\"\nresult = {\"status\": \"recorded\", \"intent_choice\": \"loan\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": false,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "loan_collect_applicant",
+            "name": "Loan: Collect Applicant Type",
+            "transitions": [
+              {
+                "id": "t_loan_applicant_present",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "applicant_type"
+                },
+                "to_step_id": "loan_collect_details",
+                "label": "Applicant category captured.",
+                "priority": 5
+              },
+              {
+                "id": "t_loan_applicant_stay",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "loan_collect_applicant",
+                "label": "Still need applicant category.",
+                "priority": 100
+              }
+            ],
+            "description": "Identify the customer segment for loan routing.",
+            "say": "I can help prepare the inquiry for a loan officer. Are you serving NAF personnel, a spouse, a retiree, an MSME owner, or an agriculture applicant?",
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "applicant_type",
+                "purpose": "to route the loan inquiry to the right product or officer queue"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Which applicant category best describes you: serving NAF personnel, spouse, retiree, MSME owner, or agriculture applicant? This is only for pre-qualification, not final approval.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Which applicant category best describes you: serving personnel, spouse, retiree, MSME owner, or agriculture applicant?",
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "loan_collect_details",
+            "name": "Loan: Collect Pre-Qualification Details",
+            "transitions": [
+              {
+                "id": "t_loan_details_present",
+                "when": {
+                  "kind": "all_required_facts_present"
+                },
+                "to_step_id": "loan_prequalify",
+                "label": "Enough facts for preliminary officer-ready review.",
+                "priority": 5
+              },
+              {
+                "id": "t_loan_details_stay",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "loan_collect_details",
+                "label": "Keep collecting missing loan facts one at a time.",
+                "priority": 100
+              }
+            ],
+            "description": "Collect the facts a loan officer needs before spending time on the case.",
+            "say": "I will capture the basics for officer review. Please share the loan purpose, requested amount, preferred tenor, repayment source, and whether your documents are ready.",
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "loan_purpose",
+                "purpose": "to understand what the customer wants the loan for"
+              },
+              {
+                "name": "loan_amount",
+                "purpose": "to estimate the requested loan size"
+              },
+              {
+                "name": "preferred_tenor",
+                "purpose": "to understand the customer's repayment period preference"
+              },
+              {
+                "name": "repayment_source",
+                "purpose": "to understand the customer's likely repayment source"
+              },
+              {
+                "name": "documents_ready",
+                "purpose": "to know whether the lead is complete enough for officer review"
+              }
+            ],
+            "tool_policy": [
+              {
+                "ref": "documents.upload_application_file",
+                "mode": "optional",
+                "invocation_strategy": "never"
+              }
+            ],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Please share the loan purpose, amount, preferred tenor, repayment source, and whether your documents are ready.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Please share the loan purpose, amount, preferred tenor, repayment source, and whether your documents are ready.",
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "loan_prequalify",
+            "name": "Loan: Mock Pre-Qualification",
+            "transitions": [
+              {
+                "id": "t_loan_ready",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_ready"
+                },
+                "to_step_id": "collect_callback_details",
+                "label": "Lead is ready for a loan officer callback.",
+                "priority": 5
+              },
+              {
+                "id": "t_loan_missing_docs",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_missing_docs"
+                },
+                "to_step_id": "loan_missing_docs",
+                "label": "Applicant needs document guidance before officer review.",
+                "priority": 10
+              },
+              {
+                "id": "t_loan_fallback",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "collect_callback_details",
+                "label": "Create callback if the mock status is unexpected.",
+                "priority": 100
+              }
+            ],
+            "description": "Demo mock for loan pre-qualification. In production this maps to loan.create_prequalification or CRM officer-review queue creation.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [
+              {
+                "ref": "loan.create_prequalification",
+                "mode": "optional",
+                "invocation_strategy": "never"
+              }
+            ],
+            "action_config": {
+              "code": "docs = str(vars.get(\"documents_ready\") or \"\").strip().lower()\nif \"no\" in docs or \"missing\" in docs or \"not\" in docs:\n    result = {\"status\": \"missing_docs\", \"message\": \"This looks like a valid loan inquiry, but it is not officer-ready yet. Please prepare ID, proof of NAF relationship or employment, recent payslip or income evidence, and any product-specific documents before review.\"}\nelse:\n    lead_score = \"officer_ready\"\n    result = {\"status\": \"ready\", \"lead_score\": lead_score, \"summary\": \"Loan inquiry is ready for officer review: \" + str(vars.get(\"applicant_type\") or \"applicant\") + \", purpose \" + str(vars.get(\"loan_purpose\") or \"not stated\") + \", amount \" + str(vars.get(\"loan_amount\") or \"not stated\") + \", tenor \" + str(vars.get(\"preferred_tenor\") or \"not stated\") + \".\", \"message\": \"This is ready for a loan officer review. This is not final approval, but the key facts are captured.\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 3,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "loan_missing_docs",
+            "name": "Loan: Missing Documents Guidance",
+            "transitions": [],
+            "description": "Explain missing document issue and close with next step.",
+            "say": "Before a loan officer can review this cleanly, please prepare your ID, proof of NAF relationship or employment, recent payslip or income evidence, and any product-specific documents. Once ready, the bank can continue the review. This is not a loan approval.",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 3,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "missing_documents",
+              "summary": "Loan inquiry captured but applicant needs documents before officer-ready review."
+            }
+          }
+        ],
+        "flow_layout": {
+          "set_intent_loan": {
+            "x": 0,
+            "y": 0
+          },
+          "loan_collect_applicant": {
+            "x": 0,
+            "y": 220
+          },
+          "loan_collect_details": {
+            "x": 0,
+            "y": 440
+          },
+          "loan_prequalify": {
+            "x": 0,
+            "y": 660
+          },
+          "loan_missing_docs": {
+            "x": -280,
+            "y": 880
+          }
+        }
+      },
+      {
+        "id": "agriculture_finance",
+        "name": "Agriculture Finance Intake",
+        "start_step_id": "set_intent_agri",
+        "summary": "Captures NAF Farms or agriculture finance interest with applicant category, farm activity, financing need, amount range, location, and production-cycle context.",
+        "order": 2,
+        "entry_channels": [],
+        "resources": {},
+        "steps": [
+          {
+            "id": "set_intent_agri",
+            "name": "Set Intent: Agriculture Finance",
+            "transitions": [
+              {
+                "id": "t_set_agri_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_recorded"
+                },
+                "to_step_id": "agri_collect_details",
+                "label": "Agriculture finance lane selected.",
+                "priority": 5
+              },
+              {
+                "id": "t_set_agri_fallback",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "agri_collect_details",
+                "label": "Proceed to agriculture finance lane.",
+                "priority": 100
+              }
+            ],
+            "description": "Record agriculture finance intent.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "intent_choice = \"agriculture_finance\"\nresult = {\"status\": \"recorded\", \"intent_choice\": \"agriculture_finance\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": false,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "agri_collect_details",
+            "name": "Agriculture: Collect Finance Context",
+            "transitions": [
+              {
+                "id": "t_agri_details_present",
+                "when": {
+                  "kind": "all_required_facts_present"
+                },
+                "to_step_id": "agri_submit_interest",
+                "label": "Agriculture finance context captured.",
+                "priority": 5
+              },
+              {
+                "id": "t_agri_details_stay",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "agri_collect_details",
+                "label": "Keep collecting missing agriculture finance facts.",
+                "priority": 100
+              }
+            ],
+            "description": "Pre-screen agriculture finance demand before staff follow-up.",
+            "say": "I can capture the agriculture finance interest for review. Please share your applicant category, farm activity, financing need, amount range, location, and production or repayment cycle.",
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "applicant_type",
+                "purpose": "to know whether this is personnel, spouse, retiree, women-led, MSME, or another applicant type"
+              },
+              {
+                "name": "agri_activity",
+                "purpose": "to know the crop, livestock, poultry, inputs, processing, or equipment activity"
+              },
+              {
+                "name": "financing_need",
+                "purpose": "to know what the finance is for"
+              },
+              {
+                "name": "loan_amount",
+                "purpose": "to estimate the requested amount range"
+              },
+              {
+                "name": "preferred_branch",
+                "purpose": "to route the inquiry to the nearest branch or officer team"
+              },
+              {
+                "name": "production_cycle",
+                "purpose": "to understand harvest or cash-flow timing for repayment context"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Please share the farm activity, financing need, amount range, location or branch, and production cycle.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Please share the farm activity, financing need, amount range, location or branch, and production cycle.",
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "agri_submit_interest",
+            "name": "Agriculture: Mock Interest Submission",
+            "transitions": [
+              {
+                "id": "t_agri_submitted",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_submitted"
+                },
+                "to_step_id": "collect_callback_details",
+                "label": "Agriculture finance intake is ready for callback.",
+                "priority": 5
+              },
+              {
+                "id": "t_agri_fallback",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "collect_callback_details",
+                "label": "Create callback even if mock status is unexpected.",
+                "priority": 100
+              }
+            ],
+            "description": "Demo mock for agriculture finance interest capture. In production this maps to an agriculture product queue, CRM, or BOA/NAF Farms workflow as approved by the bank.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [
+              {
+                "ref": "loan.create_prequalification",
+                "mode": "optional",
+                "invocation_strategy": "never"
+              }
+            ],
+            "action_config": {
+              "code": "case_type = \"agriculture_finance_interest\"\ninterest_summary = \"Agriculture finance interest: \" + str(vars.get(\"agri_activity\") or \"activity not stated\") + \", need \" + str(vars.get(\"financing_need\") or \"not stated\") + \", amount \" + str(vars.get(\"loan_amount\") or \"not stated\") + \", cycle \" + str(vars.get(\"production_cycle\") or \"not stated\") + \".\"\nresult = {\"status\": \"submitted\", \"case_type\": case_type, \"summary\": interest_summary, \"message\": \"I have captured the agriculture finance interest for review. A finance officer can follow up with eligibility and document requirements. This is not final approval.\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 3,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          }
+        ],
+        "flow_layout": {
+          "set_intent_agri": {
+            "x": 0,
+            "y": 0
+          },
+          "agri_collect_details": {
+            "x": 0,
+            "y": 240
+          },
+          "agri_submit_interest": {
+            "x": 0,
+            "y": 500
+          }
+        }
+      },
+      {
+        "id": "mobile_app_support",
+        "name": "Mobile App Support",
+        "start_step_id": "set_intent_mobile",
+        "summary": "Guides safe NAF Mobile app usage for sign-up, login, beneficiaries, transfers, bill payments, airtime/data, electricity, PIN, and biometrics, with safety escalation for suspicious activity.",
+        "order": 3,
+        "entry_channels": [],
+        "resources": {},
+        "steps": [
+          {
+            "id": "set_intent_mobile",
+            "name": "Set Intent: Mobile App Support",
+            "transitions": [
+              {
+                "id": "t_set_mobile_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_recorded"
+                },
+                "to_step_id": "mobile_collect_issue",
+                "label": "Mobile support lane selected.",
+                "priority": 5
+              },
+              {
+                "id": "t_set_mobile_fallback",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "mobile_collect_issue",
+                "label": "Proceed to mobile support lane.",
+                "priority": 100
+              }
+            ],
+            "description": "Record mobile app support intent.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "intent_choice = \"mobile_support\"\nresult = {\"status\": \"recorded\", \"intent_choice\": \"mobile_support\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": false,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "mobile_collect_issue",
+            "name": "Mobile: Collect Issue",
+            "transitions": [
+              {
+                "id": "t_mobile_fraud",
+                "when": {
+                  "kind": "outcome",
+                  "event": "fraud_or_otp_risk",
+                  "description": "While discussing mobile support, the customer reports OTP sharing, suspicious calls, unauthorized transactions, or compromised account access."
+                },
+                "to_step_id": "fraud_handoff",
+                "label": "Mobile issue is actually a security issue.",
+                "priority": 1
+              },
+              {
+                "id": "t_mobile_issue_present",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "mobile_issue"
+                },
+                "to_step_id": "mobile_guidance",
+                "label": "Mobile issue captured.",
+                "priority": 5
+              },
+              {
+                "id": "t_mobile_issue_stay",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "mobile_collect_issue",
+                "label": "Still need mobile issue.",
+                "priority": 100
+              }
+            ],
+            "description": "Identify the mobile app workflow the customer needs help with.",
+            "say": "What do you need help with in the NAF Mobile app: sign-up, login, beneficiary setup, transfers, bill payment, airtime or data, electricity, PIN, or biometrics?",
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "mobile_issue",
+                "purpose": "to provide the right mobile app guidance"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Which app action is giving you trouble: sign-up, login, beneficiary setup, transfer, bill payment, airtime or data, electricity, PIN, or biometrics? Do not share OTP, PIN, or password.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Which app action is giving you trouble: sign-up, login, beneficiary setup, transfer, bill payment, airtime or data, electricity, PIN, or biometrics?",
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "mobile_guidance",
+            "name": "Mobile: Mock Guidance",
+            "transitions": [],
+            "description": "Give safe mobile app guidance. In production this can use knowledge.lookup and mobile_app.lookup_support_state.",
+            "say": "I can guide the mobile app steps, but never share your OTP, PIN, password, or full card details with anyone. For beneficiary or transfer setup, open the app, confirm the beneficiary details carefully, authorize only inside the app, and stop immediately if you see a transaction you did not initiate.",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [
+              {
+                "ref": "mobile_app.lookup_support_state",
+                "mode": "optional",
+                "invocation_strategy": "never"
+              }
+            ],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Use the NAF Mobile app only through official channels, confirm beneficiary details carefully, and never share OTP, PIN, password, balance, or full account details. If there is suspicious activity, I will route you to security support.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Use the app only through official channels, check beneficiary details carefully, and never share OTP or PIN. If there is suspicious activity, I will connect you to support.",
+              "response_max_sentences": 4,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "mobile_support_guided",
+              "summary": "Provided safe mobile app support guidance."
+            }
+          }
+        ],
+        "flow_layout": {
+          "set_intent_mobile": {
+            "x": 0,
+            "y": 0
+          },
+          "mobile_collect_issue": {
+            "x": 0,
+            "y": 240
+          },
+          "mobile_guidance": {
+            "x": 0,
+            "y": 500
+          }
+        }
+      },
+      {
+        "id": "deposit_conversion",
+        "name": "Savings and Fixed Deposit Conversion",
+        "start_step_id": "set_intent_deposit",
+        "summary": "Turns savings or fixed deposit questions into product guidance and a deposit-officer callback when useful.",
+        "order": 4,
+        "entry_channels": [],
+        "resources": {},
+        "steps": [
+          {
+            "id": "set_intent_deposit",
+            "name": "Set Intent: Savings / Fixed Deposit",
+            "transitions": [
+              {
+                "id": "t_set_deposit_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_recorded"
+                },
+                "to_step_id": "deposit_collect_goal",
+                "label": "Deposit lane selected.",
+                "priority": 5
+              },
+              {
+                "id": "t_set_deposit_fallback",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "deposit_collect_goal",
+                "label": "Proceed to deposit lane.",
+                "priority": 100
+              }
+            ],
+            "description": "Record savings/fixed deposit intent.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "intent_choice = \"deposit\"\nresult = {\"status\": \"recorded\", \"intent_choice\": \"deposit\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": false,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "deposit_collect_goal",
+            "name": "Deposit: Collect Goal",
+            "transitions": [
+              {
+                "id": "t_deposit_goal_present",
+                "when": {
+                  "kind": "all_required_facts_present"
+                },
+                "to_step_id": "deposit_recommend",
+                "label": "Enough facts to recommend savings or fixed deposit.",
+                "priority": 5
+              },
+              {
+                "id": "t_deposit_goal_stay",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "deposit_collect_goal",
+                "label": "Keep collecting deposit facts.",
+                "priority": 100
+              }
+            ],
+            "description": "Collect deposit conversion facts.",
+            "say": "I can help you compare savings and fixed deposit. What is your goal, how much do you want to set aside, for how long, and do you need access to the money during that period?",
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "deposit_goal",
+                "purpose": "to understand why the customer wants to save or invest"
+              },
+              {
+                "name": "deposit_amount",
+                "purpose": "to understand the approximate deposit size"
+              },
+              {
+                "name": "deposit_timeframe",
+                "purpose": "to know whether fixed deposit may fit"
+              },
+              {
+                "name": "liquidity_need",
+                "purpose": "to know whether the customer needs anytime withdrawal"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Please share your savings goal, approximate amount, timeframe, and whether you need access to the money during the period.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Please share your goal, approximate amount, timeframe, and whether you need access to the money during the period.",
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "deposit_recommend",
+            "name": "Deposit: Mock Recommendation",
+            "transitions": [
+              {
+                "id": "t_deposit_fd",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_fixed_deposit"
+                },
+                "to_step_id": "collect_callback_details",
+                "label": "Fixed deposit looks relevant; create callback.",
+                "priority": 5
+              },
+              {
+                "id": "t_deposit_savings",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_savings"
+                },
+                "to_step_id": "collect_callback_details",
+                "label": "Savings account guidance or callback is relevant.",
+                "priority": 10
+              },
+              {
+                "id": "t_deposit_fallback",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "collect_callback_details",
+                "label": "Create deposit callback if recommendation is uncertain.",
+                "priority": 100
+              }
+            ],
+            "description": "Demo mock for deposit recommendation. In production this uses approved product catalog and officer callback workflow.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "timeframe = str(vars.get(\"deposit_timeframe\") or \"\").lower()\nliquidity = str(vars.get(\"liquidity_need\") or \"\").lower()\nif (\"month\" in timeframe or \"90\" in timeframe or \"three\" in timeframe or \"fixed\" in timeframe) and not (\"need\" in liquidity and \"access\" in liquidity):\n    recommendation = \"fixed_deposit\"\n    result = {\"status\": \"fixed_deposit\", \"recommendation\": recommendation, \"message\": \"A fixed deposit callback may fit because the customer has a defined timeframe and may not need immediate access. The officer should confirm current terms before opening anything.\"}\nelse:\n    recommendation = \"savings\"\n    result = {\"status\": \"savings\", \"recommendation\": recommendation, \"message\": \"A savings account or savings plan may fit because the customer may need flexible access. An officer can confirm the best product.\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 3,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          }
+        ],
+        "flow_layout": {
+          "set_intent_deposit": {
+            "x": 0,
+            "y": 0
+          },
+          "deposit_collect_goal": {
+            "x": 0,
+            "y": 240
+          },
+          "deposit_recommend": {
+            "x": 0,
+            "y": 500
+          }
+        }
+      },
+      {
+        "id": "callback_handoff",
+        "name": "Callback and Human Handoff",
+        "start_step_id": "collect_callback_details",
+        "summary": "Shared callback capture and ticket creation lane used by loan, agriculture finance, and deposit workflows, plus general support fallback.",
+        "order": 5,
+        "entry_channels": [],
+        "resources": {},
+        "steps": [
+          {
+            "id": "collect_callback_details",
+            "name": "Collect Callback Details",
+            "transitions": [
+              {
+                "id": "t_callback_details_present",
+                "when": {
+                  "kind": "all_required_facts_present"
+                },
+                "to_step_id": "create_callback_ticket",
+                "label": "Callback details and consent are present.",
+                "priority": 5
+              },
+              {
+                "id": "t_callback_stay",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "collect_callback_details",
+                "label": "Keep collecting callback details.",
+                "priority": 100
+              }
+            ],
+            "description": "Collect safe contact details and consent for staff follow-up.",
+            "say": "To have the right officer follow up, please share your name, phone number, preferred branch or base, and confirm that you consent to a callback. Do not share OTP or PIN.",
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "customer_name",
+                "purpose": "to address the customer in the callback"
+              },
+              {
+                "name": "phone_number",
+                "purpose": "to let the bank call the customer back"
+              },
+              {
+                "name": "preferred_branch",
+                "purpose": "to route the callback to the most relevant branch or officer team"
+              },
+              {
+                "name": "consent_to_callback",
+                "purpose": "to confirm the customer permits staff follow-up"
+              }
+            ],
+            "tool_policy": [
+              {
+                "ref": "identity.verify_otp",
+                "mode": "optional",
+                "invocation_strategy": "never"
+              }
+            ],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Please share your name, phone number, preferred branch or base, and confirm that you consent to a callback. Do not share OTP or PIN.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Please share your name, phone number, preferred branch or base, and confirm that you consent to a callback. Do not share OTP or PIN.",
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "create_callback_ticket",
+            "name": "Create Mock Callback Ticket",
+            "transitions": [
+              {
+                "id": "t_ticket_created",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_created"
+                },
+                "to_step_id": "callback_complete",
+                "label": "Mock callback ticket created.",
+                "priority": 5
+              },
+              {
+                "id": "t_ticket_fallback",
+                "when": {
+                  "kind": "otherwise"
+                },
+                "to_step_id": "human_handoff",
+                "label": "Unexpected ticket outcome; escalate.",
+                "priority": 100
+              }
+            ],
+            "description": "Demo mock for CRM/ticket creation. In production this maps to crm.create_callback, loan.create_prequalification, or the bank's officer task queue.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [
+              {
+                "ref": "crm.create_callback",
+                "mode": "optional",
+                "invocation_strategy": "never"
+              }
+            ],
+            "action_config": {
+              "code": "choice = str(vars.get(\"intent_choice\") or \"general\").strip().lower()\nqueue = \"support\"\nif choice == \"loan\":\n    queue = \"loan_officer_review\"\nelif choice == \"agriculture_finance\":\n    queue = \"agriculture_finance_review\"\nelif choice == \"deposit\":\n    queue = \"deposit_officer_callback\"\ncallback_ticket_id = \"NAFMFB-DEMO-\" + queue.upper().replace(\"_\", \"-\")\nsummary = \"Queue \" + queue + \" for \" + str(vars.get(\"customer_name\") or \"customer\") + \" at \" + str(vars.get(\"phone_number\") or \"phone not provided\") + \". Intent: \" + choice + \".\"\nresult = {\"status\": \"created\", \"callback_ticket_id\": callback_ticket_id, \"queue\": queue, \"summary\": summary, \"message\": \"I have captured this for the \" + queue.replace(\"_\", \" \") + \" team. Reference \" + callback_ticket_id + \". A bank officer can follow up using the details provided.\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 3,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "callback_complete",
+            "name": "Callback Complete",
+            "transitions": [],
+            "description": "Close after creating a callback ticket.",
+            "say": "Thank you. The request has been captured for follow-up. Please remember: NAFMFB staff will never ask you to share OTP, PIN, password, or full card details.",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 3,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "callback_created",
+              "summary": "Structured callback request created for staff follow-up."
+            }
+          },
+          {
+            "id": "human_handoff",
+            "name": "General Human Handoff",
+            "transitions": [],
+            "description": "Fallback handoff for unclear or unsupported cases.",
+            "say": "I want to make sure this is handled correctly. I will connect this to a bank officer for follow-up.",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": {
+              "target_type": "queue",
+              "target": "general_support",
+              "summary": "General support handoff required."
+            },
+            "completion": null
+          }
+        ],
+        "flow_layout": {
+          "collect_callback_details": {
+            "x": 0,
+            "y": 0
+          },
+          "create_callback_ticket": {
+            "x": 0,
+            "y": 220
+          },
+          "callback_complete": {
+            "x": 0,
+            "y": 440
+          },
+          "human_handoff": {
+            "x": 320,
+            "y": 220
+          }
+        }
+      },
+      {
+        "id": "security_handoff",
+        "name": "OTP and Fraud Safety Handoff",
+        "start_step_id": "fraud_handoff",
+        "summary": "Urgent safety lane for OTP compromise, suspected fraud, unauthorized transactions, and account takeover reports. The assistant gives safety guidance and hands off to a human queue.",
+        "order": 6,
+        "entry_channels": [],
+        "resources": {},
+        "steps": [
+          {
+            "id": "fraud_handoff",
+            "name": "Fraud / OTP Safety Handoff",
+            "transitions": [],
+            "description": "Immediate safety handoff for OTP compromise, fraud, unauthorized transaction, or account takeover. No account action is taken by the assistant.",
+            "say": "For your safety, do not share any OTP, PIN, password, or full card details. If you already shared an OTP or see a transaction you did not authorize, stop using the channel that contacted you and contact NAFMFB through official support immediately. I will route this as an urgent security case for a human officer.",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [
+              {
+                "ref": "security.create_fraud_case",
+                "mode": "optional",
+                "invocation_strategy": "never"
+              }
+            ],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": "For your safety, do not share OTP, PIN, password, full account number, balance, or full card details. I will route this as an urgent security case for a human officer.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 4,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": {
+              "target_type": "queue",
+              "target": "security_fraud_otp_queue",
+              "summary": "Urgent fraud or OTP safety concern. Human security review required. Assistant did not request sensitive credentials or take account action."
+            },
+            "completion": null
+          }
+        ],
+        "flow_layout": {
+          "fraud_handoff": {
+            "x": 0,
+            "y": 0
+          }
+        }
+      }
+    ],
+    "scenario_routes": [],
+    "fact_schema": [
+      {
+        "name": "intent_choice",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "applicant_type",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "customer_name",
+        "type": "name",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "phone_number",
+        "type": "phone",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "preferred_branch",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.7,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "loan_purpose",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "loan_amount",
+        "type": "money",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "capture_aliases": ["amount", "requested amount", "loan amount"],
+        "validator_config": {"currency_default": "NGN"},
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "preferred_tenor",
+        "type": "duration",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "capture_aliases": ["tenor", "term", "duration", "repayment period"],
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "repayment_source",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "capture_aliases": ["repayment source", "source", "repay from", "income source"],
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "documents_ready",
+        "type": "boolean",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "capture_aliases": ["documents", "documents ready", "docs", "docs ready"],
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "agri_activity",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "financing_need",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "production_cycle",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "deposit_goal",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "deposit_amount",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "deposit_timeframe",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "liquidity_need",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "mobile_issue",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "consent_to_callback",
+        "type": "consent",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "lead_score",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "callback_ticket_id",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "recommendation",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      }
+    ],
+    "agent_capability_manifest": {
+      "assistant_identity": "I'm NAFMFB's financial support assistant.",
+      "capabilities": [
+        "Pre-qualify loan inquiries and prepare officer-ready callback details",
+        "Capture agriculture finance interest with production-cycle context",
+        "Guide safe mobile app use for registration, beneficiaries, transfers, and bill payments",
+        "Explain savings versus fixed deposit and route deposit opportunities",
+        "Escalate OTP compromise, fraud, unauthorized transaction, or account takeover reports"
+      ],
+      "limitations": [
+        "I cannot approve loans, disburse funds, quote final rates, or make credit decisions.",
+        "I cannot move money, restrict accounts, freeze cards, or perform account actions in the demo.",
+        "I will never ask for OTP, PIN, password, full card details, or full secret credentials.",
+        "Fraud and OTP safety concerns always go to a human officer."
+      ]
+    },
+    "metadata": {
+      "source_graph_version": "0.2.0",
+      "demo_positioning": {
+        "bottom_line": [
+          "more qualified loan leads",
+          "higher savings and fixed deposit conversion",
+          "structured agriculture finance pipeline",
+          "lower branch and support workload",
+          "safer OTP and fraud handling"
+        ],
+        "pilot_scope": [
+          "loan pre-qualification",
+          "agriculture finance interest capture",
+          "mobile app support",
+          "savings/fixed deposit callback",
+          "fraud and OTP hard handoff"
+        ],
+        "out_of_scope": [
+          "final loan approval",
+          "loan disbursement",
+          "transaction execution",
+          "account freeze or unfreeze",
+          "card actions without explicit bank approval"
+        ]
+      },
+      "production_integrations": {
+        "minimum_pilot": [
+          "knowledge.lookup",
+          "crm.create_callback",
+          "analytics/events"
+        ],
+        "next_phase": [
+          "loan.create_prequalification",
+          "identity.verify_otp",
+          "documents.upload_application_file",
+          "mobile_app.lookup_support_state"
+        ],
+        "high_risk_later": [
+          "loan decisioning",
+          "account/card actions",
+          "payment or transfer APIs"
+        ]
+      },
+      "demo_fixtures": {
+        "loan": {
+          "NAF-LOAN-READY": "serving personnel, school fees loan, documents ready",
+          "NAF-LOAN-MISSING-DOCS": "valid loan inquiry but applicant lacks document readiness"
+        },
+        "agriculture": {
+          "NAF-AGRI-INPUTS": "spouse-led poultry/input finance with production-cycle repayment context"
+        },
+        "deposit": {
+          "NAF-FD-90DAYS": "customer wants to set money aside for three months; fixed deposit callback is relevant"
+        },
+        "security": {
+          "NAF-OTP-RISK": "customer shared OTP; immediate safety handoff"
+        }
+      },
+      "multi_scenario_design": {
+        "reason": "Split the demo into business workflow scenarios so the canvas reflects NAFMFB value lanes instead of one large 21-step scenario.",
+        "scenarios": [
+          "triage",
+          "loan_prequalification",
+          "agriculture_finance",
+          "mobile_app_support",
+          "deposit_conversion",
+          "callback_handoff",
+          "security_handoff"
+        ]
+      }
+    }
+  }
+}

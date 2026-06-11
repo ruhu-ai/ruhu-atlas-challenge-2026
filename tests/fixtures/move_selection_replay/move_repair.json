@@ -1,0 +1,20 @@
+{
+  "turn_id": "p3:repair:001",
+  "input_context_hash": "p3000000000000000000000000000000000000000000000000000000repair",
+  "move_selection_output": {
+    "selection": {
+      "move_type": "repair",
+      "rationale": "User said 'I already gave it to you'; reconcile the email fact from prior turn.",
+      "confidence": 0.92,
+      "extracted_facts": {"email": "user@example.com"}
+    }
+  },
+  "validation_result": {
+    "outcome": "accepted",
+    "committed_move_type": "repair",
+    "committed_state_id": "collect_contact_info",
+    "accepted_facts": {"email": "user@example.com"},
+    "response_constraints": {"move_type": "repair"}
+  },
+  "committed_deltas": {}
+}

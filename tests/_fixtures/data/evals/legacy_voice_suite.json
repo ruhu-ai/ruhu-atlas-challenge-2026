@@ -1,0 +1,20 @@
+{
+  "cases": [
+    {
+      "id": "legacy_voice_first_product_question",
+      "graph_file": "graphs/sales.json",
+      "transcript_file": "transcripts/legacy_voice_first_product_question.json",
+      "interpreter": "gemma_local",
+      "expected_final_state": "product_qa",
+      "expected_turn_count": 1
+    },
+    {
+      "id": "legacy_voice_pricing_then_workflows",
+      "graph_file": "graphs/sales.json",
+      "transcript_file": "transcripts/legacy_voice_pricing_then_workflows.json",
+      "interpreter": "gemma_local",
+      "expected_final_state": "product_qa",
+      "expected_turn_count": 2
+    }
+  ]
+}

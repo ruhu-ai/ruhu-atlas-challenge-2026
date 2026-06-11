@@ -1,0 +1,18 @@
+{
+  "turn_id": "p3:thank:001",
+  "input_context_hash": "p300000000000000000000000000000000000000000000000000000000thank",
+  "move_selection_output": {
+    "selection": {
+      "move_type": "thank",
+      "rationale": "User just provided the email; thank them and continue.",
+      "confidence": 0.9
+    }
+  },
+  "validation_result": {
+    "outcome": "accepted",
+    "committed_move_type": "thank",
+    "committed_state_id": "collect_contact_info",
+    "response_constraints": {"move_type": "thank"}
+  },
+  "committed_deltas": {}
+}

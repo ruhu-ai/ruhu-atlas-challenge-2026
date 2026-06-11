@@ -1,0 +1,1212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ruhu Architecture</title>
+  <style>
+    @page {
+      size: A3 portrait;
+      margin: 14mm 18mm;
+    }
+
+    :root {
+      --ink: #1a1917;
+      --muted: #625d55;
+      --line: #ddd6cc;
+      --soft-line: #eee7dd;
+      --paper: #fffdfa;
+      --warm: #faf9f7;
+      --band: #f4efe8;
+      --primary: #e64e20;
+      --primary-dark: #9f3217;
+      --gold: #d89b22;
+      --green: #13795b;
+      --blue: #2166a5;
+      --violet: #6e55a8;
+      --charcoal: #282522;
+      --code: #f7f2eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--warm);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      line-height: 1.48;
+      letter-spacing: 0;
+    }
+
+    body {
+      counter-reset: section;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    ul,
+    ol,
+    table,
+    figure {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 34px;
+      line-height: 1.08;
+      margin-bottom: 12px;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      break-after: avoid;
+      font-size: 20px;
+      line-height: 1.18;
+      margin: 0 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--line);
+    }
+
+    h2::before {
+      counter-increment: section;
+      content: counter(section, decimal-leading-zero) " ";
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    h3 {
+      break-after: avoid;
+      font-size: 14px;
+      margin: 0 0 8px;
+    }
+
+    p {
+      margin-bottom: 8px;
+    }
+
+    ul,
+    ol {
+      padding-left: 18px;
+      margin-bottom: 10px;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    code {
+      font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.9em;
+      background: var(--code);
+      border: 1px solid var(--soft-line);
+      border-radius: 4px;
+      padding: 1px 4px;
+      white-space: nowrap;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.4px;
+      margin-bottom: 12px;
+      background: var(--paper);
+    }
+
+    th,
+    td {
+      text-align: left;
+      vertical-align: top;
+      border: 1px solid var(--line);
+      padding: 6px 7px;
+    }
+
+    th {
+      background: var(--band);
+      color: var(--charcoal);
+      font-weight: 800;
+    }
+
+    .page {
+      min-height: calc(420mm - 28mm);
+      padding: 0;
+      break-after: page;
+    }
+
+    .page:last-child {
+      break-after: auto;
+    }
+
+    .hero {
+      min-height: calc(420mm - 28mm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(135deg, rgba(230, 78, 32, 0.10), rgba(19, 121, 91, 0.08)),
+        var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 30px 34px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .kicker {
+      color: var(--primary-dark);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 10px;
+      margin-bottom: 12px;
+    }
+
+    .lede {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .callout {
+      background: #fff8f3;
+      border: 1px solid #efc7b5;
+      border-left: 4px solid var(--primary);
+      border-radius: 6px;
+      padding: 11px 12px;
+      margin-bottom: 12px;
+    }
+
+    .note {
+      background: #f7fbf8;
+      border: 1px solid #cfe5d8;
+      border-left: 4px solid var(--green);
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+
+    .warning {
+      background: #fffaf0;
+      border: 1px solid #efd79f;
+      border-left: 4px solid var(--gold);
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      break-inside: avoid;
+    }
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-height: 78px;
+    }
+
+    .metric strong {
+      font-size: 20px;
+      line-height: 1;
+      color: var(--primary-dark);
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 10.2px;
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .diagram {
+      width: 100%;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 12px;
+      break-inside: avoid;
+    }
+
+    .diagram svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .caption {
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 6px;
+      margin-bottom: 0;
+    }
+
+    .small {
+      font-size: 10.2px;
+    }
+
+    .mono {
+      font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .status-ok {
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .status-watch {
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    .status-gap {
+      color: var(--primary-dark);
+      font-weight: 800;
+    }
+
+    .footer-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      color: var(--muted);
+      font-size: 10px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .section {
+      margin-bottom: 14px;
+      break-inside: avoid;
+    }
+
+    .page-number {
+      color: var(--muted);
+      font-size: 10px;
+      text-align: right;
+      margin-top: 8px;
+    }
+
+    @media screen {
+      body {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .page {
+        margin-bottom: 24px;
+      }
+    }
+
+    @media print {
+      html,
+      body {
+        background: #fff;
+      }
+
+      .page {
+        min-height: auto;
+      }
+
+      .hero {
+        min-height: calc(420mm - 28mm);
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="page hero">
+    <div>
+      <div class="kicker">Ruhu Architecture Reference</div>
+      <div class="hero-grid">
+        <div>
+          <h1>Production Conversational AI Runtime</h1>
+          <p class="lede">
+            Ruhu is a turn-based conversational AI platform built around an authored
+            <code>AgentDocument</code>. The backend kernel executes scenarios, steps,
+            guards, transitions, tools, facts, rules, response generation, voice sessions,
+            public widgets, ticketing, analytics, and Atlas operational automation.
+          </p>
+          <div class="callout">
+            <strong>Current architecture stance.</strong> The runtime underneath is general-purpose:
+            the authored agent document, tool runtime, workflow/journey modules, knowledge retrieval,
+            ticketing, public widget, telephony, and Atlas automation are general-purpose. The product
+            can still package region-specific carriers, payments, compliance, and support workflows as
+            deployment packs on top of the same workflow-agent platform.
+          </div>
+          <div class="pill-row">
+            <span class="pill">Python 3.12+</span>
+            <span class="pill">FastAPI</span>
+            <span class="pill">SQLAlchemy 2</span>
+            <span class="pill">Pydantic 2.12</span>
+            <span class="pill">React 18</span>
+            <span class="pill">TypeScript 5.9</span>
+            <span class="pill">Vite 8</span>
+            <span class="pill">LiveKit Agents 1.5.2</span>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card metric">
+            <strong>A3 portrait</strong>
+            <span>PDF page format retained from the prior architecture document.</span>
+          </div>
+          <div class="card metric">
+            <strong>91</strong>
+            <span>Alembic migration files in the current repository.</span>
+          </div>
+          <div class="card metric">
+            <strong>7</strong>
+            <span>System templates shipped under <code>src/ruhu/templates/system</code>.</span>
+          </div>
+          <div class="card metric">
+            <strong>Atlas</strong>
+            <span>Operational review, readiness, documentation parsing, provisioning, and apply flow.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-meta">
+      <div><strong>Revision</strong><br />11 June 2026</div>
+      <div><strong>Source</strong><br />Local repository audit</div>
+      <div><strong>Print setup</strong><br />A3 portrait, 14mm top/bottom, 18mm left/right</div>
+      <div><strong>Scope</strong><br />Backend, frontend, data, AI, Atlas, deployment</div>
+    </div>
+  </section>
+
+  <section class="page">
+    <h2>Executive Architecture</h2>
+    <div class="diagram">
+      <svg viewBox="0 0 1120 610" role="img" aria-label="Ruhu platform architecture overview">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#625d55"></path>
+          </marker>
+          <style>
+            .box { fill: #fffdfa; stroke: #ddd6cc; stroke-width: 2; rx: 10; }
+            .head { fill: #f4efe8; stroke: #ddd6cc; stroke-width: 2; rx: 10; }
+            .core { fill: #fff8f3; stroke: #e64e20; stroke-width: 2.4; rx: 10; }
+            .data { fill: #f7fbf8; stroke: #13795b; stroke-width: 2; rx: 10; }
+            .ai { fill: #f7f5fb; stroke: #6e55a8; stroke-width: 2; rx: 10; }
+            .ops { fill: #f5f9fc; stroke: #2166a5; stroke-width: 2; rx: 10; }
+            .t { font: 700 17px Inter, sans-serif; fill: #1a1917; }
+            .s { font: 500 12px Inter, sans-serif; fill: #625d55; }
+            .m { font: 600 11px Inter, sans-serif; fill: #625d55; }
+            .line { stroke: #625d55; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+          </style>
+        </defs>
+
+        <rect class="head" x="30" y="32" width="250" height="90"></rect>
+        <text class="t" x="52" y="64">Channels</text>
+        <text class="s" x="52" y="88">Public widget, chat, WhatsApp</text>
+        <text class="s" x="52" y="108">Phone, LiveKit voice, console</text>
+
+        <rect class="head" x="30" y="158" width="250" height="90"></rect>
+        <text class="t" x="52" y="190">Frontend App</text>
+        <text class="s" x="52" y="214">Agent canvas, test console</text>
+        <text class="s" x="52" y="234">Analytics, rules, journeys, ops</text>
+
+        <rect class="core" x="338" y="30" width="300" height="122"></rect>
+        <text class="t" x="360" y="64">FastAPI Composition</text>
+        <text class="s" x="360" y="90">api.py app factory and modular routers</text>
+        <text class="s" x="360" y="110">auth, public widget, agents, channels</text>
+        <text class="s" x="360" y="130">tickets, journeys, rules, knowledge</text>
+
+        <rect class="core" x="338" y="196" width="300" height="132"></rect>
+        <text class="t" x="360" y="230">Conversation Kernel</text>
+        <text class="s" x="360" y="256">RuntimeTurn in, trace out</text>
+        <text class="s" x="360" y="276">guards, facts, tools, transitions</text>
+        <text class="s" x="360" y="296">AgentDocument scenario and step state</text>
+
+        <rect class="ai" x="704" y="28" width="330" height="110"></rect>
+        <text class="t" x="728" y="62">AI Plane</text>
+        <text class="s" x="728" y="88">GeminiDialogueGenerator for dialogue</text>
+        <text class="s" x="728" y="108">Prefill classifier: transformers, vLLM, Vertex</text>
+        <text class="s" x="728" y="128">LoRA registry, promotion, hot-load, training APIs</text>
+
+        <rect class="data" x="704" y="174" width="330" height="120"></rect>
+        <text class="t" x="728" y="208">Data and Persistence</text>
+        <text class="s" x="728" y="234">Postgres via SQLAlchemy stores</text>
+        <text class="s" x="728" y="254">conversation, traces, agents, audit</text>
+        <text class="s" x="728" y="274">knowledge retrieval and vector backends</text>
+
+        <rect class="ops" x="704" y="330" width="330" height="116"></rect>
+        <text class="t" x="728" y="364">Enterprise Operations</text>
+        <text class="s" x="728" y="390">Tickets, notifications, billing, phone numbers</text>
+        <text class="s" x="728" y="410">KPI goals, analytics, journeys, browser tasks</text>
+        <text class="s" x="728" y="430">Rules and audit surfaces</text>
+
+        <rect class="ops" x="338" y="374" width="300" height="110"></rect>
+        <text class="t" x="360" y="408">Atlas</text>
+        <text class="s" x="360" y="434">Docs parser, model gateway, coordinator</text>
+        <text class="s" x="360" y="454">Readiness, provisioning, review/apply</text>
+        <text class="s" x="360" y="474">Content-addressed approval hashing</text>
+
+        <rect class="box" x="30" y="334" width="250" height="132"></rect>
+        <text class="t" x="52" y="368">External Systems</text>
+        <text class="s" x="52" y="394">Zendesk, Jira, Freshdesk, Linear</text>
+        <text class="s" x="52" y="414">Stripe, LiveKit, Telnyx</text>
+        <text class="s" x="52" y="434">Africa's Talking, OAuth/SSO</text>
+        <text class="s" x="52" y="454">MCP and HTTP tools</text>
+
+        <path class="line" d="M 280 78 L 338 82"></path>
+        <path class="line" d="M 280 203 L 338 91"></path>
+        <path class="line" d="M 488 152 L 488 196"></path>
+        <path class="line" d="M 638 252 L 704 87"></path>
+        <path class="line" d="M 638 266 L 704 234"></path>
+        <path class="line" d="M 638 282 L 704 382"></path>
+        <path class="line" d="M 280 398 L 338 430"></path>
+        <path class="line" d="M 638 430 L 704 402"></path>
+      </svg>
+      <p class="caption">High-level runtime shape. The kernel remains the deterministic center; AI, tools, routes, and operational systems are composed around it.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Runtime Contract</h3>
+        <ul>
+          <li><code>AgentDocument</code> remains the authored source of truth for scenarios, steps, transitions, facts, tools, and handoff behavior.</li>
+          <li><code>ConversationKernel</code> executes every simulated or live turn through deterministic state loading, guard evaluation, tool policy, and trace persistence.</li>
+          <li>LLM components support interpretation, rendering, evaluation, and repair planning; they do not replace runtime state or validation.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Enterprise Control Points</h3>
+        <ul>
+          <li>Versioned agent documents, publish review, audit records, trace storage, and readiness reports support regulated deployment workflows.</li>
+          <li>Tool execution goes through controlled built-in, HTTP, MCP, and reference executors with traceable invocation records.</li>
+          <li>Atlas proposes typed changes and readiness reports while human approvals control production behavior changes.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="page">
+    <h2>Backend Runtime</h2>
+    <div class="diagram">
+      <svg viewBox="0 0 1120 540" role="img" aria-label="Conversation turn execution flow">
+        <defs>
+          <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#625d55"></path>
+          </marker>
+          <style>
+            .node { fill: #fffdfa; stroke: #ddd6cc; stroke-width: 2; rx: 10; }
+            .hot { fill: #fff8f3; stroke: #e64e20; stroke-width: 2.4; rx: 10; }
+            .ai2 { fill: #f7f5fb; stroke: #6e55a8; stroke-width: 2; rx: 10; }
+            .data2 { fill: #f7fbf8; stroke: #13795b; stroke-width: 2; rx: 10; }
+            .ops2 { fill: #f5f9fc; stroke: #2166a5; stroke-width: 2; rx: 10; }
+            .tt { font: 700 15px Inter, sans-serif; fill: #1a1917; }
+            .ss { font: 500 11px Inter, sans-serif; fill: #625d55; }
+            .flow { stroke: #625d55; stroke-width: 2; fill: none; marker-end: url(#arrow2); }
+          </style>
+        </defs>
+
+        <rect class="node" x="30" y="42" width="205" height="80"></rect>
+        <text class="tt" x="52" y="76">1. RuntimeTurn</text>
+        <text class="ss" x="52" y="100">channel input, user text, events</text>
+
+        <rect class="hot" x="282" y="42" width="220" height="80"></rect>
+        <text class="tt" x="304" y="76">2. Load State</text>
+        <text class="ss" x="304" y="100">conversation, agent document, facts</text>
+
+        <rect class="ai2" x="550" y="42" width="245" height="80"></rect>
+        <text class="tt" x="572" y="76">3. Interpret</text>
+        <text class="ss" x="572" y="100">keyword, Gemma/local, classifier, null</text>
+
+        <rect class="hot" x="844" y="42" width="230" height="80"></rect>
+        <text class="tt" x="866" y="76">4. Resolve Step</text>
+        <text class="ss" x="866" y="100">guards, facts, scenario routes</text>
+
+        <rect class="ops2" x="30" y="208" width="205" height="86"></rect>
+        <text class="tt" x="52" y="242">5. Rules</text>
+        <text class="ss" x="52" y="266">pre-turn and mid-turn programs</text>
+
+        <rect class="ops2" x="282" y="208" width="220" height="86"></rect>
+        <text class="tt" x="304" y="242">6. Tools</text>
+        <text class="ss" x="304" y="266">builtin, HTTP, MCP, reference</text>
+
+        <rect class="ai2" x="550" y="208" width="245" height="86"></rect>
+        <text class="tt" x="572" y="242">7. Dialogue</text>
+        <text class="ss" x="572" y="266">select move, render, generate text</text>
+
+        <rect class="data2" x="844" y="208" width="230" height="86"></rect>
+        <text class="tt" x="866" y="242">8. Persist Trace</text>
+        <text class="ss" x="866" y="266">state, events, tool calls, audit</text>
+
+        <rect class="node" x="282" y="372" width="220" height="86"></rect>
+        <text class="tt" x="304" y="406">9. Emit Reply</text>
+        <text class="ss" x="304" y="430">chat response, voice event, stream</text>
+
+        <rect class="node" x="550" y="372" width="245" height="86"></rect>
+        <text class="tt" x="572" y="406">10. Update State</text>
+        <text class="ss" x="572" y="430">step, scenario, facts, completion</text>
+
+        <path class="flow" d="M 235 82 L 282 82"></path>
+        <path class="flow" d="M 502 82 L 550 82"></path>
+        <path class="flow" d="M 795 82 L 844 82"></path>
+        <path class="flow" d="M 959 122 C 959 168 132 166 132 208"></path>
+        <path class="flow" d="M 235 251 L 282 251"></path>
+        <path class="flow" d="M 502 251 L 550 251"></path>
+        <path class="flow" d="M 795 251 L 844 251"></path>
+        <path class="flow" d="M 959 294 C 959 340 392 332 392 372"></path>
+        <path class="flow" d="M 502 415 L 550 415"></path>
+      </svg>
+      <p class="caption">Turn execution is deterministic around state loading, guards, tool policy, transitions, persistence, and channel-specific output.</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Backend Area</th>
+          <th>Current Modules</th>
+          <th>Role</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Kernel</td>
+          <td><code>kernel.py</code>, <code>schemas.py</code>, <code>agent_document.py</code></td>
+          <td>Core turn-based state machine for scenarios, steps, guards, transitions, tools, and traces.</td>
+          <td class="status-ok">Current</td>
+        </tr>
+        <tr>
+          <td>App composition</td>
+          <td><code>api.py</code>, <code>composition.py</code>, <code>routes/*</code></td>
+          <td>FastAPI app factory, modular route installation, dependency wiring, startup orchestration.</td>
+          <td class="status-ok">Current</td>
+        </tr>
+        <tr>
+          <td>Agents</td>
+          <td><code>agent_*.py</code>, <code>routes/agents.py</code>, templates</td>
+          <td>Agent document CRUD, drafts, versions, validation, publishing, audit, system templates.</td>
+          <td class="status-ok">Current</td>
+        </tr>
+        <tr>
+          <td>Channels</td>
+          <td><code>routes/public_widget.py</code>, <code>routes/channels.py</code>, <code>livekit_*.py</code>, phone providers</td>
+          <td>Widget, chat, WhatsApp, phone, LiveKit voice, streaming events, provider webhooks.</td>
+          <td class="status-ok">Current</td>
+        </tr>
+        <tr>
+          <td>Operations</td>
+          <td><code>ticketing_api.py</code>, <code>notifications/</code>, <code>billing/</code>, <code>kpi/</code>, <code>journeys/</code></td>
+          <td>Enterprise work surfaces beyond chat: ticketing, KPI goals, billing, notifications, journeys.</td>
+          <td class="status-ok">Current</td>
+        </tr>
+        <tr>
+          <td>Knowledge</td>
+          <td><code>knowledge/</code></td>
+          <td>Document ingestion, chunking, embedding, retrieval, and runtime knowledge resolution.</td>
+          <td class="status-ok">Current</td>
+        </tr>
+        <tr>
+          <td>Tools</td>
+          <td><code>tools/</code></td>
+          <td>Tool runtime and executors for built-in, HTTP, MCP, and reference tools.</td>
+          <td class="status-ok">Current</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-2">
+      <div class="note">
+        <strong>API boundary note.</strong> Steps and transitions are not separate REST resources.
+        The agent document is the unit of edit through <code>PUT /agents/{agent_id}/agent-document</code>.
+      </div>
+    <div class="warning">
+      <strong>Deployment note.</strong> The competition deployment path should be described through
+      Google Cloud hosting, logging, storage, and provider integrations. The runtime does not depend
+      on a separate workflow orchestrator to execute customer conversations.
+    </div>
+    </div>
+  </section>
+
+  <section class="page">
+    <h2>AgentDocument Contract</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Top-Level Model</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>version</code></td><td>Document schema/version marker.</td></tr>
+            <tr><td><code>start_scenario_id</code></td><td>Initial scenario used by the kernel.</td></tr>
+            <tr><td><code>scenarios</code></td><td>Scenario list; each scenario owns its steps.</td></tr>
+            <tr><td><code>scenario_routes</code></td><td>Cross-scenario routing rules.</td></tr>
+            <tr><td><code>fact_schema</code></td><td>Typed fact definitions available to guards and execution.</td></tr>
+            <tr><td><code>analysis_schema</code></td><td>Structured analysis extraction contract.</td></tr>
+            <tr><td><code>agent_capability_manifest</code></td><td>Capabilities exposed by the agent.</td></tr>
+            <tr><td><code>metadata</code></td><td>Authoring and runtime metadata.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Scenario Model</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>id</code>, <code>name</code></td><td>Stable scenario identity and display name.</td></tr>
+            <tr><td><code>start_step_id</code></td><td>Initial step for this scenario.</td></tr>
+            <tr><td><code>steps</code></td><td>Step definitions inside the scenario.</td></tr>
+            <tr><td><code>summary</code>, <code>order</code></td><td>Authoring metadata and display order.</td></tr>
+            <tr><td><code>entry_channels</code></td><td>Channel constraints for entry.</td></tr>
+            <tr><td><code>resources</code></td><td>Scenario-scoped runtime resources.</td></tr>
+            <tr><td><code>flow_layout</code></td><td>Canvas layout data for authoring.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Step Model</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Field Group</th>
+            <th>Fields</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Identity</td>
+            <td><code>id</code>, <code>name</code>, <code>description</code></td>
+            <td>Stable identity and author-facing description.</td>
+          </tr>
+          <tr>
+            <td>Conversation behavior</td>
+            <td><code>say</code>, <code>response_policy</code>, <code>handoff</code>, <code>completion</code></td>
+            <td>What the agent says, how it responds, when it hands off, and how the step completes.</td>
+          </tr>
+          <tr>
+            <td>Control flow</td>
+            <td><code>transitions</code>, <code>guards</code>, <code>confidence_threshold</code></td>
+            <td>Next-step selection and condition evaluation.</td>
+          </tr>
+          <tr>
+            <td>Facts and tools</td>
+            <td><code>fact_requirements</code>, <code>tool_policy</code>, <code>action_config</code></td>
+            <td>Data needed before progression and allowed runtime actions.</td>
+          </tr>
+          <tr>
+            <td>Execution controls</td>
+            <td><code>workload_class</code>, <code>execution_isolation</code>, <code>classifier_uses_facts</code></td>
+            <td>Runtime execution and classifier behavior knobs.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>Important Correction</h3>
+        <p>The current model uses <code>start_scenario_id</code> and scenario-level <code>start_step_id</code>. Older references to <code>entry_scenario_id</code> or <code>entry_step_id</code> are stale.</p>
+      </div>
+      <div class="card">
+        <h3>Knowledge Scope</h3>
+        <p>There is no direct step-level <code>knowledge_base_ids</code> field in the current model. Knowledge is resolved through runtime resources and resolver logic.</p>
+      </div>
+      <div class="card">
+        <h3>Authoring Unit</h3>
+        <p>The UI should treat the full document as the persisted edit unit, even when the canvas presents scenarios, steps, and transitions visually.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page">
+    <h2>AI, Classifier, And Dialogue</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Two-LLM Split</h3>
+        <p>
+          The runtime separates intent/classification from dialogue rendering. The prefill-first
+          classifier chooses structured intent outcomes. The dialogue generator renders or produces
+          user-facing language after deterministic runtime decisions have been made.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Plane</th>
+              <th>Primary Modules</th>
+              <th>Backends</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Classifier</td>
+              <td><code>classifier/prompt</code>, <code>protocol</code>, <code>dispatcher</code>, <code>factory</code></td>
+              <td><code>transformers</code>, <code>vllm</code>, <code>vertex_gemini</code></td>
+            </tr>
+            <tr>
+              <td>Dialogue</td>
+              <td><code>response_generation.py</code></td>
+              <td>Gemini / Google / Vertex, default model <code>gemini-3-flash-preview</code></td>
+            </tr>
+            <tr>
+              <td>Atlas generation</td>
+              <td><code>atlas_model_gateway.py</code>, docs/parser paths</td>
+              <td>Anthropic Claude Sonnet path used by Atlas, not the live dialogue backend</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Classifier Lifecycle</h3>
+        <ul>
+          <li><code>prompt</code> builds deterministic byte-identical classifier prefixes.</li>
+          <li><code>protocol</code> defines <code>PrefillClassifier</code>, <code>ClassificationRequest</code>, and <code>ClassificationResult</code>.</li>
+          <li><code>dispatcher</code> is the single path from prompt and LoRA resolution to backend invocation.</li>
+          <li><code>registry</code> manages LoRA lifecycle and resolution.</li>
+          <li><code>promotion</code> and <code>promotion_api</code> gate evaluation and status flips.</li>
+          <li><code>hot_load</code> and <code>hot_load_api</code> support vLLM adapter loading.</li>
+          <li><code>training_scheduler</code> and <code>training_api</code> manage retrain triggers.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="diagram">
+      <svg viewBox="0 0 1120 410" role="img" aria-label="Classifier and dialogue data flow">
+        <defs>
+          <marker id="arrow3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#625d55"></path>
+          </marker>
+          <style>
+            .cbox { fill: #fffdfa; stroke: #ddd6cc; stroke-width: 2; rx: 10; }
+            .ai3 { fill: #f7f5fb; stroke: #6e55a8; stroke-width: 2; rx: 10; }
+            .kern3 { fill: #fff8f3; stroke: #e64e20; stroke-width: 2.4; rx: 10; }
+            .data3 { fill: #f7fbf8; stroke: #13795b; stroke-width: 2; rx: 10; }
+            .tt3 { font: 700 15px Inter, sans-serif; fill: #1a1917; }
+            .ss3 { font: 500 11px Inter, sans-serif; fill: #625d55; }
+            .flow3 { stroke: #625d55; stroke-width: 2; fill: none; marker-end: url(#arrow3); }
+          </style>
+        </defs>
+        <rect class="cbox" x="30" y="52" width="190" height="74"></rect>
+        <text class="tt3" x="52" y="84">Turn Context</text>
+        <text class="ss3" x="52" y="106">message, facts, current step</text>
+
+        <rect class="ai3" x="270" y="52" width="205" height="74"></rect>
+        <text class="tt3" x="292" y="84">Prefill Prompt</text>
+        <text class="ss3" x="292" y="106">deterministic prefix</text>
+
+        <rect class="data3" x="528" y="52" width="190" height="74"></rect>
+        <text class="tt3" x="550" y="84">LoRA Registry</text>
+        <text class="ss3" x="550" y="106">resolve adapter</text>
+
+        <rect class="ai3" x="772" y="52" width="240" height="74"></rect>
+        <text class="tt3" x="794" y="84">Backend Factory</text>
+        <text class="ss3" x="794" y="106">transformers, vLLM, Vertex</text>
+
+        <rect class="kern3" x="402" y="202" width="292" height="84"></rect>
+        <text class="tt3" x="424" y="236">Kernel Decision</text>
+        <text class="ss3" x="424" y="258">guard and transition resolution</text>
+
+        <rect class="ai3" x="772" y="202" width="240" height="84"></rect>
+        <text class="tt3" x="794" y="236">Dialogue Generator</text>
+        <text class="ss3" x="794" y="258">render or generate final response</text>
+
+        <rect class="data3" x="30" y="214" width="250" height="74"></rect>
+        <text class="tt3" x="52" y="246">Training Loop</text>
+        <text class="ss3" x="52" y="268">trace export, relabel, curate, eval</text>
+
+        <path class="flow3" d="M 220 89 L 270 89"></path>
+        <path class="flow3" d="M 475 89 L 528 89"></path>
+        <path class="flow3" d="M 718 89 L 772 89"></path>
+        <path class="flow3" d="M 892 126 C 892 178 548 165 548 202"></path>
+        <path class="flow3" d="M 694 244 L 772 244"></path>
+        <path class="flow3" d="M 155 214 C 155 165 362 169 372 126"></path>
+      </svg>
+      <p class="caption">Classifier, registry, and dialogue generation are distinct planes. This is important for evaluation, debugging, and enterprise reliability.</p>
+    </div>
+
+    <div class="note">
+      <strong>Provider reality.</strong> OpenAI appears in voice plugin, sentiment, and tests, but the main live dialogue path in the current codebase is Gemini-oriented.
+      Anthropic Claude Sonnet is used by Atlas paths rather than the live customer conversation generator.
+    </div>
+  </section>
+
+  <section class="page">
+    <h2>Atlas In The Ruhu Platform</h2>
+    <div class="diagram">
+      <svg viewBox="0 0 1120 520" role="img" aria-label="Atlas operational automation architecture">
+        <defs>
+          <marker id="arrow4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#625d55"></path>
+          </marker>
+          <style>
+            .abox { fill: #fffdfa; stroke: #ddd6cc; stroke-width: 2; rx: 10; }
+            .aops { fill: #f5f9fc; stroke: #2166a5; stroke-width: 2; rx: 10; }
+            .aai { fill: #f7f5fb; stroke: #6e55a8; stroke-width: 2; rx: 10; }
+            .adata { fill: #f7fbf8; stroke: #13795b; stroke-width: 2; rx: 10; }
+            .ahot { fill: #fff8f3; stroke: #e64e20; stroke-width: 2.4; rx: 10; }
+            .at { font: 700 15px Inter, sans-serif; fill: #1a1917; }
+            .as { font: 500 11px Inter, sans-serif; fill: #625d55; }
+            .aflow { stroke: #625d55; stroke-width: 2; fill: none; marker-end: url(#arrow4); }
+          </style>
+        </defs>
+
+        <rect class="abox" x="36" y="38" width="230" height="82"></rect>
+        <text class="at" x="58" y="72">Requested Change</text>
+        <text class="as" x="58" y="96">operator prompt or system trigger</text>
+
+        <rect class="aops" x="318" y="38" width="230" height="82"></rect>
+        <text class="at" x="340" y="72">Atlas Coordinator</text>
+        <text class="as" x="340" y="96">plans work and routes phases</text>
+
+        <rect class="aai" x="602" y="38" width="230" height="82"></rect>
+        <text class="at" x="624" y="72">Model Gateway</text>
+        <text class="as" x="624" y="96">generation and analysis provider path</text>
+
+        <rect class="adata" x="876" y="38" width="210" height="82"></rect>
+        <text class="at" x="898" y="72">Atlas Store</text>
+        <text class="as" x="898" y="96">plans, deltas, runs, approvals</text>
+
+        <rect class="aops" x="36" y="194" width="230" height="96"></rect>
+        <text class="at" x="58" y="228">Docs Parser</text>
+        <text class="as" x="58" y="252">system docs and architecture intake</text>
+        <text class="as" x="58" y="272">context for generated work</text>
+
+        <rect class="ahot" x="318" y="194" width="230" height="96"></rect>
+        <text class="at" x="340" y="228">Review / Apply</text>
+        <text class="as" x="340" y="252">human review before mutation</text>
+        <text class="as" x="340" y="272">delta_payload_hash approval gate</text>
+
+        <rect class="aops" x="602" y="194" width="230" height="96"></rect>
+        <text class="at" x="624" y="228">Readiness</text>
+        <text class="as" x="624" y="252">smokes, canaries, readiness checks</text>
+        <text class="as" x="624" y="272">voice harness and operations checks</text>
+
+        <rect class="aops" x="876" y="194" width="210" height="96"></rect>
+        <text class="at" x="898" y="228">Provisioning</text>
+        <text class="as" x="898" y="252">environment and resource setup</text>
+        <text class="as" x="898" y="272">operational bootstrap flows</text>
+
+        <rect class="abox" x="318" y="362" width="230" height="84"></rect>
+        <text class="at" x="340" y="396">Repository / Runtime</text>
+        <text class="as" x="340" y="420">approved changes land here</text>
+
+        <rect class="abox" x="602" y="362" width="230" height="84"></rect>
+        <text class="at" x="624" y="396">Audit Trail</text>
+        <text class="as" x="624" y="420">traceable operational history</text>
+
+        <path class="aflow" d="M 266 79 L 318 79"></path>
+        <path class="aflow" d="M 548 79 L 602 79"></path>
+        <path class="aflow" d="M 832 79 L 876 79"></path>
+        <path class="aflow" d="M 433 120 L 433 194"></path>
+        <path class="aflow" d="M 151 120 C 151 160 433 154 433 194"></path>
+        <path class="aflow" d="M 548 242 L 602 242"></path>
+        <path class="aflow" d="M 832 242 L 876 242"></path>
+        <path class="aflow" d="M 433 290 L 433 362"></path>
+        <path class="aflow" d="M 717 290 L 717 362"></path>
+      </svg>
+      <p class="caption">This platform reference page shows where Atlas sits inside Ruhu. The detailed Google competition Atlas architecture appears first in the packet.</p>
+    </div>
+
+    <div class="section">
+      <h3>Platform Atlas Module Inventory</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Module Family</th>
+            <th>Examples</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>API and protocol</td>
+            <td><code>atlas_api.py</code>, <code>atlas_protocol.py</code></td>
+            <td>HTTP/API boundary and structured protocol objects for Atlas operations.</td>
+          </tr>
+          <tr>
+            <td>Coordination and storage</td>
+            <td><code>atlas_coordinator.py</code>, <code>atlas_store.py</code></td>
+            <td>Run coordination, persisted plans, deltas, approvals, and operational state.</td>
+          </tr>
+          <tr>
+            <td>Generation and context</td>
+            <td><code>atlas_model_gateway.py</code>, <code>atlas_docs_parser.py</code></td>
+            <td>Provider access and repository/document context extraction.</td>
+          </tr>
+          <tr>
+            <td>Readiness and voice</td>
+            <td><code>atlas_readiness*</code>, <code>atlas_voice_harness.py</code>, <code>atlas_mcp_tools.py</code></td>
+            <td>Readiness checks, canary-style validation, MCP tool schemas, and voice-oriented verification.</td>
+          </tr>
+          <tr>
+            <td>MCP and ADK boundary</td>
+            <td><code>atlas_readiness_mcp.py</code>, <code>atlas_mcp_server.py</code>, <code>atlas_google_adk.py</code>, <code>atlas_adk_runner.py</code></td>
+            <td>Structured platform tools, JSON-RPC MCP server, Google ADK bridge, and bounded tool-plan execution.</td>
+          </tr>
+          <tr>
+            <td>Provisioning and runners</td>
+            <td><code>atlas_provisioning.py</code></td>
+            <td>Environment setup and operational bootstrap support.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warning">
+      <strong>Stale reference removed.</strong> The current repository does not contain <code>atlas_apply.py</code>.
+      Apply/review behavior should be documented through the actual Atlas API, coordinator, store, and approval hashing path.
+    </div>
+  </section>
+
+  <section class="page">
+    <h2>Frontend Application</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Stack</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Layer</th>
+              <th>Current Technology</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Framework</td><td>React <code>^18.2.0</code></td></tr>
+            <tr><td>Language</td><td>TypeScript <code>^5.9.3</code></td></tr>
+            <tr><td>Build</td><td>Vite <code>^8.0.14</code></td></tr>
+            <tr><td>Routing</td><td>React Router DOM 6.x</td></tr>
+            <tr><td>Server state</td><td>TanStack React Query</td></tr>
+            <tr><td>Client state</td><td>Zustand</td></tr>
+            <tr><td>Styling</td><td>Tailwind CSS, Radix UI, lucide-react</td></tr>
+            <tr><td>Realtime voice</td><td><code>livekit-client</code> package lock resolves to 2.16.1</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Frontend Shape</h3>
+        <ul>
+          <li><code>frontend/src/main.tsx</code> boots the app.</li>
+          <li><code>frontend/src/App.tsx</code> defines route groups, auth gates, and lazy pages.</li>
+          <li><code>frontend/src/features/agent-canvas</code> contains the core authoring surface.</li>
+          <li><code>frontend/src/api/client.ts</code> provides bearer token, CSRF, and request behavior.</li>
+          <li>Feature folders are self-contained; shared UI lives under <code>components</code>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Current Route Inventory</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Group</th>
+            <th>Routes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Public</td>
+            <td><code>/login</code>, <code>/signup</code>, <code>/register</code> redirect, <code>/forgot-password</code> redirect, <code>/auth/callback</code>, <code>/auth/magic-link</code>, <code>/terms</code>, <code>/privacy</code>, <code>/accept-invitation</code>, <code>/confirm-action</code>, <code>/integrations/oauth/callback</code></td>
+          </tr>
+          <tr>
+            <td>Core protected</td>
+            <td><code>/dashboard</code>, <code>/agents</code>, <code>/agents/:id/canvas</code>, <code>/agents/:id/setup</code>, <code>/agents/:id/widget</code>, <code>/agents/:id/analysis</code>, <code>/calls</code></td>
+          </tr>
+          <tr>
+            <td>Operations</td>
+            <td><code>/browser-tasks</code>, <code>/operations/phone-numbers</code>, <code>/knowledge-base</code>, <code>/tickets</code>, <code>/analytics</code>, <code>/insights</code>, <code>/audit</code></td>
+          </tr>
+          <tr>
+            <td>Workflow and evaluation</td>
+            <td><code>/intents-tags</code>, <code>/kpi-goals</code>, <code>/kpi-goals/:goalId</code>, <code>/journeys</code>, <code>/journeys/:journeyId</code>, <code>/rules</code>, <code>/tools</code>, <code>/evaluation</code>, <code>/testing</code> redirect</td>
+          </tr>
+          <tr>
+            <td>Settings and admin</td>
+            <td><code>/settings</code>, <code>/settings/:tab</code>, <code>/pricing</code>, <code>/settings/billing</code>, <code>/templates</code>, <code>/staff</code>, <code>/staff/:section</code>, <code>/</code> redirect to dashboard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <section class="page">
+    <h2>Data, Templates, And Integration Surface</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Persistence</h3>
+        <ul>
+          <li>SQLAlchemy 2.x and Psycopg 3.x are the production database stack.</li>
+          <li>Store implementations cover conversations, traces, agents, audit, and related operational records.</li>
+          <li>Alembic migrations are active and currently number 91 migration files.</li>
+          <li>In-memory stores remain useful for development and tests.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>External Integrations</h3>
+        <ul>
+          <li>Voice and realtime: LiveKit SDK, LiveKit Agents, voice plugins.</li>
+          <li>Telephony: Telnyx and Africa's Talking provider paths.</li>
+          <li>Ticketing: Zendesk, Jira, Freshdesk, Linear.</li>
+          <li>Billing: Stripe subscription and usage management.</li>
+          <li>Auth: magic link, OAuth, SSO, JWT runtime auth context.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>System Templates</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Template File</th>
+            <th>Likely Wedge</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>ecommerce-returns-refunds.json</code></td><td>Commerce support, returns, refunds, order operations.</td></tr>
+          <tr><td><code>healthcare-triage-scheduling.json</code></td><td>Healthcare intake, triage, booking, care routing.</td></tr>
+          <tr><td><code>isp-customer-support.json</code></td><td>Connectivity support and technical troubleshooting.</td></tr>
+          <tr><td><code>melonpay-support-demo.json</code></td><td>Fintech support and account/payment operations.</td></tr>
+          <tr><td><code>nafmfb-financial-support-assistant-demo.json</code></td><td>Financial institution support, loan/account workflows.</td></tr>
+          <tr><td><code>sales-agent.json</code></td><td>Lead qualification and revenue workflow automation.</td></tr>
+          <tr><td><code>telecom-billing-disputes-payment-plans.json</code></td><td>Telecom billing, disputes, collections, and payment plans.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>General Platform</h3>
+        <p>Agent documents, rules, tools, facts, journeys, and channels can model many enterprise workflows beyond customer service.</p>
+      </div>
+      <div class="card">
+        <h3>Regional Integration Advantage</h3>
+        <p>Regional value should come from carriers, payment workflows, compliance requirements, local templates, and operational relationships.</p>
+      </div>
+      <div class="card">
+        <h3>Enterprise Wedge</h3>
+        <p>Sell outcomes that move money or reduce operational load: onboarding, collections, sales follow-up, claims, field service, and compliance workflows.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page">
+    <h2>Deployment And Testing</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Competition Deployment Path</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Role</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Container image</td>
+              <td><code>infra/docker/Dockerfile</code> packages the backend runtime for deployment.</td>
+              <td class="status-ok">Present</td>
+            </tr>
+            <tr>
+              <td>Google Cloud</td>
+              <td><code>infra/gcp</code> provides the Google-oriented infrastructure path for challenge hosting.</td>
+              <td class="status-ok">Present</td>
+            </tr>
+            <tr>
+              <td>Google AI services</td>
+              <td>Gemini, ADK, Google Speech-to-Text, and Google Text-to-Speech power the Atlas readiness loop.</td>
+              <td class="status-ok">Present</td>
+            </tr>
+            <tr>
+              <td>Evidence storage</td>
+              <td>Conversation traces, readiness reports, provider metadata, and audit records are persisted for review.</td>
+              <td class="status-ok">Present</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Test And Smoke Surface</h3>
+        <ul>
+          <li>Backend: <code>make test</code> and direct <code>pytest</code> paths.</li>
+          <li>Frontend: <code>npm run build</code>, <code>npm run lint</code>, <code>npm run test</code>, Playwright e2e.</li>
+          <li>Realtime smoke: widget chat, widget voice, and LiveKit smoke targets.</li>
+          <li>Auth UI/browser e2e and ticketing verification targets exist in the project command set.</li>
+          <li>Atlas readiness smoke exists as a dedicated command target.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Competition architecture summary.</strong> Ruhu combines deterministic runtime control,
+      typed workflow authoring, channel adapters, tools, traces, and Atlas readiness evaluation so
+      enterprises can deploy customer-facing agents with auditable evidence.
+    </div>
+  </section>
+</body>
+</html>

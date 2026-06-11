@@ -1,0 +1,1751 @@
+{
+  "template_id": "gtpl_melonpay_support",
+  "name": "Melon (MelonPay) Support — Demo",
+  "slug": "melonpay-support-demo",
+  "description": "Demo support agent for Melon (melonpay.com) — a global business banking and cross-border payments platform. Handles three of Melon's highest-volume customer interactions: international transfer status (\"where is my money?\"), KYC document re-upload after rejection, and card freeze with safety confirmation. Includes phone+OTP authentication, AML escalation as a hard handoff, and explicit fallbacks for failure paths.\n\nFlow: Entry → Intent triage → Phone+OTP auth → Router → [Transfer status lookup → delivered / in-flight / held-on-KYC / held-on-AML / failed] | [KYC: fetch pending docs → explain → request upload → submit → accepted/rejected loop] | [Card: collect last 4 → explicit confirm → freeze].\n\nAll tool calls use deterministic mock data baked into action_config — no integrations required. Pre-staged transfer references for the demo: MLN-DELIVERED, MLN-INFLIGHT, MLN-KYC, MLN-AML, MLN-FAIL.\n\nFacts collected: intent_choice, user_phone, otp_code, transfer_reference, transfer_status, transfer_amount, transfer_rail, transfer_eta, kyc_doc_type, kyc_rejection_reason, kyc_doc_url, card_last4, verified.",
+  "category": "fintech",
+  "tags": [
+    "fintech",
+    "payments",
+    "cross-border",
+    "kyc",
+    "card-management",
+    "demo",
+    "melonpay",
+    "voice",
+    "chat",
+    "whatsapp",
+    "inbound"
+  ],
+  "default_agent_settings": {
+    "system_prompt": "You are Melon's customer support assistant. Melon is a global business banking and cross-border payments platform that helps businesses accept payments, hold multi-currency accounts, issue virtual and metal cards, and move money internationally via SWIFT, SEPA, ACH, and 50+ local rails. You help customers with three things: checking the status of an international transfer, completing KYC document re-uploads after rejection, and freezing or unfreezing cards. Always verify the customer's identity with phone + OTP before taking any account action. Treat anything that sounds like fraud, AML, sanctions, or suspicious activity as an immediate human handoff — never improvise on compliance. Be concise — many customers reach you over voice or WhatsApp. Use deterministic, accurate language about rails and ETAs (SEPA: same day; SWIFT: 1–4 business days; ACH: 1–2 business days). Never guess. If a tool call returns a status you don't recognize, say you'll connect a human.",
+    "agent_type": "voice",
+    "llm_config": {
+      "provider": "vertex",
+      "model": "gemini-3-flash-preview",
+      "temperature": 1.0,
+      "classifier": {
+        "strategy": "main_llm"
+      }
+    },
+    "voice_config": {
+      "voice_id": "en-US-Chirp3-HD-Kore"
+    }
+  },
+  "is_featured": false,
+  "required_tools": [],
+  "agent_document": {
+    "version": "3.0",
+    "start_scenario_id": "main",
+    "scenarios": [
+      {
+        "id": "main",
+        "name": "Melon Support — Demo",
+        "start_step_id": "entry",
+        "steps": [
+          {
+            "id": "entry",
+            "name": "Greeting",
+            "transitions": [
+              {
+                "id": "t_entry_transfer",
+                "when": {
+                  "kind": "outcome",
+                  "event": "transfer_status",
+                  "description": "The customer is asking about an international transfer, payment, payout, money sent or received, or wants to know where their money is."
+                },
+                "to_step_id": "set_intent_transfer",
+                "label": "They want to check on an international transfer.",
+                "priority": 10
+              },
+              {
+                "id": "t_entry_kyc",
+                "when": {
+                  "kind": "outcome",
+                  "event": "kyc_help",
+                  "description": "The customer is asking about KYC, identity verification, document upload, account verification, proof of address, ID upload, or a rejected document."
+                },
+                "to_step_id": "set_intent_kyc",
+                "label": "They need help with KYC documents.",
+                "priority": 10
+              },
+              {
+                "id": "t_entry_card",
+                "when": {
+                  "kind": "outcome",
+                  "event": "card_freeze",
+                  "description": "The customer wants to freeze, lock, disable, suspend, or block a card. Includes 'lost my card' and 'someone has my card' if they explicitly want it frozen."
+                },
+                "to_step_id": "set_intent_card",
+                "label": "They want to freeze a card.",
+                "priority": 10
+              },
+              {
+                "id": "t_entry_fraud",
+                "when": {
+                  "kind": "outcome",
+                  "event": "fraud_or_aml",
+                  "description": "The customer reports fraud, an unauthorized transaction, suspicious activity, money laundering, or someone using their account without permission. Treat as compliance-sensitive."
+                },
+                "to_step_id": "aml_handoff",
+                "label": "Anything fraud / AML / sanctions goes straight to a human — agent never improvises on compliance.",
+                "priority": 5
+              },
+              {
+                "id": "t_entry_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "The customer is ending the conversation politely with no further request."
+                },
+                "to_step_id": "closed",
+                "label": "Customer is wrapping up.",
+                "priority": 20
+              },
+              {
+                "id": "t_entry_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "entry",
+                "label": "Still figuring out what they need.",
+                "priority": 100
+              }
+            ],
+            "description": "Open the conversation, listen for what the customer needs.",
+            "say": "Hi, you've reached Melon support. I can help check an international transfer, complete a KYC document re-upload, or freeze a card. What can I help you with today?",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "set_intent_transfer",
+            "name": "Set Intent: Transfer",
+            "transitions": [
+              {
+                "id": "t_set_intent_transfer_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_recorded"
+                },
+                "to_step_id": "auth_collect_phone",
+                "label": "Routing decision saved — proceed to authentication.",
+                "priority": 5
+              },
+              {
+                "id": "t_set_intent_transfer_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "auth_collect_phone",
+                "label": "Fallback: proceed to auth anyway.",
+                "priority": 100
+              }
+            ],
+            "description": "Record the routing decision so we know where to send the customer after auth.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "intent_choice = \"transfer\"\nresult = {\"status\": \"recorded\", \"intent_choice\": \"transfer\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": false,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "set_intent_kyc",
+            "name": "Set Intent: KYC",
+            "transitions": [
+              {
+                "id": "t_set_intent_kyc_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_recorded"
+                },
+                "to_step_id": "auth_collect_phone",
+                "label": "Routing decision saved — proceed to authentication.",
+                "priority": 5
+              },
+              {
+                "id": "t_set_intent_kyc_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "auth_collect_phone",
+                "label": "Fallback: proceed to auth anyway.",
+                "priority": 100
+              }
+            ],
+            "description": "Record the routing decision so we know where to send the customer after auth.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "intent_choice = \"kyc\"\nresult = {\"status\": \"recorded\", \"intent_choice\": \"kyc\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": false,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "set_intent_card",
+            "name": "Set Intent: Card",
+            "transitions": [
+              {
+                "id": "t_set_intent_card_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_recorded"
+                },
+                "to_step_id": "auth_collect_phone",
+                "label": "Routing decision saved — proceed to authentication.",
+                "priority": 5
+              },
+              {
+                "id": "t_set_intent_card_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "auth_collect_phone",
+                "label": "Fallback: proceed to auth anyway.",
+                "priority": 100
+              }
+            ],
+            "description": "Record the routing decision so we know where to send the customer after auth.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "intent_choice = \"card\"\nresult = {\"status\": \"recorded\", \"intent_choice\": \"card\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": false,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "auth_collect_phone",
+            "name": "Auth: Collect Phone",
+            "transitions": [
+              {
+                "id": "t_auth_phone_ready",
+                "when": {
+                  "kind": "fact_present",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "fact_name": "user_phone"
+                },
+                "to_step_id": "auth_send_otp",
+                "label": "We have the phone number — send the OTP.",
+                "priority": 5
+              },
+              {
+                "id": "t_auth_phone_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "auth_collect_phone",
+                "label": "Still need the phone number.",
+                "priority": 100
+              }
+            ],
+            "description": "Ask the customer for the phone number on file before sending an OTP.",
+            "say": "For your security, please share the phone number on your Melon account so I can send a one-time code.",
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "user_phone",
+                "purpose": "to send a one-time passcode to the verified phone number on the Melon account"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "auth_send_otp",
+            "name": "Auth: Send OTP",
+            "transitions": [
+              {
+                "id": "t_otp_sent",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_sent"
+                },
+                "to_step_id": "auth_verify_otp",
+                "label": "OTP sent — collect the code.",
+                "priority": 5
+              },
+              {
+                "id": "t_otp_invalid_phone",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_invalid_phone"
+                },
+                "to_step_id": "auth_collect_phone",
+                "label": "Phone number was malformed — re-prompt.",
+                "priority": 10
+              },
+              {
+                "id": "t_otp_send_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "human_handoff",
+                "label": "Anything else — escalate to a human agent.",
+                "priority": 100
+              }
+            ],
+            "description": "Mock send OTP. In production this would call melon.identity.send_otp.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "phone = vars.get(\"user_phone\") or \"\"\nphone_str = str(phone).strip()\nif phone_str and len(phone_str) >= 7:\n    last4 = phone_str[-4:]\n    result = {\"status\": \"sent\", \"sent_to_last4\": last4, \"message\": \"I've sent a 4-digit code to the phone ending in \" + last4 + \". What's the code?\"}\nelse:\n    result = {\"status\": \"invalid_phone\", \"error\": \"Phone number looks malformed.\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 1,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "auth_verify_otp",
+            "name": "Auth: Collect OTP",
+            "transitions": [
+              {
+                "id": "t_otp_code_ready",
+                "when": {
+                  "kind": "fact_present",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "fact_name": "otp_code"
+                },
+                "to_step_id": "auth_check",
+                "label": "We have the OTP — verify it.",
+                "priority": 5
+              },
+              {
+                "id": "t_otp_code_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "auth_verify_otp",
+                "label": "Still waiting for the code.",
+                "priority": 100
+              }
+            ],
+            "description": "Ask the customer to read back the OTP code.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "otp_code",
+                "purpose": "to verify the customer is the legitimate account holder before any account-specific action"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "auth_check",
+            "name": "Auth: Verify OTP",
+            "transitions": [
+              {
+                "id": "t_auth_verified",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_verified"
+                },
+                "to_step_id": "route_after_auth",
+                "label": "Customer verified — route them to the right sub-flow.",
+                "priority": 5
+              },
+              {
+                "id": "t_auth_locked",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_locked"
+                },
+                "to_step_id": "human_handoff",
+                "label": "Account locked — escalate to human (compliance-sensitive).",
+                "priority": 5
+              },
+              {
+                "id": "t_auth_invalid",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_invalid"
+                },
+                "to_step_id": "human_handoff",
+                "label": "Demo simplification: invalid OTP escalates immediately. Production would loop with attempt counter.",
+                "priority": 10
+              },
+              {
+                "id": "t_auth_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "human_handoff",
+                "label": "Unexpected outcome — escalate.",
+                "priority": 100
+              }
+            ],
+            "description": "Mock OTP verification. In production this would call melon.identity.verify_otp. Demo behavior: any 4-digit numeric code passes; '0000' triggers human handoff (simulating account lock).",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "otp_raw = vars.get(\"otp_code\") or \"\"\notp = str(otp_raw).strip()\nif otp == \"0000\":\n    result = {\"status\": \"locked\", \"message\": \"This account is locked for security. I'll connect you to a specialist now.\"}\nelif len(otp) == 4 and otp.isdigit():\n    verified = True\n    result = {\"status\": \"verified\", \"verified\": True, \"message\": \"You're verified.\"}\nelse:\n    result = {\"status\": \"invalid\", \"message\": \"That code didn't look right.\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 1,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "route_after_auth",
+            "name": "Route After Auth",
+            "transitions": [
+              {
+                "id": "t_route_transfer",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_to_transfer"
+                },
+                "to_step_id": "transfer_collect_ref",
+                "label": "Customer originally asked about a transfer.",
+                "priority": 5
+              },
+              {
+                "id": "t_route_kyc",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_to_kyc"
+                },
+                "to_step_id": "kyc_fetch_pending",
+                "label": "Customer originally asked about KYC.",
+                "priority": 5
+              },
+              {
+                "id": "t_route_card",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_to_card"
+                },
+                "to_step_id": "card_collect_last4",
+                "label": "Customer originally asked about card freeze.",
+                "priority": 5
+              },
+              {
+                "id": "t_route_unknown",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "entry",
+                "label": "Unknown intent — re-triage.",
+                "priority": 100
+              }
+            ],
+            "description": "Read the recorded intent_choice fact and dispatch to the right sub-flow.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "choice = str(vars.get(\"intent_choice\") or \"\").strip().lower()\nif choice == \"transfer\":\n    result = {\"status\": \"to_transfer\"}\nelif choice == \"kyc\":\n    result = {\"status\": \"to_kyc\"}\nelif choice == \"card\":\n    result = {\"status\": \"to_card\"}\nelse:\n    result = {\"status\": \"to_clarify\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": false,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "transfer_collect_ref",
+            "name": "Transfer: Collect Reference",
+            "transitions": [
+              {
+                "id": "t_have_ref",
+                "when": {
+                  "kind": "fact_present",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "fact_name": "transfer_reference"
+                },
+                "to_step_id": "transfer_lookup",
+                "label": "We have the reference — look it up.",
+                "priority": 5
+              },
+              {
+                "id": "t_ref_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "transfer_collect_ref",
+                "label": "Still need the reference.",
+                "priority": 100
+              }
+            ],
+            "description": "Ask for the Melon transfer reference (e.g., MLN-XXXXXX) or SWIFT/SEPA reference.",
+            "say": "Sure — what's the transfer reference? It usually starts with MLN- followed by a few characters, or you can give me the SWIFT or SEPA reference.",
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "transfer_reference",
+                "purpose": "to look up the specific transfer in Melon's payments system"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "transfer_lookup",
+            "name": "Transfer: Lookup Status",
+            "transitions": [
+              {
+                "id": "t_xfer_delivered",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_delivered"
+                },
+                "to_step_id": "transfer_delivered",
+                "label": "Transfer was delivered — close cleanly.",
+                "priority": 5
+              },
+              {
+                "id": "t_xfer_in_flight",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_in_flight"
+                },
+                "to_step_id": "transfer_in_flight",
+                "label": "Transfer is in flight — explain ETA.",
+                "priority": 5
+              },
+              {
+                "id": "t_xfer_held_kyc",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_held_kyc"
+                },
+                "to_step_id": "kyc_explain_what_needed",
+                "label": "Transfer held on KYC — bridge into the KYC re-upload sub-flow.",
+                "priority": 5
+              },
+              {
+                "id": "t_xfer_held_aml",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_held_aml"
+                },
+                "to_step_id": "aml_handoff",
+                "label": "Transfer held on AML — hard handoff to compliance, never improvise.",
+                "priority": 5
+              },
+              {
+                "id": "t_xfer_failed",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_failed"
+                },
+                "to_step_id": "transfer_failed",
+                "label": "Transfer failed at the rail — explain and offer next step.",
+                "priority": 5
+              },
+              {
+                "id": "t_xfer_not_found",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_not_found"
+                },
+                "to_step_id": "transfer_collect_ref",
+                "label": "Reference didn't match — re-prompt.",
+                "priority": 10
+              },
+              {
+                "id": "t_xfer_lookup_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "human_handoff",
+                "label": "Unexpected outcome — escalate.",
+                "priority": 100
+              }
+            ],
+            "description": "Mock GET /payouts/{reference}. Pre-staged demo references: MLN-DELIVERED (delivered), MLN-INFLIGHT (in-flight, SWIFT, ETA 2026-04-29), MLN-KYC (held on KYC, missing proof_of_address), MLN-AML (held on AML — escalates), MLN-FAIL (failed, invalid IBAN). Anything else returns not_found.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "ref_raw = vars.get(\"transfer_reference\") or \"\"\nref = str(ref_raw).strip().upper()\nfixtures = {\n    \"MLN-DELIVERED\": {\"status\": \"delivered\", \"transfer_status\": \"delivered\", \"transfer_rail\": \"SEPA\", \"transfer_amount\": \"4500 EUR\", \"transfer_eta\": \"delivered 2026-04-25\", \"message\": \"Reference \" + ref + \" was delivered on April 25, 2026 via SEPA — 4,500 EUR settled to the recipient's IBAN.\"},\n    \"MLN-INFLIGHT\": {\"status\": \"in_flight\", \"transfer_status\": \"in_flight\", \"transfer_rail\": \"SWIFT\", \"transfer_amount\": \"12000 USD\", \"transfer_eta\": \"2026-04-29\", \"message\": \"Reference \" + ref + \" is in flight via SWIFT — 12,000 USD, expected to land on April 29, 2026 (1 to 4 business days for SWIFT is normal).\"},\n    \"MLN-KYC\": {\"status\": \"held_kyc\", \"transfer_status\": \"held_kyc\", \"transfer_rail\": \"SEPA\", \"transfer_amount\": \"4500 EUR\", \"kyc_doc_type\": \"proof_of_address\", \"kyc_rejection_reason\": \"Document on file is older than 90 days; please upload a recent utility bill or bank statement.\", \"message\": \"This transfer is paused while we re-verify your proof of address. Let me walk you through the re-upload now.\"},\n    \"MLN-AML\": {\"status\": \"held_aml\", \"transfer_status\": \"held_aml\", \"transfer_rail\": \"SWIFT\", \"transfer_amount\": \"25000 USD\", \"message\": \"This transfer is held under our compliance review. I'll connect you to our compliance team — I cannot release it from this conversation.\"},\n    \"MLN-FAIL\": {\"status\": \"failed\", \"transfer_status\": \"failed\", \"transfer_rail\": \"ACH\", \"transfer_amount\": \"800 USD\", \"transfer_eta\": \"refunded\", \"fail_reason\": \"invalid_beneficiary_iban\", \"message\": \"Reference \" + ref + \" failed at the ACH network — the recipient's IBAN was invalid. The funds have been refunded to your Melon account.\"}\n}\nif ref in fixtures:\n    result = fixtures[ref]\n    result[\"transfer_reference\"] = ref\nelse:\n    result = {\"status\": \"not_found\", \"transfer_reference\": ref, \"message\": \"I couldn't find a transfer with reference \" + ref + \". Could you double-check the reference?\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 3,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "transfer_delivered",
+            "name": "Transfer: Delivered",
+            "transitions": [],
+            "description": "Confirm delivery and close.",
+            "say": "Glad to confirm — your transfer has settled with the recipient. Anything else I can help with?",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "resolved",
+              "summary": "Confirmed transfer was delivered."
+            }
+          },
+          {
+            "id": "transfer_in_flight",
+            "name": "Transfer: In Flight",
+            "transitions": [],
+            "description": "Explain rail-specific ETA and close.",
+            "say": "Your transfer is moving on the network. SWIFT typically takes 1 to 4 business days; SEPA usually settles same-day; ACH is 1 to 2 business days. I've shared the expected delivery date in my last message. Anything else I can help with?",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 3,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "resolved",
+              "summary": "Explained transfer in-flight ETA."
+            }
+          },
+          {
+            "id": "transfer_failed",
+            "name": "Transfer: Failed",
+            "transitions": [],
+            "description": "Explain failure reason and that funds are refunded.",
+            "say": "I've shared why the transfer failed and confirmed the funds were refunded to your Melon account. You can retry from your dashboard with the corrected details. Anything else I can help with?",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 3,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "resolved",
+              "summary": "Explained transfer failure and refund."
+            }
+          },
+          {
+            "id": "kyc_fetch_pending",
+            "name": "KYC: Fetch Pending Docs",
+            "transitions": [
+              {
+                "id": "t_kyc_doc_required",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_doc_required"
+                },
+                "to_step_id": "kyc_explain_what_needed",
+                "label": "There's a doc to upload — explain it to the customer.",
+                "priority": 5
+              },
+              {
+                "id": "t_kyc_none_pending",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_none_pending"
+                },
+                "to_step_id": "kyc_none_pending",
+                "label": "Nothing pending — confirm and close.",
+                "priority": 5
+              },
+              {
+                "id": "t_kyc_fetch_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "human_handoff",
+                "label": "Unexpected outcome — escalate.",
+                "priority": 100
+              }
+            ],
+            "description": "Mock GET /kyc/pending. Returns the most recently rejected/pending document. Demo behavior: always returns proof_of_address as pending unless this step was reached from transfer_lookup with an existing kyc_doc_type fact already populated.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "existing = vars.get(\"kyc_doc_type\")\nif existing:\n    doc_type = str(existing)\n    reason = str(vars.get(\"kyc_rejection_reason\") or \"\")\nelse:\n    doc_type = \"proof_of_address\"\n    reason = \"The address document on file is older than 90 days; please upload a recent utility bill or bank statement (within the last 90 days).\"\nresult = {\"status\": \"doc_required\", \"kyc_doc_type\": doc_type, \"kyc_rejection_reason\": reason, \"message\": \"We need a fresh \" + doc_type.replace(\"_\", \" \") + \" — \" + reason}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "kyc_explain_what_needed",
+            "name": "KYC: Explain Required Doc",
+            "transitions": [
+              {
+                "id": "t_kyc_explain_continue",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "kyc_request_upload",
+                "label": "Now ask for the upload.",
+                "priority": 100
+              }
+            ],
+            "description": "Tell the customer exactly what document they need and why it was rejected.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Tell the customer which KYC document is needed and why the previous one was rejected. Use the kyc_doc_type and kyc_rejection_reason facts. Then ask them to share a fresh upload link or photo.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 3,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "kyc_request_upload",
+            "name": "KYC: Request Upload",
+            "transitions": [
+              {
+                "id": "t_kyc_upload_ready",
+                "when": {
+                  "kind": "fact_present",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "fact_name": "kyc_doc_url"
+                },
+                "to_step_id": "kyc_submit_upload",
+                "label": "Customer shared a URL — submit it.",
+                "priority": 5
+              },
+              {
+                "id": "t_kyc_upload_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "kyc_request_upload",
+                "label": "Still waiting for the upload.",
+                "priority": 100
+              }
+            ],
+            "description": "Ask the customer to share a URL or attachment for the new document.",
+            "say": "Could you share the document now? Either send a photo of the document directly, or paste a secure link (Dropbox, Google Drive, or our upload portal).",
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "kyc_doc_url",
+                "purpose": "to submit the customer's KYC document for re-verification"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "kyc_submit_upload",
+            "name": "KYC: Submit Upload",
+            "transitions": [
+              {
+                "id": "t_kyc_accepted",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_accepted"
+                },
+                "to_step_id": "kyc_accepted",
+                "label": "Document accepted — confirm and close.",
+                "priority": 5
+              },
+              {
+                "id": "t_kyc_rejected",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_rejected"
+                },
+                "to_step_id": "kyc_rejected_retry",
+                "label": "Rejected — explain why and ask for a fresh upload.",
+                "priority": 10
+              },
+              {
+                "id": "t_kyc_submit_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "human_handoff",
+                "label": "Unexpected outcome — escalate.",
+                "priority": 100
+              }
+            ],
+            "description": "Mock POST /kyc/uploads. Demo behavior: URLs containing 'blurry' or 'old' are rejected; everything else is accepted with a 24-hour ETA.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "url = str(vars.get(\"kyc_doc_url\") or \"\").strip().lower()\nif not url:\n    result = {\"status\": \"error\", \"message\": \"I didn't receive a document to submit.\"}\nelif \"blurry\" in url or \"old\" in url:\n    result = {\"status\": \"rejected\", \"kyc_rejection_reason\": \"The document was unreadable or out of date. Please retake the photo in good light or use a more recent document.\", \"message\": \"This one didn't pass our automatic check — the document was unreadable or out of date.\"}\nelse:\n    result = {\"status\": \"accepted\", \"kyc_job_id\": \"kyc_job_demo_001\", \"message\": \"Got it — your document is in our review queue. You'll get an update within 24 hours, and once it's approved your held transfer will release automatically.\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 3,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "kyc_accepted",
+            "name": "KYC: Accepted",
+            "transitions": [],
+            "description": "Confirm and close.",
+            "say": "Your document is in the review queue. You'll hear back within 24 hours, and any held transfers will release automatically once it's approved. Anything else?",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "resolved",
+              "summary": "KYC document submitted and queued for review."
+            }
+          },
+          {
+            "id": "kyc_none_pending",
+            "name": "KYC: Nothing Pending",
+            "transitions": [],
+            "description": "Reassure the customer that nothing's needed.",
+            "say": "Good news — there's nothing pending on your KYC. Your account is fully verified. Anything else I can help with?",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "resolved",
+              "summary": "Confirmed no KYC documents are pending."
+            }
+          },
+          {
+            "id": "kyc_rejected_retry",
+            "name": "KYC: Rejected, Re-Upload",
+            "transitions": [
+              {
+                "id": "t_kyc_retry",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "kyc_request_upload",
+                "label": "Loop back to request a fresh upload.",
+                "priority": 100
+              }
+            ],
+            "description": "Explain rejection and ask for a fresh upload.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Tell the customer the document was rejected (use the kyc_rejection_reason fact for the specific reason). Apologize briefly and ask them to send a fresh, clearly readable document.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 3,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "card_collect_last4",
+            "name": "Card: Collect Last 4",
+            "transitions": [
+              {
+                "id": "t_card_have_last4",
+                "when": {
+                  "kind": "fact_present",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "fact_name": "card_last4"
+                },
+                "to_step_id": "card_confirm_action",
+                "label": "We have the last 4 — confirm before freezing.",
+                "priority": 5
+              },
+              {
+                "id": "t_card_last4_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "card_collect_last4",
+                "label": "Still waiting for last 4.",
+                "priority": 100
+              }
+            ],
+            "description": "Ask the customer for the last 4 digits of the card they want to freeze.",
+            "say": "Of course — which card? Just give me the last 4 digits.",
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "card_last4",
+                "purpose": "to identify which card to freeze"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 1,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "card_confirm_action",
+            "name": "Card: Confirm Freeze",
+            "transitions": [
+              {
+                "id": "t_card_confirm",
+                "when": {
+                  "kind": "outcome",
+                  "event": "confirm",
+                  "description": "The customer confirms the action — yes, ok, go ahead, do it, please freeze it."
+                },
+                "to_step_id": "card_freeze",
+                "label": "Customer confirmed — freeze the card.",
+                "priority": 5
+              },
+              {
+                "id": "t_card_cancel",
+                "when": {
+                  "kind": "outcome",
+                  "event": "cancel",
+                  "description": "The customer cancels or declines — no, wait, never mind, cancel, don't do it."
+                },
+                "to_step_id": "closed",
+                "label": "Customer cancelled — close cleanly without acting.",
+                "priority": 5
+              },
+              {
+                "id": "t_card_confirm_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "card_confirm_action",
+                "label": "Still waiting for an explicit yes or no.",
+                "priority": 100
+              }
+            ],
+            "description": "Hard confirmation step before any destructive card action.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Read back the card by its last 4 digits and ask the customer to explicitly confirm freezing it. Make clear this immediately blocks the card. Wait for an explicit yes or no.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "card_freeze",
+            "name": "Card: Freeze",
+            "transitions": [
+              {
+                "id": "t_card_frozen_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "action_code_frozen"
+                },
+                "to_step_id": "card_frozen",
+                "label": "Card frozen — close.",
+                "priority": 5
+              },
+              {
+                "id": "t_card_freeze_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "human_handoff",
+                "label": "Unexpected outcome — escalate.",
+                "priority": 100
+              }
+            ],
+            "description": "Mock POST /cards/{card_id}/freeze. Always succeeds in the demo.",
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "last4 = str(vars.get(\"card_last4\") or \"\").strip()\nif last4:\n    result = {\"status\": \"frozen\", \"card_last4\": last4, \"message\": \"Done — the card ending \" + last4 + \" is frozen. You can unfreeze it anytime from your Melon dashboard.\"}\nelse:\n    result = {\"status\": \"error\", \"message\": \"I lost track of which card to freeze.\"}\n",
+              "callable_functions_code": "",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 5.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "card_frozen",
+            "name": "Card: Frozen",
+            "transitions": [],
+            "description": "Confirm and close.",
+            "say": "Your card is frozen. Anything else I can help with?",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 1,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "resolved",
+              "summary": "Card frozen successfully."
+            }
+          },
+          {
+            "id": "aml_handoff",
+            "name": "Compliance Handoff (AML / Fraud)",
+            "transitions": [],
+            "description": "Hard handoff for any fraud, AML, sanctions, or compliance-sensitive case. The agent never improvises on compliance.",
+            "say": "I'm going to connect you to our compliance specialist now — they can help with this directly. Please hold the line.",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": false,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": {
+              "target_type": "queue",
+              "target": "melon-compliance",
+              "summary": "Compliance-sensitive case (AML, fraud, suspicious activity, sanctions, or held transfer). Agent escalated immediately without taking any account action."
+            },
+            "completion": null
+          },
+          {
+            "id": "human_handoff",
+            "name": "Human Handoff",
+            "transitions": [],
+            "description": "General-purpose escalation — anything we can't handle automatically.",
+            "say": "Let me get a human teammate to take this from here. One moment.",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": false,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": {
+              "target_type": "queue",
+              "target": "melon-support",
+              "summary": "Routine escalation — agent could not complete the action automatically."
+            },
+            "completion": null
+          },
+          {
+            "id": "closed",
+            "name": "Closed",
+            "transitions": [],
+            "description": "Polite close.",
+            "say": "Thanks for using Melon — have a great day!",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": false,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "closed",
+              "summary": "Customer ended the conversation."
+            }
+          }
+        ],
+        "summary": "Single-scenario demo agent for Melon (MelonPay). Authenticates via phone + OTP, then routes to one of three sub-flows (transfer status, KYC re-upload, card freeze). All tool calls are deterministic mocks driven by inline action_config code; pre-staged transfer references are MLN-DELIVERED, MLN-INFLIGHT, MLN-KYC, MLN-AML, MLN-FAIL.",
+        "order": 0,
+        "entry_channels": [],
+        "resources": {}
+      }
+    ],
+    "scenario_routes": [],
+    "fact_schema": [
+      {
+        "name": "intent_choice",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "user_phone",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "otp_code",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "verified",
+        "type": "boolean",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "transfer_reference",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "transfer_status",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "transfer_rail",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "transfer_amount",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "transfer_eta",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "kyc_doc_type",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "kyc_rejection_reason",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "kyc_doc_url",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "card_last4",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_latest_high_confidence"
+      }
+    ],
+    "agent_capability_manifest": {
+      "assistant_identity": "I'm Melon's customer support assistant.",
+      "capabilities": [
+        "Check the status of an international transfer (SWIFT, SEPA, ACH, local rails)",
+        "Walk you through KYC document re-upload after a rejection",
+        "Freeze a card after explicit confirmation",
+        "Verify your identity with phone + OTP before any account action"
+      ],
+      "limitations": [
+        "I can't release a transfer held under compliance review — I'll connect you to a specialist.",
+        "I can't make policy decisions on AML, fraud, or sanctions — I always escalate to a human.",
+        "I only act on the verified Melon account holder."
+      ]
+    },
+    "metadata": {
+      "source_graph_version": "0.2.0",
+      "demo_fixtures": {
+        "transfer_references": {
+          "MLN-DELIVERED": "settled SEPA transfer, 4500 EUR",
+          "MLN-INFLIGHT": "in-flight SWIFT, 12000 USD, ETA 2026-04-29",
+          "MLN-KYC": "held on KYC, missing recent proof of address",
+          "MLN-AML": "held on AML — agent hard-handoffs to compliance",
+          "MLN-FAIL": "failed at ACH (invalid IBAN), funds refunded"
+        },
+        "otp_demo_codes": {
+          "any 4 digits": "verified",
+          "0000": "account locked → human handoff"
+        },
+        "kyc_demo_urls": {
+          "any URL not containing 'blurry' or 'old'": "accepted, 24h review",
+          "URL containing 'blurry' or 'old'": "rejected, loops to re-upload"
+        }
+      }
+    }
+  }
+}

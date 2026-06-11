@@ -1,0 +1,1 @@
+export { IntentTagsWorkspace } from './IntentTagsWorkspace'

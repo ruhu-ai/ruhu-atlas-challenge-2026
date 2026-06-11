@@ -1,0 +1,36 @@
+{
+  "turn_id": "turn:capture:002",
+  "input_context_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+  "move_selection_output": {
+    "sequence": {
+      "moves": [
+        {
+          "move_type": "apologize",
+          "rationale": "User said the email was already shared; assistant repeated the prompt.",
+          "confidence": 0.95
+        },
+        {
+          "move_type": "repair",
+          "rationale": "Acknowledge the previously-provided email instead of re-asking.",
+          "confidence": 0.92,
+          "extracted_facts": {
+            "email": "user@example.com"
+          }
+        }
+      ],
+      "combined_response_plan": "Apologize for repeating the question, confirm the email is on file, and continue.",
+      "sequence_rationale": "Social move + repair to reconcile fact-already-provided situation."
+    }
+  },
+  "validation_result": {
+    "outcome": "accepted",
+    "committed_move_type": "repair",
+    "accepted_facts": {
+      "email": "user@example.com"
+    },
+    "response_constraints": {
+      "must_not_claim": ["new_lead_created"]
+    }
+  },
+  "committed_deltas": {}
+}

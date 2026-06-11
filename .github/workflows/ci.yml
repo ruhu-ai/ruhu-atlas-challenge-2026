@@ -1,0 +1,116 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  ratchets:
+    name: Line-budget ratchets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/ratchets/check_line_budgets.py
+
+  backend:
+    name: Backend (pytest + migrations)
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ruhu_runtime_dev
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          cache: pip
+      - name: Install package
+        run: pip install -e '.[api,dev,livekit,yaml]'
+      - name: Provision schema (production code path)
+        # ruhu.db.run_migrations is the canonical entry: create_all + stamp on
+        # a fresh database, alembic upgrade on an existing one. Raw
+        # `alembic upgrade head` cannot build from empty — ORM-only tables
+        # (attachments, knowledge_documents, ...) are altered by later
+        # migrations but never created by one.
+        #
+        # The database URLs are step-scoped on purpose: the test suite must
+        # run with NO RUHU_* env (matching local `make test`) so per-test apps
+        # resolve their own isolated schemas; conftest falls back to this same
+        # localhost database for schema creation.
+        env:
+          RUHU_DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/ruhu_runtime_dev
+          RUHU_AUTH_DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/ruhu_runtime_dev
+        run: python -c "import os; from ruhu.db import run_migrations; run_migrations(os.environ['RUHU_DATABASE_URL'])"
+      - name: Run test suite
+        run: pytest tests -q
+      - name: API types drift gate (RP-4.2)
+        # The committed frontend/src/api/generated/openapi.d.ts must match
+        # the backend's actual OpenAPI schema. Regenerate and fail on drift —
+        # run `make openapi-types` locally after changing API models/routes.
+        run: |
+          python scripts/export_openapi.py
+          cd frontend
+          npm ci
+          npm run generate:api-types
+          git diff --exit-code -- src/api/generated/
+
+  frontend:
+    name: Frontend (lint + build + jest)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: npm test
+
+  security-audit:
+    name: Dependency audit (advisory)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          cache: pip
+      - name: pip-audit
+        continue-on-error: true
+        run: |
+          pip install -e '.[api]' pip-audit
+          pip-audit
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: npm audit
+        continue-on-error: true
+        working-directory: frontend
+        run: npm audit --audit-level=high

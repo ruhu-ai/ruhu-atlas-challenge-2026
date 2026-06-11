@@ -1,0 +1,36 @@
+{
+  "turn_id": "p3:seq:thank_confirm_propose:001",
+  "input_context_hash": "p3sequence0000000000000000000000000000000000000thank_confirm_pro",
+  "move_selection_output": {
+    "sequence": {
+      "moves": [
+        {
+          "move_type": "acknowledge",
+          "rationale": "Acknowledge the email arrival before thanking.",
+          "confidence": 0.92
+        },
+        {
+          "move_type": "confirm_understanding",
+          "rationale": "Confirm the captured email before structural commit.",
+          "confidence": 0.95,
+          "extracted_facts": {"email": "user@example.com"}
+        },
+        {
+          "move_type": "propose_transition",
+          "rationale": "Move to submit_lead now that the email is captured and confirmed.",
+          "confidence": 0.92,
+          "extracted_facts": {"email": "user@example.com"},
+          "proposed_transition": {
+            "target_state_id": "submit_lead",
+            "reason_code": "user_provided_requested_fact",
+            "confidence": 0.92,
+            "reasoning": "email captured and confirmed"
+          }
+        }
+      ],
+      "combined_response_plan": "Got the email - just to confirm, x@y.com? Submitting now.",
+      "sequence_rationale": "ack + confirm + commit composition that ends at the next state."
+    }
+  },
+  "committed_deltas": {}
+}

@@ -1,0 +1,18 @@
+{
+  "turn_id": "p3:acknowledge:001",
+  "input_context_hash": "p3000000000000000000000000000000000000000000000000000acknowledge",
+  "move_selection_output": {
+    "selection": {
+      "move_type": "acknowledge",
+      "rationale": "User said 'one moment' — acknowledge the stall.",
+      "confidence": 0.93
+    }
+  },
+  "validation_result": {
+    "outcome": "accepted",
+    "committed_move_type": "acknowledge",
+    "committed_state_id": "collect_contact_info",
+    "response_constraints": {"move_type": "acknowledge"}
+  },
+  "committed_deltas": {}
+}
