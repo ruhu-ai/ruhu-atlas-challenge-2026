@@ -79,7 +79,7 @@ google-agent = [
   "mcp>=1.27,<2",
   # google-adk pulls google-auth[pyopenssl]. pyOpenSSL 26 requires
   # cryptography>=46, which conflicts with Ruhu's current cryptography cap.
-  "pyOpenSSL<26",
+  "pyOpenSSL<27",
 ]
 yaml = [
   "PyYAML>=6,<7",
