@@ -1,0 +1,19 @@
+scripts/ratchets/line_budgets.json
+  s_2290422b1b3507::t_4dd0567b8d52f3 39-40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "72f7b26fe0599ded4d5384704b1cbc2c33829794",
+  "prompts": {},
+  "sessions": {
+    "s_2290422b1b3507": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf6f2e34-6183-4855-8872-a23bd557caeb",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
