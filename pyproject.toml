@@ -41,7 +41,7 @@ browser-e2e = [
 ]
 api = [
   # Same reasoning as the pydantic pin: fastapi minors reshape the schema.
-  "fastapi>=0.135,<0.136",
+  "fastapi>=0.135,<0.137",
   "python-multipart>=0.0.18,<1",
   "uvicorn>=0.27,<1",
   "opentelemetry-instrumentation-httpx>=0.45b0,<1",
