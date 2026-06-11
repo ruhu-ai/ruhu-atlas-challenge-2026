@@ -1,0 +1,31 @@
+src/ruhu/api.py
+  s_2290422b1b3507::t_b2ce88986953bd 4459-4462,5191-5202,5204-5219
+scripts/ratchets/line_budgets.json
+  s_2290422b1b3507::t_b2ce88986953bd 39
+src/ruhu/routes/providers_livekit.py
+  s_8c0900d80ac544::t_8007bd2d2763c0 1-739
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "8b11997ffda5da269322c5e1ec43f5b32c63ca90",
+  "prompts": {},
+  "sessions": {
+    "s_2290422b1b3507": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf6f2e34-6183-4855-8872-a23bd557caeb",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    },
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
