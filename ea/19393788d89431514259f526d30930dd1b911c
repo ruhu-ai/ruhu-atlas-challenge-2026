@@ -1,0 +1,19 @@
+docs/atlas/Atlas-Review-Remediation-Plan.md
+  s_2290422b1b3507::t_69ae8506301db2 52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "ea19393788d89431514259f526d30930dd1b911c",
+  "prompts": {},
+  "sessions": {
+    "s_2290422b1b3507": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf6f2e34-6183-4855-8872-a23bd557caeb",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
