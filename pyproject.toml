@@ -64,14 +64,14 @@ gemma-local = [
 livekit = [
   "google-cloud-speech>=2.26,<3",
   "google-cloud-texttospeech>=2.16,<3",
-  "livekit==1.1.5",
-  "livekit-agents==1.5.2",
+  "livekit==1.1.10",
+  "livekit-agents==1.6.0",
   "livekit-api==1.1.0",
   "livekit-protocol>=1,<2",
-  "livekit-plugins-google==1.5.1",
-  "livekit-plugins-openai==1.5.1",
-  "livekit-plugins-silero==1.5.1",
-  "livekit-plugins-turn-detector==1.5.1",
+  "livekit-plugins-google==1.6.0",
+  "livekit-plugins-openai==1.6.0",
+  "livekit-plugins-silero==1.6.0",
+  "livekit-plugins-turn-detector==1.6.0",
   "livekit-plugins-noise-cancellation>=0.2,<1",
 ]
 google-agent = [
