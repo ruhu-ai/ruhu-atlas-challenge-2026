@@ -1,0 +1,44 @@
+tests/test_intent_tags_api.py
+  s_8c0900d80ac544::t_4e642d94a44d09 9-10,62-66
+src/ruhu/services/api_services.py
+  s_8c0900d80ac544::t_37224ec6d5691a 1-108
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_22e2b13eb4241b 63-64
+src/ruhu/composition.py
+  s_8c0900d80ac544::t_c2b3fd1ad4e2fe 689-747
+scripts/export_openapi.py
+  s_8c0900d80ac544::t_1783eda73b2b35 35,40-43
+tests/test_auth_ui.py
+  s_8c0900d80ac544::t_4e642d94a44d09 11-12,30-39
+scripts/ratchets/line_budgets.json
+  s_8c0900d80ac544::t_cff14cc76247ae 39
+tests/test_auth_ui_flows.py
+  s_8c0900d80ac544::t_4e642d94a44d09 11-12,30-39
+tests/test_knowledge_api.py
+  s_8c0900d80ac544::t_4e642d94a44d09 11,34-42
+tests/test_auth_email_smoke.py
+  s_8c0900d80ac544::t_4e642d94a44d09 8-9,28-37
+tests/test_playground_theme.py
+  s_8c0900d80ac544::t_4e642d94a44d09 9,18-21,46-49
+src/ruhu/api.py
+  s_8c0900d80ac544::t_80faabfe0c9a56 2863-2865,2868,2881-2893,2897,2910-2911
+  s_8c0900d80ac544::t_9798f6d1e1a18c 89,95,130,175
+  s_8c0900d80ac544::t_a638470c76cc63 54,58
+  s_8c0900d80ac544::t_d2ea1c9d304694 2917-2918,2920,2922,2924-2982
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "2a8898b184944b2750746f9f58c83bf7c3d20823",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
