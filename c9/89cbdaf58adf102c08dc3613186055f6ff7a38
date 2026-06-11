@@ -1,0 +1,90 @@
+src/ruhu/analytics_tagging/sqlalchemy_models.py
+  s_8c0900d80ac544::t_e97bc10946eda5 1-340
+tests/test_intent_tags_service.py
+  s_8c0900d80ac544::t_29164b1d865e64 3
+src/ruhu/api.py
+  s_8c0900d80ac544::t_29164b1d865e64 89,91-93
+src/ruhu/analytics_tagging/__init__.py
+  s_8c0900d80ac544::t_e97bc10946eda5 1-114
+src/ruhu/analytics_tagging/store.py
+  s_8c0900d80ac544::t_e97bc10946eda5 1-1174
+src/ruhu/intent_tags_api.py
+  s_8c0900d80ac544::t_29164b1d865e64 9,28
+src/ruhu/analytics_tagging/adapters.py
+  s_8c0900d80ac544::t_e97bc10946eda5 1-755
+src/ruhu/routes/channels.py
+  s_8c0900d80ac544::t_29164b1d865e64 59
+src/ruhu/analytics_tagging/models.py
+  s_8c0900d80ac544::t_e97bc10946eda5 1-603
+tests/test_tenant.py
+  s_8c0900d80ac544::t_29164b1d865e64 24
+src/ruhu/kpi/analysis.py
+  s_8c0900d80ac544::t_29164b1d865e64 9
+src/ruhu/observability/trace_legacy.py
+  s_8c0900d80ac544::t_2a159a2563e55a 18
+tests/test_intent_tags_read_models.py
+  s_8c0900d80ac544::t_29164b1d865e64 3
+tests/test_intent_tags_webhooks.py
+  s_8c0900d80ac544::t_29164b1d865e64 12
+docs/remediation-program/plan.md
+  s_8c0900d80ac544::t_9b10143bda6969 24-27
+  s_8c0900d80ac544::t_d48010bf47ce2a 67
+tests/test_intent_tags_api.py
+  s_8c0900d80ac544::t_29164b1d865e64 11
+src/ruhu/analytics_tagging/runtime.py
+  s_8c0900d80ac544::t_e97bc10946eda5 1-62
+tests/test_outbound_webhooks_dispatcher.py
+  s_8c0900d80ac544::t_29164b1d865e64 20-21
+src/ruhu/classifier/protocol.py
+  s_8c0900d80ac544::t_2a159a2563e55a 7
+src/ruhu/services/conversation_turns.py
+  s_8c0900d80ac544::t_29164b1d865e64 34-35,52
+src/ruhu/services/api_services.py
+  s_8c0900d80ac544::t_29164b1d865e64 38
+src/ruhu/notifications/fanout.py
+  s_8c0900d80ac544::t_2a159a2563e55a 80,325
+  s_8c0900d80ac544::t_29164b1d865e64 328
+src/ruhu/analytics_tagging/runtime_integration.py
+  s_8c0900d80ac544::t_e97bc10946eda5 1-514
+tests/test_intent_tags_sqlalchemy.py
+  s_8c0900d80ac544::t_29164b1d865e64 5,18
+src/ruhu/analytics_tagging/read_models.py
+  s_8c0900d80ac544::t_e97bc10946eda5 1-706
+src/ruhu/classifier_strategy.py
+  s_8c0900d80ac544::t_2a159a2563e55a 35
+tests/test_kpi_analysis.py
+  s_8c0900d80ac544::t_518267967386bc 361-364
+  s_8c0900d80ac544::t_29164b1d865e64 9
+src/ruhu/db.py
+  s_8c0900d80ac544::t_29164b1d865e64 29
+src/ruhu/analytics_tagging/webhooks.py
+  s_8c0900d80ac544::t_e97bc10946eda5 1-630
+src/ruhu/worker.py
+  s_8c0900d80ac544::t_29164b1d865e64 33-34
+tests/test_api.py
+  s_8c0900d80ac544::t_29164b1d865e64 3519,3549,3678,3798,3922,3981,4049,4156
+src/ruhu/analytics_tagging/service.py
+  s_8c0900d80ac544::t_e97bc10946eda5 1-1227
+src/ruhu/ticket_ui.py
+  s_8c0900d80ac544::t_e03f4a8e5cbd5f 1-23
+src/ruhu/routes/internal_admin.py
+  s_8c0900d80ac544::t_29164b1d865e64 47,55
+src/ruhu/heuristics.py
+  s_8c0900d80ac544::t_2a159a2563e55a 84
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "c989cbdaf58adf102c08dc3613186055f6ff7a38",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
