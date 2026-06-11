@@ -1,0 +1,22 @@
+tests/test_atlas_readiness.py
+  s_2290422b1b3507::t_74561f850336cb 851-894
+  s_2290422b1b3507::t_7c0d3f172b36d3 183-227
+tests/test_atlas_api.py
+  s_2290422b1b3507::t_c9ceea61917b44 3721-3777
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "12b28418a248f01471e9c4ab10ab08824e63805d",
+  "prompts": {},
+  "sessions": {
+    "s_2290422b1b3507": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bf6f2e34-6183-4855-8872-a23bd557caeb",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
