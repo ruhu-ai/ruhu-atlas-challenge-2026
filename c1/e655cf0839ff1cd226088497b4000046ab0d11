@@ -1,0 +1,21 @@
+src/ruhu/routes/conversation_runtime.py
+  s_8c0900d80ac544::t_6d35a6c0fc1bd5 1-513
+src/ruhu/api.py
+  s_8c0900d80ac544::t_887a8f915b5ca4 5843,5845-5855
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "c1e655cf0839ff1cd226088497b4000046ab0d11",
+  "prompts": {},
+  "sessions": {
+    "s_8c0900d80ac544": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b2265fdc-344c-45f0-998e-29a097e8c870",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Ijidai Lassa <ijidai@cued.app>"
+    }
+  }
+}
