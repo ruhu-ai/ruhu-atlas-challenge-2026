@@ -17,7 +17,7 @@ dependencies = [
   # generation (Input/Output model splitting), which breaks the RP-4.2 type
   # drift gate nondeterministically. Bumps land via Dependabot PRs where the
   # gate forces regenerated types in the same change.
-  "pydantic>=2.12,<2.13",
+  "pydantic>=2.12,<2.14",
   "PyJWT>=2.4,<3",
   "psycopg[binary]>=3.2,<4",
   "RestrictedPython>=7,<9",
