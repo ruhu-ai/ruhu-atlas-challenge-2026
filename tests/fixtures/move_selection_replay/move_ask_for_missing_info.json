@@ -1,0 +1,18 @@
+{
+  "turn_id": "p3:ask_missing:001",
+  "input_context_hash": "p30000000000000000000000000000000000000000000000ask_for_missing0",
+  "move_selection_output": {
+    "selection": {
+      "move_type": "ask_for_missing_info",
+      "rationale": "User said 'okay' without providing the email; re-ask explicitly.",
+      "confidence": 0.89
+    }
+  },
+  "validation_result": {
+    "outcome": "accepted",
+    "committed_move_type": "ask_for_missing_info",
+    "committed_state_id": "collect_contact_info",
+    "response_constraints": {"move_type": "ask_for_missing_info"}
+  },
+  "committed_deltas": {}
+}

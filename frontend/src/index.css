@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme — clean warm palette */
+    --background: 40 20% 98%;          /* #faf9f7 - Warm white */
+    --foreground: 30 10% 10%;          /* #1a1917 */
+    --card: 0 0% 100%;
+    --card-foreground: 30 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 10% 10%;
+    --primary: 14 82% 45%;              /* #D14118 - African sunset (deeper for light bg) */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 40 10% 94%;           /* #f1efec */
+    --secondary-foreground: 30 10% 10%;
+    --muted: 40 10% 94%;
+    --muted-foreground: 30 5% 45%;     /* #757270 */
+    --accent: 40 10% 94%;
+    --accent-foreground: 30 10% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 8% 88%;              /* #e2e0dd */
+    --input: 30 8% 88%;
+    --ring: 14 82% 45%;
+    --radius: 0.75rem;
+    --sidebar: 40 15% 96%;            /* #f5f3f0 */
+  }
+
+  .dark {
+    /*
+      WARM CHARCOAL THEME
+      Warm dark tones: #0f0e0d base with glass surfaces.
+      Avoids cold blue-black in favor of earthy charcoal.
+    */
+    --background: 30 5% 5.5%;           /* #0f0e0d - Warm charcoal */
+    --foreground: 40 6% 96%;            /* #f6f5f4 - Warm off-white */
+
+    /* Glass Panels — slightly lifted from background */
+    --card: 30 3% 9%;                   /* #171615 - Warm card surface */
+    --card-foreground: 40 6% 96%;
+
+    --popover: 30 3% 10%;              /* #1a1918 */
+    --popover-foreground: 40 6% 96%;
+
+    /* Brand Colors — African Sunset */
+    --primary: 14 80% 51%;             /* #E64E20 - Burnt sunset orange */
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Warm glass base */
+    --secondary: 30 3% 12%;            /* #1e1d1c */
+    --secondary-foreground: 40 6% 96%;
+
+    /* Muted */
+    --muted: 30 2% 14%;               /* #242322 */
+    --muted-foreground: 30 3% 55%;     /* #8e8c89 - Warm gray */
+
+    /* Accents — subtle warm tint on hover */
+    --accent: 30 3% 13%;
+    --accent-foreground: 40 6% 96%;
+
+    /* System Colors */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 30 2% 16%;              /* #282726 - Warm subtle borders */
+    --input: 30 3% 12%;
+    --ring: 14 80% 51%;
+
+    /* Sidebar surface — distinct from main background */
+    --sidebar: 30 4% 7%;              /* #131211 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground tracking-tight antialiased selection:bg-primary/20 selection:text-primary;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02"; /* Modern font features */
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Theme is controlled by useUIStore — class toggled via useTheme hook */
+}
+
+@layer utilities {
+  /* Glassmorphism Utilities — theme-aware */
+  .glass {
+    @apply backdrop-blur-xl border shadow-xl;
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  .dark .glass {
+    background: rgba(15, 14, 13, 0.6);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card {
+    @apply backdrop-blur-sm border;
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  .dark .glass-card {
+    background: rgba(23, 22, 21, 0.8);
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px rgba(230, 78, 32, 0.5);
+  }
+
+  /* Metric number styling — monospace for data */
+  .metric-value {
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Fragment Mono', monospace;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  /* Subtle row hover — theme-aware translucent overlay */
+  .row-hover {
+    @apply transition-colors duration-150;
+  }
+  .row-hover:hover {
+    background: rgba(0, 0, 0, 0.03);
+  }
+  .dark .row-hover:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  /* Semi-transparent badge backgrounds — theme-aware */
+  .badge-glass {
+    @apply backdrop-blur-sm;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .dark .badge-glass {
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Custom Scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-black/10 rounded-full hover:bg-black/20 transition-colors;
+  }
+
+  .dark .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full hover:bg-white/20;
+  }
+}
+
+/* ReactFlow canvas — dashed grid lines */
+.react-flow__background pattern path {
+  stroke-dasharray: 4 4;
+}
+
+/* SolarOrb is now canvas-based — see SolarOrb.tsx */

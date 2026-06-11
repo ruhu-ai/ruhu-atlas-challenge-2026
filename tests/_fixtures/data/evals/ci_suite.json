@@ -1,0 +1,36 @@
+{
+  "cases": [
+    {
+      "id": "sales_demo_request",
+      "agent_document_file": "agents/sales.json",
+      "transcript_file": "transcripts/sales.json",
+      "interpreter": "sales",
+      "expected_final_step_id": "collect_booking_details",
+      "expected_turn_count": 2
+    },
+    {
+      "id": "support_triage_capture",
+      "agent_document_file": "agents/support_triage.json",
+      "transcript_file": "transcripts/support_triage.json",
+      "interpreter": "support_triage",
+      "expected_final_step_id": "handoff_support",
+      "expected_turn_count": 2
+    },
+    {
+      "id": "legacy_voice_first_product_question",
+      "agent_document_file": "agents/sales.json",
+      "transcript_file": "transcripts/legacy_voice_first_product_question.json",
+      "interpreter": "sales",
+      "expected_final_step_id": "product_qa",
+      "expected_turn_count": 1
+    },
+    {
+      "id": "legacy_voice_pricing_then_workflows",
+      "agent_document_file": "agents/sales.json",
+      "transcript_file": "transcripts/legacy_voice_pricing_then_workflows.json",
+      "interpreter": "sales",
+      "expected_final_step_id": "product_qa",
+      "expected_turn_count": 2
+    }
+  ]
+}

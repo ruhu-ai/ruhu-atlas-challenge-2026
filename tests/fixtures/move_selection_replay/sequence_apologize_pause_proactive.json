@@ -1,0 +1,23 @@
+{
+  "turn_id": "p3:seq:apologize_pause:001",
+  "input_context_hash": "p3sequence0000000000000000000000000000000000000apologize_pause00",
+  "move_selection_output": {
+    "sequence": {
+      "moves": [
+        {
+          "move_type": "apologize",
+          "rationale": "Tool failed; apologize before going silent.",
+          "confidence": 0.94
+        },
+        {
+          "move_type": "pause",
+          "rationale": "Stay quiet while the system retries.",
+          "confidence": 0.88
+        }
+      ],
+      "combined_response_plan": "Apologize for the trouble, then go quiet to retry.",
+      "sequence_rationale": "social acknowledgement before silent recovery."
+    }
+  },
+  "committed_deltas": {}
+}

@@ -1,0 +1,31 @@
+{
+  "turn_id": "turn:capture:001",
+  "input_context_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "move_selection_output": {
+    "selection": {
+      "move_type": "propose_transition",
+      "rationale": "User provided email; runtime missed the deterministic extraction. Propose moving to submit_lead.",
+      "confidence": 0.92,
+      "extracted_facts": {
+        "email": "user@example.com"
+      },
+      "proposed_transition": {
+        "target_state_id": "submit_lead",
+        "reason_code": "user_provided_requested_fact",
+        "confidence": 0.92,
+        "reasoning": "Email parsed from user message in capture state.",
+        "triggering_signals": ["email_pattern_in_user_text"]
+      }
+    }
+  },
+  "validation_result": {
+    "outcome": "accepted",
+    "committed_move_type": "propose_transition",
+    "committed_state_id": "submit_lead",
+    "accepted_facts": {
+      "email": "user@example.com"
+    },
+    "response_constraints": {}
+  },
+  "committed_deltas": {}
+}

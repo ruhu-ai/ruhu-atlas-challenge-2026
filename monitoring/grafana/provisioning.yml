@@ -1,0 +1,21 @@
+# Grafana dashboard provisioning config.
+# Drop this file at /etc/grafana/provisioning/dashboards/ruhu.yml
+# and set GF_PATHS_PROVISIONING=/etc/grafana/provisioning.
+#
+# Grafana will auto-import all dashboards from the dashboards/ directory.
+# New files or changes to existing files take effect within 30 seconds.
+
+apiVersion: 1
+
+providers:
+  - name: Ruhu Platform Dashboards
+    orgId: 1
+    folder: Ruhu
+    folderUid: ruhu-platform
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    allowUiUpdates: false
+    options:
+      path: /etc/grafana/dashboards/ruhu
+      foldersFromFilesStructure: false

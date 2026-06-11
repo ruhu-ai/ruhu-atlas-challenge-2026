@@ -1,0 +1,1029 @@
+{
+  "template_id": "gtpl_sales",
+  "name": "Sales Agent",
+  "slug": "sales-agent",
+  "description": "A production-ready voice-first inbound sales agent for booking meetings. Warms up visitors, answers product and pricing questions using a knowledge base, collects booking details, then books the demo directly on a connected calendar.\n\nFlow: Entry → Discovery → Product/Pricing Q&A → Collect Booking Details → Calendar Booking → Complete.\n\nGeneric design: works for demos, exhibitions, consultations, trials, or any meeting type. Customize via system_prompt.\nFacts collected: email, preferred_time. Tools required: knowledge.lookup (RAG), calendar.create_event (calendar integration in your Integrations).",
+  "category": "sales",
+  "tags": [
+    "sales",
+    "lead-gen",
+    "meeting-booking",
+    "knowledge-base",
+    "voice",
+    "inbound"
+  ],
+  "default_agent_settings": {
+    "system_prompt": "You are a friendly and knowledgeable AI sales assistant. Your goal is to help visitors discover how the product solves their problem, answer questions about features and pricing, and book a meeting or consultation directly on the connected calendar. Be concise — you are speaking over voice. Ask one question at a time. If the visitor wants to schedule a meeting, collect their email and a preferred meeting time, then book it. Use the knowledge base to answer product questions accurately; do not guess.",
+    "agent_type": "voice",
+    "llm_config": {
+      "provider": "vertex",
+      "model": "gemini-3-flash-preview",
+      "temperature": 1.0,
+      "classifier": {
+        "strategy": "main_llm"
+      }
+    },
+    "voice_config": {
+      "voice_id": "en-US-Chirp3-HD-Kore"
+    }
+  },
+  "is_featured": true,
+  "required_tools": [
+    {
+      "tool_ref": "calendar.create_event",
+      "display_name": "Calendar booking",
+      "description": "Creates the requested demo booking directly on the connected calendar using the attendee email and preferred time.",
+      "category": "calendar",
+      "provider_hints": [
+        "google_calendar",
+        "microsoft_calendar"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=calendar.create_event",
+      "documentation_url": null,
+      "required": true
+    }
+  ],
+  "agent_document": {
+    "version": "3.0",
+    "start_scenario_id": "main",
+    "scenarios": [
+      {
+        "id": "main",
+        "name": "Sales Agent",
+        "start_step_id": "entry",
+        "summary": "A production-ready voice-first inbound sales agent for booking meetings. Warms up visitors, answers product and pricing questions using a knowledge base, collects booking details, then books the demo directly on a connected calendar.\n\nFlow: Entry → Discovery → Product/Pricing Q&A → Collect Booking Details → Calendar Booking → Complete.\n\nGeneric design: works for demos, exhibitions, consultations, trials, or any meeting type. Customize via system_prompt.\nFacts collected: email, preferred_time. Tools required: knowledge.lookup (RAG), calendar.create_event (calendar integration in your Integrations).",
+        "order": 0,
+        "entry_channels": [],
+        "resources": {},
+        "steps": [
+          {
+            "id": "entry",
+            "name": "Entry",
+            "description": null,
+            "say": "Hi there! I'm here to help you learn about Ruhu. What brings you here today?",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Use retrieved knowledge when available. Otherwise give a brief one-line product summary, then ask which area they want to explore.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Ruhu helps teams ship conversational agents across web, voice, and phone. Which area would you like to explore?",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_entry",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "discover",
+                "label": "After the greeting, we should move into understanding what the visitor wants.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "discover",
+            "name": "Discover",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "I can help with product questions, pricing, demos, or support.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_integrations",
+                "when": {
+                  "kind": "outcome",
+                  "event": "integration_question",
+                  "description": "The user asks what tools, APIs, webhooks, systems, apps, or integrations can connect with the platform."
+                },
+                "to_step_id": "answer_integrations",
+                "label": "They are asking which tools or systems Ruhu can integrate with.",
+                "priority": 5
+              },
+              {
+                "id": "t_product",
+                "when": {
+                  "kind": "outcome",
+                  "event": "product_question",
+                  "description": "The user asks what Ruhu is or what the product/platform does, including phrases like 'describe Ruhu', 'explain Ruhu', 'what is Ruhu', 'learn about Ruhu', or asks about features, workflows, or capabilities."
+                },
+                "to_step_id": "answer_product",
+                "label": "They want to understand what Ruhu does or how it works in more detail.",
+                "priority": 10
+              },
+              {
+                "id": "t_pricing",
+                "when": {
+                  "kind": "outcome",
+                  "event": "pricing_question",
+                  "description": "The user asks about pricing, cost, quote, plans, or billing."
+                },
+                "to_step_id": "answer_pricing",
+                "label": "They are asking about pricing, plans, or cost details.",
+                "priority": 10
+              },
+              {
+                "id": "t_demo",
+                "when": {
+                  "kind": "outcome",
+                  "event": "booking_request",
+                  "description": "The user wants to book a meeting, schedule a call, or see a walkthrough."
+                },
+                "to_step_id": "collect_booking_details",
+                "label": "They want to book a demo, so we should collect the details needed to schedule it.",
+                "priority": 10
+              },
+              {
+                "id": "t_topic_switch",
+                "when": {
+                  "kind": "outcome",
+                  "event": "topic_switch",
+                  "description": "The user wants to move to a different topic or restart the discovery — phrases like 'okay let's try something else', 'can we work on something else', 'actually, can we...', 'I want to ask about something different'. Distinct from close (no goodbye) and from a specific intent (no named topic)."
+                },
+                "to_step_id": "discover",
+                "label": "User wants to shift topic — back to discover so we can re-route.",
+                "priority": 20
+              },
+              {
+                "id": "t_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "discover",
+                "label": "We're still figuring out what the visitor needs.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "clarify",
+            "name": "Clarify",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": false,
+              "voice_style": "concise",
+              "direct_answer_prompt": "I want to make sure I help with the right thing. Are you looking to learn about what the product does, see pricing, book a demo, or something else?",
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": 2,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_clarify_integrations",
+                "when": {
+                  "kind": "outcome",
+                  "event": "integration_question",
+                  "description": "The user asks what tools, APIs, webhooks, systems, apps, or integrations can connect with the platform."
+                },
+                "to_step_id": "answer_integrations",
+                "label": "Now they've named an integrations question.",
+                "priority": 5
+              },
+              {
+                "id": "t_clarify_product",
+                "when": {
+                  "kind": "outcome",
+                  "event": "product_question",
+                  "description": "The user asks what Ruhu is or what the product/platform does, including phrases like 'describe Ruhu', 'explain Ruhu', 'what is Ruhu', 'learn about Ruhu', or asks about features, workflows, or capabilities."
+                },
+                "to_step_id": "answer_product",
+                "label": "Now they've named a product question.",
+                "priority": 10
+              },
+              {
+                "id": "t_clarify_pricing",
+                "when": {
+                  "kind": "outcome",
+                  "event": "pricing_question",
+                  "description": "The user asks about pricing, cost, quote, plans, or billing."
+                },
+                "to_step_id": "answer_pricing",
+                "label": "Now they've named pricing.",
+                "priority": 10
+              },
+              {
+                "id": "t_clarify_demo",
+                "when": {
+                  "kind": "outcome",
+                  "event": "booking_request",
+                  "description": "The user wants to book a meeting, schedule a call, or see a walkthrough."
+                },
+                "to_step_id": "collect_booking_details",
+                "label": "Now they've asked for a demo.",
+                "priority": 10
+              },
+              {
+                "id": "t_clarify_topic_switch",
+                "when": {
+                  "kind": "outcome",
+                  "event": "topic_switch",
+                  "description": "The user wants to move to a different topic or restart the discovery — phrases like 'okay let's try something else', 'can we work on something else', 'actually, can we...', 'I want to ask about something different'. Distinct from close (no goodbye) and from a specific intent (no named topic)."
+                },
+                "to_step_id": "discover",
+                "label": "User wants to shift topic — back to discover so we can re-route.",
+                "priority": 20
+              },
+              {
+                "id": "t_clarify_back",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "clarify",
+                "label": "Still ambiguous — stay in clarify so the LLM re-renders the clarification prompt.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "answer_product",
+            "name": "Answer Product Question",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = knowledge_lookup(query=sales_knowledge_query(vars.get(\"_last_user_text\", \"\"), \"product\"), mode=sales_knowledge_mode(vars.get(\"_last_user_text\", \"\"), \"product\"))\nresult = normalize_tool_result(response, [\"success\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result\n\ndef sales_knowledge_query(raw_text, topic):\n    text = \" \".join(str(raw_text or \"\").split()).strip()\n    lowered = text.lower()\n    fillers = (\n        \"hello \", \"hi \", \"good morning \", \"good afternoon \", \"good evening \",\n        \"okay \", \"ok \", \"well \", \"so \", \"yeah \", \"i mean \", \"please \",\n        \"can you \", \"could you \", \"would you \", \"help me \", \"let me \",\n    )\n    changed = True\n    while changed and text:\n        changed = False\n        for prefix in fillers:\n            if lowered.startswith(prefix):\n                text = text[len(prefix):].lstrip(\" ,.-\")\n                lowered = text.lower()\n                changed = True\n                break\n    lowered = text.lower()\n    collapsed = lowered.replace(\"-\", \"\").replace(\" \", \"\")\n    mentions_ruhu = False\n    for token in (\"ruhu\", \"ruru\", \"ruho\", \"ruhoo\"):\n        if token in collapsed:\n            mentions_ruhu = True\n            break\n    if topic == \"pricing\":\n        has_pricing_keyword = False\n        for token in (\"pricing\", \"price\", \"cost\", \"plan\", \"plans\"):\n            if token in lowered:\n                has_pricing_keyword = True\n                break\n        if not has_pricing_keyword:\n            return (\"Ruhu pricing plans \" + text).strip() or \"Ruhu pricing plans\"\n        return text or \"Ruhu pricing plans\"\n    overview_phrases = (\n        \"describe\", \"explain\", \"what is\", \"learn about\", \"tell me about\",\n        \"talk about\", \"product overview\", \"platform overview\",\n    )\n    overview_match = False\n    for phrase in overview_phrases:\n        if phrase in lowered:\n            overview_match = True\n            break\n    if mentions_ruhu and overview_match:\n        return \"Ruhu product overview\"\n    build_tokens = (\n        \"build\", \"builder\", \"workflow\", \"workflows\", \"automation\", \"automations\",\n        \"trigger\", \"triggers\", \"condition\", \"conditions\", \"integration\", \"integrations\",\n        \"api\", \"webhook\", \"system\", \"agent\", \"agents\",\n    )\n    feature_tokens = (\"feature\", \"features\", \"capability\", \"capabilities\", \"use case\", \"use cases\")\n    build_match = False\n    for token in build_tokens:\n        if token in lowered:\n            build_match = True\n            break\n    if build_match:\n        prefix = \"How to build AI agents and workflows on Ruhu\"\n        return (prefix + \" \" + text).strip() if text else prefix\n    feature_match = False\n    for token in feature_tokens:\n        if token in lowered:\n            feature_match = True\n            break\n    if feature_match:\n        prefix = \"Ruhu product features and capabilities\"\n        return (prefix + \" \" + text).strip() if text else prefix\n    detail_match = False\n    for phrase in (\n        \"what else can you tell me\",\n        \"what else can i do\",\n        \"what can you do for me\",\n        \"tell me more\",\n        \"go into detail\",\n        \"more detail\",\n        \"specific details\",\n    ):\n        if phrase in lowered:\n            detail_match = True\n            break\n    if detail_match:\n        prefix = \"Ruhu platform details features workflows integrations use cases\"\n        return (prefix + \" \" + text).strip() if text else prefix\n    if not mentions_ruhu:\n        return (\"Ruhu platform overview \" + text).strip() or \"Ruhu platform overview\"\n    return text or \"Ruhu platform overview\"\n\ndef sales_knowledge_mode(raw_text, topic):\n    text = \" \".join(str(raw_text or \"\").split()).strip().lower()\n    if not text:\n        return \"standard\"\n    if topic == \"pricing\":\n        for token in (\"compare\", \"difference\", \"details\", \"more\", \"what else\"):\n            if token in text:\n                return \"deep\"\n        return \"standard\"\n    deep_indicators = (\n        \"how \", \"build\", \"builder\", \"workflow\", \"integration\", \"integrations\",\n        \"details\", \"detail\", \"what else\", \"tell me more\", \"specific\", \"use case\", \"compare\",\n    )\n    for token in deep_indicators:\n        if token in text:\n            return \"deep\"\n    if len(text.split()) >= 10:\n        return \"deep\"\n    return \"standard\"",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [
+                "knowledge.lookup"
+              ],
+              "input_schema": {},
+              "timeout_seconds": 30.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Use retrieved knowledge when available. If no grounded knowledge context is available, give this safe product overview: Ruhu is a conversational AI platform for building workflow-driven agents across web chat, voice, and phone. It supports visual agent authoring, knowledge-base answers, tool integrations, scheduling, support triage, and observability. Then ask which area they want to explore.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Ruhu is a conversational AI platform for building workflow-driven agents across web chat, voice, and phone. It supports visual agent authoring, knowledge-base answers, tool integrations, scheduling, support triage, and observability. Which area would you like to explore?",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_answer_product_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "product_qa",
+                "label": "We have the product answer, so we can stay in product Q&A for the next follow-up.",
+                "priority": 5
+              },
+              {
+                "id": "t_answer_product_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "product_qa",
+                "label": "We should stay in the product conversation and keep helping from there.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "product_qa",
+            "name": "Product Q&A",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "I'm here. I can explain Ruhu's product, pricing, integrations, voice and chat channels, or help book a demo. What would you like to know?",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "I'm here. I can explain Ruhu's product, pricing, integrations, voice and chat channels, or help book a demo. What would you like to know?",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_product_integrations",
+                "when": {
+                  "kind": "outcome",
+                  "event": "integration_question",
+                  "description": "The user asks which tools, systems, apps, APIs, or webhooks Ruhu can integrate with."
+                },
+                "to_step_id": "answer_integrations",
+                "label": "They are asking which tools or systems Ruhu can integrate with.",
+                "priority": 5
+              },
+              {
+                "id": "t_product_more",
+                "when": {
+                  "kind": "outcome",
+                  "event": "product_question",
+                  "description": "The user continues asking what Ruhu is or what the platform does, including phrases like 'describe Ruhu', 'explain Ruhu', 'what is Ruhu', 'learn about Ruhu', or asks about features, workflows, or capabilities."
+                },
+                "to_step_id": "answer_product",
+                "label": "They are asking another product or workflow question that should be answered directly.",
+                "priority": 10
+              },
+              {
+                "id": "t_product_demo",
+                "when": {
+                  "kind": "outcome",
+                  "event": "booking_request",
+                  "description": "The user wants to schedule a meeting or call after discussing the product."
+                },
+                "to_step_id": "collect_booking_details",
+                "label": "They want to move from product questions into booking a demo.",
+                "priority": 10
+              },
+              {
+                "id": "t_product_pricing",
+                "when": {
+                  "kind": "outcome",
+                  "event": "pricing_question",
+                  "description": "The user shifts from product questions to asking about price or plans."
+                },
+                "to_step_id": "answer_pricing",
+                "label": "They are shifting from product questions into pricing details.",
+                "priority": 10
+              },
+              {
+                "id": "t_product_qa_topic_switch",
+                "when": {
+                  "kind": "outcome",
+                  "event": "topic_switch",
+                  "description": "The user wants to move to a different topic or restart the discovery — phrases like 'okay let's try something else', 'can we work on something else', 'actually, can we...', 'I want to ask about something different'. Distinct from close (no goodbye) and from a specific intent (no named topic)."
+                },
+                "to_step_id": "discover",
+                "label": "User wants to shift topic — back to discover so we can re-route.",
+                "priority": 20
+              },
+              {
+                "id": "t_product_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "The user EXPLICITLY ends the conversation: says goodbye, 'thanks that's all', 'no more questions', 'I'm done', 'bye', or hangs up. DO NOT pick this for ambiguous turns like 'okay let's try something else', 'can we move on', or 'actually...'. Those are topic_switch, not close."
+                },
+                "to_step_id": "closed",
+                "label": "They sound finished for now, so we should wrap up cleanly.",
+                "priority": 20
+              },
+              {
+                "id": "t_product_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "product_qa",
+                "label": "They're still in product discussion, so we should keep the conversation on that track.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "answer_integrations",
+            "name": "Answer Integrations Question",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "raw_text = vars.get(\"_last_user_text\", \"\")\nquery = (\"Ruhu integrations tools APIs webhooks calendar CRM support ticketing scheduling custom backend actions \" + str(raw_text or \"\")).strip()\nresponse = knowledge_lookup(query=query, mode=\"deep\")\nresult = normalize_tool_result(response, [\"success\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result\n",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [
+                "knowledge.lookup"
+              ],
+              "input_schema": {},
+              "timeout_seconds": 30.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Use retrieved knowledge when available. If no grounded knowledge context is available, explain that Ruhu integrations can connect agents to scheduling, CRM, support, internal tools, APIs, and webhooks, then ask which system they want to connect.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Ruhu integrations can connect agents to scheduling, CRM, support, and internal tools through configured tool integrations, APIs, and webhooks. Common examples include calendar booking, lead capture, support ticket handoff, knowledge lookup, and custom backend actions. Which system do you want to connect?",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_answer_integrations_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "integrations_qa",
+                "label": "We have the integrations answer, so we can stay in integrations Q&A for the next follow-up.",
+                "priority": 5
+              },
+              {
+                "id": "t_answer_integrations_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "integrations_qa",
+                "label": "We should stay in integrations conversation and keep helping from there.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "integrations_qa",
+            "name": "Integrations Q&A",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "I can help with integrations. Ruhu can connect agents to scheduling, CRM, support, internal tools, APIs, and webhooks. Which system do you want to connect?",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "I can help with integrations. Ruhu can connect agents to scheduling, CRM, support, internal tools, APIs, and webhooks. Which system do you want to connect?",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_integrations_more",
+                "when": {
+                  "kind": "outcome",
+                  "event": "integration_question",
+                  "description": "The user continues asking which tools, systems, apps, APIs, or webhooks Ruhu can integrate with."
+                },
+                "to_step_id": "answer_integrations",
+                "label": "They are asking another integrations question that should be answered directly.",
+                "priority": 10
+              },
+              {
+                "id": "t_integrations_demo",
+                "when": {
+                  "kind": "outcome",
+                  "event": "booking_request",
+                  "description": "The user wants to schedule a meeting or call after discussing integrations."
+                },
+                "to_step_id": "collect_booking_details",
+                "label": "They want to move from integrations into booking a demo.",
+                "priority": 10
+              },
+              {
+                "id": "t_integrations_pricing",
+                "when": {
+                  "kind": "outcome",
+                  "event": "pricing_question",
+                  "description": "The user shifts from integrations to asking about price or plans."
+                },
+                "to_step_id": "answer_pricing",
+                "label": "They are shifting from integrations into pricing details.",
+                "priority": 10
+              },
+              {
+                "id": "t_integrations_product",
+                "when": {
+                  "kind": "outcome",
+                  "event": "product_question",
+                  "description": "The user shifts from integrations to asking what Ruhu is, what the product does, or product features, workflows, or capabilities."
+                },
+                "to_step_id": "answer_product",
+                "label": "They are shifting from integrations back to product details or capabilities.",
+                "priority": 10
+              },
+              {
+                "id": "t_integrations_qa_topic_switch",
+                "when": {
+                  "kind": "outcome",
+                  "event": "topic_switch",
+                  "description": "The user wants to move to a different topic or restart the discovery — phrases like 'okay let's try something else', 'can we work on something else', 'actually, can we...', 'I want to ask about something different'. Distinct from close (no goodbye) and from a specific intent (no named topic)."
+                },
+                "to_step_id": "discover",
+                "label": "User wants to shift topic — back to discover so we can re-route.",
+                "priority": 20
+              },
+              {
+                "id": "t_integrations_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "The user EXPLICITLY ends the conversation: says goodbye, 'thanks that's all', 'no more questions', 'I'm done', 'bye', or hangs up. DO NOT pick this for ambiguous turns like 'okay let's try something else', 'can we move on', or 'actually...'. Those are topic_switch, not close."
+                },
+                "to_step_id": "closed",
+                "label": "They sound finished for now, so we should wrap up cleanly.",
+                "priority": 20
+              },
+              {
+                "id": "t_integrations_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "integrations_qa",
+                "label": "They're still in integrations discussion, so we should keep the conversation on that track.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "answer_pricing",
+            "name": "Answer Pricing Question",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = knowledge_lookup(query=sales_knowledge_query(vars.get(\"_last_user_text\", \"\"), \"pricing\"), mode=sales_knowledge_mode(vars.get(\"_last_user_text\", \"\"), \"pricing\"))\nresult = normalize_tool_result(response, [\"success\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result\n\ndef sales_knowledge_query(raw_text, topic):\n    text = \" \".join(str(raw_text or \"\").split()).strip()\n    lowered = text.lower()\n    fillers = (\n        \"hello \", \"hi \", \"good morning \", \"good afternoon \", \"good evening \",\n        \"okay \", \"ok \", \"well \", \"so \", \"yeah \", \"i mean \", \"please \",\n        \"can you \", \"could you \", \"would you \", \"help me \", \"let me \",\n    )\n    changed = True\n    while changed and text:\n        changed = False\n        for prefix in fillers:\n            if lowered.startswith(prefix):\n                text = text[len(prefix):].lstrip(\" ,.-\")\n                lowered = text.lower()\n                changed = True\n                break\n    lowered = text.lower()\n    collapsed = lowered.replace(\"-\", \"\").replace(\" \", \"\")\n    mentions_ruhu = False\n    for token in (\"ruhu\", \"ruru\", \"ruho\", \"ruhoo\"):\n        if token in collapsed:\n            mentions_ruhu = True\n            break\n    if topic == \"pricing\":\n        has_pricing_keyword = False\n        for token in (\"pricing\", \"price\", \"cost\", \"plan\", \"plans\"):\n            if token in lowered:\n                has_pricing_keyword = True\n                break\n        if not has_pricing_keyword:\n            return (\"Ruhu pricing plans \" + text).strip() or \"Ruhu pricing plans\"\n        return text or \"Ruhu pricing plans\"\n    overview_phrases = (\n        \"describe\", \"explain\", \"what is\", \"learn about\", \"tell me about\",\n        \"talk about\", \"product overview\", \"platform overview\",\n    )\n    overview_match = False\n    for phrase in overview_phrases:\n        if phrase in lowered:\n            overview_match = True\n            break\n    if mentions_ruhu and overview_match:\n        return \"Ruhu product overview\"\n    build_tokens = (\n        \"build\", \"builder\", \"workflow\", \"workflows\", \"automation\", \"automations\",\n        \"trigger\", \"triggers\", \"condition\", \"conditions\", \"integration\", \"integrations\",\n        \"api\", \"webhook\", \"system\", \"agent\", \"agents\",\n    )\n    feature_tokens = (\"feature\", \"features\", \"capability\", \"capabilities\", \"use case\", \"use cases\")\n    build_match = False\n    for token in build_tokens:\n        if token in lowered:\n            build_match = True\n            break\n    if build_match:\n        prefix = \"How to build AI agents and workflows on Ruhu\"\n        return (prefix + \" \" + text).strip() if text else prefix\n    feature_match = False\n    for token in feature_tokens:\n        if token in lowered:\n            feature_match = True\n            break\n    if feature_match:\n        prefix = \"Ruhu product features and capabilities\"\n        return (prefix + \" \" + text).strip() if text else prefix\n    detail_match = False\n    for phrase in (\n        \"what else can you tell me\",\n        \"what else can i do\",\n        \"what can you do for me\",\n        \"tell me more\",\n        \"go into detail\",\n        \"more detail\",\n        \"specific details\",\n    ):\n        if phrase in lowered:\n            detail_match = True\n            break\n    if detail_match:\n        prefix = \"Ruhu platform details features workflows integrations use cases\"\n        return (prefix + \" \" + text).strip() if text else prefix\n    if not mentions_ruhu:\n        return (\"Ruhu platform overview \" + text).strip() or \"Ruhu platform overview\"\n    return text or \"Ruhu platform overview\"\n\ndef sales_knowledge_mode(raw_text, topic):\n    text = \" \".join(str(raw_text or \"\").split()).strip().lower()\n    if not text:\n        return \"standard\"\n    if topic == \"pricing\":\n        for token in (\"compare\", \"difference\", \"details\", \"more\", \"what else\"):\n            if token in text:\n                return \"deep\"\n        return \"standard\"\n    deep_indicators = (\n        \"how \", \"build\", \"builder\", \"workflow\", \"integration\", \"integrations\",\n        \"details\", \"detail\", \"what else\", \"tell me more\", \"specific\", \"use case\", \"compare\",\n    )\n    for token in deep_indicators:\n        if token in text:\n            return \"deep\"\n    if len(text.split()) >= 10:\n        return \"deep\"\n    return \"standard\"",
+              "callable_api_refs": [],
+              "callable_integrations": [],
+              "callable_system_refs": [
+                "knowledge.lookup"
+              ],
+              "input_schema": {},
+              "timeout_seconds": 30.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Ruhu pricing is flexible and depends on channels, automation volume, support needs, and deployment requirements. Trial accounts can test the platform before deploying; paid plans combine a base subscription with usage for conversations, voice minutes, and LLM tokens. For exact pricing, the best next step is to book a demo or talk with sales.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Ruhu pricing is flexible and depends on channels, automation volume, support needs, and deployment requirements. Trial accounts can test the platform before deploying; paid plans combine a base subscription with usage for conversations, voice minutes, and LLM tokens. For exact pricing, the best next step is to book a demo or talk with sales.",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_answer_pricing_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "pricing_qa",
+                "label": "We have the pricing answer, so we can stay in pricing Q&A for the next follow-up.",
+                "priority": 5
+              },
+              {
+                "id": "t_answer_pricing_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "pricing_qa",
+                "label": "We should stay in the pricing conversation and keep helping from there.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "pricing_qa",
+            "name": "Pricing Q&A",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "I can help with pricing questions. Ruhu pricing depends on channels, automation volume, support needs, and deployment requirements. Do you want a general overview, or would you like to book a demo for an exact quote?",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "I can help with pricing questions. Ruhu pricing depends on channels, automation volume, support needs, and deployment requirements. Do you want a general overview, or would you like to book a demo for an exact quote?",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_pricing_more",
+                "when": {
+                  "kind": "outcome",
+                  "event": "pricing_question",
+                  "description": "The user continues asking about pricing, costs, plans, or quotes."
+                },
+                "to_step_id": "answer_pricing",
+                "label": "They are asking another pricing question that should be answered directly.",
+                "priority": 10
+              },
+              {
+                "id": "t_pricing_demo",
+                "when": {
+                  "kind": "outcome",
+                  "event": "booking_request",
+                  "description": "The user wants to schedule a meeting or call after discussing pricing."
+                },
+                "to_step_id": "collect_booking_details",
+                "label": "They want to move from pricing into booking a demo.",
+                "priority": 10
+              },
+              {
+                "id": "t_pricing_product",
+                "when": {
+                  "kind": "outcome",
+                  "event": "product_question",
+                  "description": "The user shifts from price to asking what Ruhu is, what the product does, or product features, workflows, or capabilities."
+                },
+                "to_step_id": "answer_product",
+                "label": "They are shifting from pricing back to product details or capabilities.",
+                "priority": 10
+              },
+              {
+                "id": "t_pricing_integrations",
+                "when": {
+                  "kind": "outcome",
+                  "event": "integration_question",
+                  "description": "The user shifts from pricing to asking which tools, systems, apps, APIs, or webhooks Ruhu can integrate with."
+                },
+                "to_step_id": "answer_integrations",
+                "label": "They are shifting from pricing into integrations.",
+                "priority": 10
+              },
+              {
+                "id": "t_pricing_qa_topic_switch",
+                "when": {
+                  "kind": "outcome",
+                  "event": "topic_switch",
+                  "description": "The user wants to move to a different topic or restart the discovery — phrases like 'okay let's try something else', 'can we work on something else', 'actually, can we...', 'I want to ask about something different'. Distinct from close (no goodbye) and from a specific intent (no named topic)."
+                },
+                "to_step_id": "discover",
+                "label": "User wants to shift topic — back to discover so we can re-route.",
+                "priority": 20
+              },
+              {
+                "id": "t_pricing_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "The user EXPLICITLY ends the conversation: says goodbye, 'thanks that's all', 'no more questions', 'I'm done', 'bye', or hangs up. DO NOT pick this for ambiguous turns like 'okay let's try something else', 'can we move on', or 'actually...'. Those are topic_switch, not close."
+                },
+                "to_step_id": "closed",
+                "label": "They sound finished for now, so we should wrap up cleanly.",
+                "priority": 20
+              },
+              {
+                "id": "t_pricing_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "pricing_qa",
+                "label": "They're still in pricing discussion, so we should keep the conversation on that track.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "collect_booking_details",
+            "name": "Collect Booking Details",
+            "description": null,
+            "say": null,
+            "fact_requirements": [
+              {
+                "name": "email",
+                "purpose": "to send the demo invite and follow-up details"
+              },
+              {
+                "name": "preferred_time",
+                "purpose": "to schedule the demo at a time that works for the visitor"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_booking_details_ready",
+                "when": {
+                  "kind": "all_required_facts_present",
+                  "value": null
+                },
+                "to_step_id": "submit_lead",
+                "label": "We have both the visitor's email and preferred demo time, so we can schedule the booking.",
+                "priority": 5
+              },
+              {
+                "id": "t_booking_details_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_booking_details",
+                "label": "We still need at least one booking detail before we can schedule the demo.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "submit_lead",
+            "name": "Book Demo",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = calendar(action=\"create_event\", title=\"Ruhu Demo\", attendee_email=vars.get(\"email\"), start_time=vars.get(\"preferred_time\"), channel=vars.get(\"_turn_channel\"))\nresult = normalize_tool_result(response, [\"success\", \"error\", \"timeout\", \"confirmation_required\", \"blocked\", \"cancelled\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "calendar"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 30.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_create_lead_done",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "request_submitted",
+                "label": "The demo was booked successfully, so we can confirm it and close.",
+                "priority": 5
+              },
+              {
+                "id": "t_create_lead_retry",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "lead_submission_followup",
+                "label": "The booking didn't go through yet, so we should explain that and offer the next best step.",
+                "priority": 10
+              },
+              {
+                "id": "t_create_lead_timeout",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_timeout"
+                },
+                "to_step_id": "lead_submission_followup",
+                "label": "The booking took too long or timed out, so we should explain the issue and offer the next best step.",
+                "priority": 10
+              },
+              {
+                "id": "t_create_lead_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "submit_lead",
+                "label": "The booking is still in progress, so we should stay here until we have a clearer outcome.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "lead_submission_followup",
+            "name": "Booking Follow-Up",
+            "description": null,
+            "say": "I already have your email and preferred meeting time, but I couldn't complete the calendar booking just now. I can try again, or I can keep answering questions about Ruhu while we sort it out.",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_lead_followup_retry",
+                "when": {
+                  "kind": "outcome",
+                  "event": "booking_request",
+                  "description": "The user still wants to book the demo or asks to try submitting the request again."
+                },
+                "to_step_id": "submit_lead",
+                "label": "They still want the demo, so we should try the booking again.",
+                "priority": 10
+              },
+              {
+                "id": "t_lead_followup_product",
+                "when": {
+                  "kind": "outcome",
+                  "event": "product_question",
+                  "description": "The user goes back to asking what Ruhu is, what the platform does, how it works, or which features it offers."
+                },
+                "to_step_id": "answer_product",
+                "label": "They want to go back to product questions while deciding what to do next.",
+                "priority": 20
+              },
+              {
+                "id": "t_lead_followup_pricing",
+                "when": {
+                  "kind": "outcome",
+                  "event": "pricing_question",
+                  "description": "The user shifts into pricing or plan questions while deciding whether to proceed."
+                },
+                "to_step_id": "answer_pricing",
+                "label": "They want to switch into pricing questions before deciding whether to continue.",
+                "priority": 20
+              },
+              {
+                "id": "t_lead_followup_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "The user EXPLICITLY ends after the booking step: says goodbye, 'thanks that's all', 'I'm good', 'bye', or hangs up. DO NOT pick this for follow-up questions or topic shifts."
+                },
+                "to_step_id": "closed",
+                "label": "They're done for now, so we should wrap up cleanly.",
+                "priority": 30
+              },
+              {
+                "id": "t_lead_followup_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "lead_submission_followup",
+                "label": "We're still handling the booking follow-up conversation.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "request_submitted",
+            "name": "Booking Confirmed",
+            "description": null,
+            "say": "Your demo is booked. We've got your email and preferred time on the calendar. Thanks for your interest, and have a great day!",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": "Your demo is booked. We've got your email and preferred time on the calendar. Thanks for your interest, and have a great day!"
+            }
+          },
+          {
+            "id": "closed",
+            "name": "Closed",
+            "description": null,
+            "say": "Thanks for chatting! Feel free to come back anytime. Have a great day!",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "closed",
+              "summary": "Thanks for chatting! Feel free to come back anytime. Have a great day!"
+            }
+          }
+        ]
+      }
+    ],
+    "scenario_routes": [],
+    "fact_schema": [
+      {
+        "name": "email",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "preferred_time",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_deterministic"
+      }
+    ],
+    "agent_capability_manifest": {
+      "assistant_identity": "I'm Ruhu's sales assistant.",
+      "capabilities": [
+        "answer product questions",
+        "answer pricing questions",
+        "help book a demo"
+      ],
+      "limitations": [
+        "I only use configured tools and grounded product information."
+      ]
+    },
+    "metadata": {
+      "source_graph_version": "0.2.0"
+    }
+  }
+}

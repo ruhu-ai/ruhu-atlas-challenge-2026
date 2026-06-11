@@ -1,0 +1,19 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "src/main.tsx",
+    "src/App.tsx",
+    "src/widget/main.tsx",
+    "src/**/*.test.{ts,tsx}",
+    "jest.setup.ts"
+  ],
+  "project": [
+    "src/**/*.{ts,tsx}",
+    "!src/types/**"
+  ],
+  "ignore": [
+    "src/__mocks__/**",
+    "src/widget/**"
+  ],
+  "ignoreExportsUsedInFile": true
+}

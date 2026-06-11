@@ -1,0 +1,1320 @@
+{
+  "template_id": "gtpl_isp_support",
+  "name": "ISP Customer Support Agent",
+  "slug": "isp-customer-support",
+  "description": "A full-service inbound support agent for internet service providers. Verifies account identity, then routes to the correct resolution path: outage reporting with area-wide fault detection, connectivity troubleshooting with automatic fault ticket creation, billing dispute logging, or plan upgrades and downgrades.\n\nFlow: Entry → Collect account number → Account verification (API) → Intent triage → [Outage: check area outage status → area outage confirmed (terminal) | connection troubleshoot → raise fault ticket (API) → ticket raised (terminal) | Billing: fetch billing summary → billing Q&A → log dispute (API) → dispute raised | Plan change: present plans → collect desired plan → process plan change (API) → confirmed | Escalation handoff].\n\nFacts collected: account_number, customer_name, verified, subscription_status, current_plan, outage_type, troubleshoot_result, fault_ticket_id, billing_query_type, dispute_amount, desired_plan.\nTools required: isp.verify_account, isp.check_area_outage, isp.raise_fault_ticket, billing.fetch_summary, billing.log_dispute, plans.get_available, plans.process_change.",
+  "category": "customer-service",
+  "tags": [
+    "isp",
+    "telecom",
+    "support",
+    "connectivity",
+    "outage",
+    "fault-ticket",
+    "billing-dispute",
+    "plan-change",
+    "identity-verification",
+    "voice",
+    "inbound"
+  ],
+  "default_agent_settings": {
+    "system_prompt": "You are a customer support agent for an internet service provider. You speak over voice, so keep your responses short and clear. Start by verifying the customer's account using their account number. Once verified, understand their issue: connection problems, billing questions, or interest in changing their plan. For connectivity issues: first check whether there is a known area outage. If no outage, walk them through basic troubleshooting and raise a fault ticket if the issue persists. For billing: fetch their current bill summary, answer questions, and log a dispute if they believe there is an error. For plan changes: present available plans and process the change if they decide. If you cannot resolve the issue, escalate to a human agent.",
+    "agent_type": "voice",
+    "llm_config": {
+      "provider": "vertex",
+      "model": "gemini-3-flash-preview",
+      "temperature": 1.0,
+      "classifier": {
+        "strategy": "main_llm"
+      }
+    },
+    "voice_config": {
+      "voice_id": "en-US-Chirp3-HD-Kore"
+    }
+  },
+  "is_featured": false,
+  "required_tools": [
+    {
+      "tool_ref": "billing.get_account_billing",
+      "display_name": "Billing lookup",
+      "description": "Retrieves the billing summary for the customer's account.",
+      "category": "billing",
+      "provider_hints": [
+        "stripe",
+        "chargebee",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=billing.get_account_billing",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "billing.log_dispute",
+      "display_name": "Log billing dispute",
+      "description": "Logs a billing dispute for follow-up by the billing team.",
+      "category": "billing",
+      "provider_hints": [
+        "stripe",
+        "chargebee",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=billing.log_dispute",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "crm.change_plan",
+      "display_name": "Plan change",
+      "description": "Changes the customer's broadband plan. Destructive — verify the new plan with the customer first.",
+      "category": "crm",
+      "provider_hints": [
+        "salesforce",
+        "hubspot",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=crm.change_plan",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "crm.lookup_account",
+      "display_name": "Account lookup",
+      "description": "Looks up a customer's account by account number. Required to verify identity before any account-scoped action.",
+      "category": "crm",
+      "provider_hints": [
+        "salesforce",
+        "hubspot",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=crm.lookup_account",
+      "documentation_url": null,
+      "required": true
+    },
+    {
+      "tool_ref": "ops.check_area_outage",
+      "display_name": "Area outage check",
+      "description": "Checks whether there is an active outage in the customer's service area.",
+      "category": "ops",
+      "provider_hints": [
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=ops.check_area_outage",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "ops.raise_fault_ticket",
+      "display_name": "Fault ticket",
+      "description": "Raises a fault ticket in the operations system for follow-up by a field engineer.",
+      "category": "ops",
+      "provider_hints": [
+        "zendesk",
+        "freshdesk",
+        "jira",
+        "linear",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=ops.raise_fault_ticket",
+      "documentation_url": null,
+      "required": false
+    }
+  ],
+  "agent_document": {
+    "version": "3.0",
+    "start_scenario_id": "main",
+    "scenarios": [
+      {
+        "id": "main",
+        "name": "ISP Customer Support Agent",
+        "start_step_id": "entry",
+        "summary": "A full-service inbound support agent for internet service providers. Verifies account identity, then routes to the correct resolution path: outage reporting with area-wide fault detection, connectivity troubleshooting with automatic fault ticket creation, billing dispute logging, or plan upgrades and downgrades.\n\nFlow: Entry → Collect account number → Account verification (API) → Intent triage → [Outage: check area outage status → area outage confirmed (terminal) | connection troubleshoot → raise fault ticket (API) → ticket raised (terminal) | Billing: fetch billing summary → billing Q&A → log dispute (API) → dispute raised | Plan change: present plans → collect desired plan → process plan change (API) → confirmed | Escalation handoff].\n\nFacts collected: account_number, customer_name, verified, subscription_status, current_plan, outage_type, troubleshoot_result, fault_ticket_id, billing_query_type, dispute_amount, desired_plan.\nTools required: isp.verify_account, isp.check_area_outage, isp.raise_fault_ticket, billing.fetch_summary, billing.log_dispute, plans.get_available, plans.process_change.",
+        "order": 0,
+        "entry_channels": [],
+        "resources": {},
+        "steps": [
+          {
+            "id": "entry",
+            "name": "Entry",
+            "description": null,
+            "say": "Hello! Welcome to customer support. I can help with connection issues, billing questions, or plan changes. Could you please provide your account number to get started?",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_entry",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_account_number",
+                "label": "We need the next detail to continue.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "collect_account_number",
+            "name": "Collect Account Number",
+            "description": null,
+            "say": "Ask for the user's account number naturally and make clear it is needed to look up the customer account, line status, or bill details.",
+            "fact_requirements": [
+              {
+                "name": "account_number",
+                "purpose": "to look up the customer account, line status, or bill details"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_have_account",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "account_number"
+                },
+                "to_step_id": "verify_account",
+                "label": "We already have the account number.",
+                "priority": 5
+              },
+              {
+                "id": "t_wait_account",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_account_number",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "verify_account",
+            "name": "Verify Account",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = crm(action=\"lookup_account\", account_number=vars.get(\"account_number\"))\nresult = normalize_tool_result(response, [\"success\", \"not_found\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "crm"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_account_found",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "triage_intent",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_account_not_found",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_not_found"
+                },
+                "to_step_id": "collect_account_number",
+                "label": "Action code not found happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_account_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "triage_intent",
+                "label": "Action code error happened.",
+                "priority": 15
+              },
+              {
+                "id": "t_account_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "verify_account",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "triage_intent",
+            "name": "Triage Intent",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": "I can help with connection issues, billing, plan changes, or connect you with our team.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_connectivity",
+                "when": {
+                  "kind": "outcome",
+                  "event": "connectivity_issue",
+                  "description": "Customer reports no internet, slow speeds, intermittent drops, Wi-Fi not working, or network outage. Phrases: ‘internet is down’, ‘connection dropping’, ‘no signal’, ‘very slow’."
+                },
+                "to_step_id": "check_area_outage",
+                "label": "The user is asking about connectivity issue.",
+                "priority": 5
+              },
+              {
+                "id": "t_billing",
+                "when": {
+                  "kind": "outcome",
+                  "event": "billing_query",
+                  "description": "Customer has a question about their bill, payment, charges, invoice, direct debit, dispute, overcharge, or account balance."
+                },
+                "to_step_id": "fetch_billing_summary",
+                "label": "The user is asking about billing query.",
+                "priority": 10
+              },
+              {
+                "id": "t_plan",
+                "when": {
+                  "kind": "outcome",
+                  "event": "plan_change",
+                  "description": "Customer wants to upgrade, downgrade, change, or cancel their broadband plan. Asks about available plans, pricing tiers, or contract terms."
+                },
+                "to_step_id": "present_plans",
+                "label": "The user is asking about plan change.",
+                "priority": 10
+              },
+              {
+                "id": "t_escalate",
+                "when": {
+                  "kind": "outcome",
+                  "event": "escalation_request",
+                  "description": "Customer is frustrated, demanding a manager, threatening to cancel, or has an issue that couldn’t be resolved previously."
+                },
+                "to_step_id": "escalation_handoff",
+                "label": "The user is asking about escalation request.",
+                "priority": 5
+              },
+              {
+                "id": "t_triage_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "Customer is satisfied or ending the conversation."
+                },
+                "to_step_id": "closed",
+                "label": "The user is asking about close.",
+                "priority": 20
+              },
+              {
+                "id": "t_triage_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "triage_intent",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "check_area_outage",
+            "name": "Check Area Outage",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = ops(action=\"check_area_outage\", account_number=vars.get(\"account_number\"))\nresult = normalize_tool_result(response, [\"outage_active\", \"clear\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "ops"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 6.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_outage_active",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_outage_active"
+                },
+                "to_step_id": "area_outage_active",
+                "label": "Action code outage active happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_no_area_outage",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_clear"
+                },
+                "to_step_id": "troubleshoot_connection",
+                "label": "Action code clear happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_outage_check_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "troubleshoot_connection",
+                "label": "Action code error happened.",
+                "priority": 15
+              },
+              {
+                "id": "t_outage_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "check_area_outage",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "area_outage_active",
+            "name": "Area Outage Active",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "troubleshoot_connection",
+            "name": "Troubleshoot Connection",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_resolved_by_troubleshoot",
+                "when": {
+                  "kind": "outcome",
+                  "event": "issue_resolved",
+                  "description": "Customer confirms internet is working again after troubleshooting."
+                },
+                "to_step_id": "connection_restored",
+                "label": "The user is asking about issue resolved.",
+                "priority": 5
+              },
+              {
+                "id": "t_needs_ticket",
+                "when": {
+                  "kind": "outcome",
+                  "event": "wants_fault_ticket",
+                  "description": "Customer wants to raise a formal fault report."
+                },
+                "to_step_id": "raise_fault_ticket",
+                "label": "The user is asking about wants fault ticket.",
+                "priority": 5
+              },
+              {
+                "id": "t_hardware_fault",
+                "when": {
+                  "kind": "outcome",
+                  "event": "issue_persists_hardware",
+                  "description": "No lights on modem, router broken, or confirmed hardware fault."
+                },
+                "to_step_id": "raise_fault_ticket",
+                "label": "The user is asking about issue persists hardware.",
+                "priority": 10
+              },
+              {
+                "id": "t_software_fault",
+                "when": {
+                  "kind": "outcome",
+                  "event": "issue_persists_software",
+                  "description": "Basic troubleshooting didn’t help. Issue appears configuration or account-level."
+                },
+                "to_step_id": "raise_fault_ticket",
+                "label": "The user is asking about issue persists software.",
+                "priority": 10
+              },
+              {
+                "id": "t_troubleshoot_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "troubleshoot_connection",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "raise_fault_ticket",
+            "name": "Raise Fault Ticket",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = ops(action=\"raise_fault_ticket\", account_number=vars.get(\"account_number\"), outage_type=vars.get(\"outage_type\"), troubleshoot_result=vars.get(\"troubleshoot_result\"))\nresult = normalize_tool_result(response, [\"success\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "ops"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_ticket_raised",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "fault_ticket_raised",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_ticket_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "escalation_handoff",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_ticket_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "raise_fault_ticket",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "connection_restored",
+            "name": "Connection Restored",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "fault_ticket_raised",
+            "name": "Fault Ticket Raised",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "fetch_billing_summary",
+            "name": "Fetch Billing Summary",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = billing(action=\"get_account_billing\", account_number=vars.get(\"account_number\"))\nresult = normalize_tool_result(response, [\"success\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "billing"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_billing_fetched",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "billing_discussion",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_billing_fetch_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "billing_discussion",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_billing_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "fetch_billing_summary",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "billing_discussion",
+            "name": "Billing Discussion",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_billing_dispute",
+                "when": {
+                  "kind": "outcome",
+                  "event": "billing_dispute",
+                  "description": "Customer believes they were overcharged, sees an unexpected charge, or is questioning the accuracy of their bill."
+                },
+                "to_step_id": "log_billing_dispute",
+                "label": "The user is asking about billing dispute.",
+                "priority": 5
+              },
+              {
+                "id": "t_billing_done",
+                "when": {
+                  "kind": "outcome",
+                  "event": "billing_resolved",
+                  "description": "Billing question answered satisfactorily."
+                },
+                "to_step_id": "billing_resolved",
+                "label": "The user is asking about billing resolved.",
+                "priority": 10
+              },
+              {
+                "id": "t_billing_to_plan",
+                "when": {
+                  "kind": "outcome",
+                  "event": "wants_plan_change",
+                  "description": "Customer pivots from billing discussion to changing their plan."
+                },
+                "to_step_id": "present_plans",
+                "label": "The user is asking about wants plan change.",
+                "priority": 10
+              },
+              {
+                "id": "t_billing_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "Customer is done."
+                },
+                "to_step_id": "closed",
+                "label": "The user is asking about close.",
+                "priority": 20
+              },
+              {
+                "id": "t_billing_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "billing_discussion",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "log_billing_dispute",
+            "name": "Log Billing Dispute",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = billing(action=\"log_dispute\", account_number=vars.get(\"account_number\"), dispute_amount=vars.get(\"dispute_amount\"), billing_query_type=vars.get(\"billing_query_type\"))\nresult = normalize_tool_result(response, [\"success\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "billing"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_dispute_logged",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "billing_dispute_raised",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_dispute_log_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "escalation_handoff",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_dispute_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "log_billing_dispute",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "billing_resolved",
+            "name": "Billing Resolved",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "billing_dispute_raised",
+            "name": "Billing Dispute Raised",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "follow_up_required",
+              "summary": null
+            }
+          },
+          {
+            "id": "present_plans",
+            "name": "Present Available Plans",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [
+              {
+                "ref": "knowledge.lookup",
+                "mode": "optional",
+                "invocation_strategy": "on_missing_context",
+                "timeout_ms": null,
+                "event_name": "knowledge_lookup",
+                "args": {
+                  "query": "available broadband plans pricing"
+                }
+              }
+            ],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_plan_selected",
+                "when": {
+                  "kind": "outcome",
+                  "event": "plan_selected",
+                  "description": "Customer has named a specific plan they want to switch to."
+                },
+                "to_step_id": "collect_desired_plan",
+                "label": "The user is asking about plan selected.",
+                "priority": 5
+              },
+              {
+                "id": "t_wants_cancel",
+                "when": {
+                  "kind": "outcome",
+                  "event": "wants_cancellation",
+                  "description": "Customer is threatening to cancel their service."
+                },
+                "to_step_id": "escalation_handoff",
+                "label": "The user is asking about wants cancellation.",
+                "priority": 5
+              },
+              {
+                "id": "t_plan_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "Customer is done browsing."
+                },
+                "to_step_id": "closed",
+                "label": "The user is asking about close.",
+                "priority": 20
+              },
+              {
+                "id": "t_plans_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "present_plans",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "collect_desired_plan",
+            "name": "Collect Desired Plan",
+            "description": null,
+            "say": "Ask for the user's desired plan naturally and make clear it is needed to recommend or confirm the right plan change.",
+            "fact_requirements": [
+              {
+                "name": "desired_plan",
+                "purpose": "to recommend or confirm the right plan change"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_have_desired_plan",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "desired_plan"
+                },
+                "to_step_id": "process_plan_change",
+                "label": "We already have the desired plan.",
+                "priority": 5
+              },
+              {
+                "id": "t_wait_plan",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_desired_plan",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "process_plan_change",
+            "name": "Process Plan Change",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = crm(action=\"change_plan\", account_number=vars.get(\"account_number\"), current_plan=vars.get(\"current_plan\"), desired_plan=vars.get(\"desired_plan\"))\nresult = normalize_tool_result(response, [\"success\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "crm"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 10.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_plan_changed",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "plan_changed",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_plan_change_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "escalation_handoff",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_plan_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "process_plan_change",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "plan_changed",
+            "name": "Plan Changed",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "escalation_handoff",
+            "name": "Escalation Handoff",
+            "description": null,
+            "say": "I understand your frustration. Let me connect you with a member of our support team who can give this the attention it deserves.",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "handoff": {
+              "target_type": "queue",
+              "target": "human_support",
+              "summary": "I understand your frustration. Let me connect you with a member of our support team who can give this the attention it deserves."
+            }
+          },
+          {
+            "id": "closed",
+            "name": "Closed",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          }
+        ]
+      }
+    ],
+    "scenario_routes": [],
+    "fact_schema": [
+      {
+        "name": "account_number",
+        "type": "string",
+        "required": true,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.95,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "customer_name",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "verified",
+        "type": "boolean",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "subscription_status",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "current_plan",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "outage_type",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "troubleshoot_result",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "fault_ticket_id",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "billing_query_type",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "dispute_amount",
+        "type": "number",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "desired_plan",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.85,
+        "conflict_policy": "prefer_latest_high_confidence"
+      }
+    ],
+    "agent_capability_manifest": {
+      "assistant_identity": "I'm your customer support assistant.",
+      "capabilities": [
+        "help with internet support issues",
+        "help with billing questions",
+        "help with plan change requests"
+      ],
+      "limitations": [
+        "I only use configured support systems and account data."
+      ]
+    },
+    "metadata": {
+      "source_graph_version": "1.0.0"
+    }
+  }
+}

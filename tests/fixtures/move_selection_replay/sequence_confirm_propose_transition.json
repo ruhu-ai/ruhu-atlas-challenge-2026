@@ -1,0 +1,31 @@
+{
+  "turn_id": "p3:seq:confirm_propose:001",
+  "input_context_hash": "p3sequence00000000000000000000000000000000000confirm_propose00",
+  "move_selection_output": {
+    "sequence": {
+      "moves": [
+        {
+          "move_type": "confirm_understanding",
+          "rationale": "Read back the captured email so the user can correct typos.",
+          "confidence": 0.95,
+          "extracted_facts": {"email": "alice@example.com"}
+        },
+        {
+          "move_type": "propose_transition",
+          "rationale": "Commit the transition once confirmed.",
+          "confidence": 0.93,
+          "extracted_facts": {"email": "alice@example.com"},
+          "proposed_transition": {
+            "target_state_id": "submit_lead",
+            "reason_code": "user_provided_requested_fact",
+            "confidence": 0.93,
+            "reasoning": "email confirmed by readback"
+          }
+        }
+      ],
+      "combined_response_plan": "Confirm the email then transition.",
+      "sequence_rationale": "confirm-then-commit gates the structural move on user confirmation."
+    }
+  },
+  "committed_deltas": {}
+}

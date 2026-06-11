@@ -1,0 +1,18 @@
+{
+  "turn_id": "p3:clarify:001",
+  "input_context_hash": "p30000000000000000000000000000000000000000000000000000000clarify",
+  "move_selection_output": {
+    "selection": {
+      "move_type": "clarify",
+      "rationale": "User input was ambiguous; ask which option they meant.",
+      "confidence": 0.88
+    }
+  },
+  "validation_result": {
+    "outcome": "accepted",
+    "committed_move_type": "clarify",
+    "committed_state_id": "collect_contact_info",
+    "response_constraints": {"move_type": "clarify"}
+  },
+  "committed_deltas": {}
+}

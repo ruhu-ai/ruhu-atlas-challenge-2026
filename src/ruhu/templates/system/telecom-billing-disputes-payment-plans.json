@@ -1,0 +1,1184 @@
+{
+  "template_id": "gtpl_telecom_billing",
+  "name": "Telecom Billing, Disputes & Payment Plans",
+  "slug": "telecom-billing-disputes-payment-plans",
+  "description": "A specialised billing agent for telecommunications companies. Handles the three most common post-bill billing scenarios: explaining the current bill, resolving a billing dispute (with optional goodwill credit), and setting up a payment arrangement for customers with overdue balances.\n\nFlow: Entry → Collect account → Identity verification (API) → Billing intent triage → [Bill inquiry: fetch bill → billing Q&A | Dispute: collect dispute details → evaluate dispute (API) → apply goodwill credit (API) → credit applied | or create dispute ticket (API) → ticket raised | Payment plan: collect preferences → create payment plan (API) → plan confirmed | Escalation handoff].\n\nFacts collected: account_number, phone_number, customer_name, verified, current_bill_amount, overdue_balance, dispute_reason, dispute_amount, credit_amount, installment_count, payment_start_date, payment_plan_id.\nTools required: billing.verify_identity, billing.fetch_bill, billing.evaluate_dispute, billing.apply_goodwill_credit, billing.create_dispute_ticket, billing.create_payment_plan.",
+  "category": "telecom",
+  "tags": [
+    "telecom",
+    "billing",
+    "dispute-resolution",
+    "payment-plan",
+    "goodwill-credit",
+    "identity-verification",
+    "collections",
+    "voice",
+    "inbound"
+  ],
+  "default_agent_settings": {
+    "system_prompt": "You are a billing specialist for a telecommunications company. You handle three types of calls: customers who want to understand their bill, customers who believe there is an error on their bill and want to dispute a charge, and customers who have an overdue balance and need a payment arrangement. Start by verifying the customer's identity using their account number and phone number on file. For bill inquiries: fetch the bill and explain each charge clearly. For disputes: understand the disputed amount and reason, evaluate the dispute against policy, apply a goodwill credit if eligible, or raise a formal dispute ticket if not. For payment arrangements: understand how many installments the customer can manage and when they can make the first payment, then create the plan. Be empathetic — many customers calling about billing are frustrated or worried. Keep responses short and avoid jargon.",
+    "agent_type": "voice",
+    "llm_config": {
+      "provider": "vertex",
+      "model": "gemini-3-flash-preview",
+      "temperature": 1.0,
+      "classifier": {
+        "strategy": "main_llm"
+      }
+    },
+    "voice_config": {
+      "voice_id": "en-US-Chirp3-HD-Kore"
+    }
+  },
+  "is_featured": false,
+  "required_tools": [
+    {
+      "tool_ref": "billing.apply_goodwill_credit",
+      "display_name": "Apply goodwill credit",
+      "description": "Applies a one-time goodwill credit to the customer's account. Destructive — confirm amount before invoking.",
+      "category": "billing",
+      "provider_hints": [
+        "stripe",
+        "chargebee",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=billing.apply_goodwill_credit",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "billing.create_dispute_ticket",
+      "display_name": "Dispute ticket",
+      "description": "Creates a billing dispute ticket for follow-up by the billing team.",
+      "category": "billing",
+      "provider_hints": [
+        "zendesk",
+        "freshdesk",
+        "jira",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=billing.create_dispute_ticket",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "billing.create_payment_plan",
+      "display_name": "Payment plan",
+      "description": "Creates an installment payment plan for an overdue balance.",
+      "category": "billing",
+      "provider_hints": [
+        "stripe",
+        "chargebee",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=billing.create_payment_plan",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "billing.evaluate_dispute",
+      "display_name": "Evaluate dispute",
+      "description": "Evaluates a billing dispute for eligibility (goodwill credit, ticket, denial).",
+      "category": "billing",
+      "provider_hints": [
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=billing.evaluate_dispute",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "billing.fetch_latest_bill",
+      "display_name": "Latest bill fetch",
+      "description": "Fetches the most recent bill summary for the verified account.",
+      "category": "billing",
+      "provider_hints": [
+        "stripe",
+        "chargebee",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=billing.fetch_latest_bill",
+      "documentation_url": null,
+      "required": true
+    },
+    {
+      "tool_ref": "billing.verify_identity",
+      "display_name": "Account identity verification",
+      "description": "Verifies the caller's identity against the billing system using account number.",
+      "category": "billing",
+      "provider_hints": [
+        "stripe",
+        "chargebee",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=billing.verify_identity",
+      "documentation_url": null,
+      "required": true
+    }
+  ],
+  "agent_document": {
+    "version": "3.0",
+    "start_scenario_id": "main",
+    "scenarios": [
+      {
+        "id": "main",
+        "name": "Telecom Billing, Disputes & Payment Plans",
+        "start_step_id": "entry",
+        "summary": "A specialised billing agent for telecommunications companies. Handles the three most common post-bill billing scenarios: explaining the current bill, resolving a billing dispute (with optional goodwill credit), and setting up a payment arrangement for customers with overdue balances.\n\nFlow: Entry → Collect account → Identity verification (API) → Billing intent triage → [Bill inquiry: fetch bill → billing Q&A | Dispute: collect dispute details → evaluate dispute (API) → apply goodwill credit (API) → credit applied | or create dispute ticket (API) → ticket raised | Payment plan: collect preferences → create payment plan (API) → plan confirmed | Escalation handoff].\n\nFacts collected: account_number, phone_number, customer_name, verified, current_bill_amount, overdue_balance, dispute_reason, dispute_amount, credit_amount, installment_count, payment_start_date, payment_plan_id.\nTools required: billing.verify_identity, billing.fetch_bill, billing.evaluate_dispute, billing.apply_goodwill_credit, billing.create_dispute_ticket, billing.create_payment_plan.",
+        "order": 0,
+        "entry_channels": [],
+        "resources": {},
+        "steps": [
+          {
+            "id": "entry",
+            "name": "Entry",
+            "description": null,
+            "say": "Hello! You’ve reached billing support. I can help with bill inquiries, disputes, or setting up a payment plan. Please share your account number to get started.",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_entry",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_account",
+                "label": "We need the next detail to continue.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "collect_account",
+            "name": "Collect Account Number",
+            "description": null,
+            "say": "Ask for the user's account number naturally and make clear it is needed to look up the customer account, line status, or bill details.",
+            "fact_requirements": [
+              {
+                "name": "account_number",
+                "purpose": "to look up the customer account, line status, or bill details"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_have_account",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "account_number"
+                },
+                "to_step_id": "verify_identity",
+                "label": "We already have the account number.",
+                "priority": 5
+              },
+              {
+                "id": "t_wait_account",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_account",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "verify_identity",
+            "name": "Verify Identity",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = billing(action=\"verify_identity\", account_number=vars.get(\"account_number\"))\nresult = normalize_tool_result(response, [\"success\", \"error\", \"not_found\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "billing"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_identity_verified",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "triage_billing_intent",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_identity_failed",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "collect_account",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_identity_not_found",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_not_found"
+                },
+                "to_step_id": "billing_escalation",
+                "label": "Action code not found happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_identity_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "verify_identity",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "triage_billing_intent",
+            "name": "Triage Billing Intent",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": "I can help you understand your bill, raise a dispute, or arrange a payment plan.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_bill_inquiry",
+                "when": {
+                  "kind": "outcome",
+                  "event": "bill_inquiry",
+                  "description": "Customer wants to understand their bill — line items, charges, fees, credits, payment history, or when the next bill is due."
+                },
+                "to_step_id": "fetch_bill",
+                "label": "The user is asking about bill inquiry.",
+                "priority": 10
+              },
+              {
+                "id": "t_dispute",
+                "when": {
+                  "kind": "outcome",
+                  "event": "dispute_overcharge",
+                  "description": "Customer believes there is an error on their bill, an unexpected charge, an overcharge, or a duplicate fee."
+                },
+                "to_step_id": "collect_dispute_details",
+                "label": "The user is asking about dispute overcharge.",
+                "priority": 5
+              },
+              {
+                "id": "t_payment_plan",
+                "when": {
+                  "kind": "outcome",
+                  "event": "payment_arrangement",
+                  "description": "Customer has an overdue balance and needs to set up an installment plan or arrange a payment deferral."
+                },
+                "to_step_id": "collect_payment_prefs",
+                "label": "The user is asking about payment arrangement.",
+                "priority": 10
+              },
+              {
+                "id": "t_billing_escalate",
+                "when": {
+                  "kind": "outcome",
+                  "event": "wants_escalation",
+                  "description": "Customer is frustrated, requesting a manager, or has a complex billing issue."
+                },
+                "to_step_id": "billing_escalation",
+                "label": "The user is asking about wants escalation.",
+                "priority": 5
+              },
+              {
+                "id": "t_billing_triage_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "Customer has no further billing needs."
+                },
+                "to_step_id": "closed",
+                "label": "The user is asking about close.",
+                "priority": 20
+              },
+              {
+                "id": "t_billing_triage_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "triage_billing_intent",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "fetch_bill",
+            "name": "Fetch Latest Bill",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = billing(action=\"fetch_latest_bill\", account_number=vars.get(\"account_number\"))\nresult = normalize_tool_result(response, [\"success\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "billing"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_bill_fetched",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "billing_qa",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_bill_fetch_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "billing_qa",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_bill_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "fetch_bill",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "billing_qa",
+            "name": "Billing Q&A",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_qa_dispute",
+                "when": {
+                  "kind": "outcome",
+                  "event": "dispute_overcharge",
+                  "description": "Customer pivots from inquiry to questioning a specific charge."
+                },
+                "to_step_id": "collect_dispute_details",
+                "label": "The user is asking about dispute overcharge.",
+                "priority": 5
+              },
+              {
+                "id": "t_qa_payment",
+                "when": {
+                  "kind": "outcome",
+                  "event": "payment_arrangement",
+                  "description": "Customer pivots to needing a payment plan."
+                },
+                "to_step_id": "collect_payment_prefs",
+                "label": "The user is asking about payment arrangement.",
+                "priority": 5
+              },
+              {
+                "id": "t_qa_resolved",
+                "when": {
+                  "kind": "outcome",
+                  "event": "billing_resolved",
+                  "description": "Customer is satisfied with the explanation."
+                },
+                "to_step_id": "closed",
+                "label": "The user is asking about billing resolved.",
+                "priority": 10
+              },
+              {
+                "id": "t_qa_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "Customer is done."
+                },
+                "to_step_id": "closed",
+                "label": "The user is asking about close.",
+                "priority": 20
+              },
+              {
+                "id": "t_qa_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "billing_qa",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "collect_dispute_details",
+            "name": "Collect Dispute Details",
+            "description": null,
+            "say": "Ask for the user's dispute reason naturally and make clear it is needed to understand the billing dispute and choose the right resolution path.",
+            "fact_requirements": [
+              {
+                "name": "dispute_reason",
+                "purpose": "to understand the billing dispute and choose the right resolution path"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_have_dispute_reason",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "dispute_reason"
+                },
+                "to_step_id": "evaluate_dispute",
+                "label": "We already have the dispute reason.",
+                "priority": 5
+              },
+              {
+                "id": "t_wait_dispute",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_dispute_details",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "evaluate_dispute",
+            "name": "Evaluate Dispute",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = billing(action=\"evaluate_dispute\", account_number=vars.get(\"account_number\"), dispute_reason=vars.get(\"dispute_reason\"), dispute_amount=vars.get(\"dispute_amount\"))\nresult = normalize_tool_result(response, [\"credit_eligible\", \"ticket_required\", \"invalid\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "billing"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_credit_eligible",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_credit_eligible"
+                },
+                "to_step_id": "apply_goodwill_credit",
+                "label": "Action code credit eligible happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_needs_ticket",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_ticket_required"
+                },
+                "to_step_id": "create_dispute_ticket",
+                "label": "Action code ticket required happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_dispute_invalid",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_invalid"
+                },
+                "to_step_id": "dispute_invalid",
+                "label": "Action code invalid happened.",
+                "priority": 15
+              },
+              {
+                "id": "t_dispute_eval_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "billing_escalation",
+                "label": "Action code error happened.",
+                "priority": 20
+              },
+              {
+                "id": "t_dispute_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "evaluate_dispute",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "apply_goodwill_credit",
+            "name": "Apply Goodwill Credit",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = billing(action=\"apply_goodwill_credit\", account_number=vars.get(\"account_number\"), credit_amount=vars.get(\"credit_amount\"), dispute_reason=vars.get(\"dispute_reason\"))\nresult = normalize_tool_result(response, [\"success\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "billing"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_credit_applied",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "credit_applied",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_credit_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "create_dispute_ticket",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_credit_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "apply_goodwill_credit",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "create_dispute_ticket",
+            "name": "Create Dispute Ticket",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = billing(action=\"create_dispute_ticket\", account_number=vars.get(\"account_number\"), dispute_reason=vars.get(\"dispute_reason\"), dispute_amount=vars.get(\"dispute_amount\"))\nresult = normalize_tool_result(response, [\"success\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "billing"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_ticket_created",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "dispute_ticket_raised",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_ticket_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "billing_escalation",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_ticket_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "create_dispute_ticket",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "credit_applied",
+            "name": "Credit Applied",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "dispute_ticket_raised",
+            "name": "Dispute Ticket Raised",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "follow_up_required",
+              "summary": null
+            }
+          },
+          {
+            "id": "dispute_invalid",
+            "name": "Dispute Invalid",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "collect_payment_prefs",
+            "name": "Collect Payment Preferences",
+            "description": null,
+            "say": "Ask for the user's installment count naturally and make clear it is needed to propose a payment plan with the right number of installments.",
+            "fact_requirements": [
+              {
+                "name": "installment_count",
+                "purpose": "to propose a payment plan with the right number of installments"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_have_installments",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "installment_count"
+                },
+                "to_step_id": "create_payment_plan",
+                "label": "We already have the installment count.",
+                "priority": 5
+              },
+              {
+                "id": "t_wait_payment_prefs",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_payment_prefs",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "create_payment_plan",
+            "name": "Create Payment Plan",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = billing(action=\"create_payment_plan\", account_number=vars.get(\"account_number\"), overdue_balance=vars.get(\"overdue_balance\"), installment_count=vars.get(\"installment_count\"), payment_start_date=vars.get(\"payment_start_date\"))\nresult = normalize_tool_result(response, [\"success\", \"error\", \"ineligible\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "billing"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 10.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_plan_created",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "payment_plan_confirmed",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_plan_creation_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "billing_escalation",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_plan_ineligible",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_ineligible"
+                },
+                "to_step_id": "billing_escalation",
+                "label": "Action code ineligible happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_plan_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "create_payment_plan",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "payment_plan_confirmed",
+            "name": "Payment Plan Confirmed",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "billing_escalation",
+            "name": "Billing Escalation",
+            "description": null,
+            "say": "I want to make sure your billing concern gets the full attention it deserves. Let me connect you with a billing specialist now.",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "handoff": {
+              "target_type": "queue",
+              "target": "human_support",
+              "summary": "I want to make sure your billing concern gets the full attention it deserves. Let me connect you with a billing specialist now."
+            }
+          },
+          {
+            "id": "closed",
+            "name": "Closed",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          }
+        ]
+      }
+    ],
+    "scenario_routes": [],
+    "fact_schema": [
+      {
+        "name": "account_number",
+        "type": "string",
+        "required": true,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.95,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "phone_number",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "customer_name",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "verified",
+        "type": "boolean",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "current_bill_amount",
+        "type": "number",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "overdue_balance",
+        "type": "number",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "dispute_reason",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "dispute_amount",
+        "type": "number",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "credit_amount",
+        "type": "number",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "installment_count",
+        "type": "integer",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "payment_start_date",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "payment_plan_id",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      }
+    ],
+    "agent_capability_manifest": {
+      "assistant_identity": "I'm your billing support assistant.",
+      "capabilities": [
+        "help with billing disputes",
+        "help explain charges and balances",
+        "help set up payment plan flows"
+      ],
+      "limitations": [
+        "I only use configured billing systems and account data."
+      ]
+    },
+    "metadata": {
+      "source_graph_version": "1.0.0"
+    }
+  }
+}

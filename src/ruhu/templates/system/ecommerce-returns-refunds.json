@@ -1,0 +1,1198 @@
+{
+  "template_id": "gtpl_ecommerce_returns",
+  "name": "E-commerce Returns & Refunds Agent",
+  "slug": "ecommerce-returns-refunds",
+  "description": "Handles the full returns, exchanges, and refund lifecycle for e-commerce stores. Looks up the order, verifies return eligibility, classifies the return reason, and processes the customer's preferred resolution — exchange, refund, or store credit — via order management integrations.\n\nFlow: Entry → Collect order ID → Order lookup (API) → Return reason classification → Resolution preference (exchange / refund / store credit) → Authorize return (API) → [Exchange: check inventory → process exchange | Refund: process refund | Store credit: apply credit] → Confirmation terminal or escalation handoff.\n\nFacts collected: order_id, customer_email, customer_name, return_reason, return_category, resolution_preference, rma_number, exchange_sku, refund_amount.\nTools required: orders.lookup_order, orders.authorize_return, orders.check_exchange_inventory, orders.process_exchange, orders.process_refund, orders.process_store_credit.\nHandles outside-return-window and order-not-found edge cases gracefully.",
+  "category": "e-commerce",
+  "tags": [
+    "e-commerce",
+    "returns",
+    "refunds",
+    "exchanges",
+    "store-credit",
+    "rma",
+    "order-management",
+    "voice",
+    "inbound"
+  ],
+  "default_agent_settings": {
+    "system_prompt": "You are a returns and refunds specialist for an e-commerce store. Your goal is to make the returns experience fast and stress-free. Start by looking up the customer's order using their order number. If the order is within the return window, understand why they want to return the item and what resolution they prefer: a full refund, an exchange for a different item, or store credit. Process their preferred resolution using the order management system. If the order is outside the return window or the return is denied, empathise and offer to escalate to a human agent. Be concise — this is a voice conversation.",
+    "agent_type": "voice",
+    "llm_config": {
+      "provider": "vertex",
+      "model": "gemini-3-flash-preview",
+      "temperature": 1.0,
+      "classifier": {
+        "strategy": "main_llm"
+      }
+    },
+    "voice_config": {
+      "voice_id": "en-US-Chirp3-HD-Kore"
+    }
+  },
+  "is_featured": false,
+  "required_tools": [
+    {
+      "tool_ref": "commerce.authorize_return",
+      "display_name": "Authorize return",
+      "description": "Posts a return authorization to your commerce backend; receives an RMA number.",
+      "category": "commerce",
+      "provider_hints": [
+        "shopify",
+        "woocommerce",
+        "magento",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=commerce.authorize_return",
+      "documentation_url": null,
+      "required": true
+    },
+    {
+      "tool_ref": "commerce.check_inventory",
+      "display_name": "Inventory check",
+      "description": "Checks whether an exchange SKU is currently in stock.",
+      "category": "commerce",
+      "provider_hints": [
+        "shopify",
+        "woocommerce",
+        "magento",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=commerce.check_inventory",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "commerce.create_exchange_order",
+      "display_name": "Create exchange order",
+      "description": "Creates an exchange order in your commerce backend after the customer picks an alternative SKU.",
+      "category": "commerce",
+      "provider_hints": [
+        "shopify",
+        "woocommerce",
+        "magento",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=commerce.create_exchange_order",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "commerce.get_order",
+      "display_name": "Order lookup",
+      "description": "Fetches order details by order ID. Required to verify the customer's order before authorizing a return.",
+      "category": "commerce",
+      "provider_hints": [
+        "shopify",
+        "woocommerce",
+        "magento",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=commerce.get_order",
+      "documentation_url": null,
+      "required": true
+    },
+    {
+      "tool_ref": "commerce.issue_refund",
+      "display_name": "Issue refund",
+      "description": "Issues a refund against the original payment method. Destructive — verify approval before invoking.",
+      "category": "commerce",
+      "provider_hints": [
+        "shopify",
+        "woocommerce",
+        "magento",
+        "stripe",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=commerce.issue_refund",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "commerce.issue_store_credit",
+      "display_name": "Issue store credit",
+      "description": "Issues store credit to the customer's account in lieu of a refund.",
+      "category": "commerce",
+      "provider_hints": [
+        "shopify",
+        "woocommerce",
+        "magento",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=commerce.issue_store_credit",
+      "documentation_url": null,
+      "required": false
+    }
+  ],
+  "agent_document": {
+    "version": "3.0",
+    "start_scenario_id": "main",
+    "scenarios": [
+      {
+        "id": "main",
+        "name": "E-commerce Returns & Refunds Agent",
+        "start_step_id": "entry",
+        "summary": "Handles the full returns, exchanges, and refund lifecycle for e-commerce stores. Looks up the order, verifies return eligibility, classifies the return reason, and processes the customer's preferred resolution — exchange, refund, or store credit — via order management integrations.\n\nFlow: Entry → Collect order ID → Order lookup (API) → Return reason classification → Resolution preference (exchange / refund / store credit) → Authorize return (API) → [Exchange: check inventory → process exchange | Refund: process refund | Store credit: apply credit] → Confirmation terminal or escalation handoff.\n\nFacts collected: order_id, customer_email, customer_name, return_reason, return_category, resolution_preference, rma_number, exchange_sku, refund_amount.\nTools required: orders.lookup_order, orders.authorize_return, orders.check_exchange_inventory, orders.process_exchange, orders.process_refund, orders.process_store_credit.\nHandles outside-return-window and order-not-found edge cases gracefully.",
+        "order": 0,
+        "entry_channels": [],
+        "resources": {},
+        "steps": [
+          {
+            "id": "entry",
+            "name": "Entry",
+            "description": null,
+            "say": "Hi there! I can help you with a return, exchange, or refund. To get started, please share your order number.",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_entry",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_order_id",
+                "label": "We need the next detail to continue.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "collect_order_id",
+            "name": "Collect Order ID",
+            "description": null,
+            "say": "Ask for the user's order id naturally and make clear it is needed to find the order and confirm return eligibility.",
+            "fact_requirements": [
+              {
+                "name": "order_id",
+                "purpose": "to find the order and confirm return eligibility"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_have_order_id",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "order_id"
+                },
+                "to_step_id": "lookup_order",
+                "label": "We already have the order id.",
+                "priority": 5
+              },
+              {
+                "id": "t_wait_order",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_order_id",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "lookup_order",
+            "name": "Look Up Order",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = commerce(action=\"get_order\", order_id=vars.get(\"order_id\"), customer_email=vars.get(\"customer_email\"))\nresult = normalize_tool_result(response, [\"success\", \"not_found\", \"outside_return_window\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "commerce"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_order_found",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "classify_return_reason",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_order_not_found",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_not_found"
+                },
+                "to_step_id": "order_not_found",
+                "label": "Action code not found happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_order_outside_window",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_outside_return_window"
+                },
+                "to_step_id": "outside_window",
+                "label": "Action code outside return window happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_order_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "collect_order_id",
+                "label": "Action code error happened.",
+                "priority": 15
+              },
+              {
+                "id": "t_order_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "lookup_order",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "classify_return_reason",
+            "name": "Classify Return Reason",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_reason_given",
+                "when": {
+                  "kind": "outcome",
+                  "event": "return_reason_given",
+                  "description": "Customer has clearly stated their return reason in enough detail to proceed."
+                },
+                "to_step_id": "collect_resolution_preference",
+                "label": "The user is asking about return reason given.",
+                "priority": 5
+              },
+              {
+                "id": "t_reason_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "classify_return_reason",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "collect_resolution_preference",
+            "name": "Collect Resolution Preference",
+            "description": null,
+            "say": "Ask for the user's resolution preference naturally and make clear it is needed to choose the right return outcome, such as a refund or an exchange.",
+            "fact_requirements": [
+              {
+                "name": "resolution_preference",
+                "purpose": "to choose the right return outcome, such as a refund or an exchange"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_have_resolution",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "resolution_preference"
+                },
+                "to_step_id": "authorize_return",
+                "label": "We already have the resolution preference.",
+                "priority": 5
+              },
+              {
+                "id": "t_wait_resolution",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_resolution_preference",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "authorize_return",
+            "name": "Authorize Return",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = commerce(action=\"authorize_return\", order_id=vars.get(\"order_id\"), return_reason=vars.get(\"return_reason\"), return_category=vars.get(\"return_category\"), resolution_preference=vars.get(\"resolution_preference\"))\nresult = normalize_tool_result(response, [\"approved_exchange\", \"approved_refund\", \"approved_credit\", \"denied\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "commerce"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_auth_exchange",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_approved_exchange"
+                },
+                "to_step_id": "collect_exchange_prefs",
+                "label": "Action code approved exchange happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_auth_refund",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_approved_refund"
+                },
+                "to_step_id": "process_refund",
+                "label": "Action code approved refund happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_auth_credit",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_approved_credit"
+                },
+                "to_step_id": "process_store_credit",
+                "label": "Action code approved credit happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_auth_denied",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_denied"
+                },
+                "to_step_id": "return_denied",
+                "label": "Action code denied happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_auth_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "returns_escalation",
+                "label": "Action code error happened.",
+                "priority": 15
+              },
+              {
+                "id": "t_auth_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "authorize_return",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "collect_exchange_prefs",
+            "name": "Collect Exchange Preferences",
+            "description": null,
+            "say": "Ask for the user's exchange sku naturally and make clear it is needed to confirm which replacement item the customer wants.",
+            "fact_requirements": [
+              {
+                "name": "exchange_sku",
+                "purpose": "to confirm which replacement item the customer wants"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_have_sku",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "exchange_sku"
+                },
+                "to_step_id": "check_exchange_inventory",
+                "label": "We already have the exchange sku.",
+                "priority": 5
+              },
+              {
+                "id": "t_wait_sku",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_exchange_prefs",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "check_exchange_inventory",
+            "name": "Check Exchange Inventory",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = commerce(action=\"check_inventory\", sku=vars.get(\"exchange_sku\"))\nresult = normalize_tool_result(response, [\"available\", \"unavailable\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "commerce"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 6.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_in_stock",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_available"
+                },
+                "to_step_id": "process_exchange",
+                "label": "Action code available happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_out_of_stock",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_unavailable"
+                },
+                "to_step_id": "exchange_unavailable",
+                "label": "Action code unavailable happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_inventory_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "process_refund",
+                "label": "Action code error happened.",
+                "priority": 15
+              },
+              {
+                "id": "t_inventory_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "check_exchange_inventory",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "process_exchange",
+            "name": "Process Exchange",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = commerce(action=\"create_exchange_order\", order_id=vars.get(\"order_id\"), rma_number=vars.get(\"rma_number\"), exchange_sku=vars.get(\"exchange_sku\"), customer_email=vars.get(\"customer_email\"))\nresult = normalize_tool_result(response, [\"success\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "commerce"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 10.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_exchange_done",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "exchange_confirmed",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_exchange_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "returns_escalation",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_exchange_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "process_exchange",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "exchange_unavailable",
+            "name": "Exchange Unavailable",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_fallback_refund",
+                "when": {
+                  "kind": "outcome",
+                  "event": "wants_refund",
+                  "description": "Customer accepts a refund instead of exchange."
+                },
+                "to_step_id": "process_refund",
+                "label": "The user is asking about wants refund.",
+                "priority": 5
+              },
+              {
+                "id": "t_fallback_credit",
+                "when": {
+                  "kind": "outcome",
+                  "event": "wants_store_credit",
+                  "description": "Customer prefers store credit."
+                },
+                "to_step_id": "process_store_credit",
+                "label": "The user is asking about wants store credit.",
+                "priority": 5
+              },
+              {
+                "id": "t_fallback_different_item",
+                "when": {
+                  "kind": "outcome",
+                  "event": "wants_different_item",
+                  "description": "Customer wants to try a different exchange item."
+                },
+                "to_step_id": "collect_exchange_prefs",
+                "label": "The user is asking about wants different item.",
+                "priority": 5
+              },
+              {
+                "id": "t_exchange_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "Customer decides to keep the item or end the interaction."
+                },
+                "to_step_id": "closed",
+                "label": "The user is asking about close.",
+                "priority": 20
+              },
+              {
+                "id": "t_exchange_unavail_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "exchange_unavailable",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "exchange_confirmed",
+            "name": "Exchange Confirmed",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "process_refund",
+            "name": "Process Refund",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = commerce(action=\"issue_refund\", order_id=vars.get(\"order_id\"), rma_number=vars.get(\"rma_number\"), refund_amount=vars.get(\"refund_amount\"), customer_email=vars.get(\"customer_email\"))\nresult = normalize_tool_result(response, [\"success\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "commerce"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 10.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_refund_done",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "refund_confirmed",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_refund_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "returns_escalation",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_refund_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "process_refund",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "refund_confirmed",
+            "name": "Refund Confirmed",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "process_store_credit",
+            "name": "Process Store Credit",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = commerce(action=\"issue_store_credit\", order_id=vars.get(\"order_id\"), rma_number=vars.get(\"rma_number\"), customer_email=vars.get(\"customer_email\"))\nresult = normalize_tool_result(response, [\"success\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "commerce"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_credit_done",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "store_credit_confirmed",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_credit_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "returns_escalation",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_credit_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "process_store_credit",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "store_credit_confirmed",
+            "name": "Store Credit Confirmed",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "outside_window",
+            "name": "Outside Return Window",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "return_denied",
+            "name": "Return Denied",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "order_not_found",
+            "name": "Order Not Found",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "follow_up_required",
+              "summary": null
+            }
+          },
+          {
+            "id": "returns_escalation",
+            "name": "Returns Escalation",
+            "description": null,
+            "say": "I’m unable to complete this automatically right now. Let me connect you with a returns specialist who can help you directly.",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "handoff": {
+              "target_type": "queue",
+              "target": "human_support",
+              "summary": "I’m unable to complete this automatically right now. Let me connect you with a returns specialist who can help you directly."
+            }
+          },
+          {
+            "id": "closed",
+            "name": "Closed",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          }
+        ]
+      }
+    ],
+    "scenario_routes": [],
+    "fact_schema": [
+      {
+        "name": "order_id",
+        "type": "string",
+        "required": true,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "customer_email",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.9,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "customer_name",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "return_reason",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "return_category",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "resolution_preference",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.85,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "rma_number",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "exchange_sku",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.85,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "refund_amount",
+        "type": "number",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      }
+    ],
+    "agent_capability_manifest": {
+      "assistant_identity": "I'm your returns and refunds assistant.",
+      "capabilities": [
+        "help with returns and exchanges",
+        "guide refund requests",
+        "explain return status and next steps"
+      ],
+      "limitations": [
+        "I only use configured order and returns systems."
+      ]
+    },
+    "metadata": {
+      "source_graph_version": "1.0.0"
+    }
+  }
+}

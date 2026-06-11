@@ -1,0 +1,950 @@
+{
+  "agent_id": "sales",
+  "name": "Sales Agent",
+  "agent_document": {
+    "version": "3.0",
+    "start_scenario_id": "main",
+    "scenarios": [
+      {
+        "id": "main",
+        "name": "Sales Agent",
+        "start_step_id": "entry",
+        "steps": [
+          {
+            "id": "entry",
+            "name": "Entry",
+            "transitions": [
+              {
+                "id": "t_entry",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "discover",
+                "label": "start",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": "Hi there! I'm here to help you learn about Ruhu. What brings you here today?",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Use retrieved knowledge when available. If no grounded knowledge context is available, give this safe product overview: Ruhu is a conversational AI platform for building workflow-driven agents across web chat, voice, and phone. It supports visual agent authoring, knowledge-base answers, tool integrations, scheduling, support triage, and observability. Then ask which area they want to explore.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Ruhu is a conversational AI platform for building workflow-driven agents across web chat, voice, and phone. It supports visual agent authoring, knowledge-base answers, tool integrations, scheduling, support triage, and observability. Which area would you like to explore?",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "discover",
+            "name": "Discover",
+            "transitions": [
+              {
+                "id": "t_integrations",
+                "when": {
+                  "kind": "outcome",
+                  "event": "integration_question",
+                  "description": "The user asks what tools, APIs, webhooks, systems, apps, or integrations can connect with the platform."
+                },
+                "to_step_id": "answer_integrations",
+                "label": "integration_question_detected",
+                "priority": 5
+              },
+              {
+                "id": "t_product",
+                "when": {
+                  "kind": "outcome",
+                  "event": "product_question",
+                  "description": "The user asks what the product or platform does, asks about features, workflows, or capabilities."
+                },
+                "to_step_id": "answer_product",
+                "label": "product_question_detected",
+                "priority": 10
+              },
+              {
+                "id": "t_pricing",
+                "when": {
+                  "kind": "outcome",
+                  "event": "pricing_question",
+                  "description": "The user asks about pricing, cost, quote, plans, or billing."
+                },
+                "to_step_id": "answer_pricing",
+                "label": "pricing_question_detected",
+                "priority": 10
+              },
+              {
+                "id": "t_demo",
+                "when": {
+                  "kind": "outcome",
+                  "event": "booking_request",
+                  "description": "The user wants to book a meeting, schedule a call, or see a walkthrough."
+                },
+                "to_step_id": "collect_booking_details",
+                "label": "booking_requested",
+                "priority": 10
+              },
+              {
+                "id": "t_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "discover",
+                "label": "stay",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "I can help with product questions, pricing, demos, or support.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "answer_integrations",
+            "name": "Answer Integrations Question",
+            "transitions": [
+              {
+                "id": "t_answer_integrations_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "knowledge_lookup_success"
+                },
+                "to_step_id": "integrations_qa",
+                "label": "knowledge_answered",
+                "priority": 5
+              },
+              {
+                "id": "t_answer_integrations_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "integrations_qa",
+                "label": "return_to_integrations_qa",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [
+              {
+                "ref": "knowledge.lookup",
+                "mode": "required",
+                "invocation_strategy": "always",
+                "timeout_ms": null,
+                "event_name": "knowledge_lookup",
+                "args": {
+                  "query": "$turn.text"
+                }
+              }
+            ],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Use retrieved knowledge when available. If no grounded knowledge context is available, explain that Ruhu integrations can connect agents to scheduling, CRM, support, internal tools, APIs, and webhooks, then ask which system they want to connect.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Ruhu integrations can connect agents to scheduling, CRM, support, and internal tools through configured tool integrations, APIs, and webhooks. Common examples include calendar booking, lead capture, support ticket handoff, knowledge lookup, and custom backend actions. Which system do you want to connect?",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "integrations_qa",
+            "name": "Integrations Q&A",
+            "transitions": [
+              {
+                "id": "t_integrations_more",
+                "when": {
+                  "kind": "outcome",
+                  "event": "integration_question",
+                  "description": "The user continues asking which tools, systems, apps, APIs, or webhooks Ruhu can integrate with."
+                },
+                "to_step_id": "answer_integrations",
+                "label": "follow_up_integrations_question",
+                "priority": 10
+              },
+              {
+                "id": "t_integrations_demo",
+                "when": {
+                  "kind": "outcome",
+                  "event": "booking_request",
+                  "description": "The user wants to schedule a meeting or call after discussing integrations."
+                },
+                "to_step_id": "collect_booking_details",
+                "label": "booking_requested_from_integrations_qa",
+                "priority": 10
+              },
+              {
+                "id": "t_integrations_pricing",
+                "when": {
+                  "kind": "outcome",
+                  "event": "pricing_question",
+                  "description": "The user shifts from integrations to asking about price or plans."
+                },
+                "to_step_id": "answer_pricing",
+                "label": "pricing_requested_from_integrations_qa",
+                "priority": 10
+              },
+              {
+                "id": "t_integrations_product",
+                "when": {
+                  "kind": "outcome",
+                  "event": "product_question",
+                  "description": "The user shifts from integrations to product features, workflows, or capabilities."
+                },
+                "to_step_id": "answer_product",
+                "label": "product_requested_from_integrations_qa",
+                "priority": 10
+              },
+              {
+                "id": "t_integrations_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "The user is ending the conversation politely or saying thanks with no further request."
+                },
+                "to_step_id": "closed",
+                "label": "user_closed_from_integrations_qa",
+                "priority": 20
+              },
+              {
+                "id": "t_integrations_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "integrations_qa",
+                "label": "stay",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "I can help with integrations. Ruhu can connect agents to scheduling, CRM, support, internal tools, APIs, and webhooks. Which system do you want to connect?",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "I can help with integrations. Ruhu can connect agents to scheduling, CRM, support, internal tools, APIs, and webhooks. Which system do you want to connect?",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "answer_product",
+            "name": "Answer Product Question",
+            "transitions": [
+              {
+                "id": "t_answer_product_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "knowledge_lookup_success"
+                },
+                "to_step_id": "product_qa",
+                "label": "knowledge_answered",
+                "priority": 5
+              },
+              {
+                "id": "t_answer_product_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "product_qa",
+                "label": "return_to_product_qa",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [
+              {
+                "ref": "knowledge.lookup",
+                "mode": "required",
+                "invocation_strategy": "always",
+                "timeout_ms": null,
+                "event_name": "knowledge_lookup",
+                "args": {
+                  "query": "$turn.text"
+                }
+              }
+            ],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Use retrieved knowledge when available. If no grounded knowledge context is available, give this safe product overview: Ruhu is a conversational AI platform for building workflow-driven agents across web chat, voice, and phone. It supports visual agent authoring, knowledge-base answers, tool integrations, scheduling, support triage, and observability. Then ask which area they want to explore.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Ruhu is a conversational AI platform for building workflow-driven agents across web chat, voice, and phone. It supports visual agent authoring, knowledge-base answers, tool integrations, scheduling, support triage, and observability. Which area would you like to explore?",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "product_qa",
+            "name": "Product Q&A",
+            "transitions": [
+              {
+                "id": "t_product_integrations",
+                "when": {
+                  "kind": "outcome",
+                  "event": "integration_question",
+                  "description": "The user asks which tools, systems, apps, APIs, or webhooks Ruhu can integrate with."
+                },
+                "to_step_id": "answer_integrations",
+                "label": "integrations_requested_from_product_qa",
+                "priority": 5
+              },
+              {
+                "id": "t_product_more",
+                "when": {
+                  "kind": "outcome",
+                  "event": "product_question",
+                  "description": "The user continues asking what the platform does, features, workflows, or capabilities."
+                },
+                "to_step_id": "answer_product",
+                "label": "follow_up_product_question",
+                "priority": 10
+              },
+              {
+                "id": "t_product_demo",
+                "when": {
+                  "kind": "outcome",
+                  "event": "booking_request",
+                  "description": "The user wants to schedule a meeting or call after discussing the product."
+                },
+                "to_step_id": "collect_booking_details",
+                "label": "booking_requested_from_product_qa",
+                "priority": 10
+              },
+              {
+                "id": "t_product_pricing",
+                "when": {
+                  "kind": "outcome",
+                  "event": "pricing_question",
+                  "description": "The user shifts from product questions to asking about price or plans."
+                },
+                "to_step_id": "answer_pricing",
+                "label": "pricing_requested_from_product_qa",
+                "priority": 10
+              },
+              {
+                "id": "t_product_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "The user is ending the conversation politely or saying thanks with no further request."
+                },
+                "to_step_id": "closed",
+                "label": "user_closed_from_product_qa",
+                "priority": 20
+              },
+              {
+                "id": "t_product_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "product_qa",
+                "label": "stay",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "I'm here. I can explain Ruhu's product, pricing, integrations, voice and chat channels, or help book a demo. What would you like to know?",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "I'm here. I can explain Ruhu's product, pricing, integrations, voice and chat channels, or help book a demo. What would you like to know?",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "answer_pricing",
+            "name": "Answer Pricing Question",
+            "transitions": [
+              {
+                "id": "t_answer_pricing_ok",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "knowledge_lookup_success"
+                },
+                "to_step_id": "pricing_qa",
+                "label": "knowledge_answered",
+                "priority": 5
+              },
+              {
+                "id": "t_answer_pricing_fallback",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "pricing_qa",
+                "label": "return_to_pricing_qa",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [
+              {
+                "ref": "knowledge.lookup",
+                "mode": "required",
+                "invocation_strategy": "always",
+                "timeout_ms": null,
+                "event_name": "knowledge_lookup",
+                "args": {
+                  "query": "$turn.text"
+                }
+              }
+            ],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "Ruhu pricing is flexible and depends on channels, automation volume, support needs, and deployment requirements. Trial accounts can test the platform before deploying; paid plans combine a base subscription with usage for conversations, voice minutes, and LLM tokens. For exact pricing, the best next step is to book a demo or talk with sales.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "Ruhu pricing is flexible and depends on channels, automation volume, support needs, and deployment requirements. Trial accounts can test the platform before deploying; paid plans combine a base subscription with usage for conversations, voice minutes, and LLM tokens. For exact pricing, the best next step is to book a demo or talk with sales.",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "pricing_qa",
+            "name": "Pricing Q&A",
+            "transitions": [
+              {
+                "id": "t_pricing_more",
+                "when": {
+                  "kind": "outcome",
+                  "event": "pricing_question",
+                  "description": "The user continues asking about pricing, costs, plans, or quotes."
+                },
+                "to_step_id": "answer_pricing",
+                "label": "follow_up_pricing_question",
+                "priority": 10
+              },
+              {
+                "id": "t_pricing_demo",
+                "when": {
+                  "kind": "outcome",
+                  "event": "booking_request",
+                  "description": "The user wants to schedule a meeting or call after discussing pricing."
+                },
+                "to_step_id": "collect_booking_details",
+                "label": "booking_requested_from_pricing_qa",
+                "priority": 10
+              },
+              {
+                "id": "t_pricing_product",
+                "when": {
+                  "kind": "outcome",
+                  "event": "product_question",
+                  "description": "The user shifts from price to product features, workflows, or capabilities."
+                },
+                "to_step_id": "answer_product",
+                "label": "product_requested_from_pricing_qa",
+                "priority": 10
+              },
+              {
+                "id": "t_pricing_integrations",
+                "when": {
+                  "kind": "outcome",
+                  "event": "integration_question",
+                  "description": "The user shifts from pricing to asking which tools, systems, apps, APIs, or webhooks Ruhu can integrate with."
+                },
+                "to_step_id": "answer_integrations",
+                "label": "integrations_requested_from_pricing_qa",
+                "priority": 10
+              },
+              {
+                "id": "t_pricing_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "The user is ending the conversation politely or saying thanks with no further request."
+                },
+                "to_step_id": "closed",
+                "label": "user_closed_from_pricing_qa",
+                "priority": 20
+              },
+              {
+                "id": "t_pricing_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "pricing_qa",
+                "label": "stay",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "I can help with pricing questions. Ruhu pricing depends on channels, automation volume, support needs, and deployment requirements. Do you want a general overview, or would you like to book a demo for an exact quote?",
+              "render_with_llm": true,
+              "deterministic_fallback_text": "I can help with pricing questions. Ruhu pricing depends on channels, automation volume, support needs, and deployment requirements. Do you want a general overview, or would you like to book a demo for an exact quote?",
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "collect_booking_details",
+            "name": "Collect Booking Details",
+            "transitions": [
+              {
+                "id": "t_booking_details_ready",
+                "when": {
+                  "kind": "all_required_facts_present",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "submit_lead",
+                "label": "booking_details_collected",
+                "priority": 5
+              },
+              {
+                "id": "t_booking_details_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "collect_booking_details",
+                "label": "wait",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": null,
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "email",
+                "purpose": null
+              },
+              {
+                "name": "preferred_time",
+                "purpose": null
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "submit_lead",
+            "name": "Book Demo",
+            "transitions": [
+              {
+                "id": "t_create_lead_done",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "calendar_create_event_success"
+                },
+                "to_step_id": "request_submitted",
+                "label": "demo_booked",
+                "priority": 5
+              },
+              {
+                "id": "t_create_lead_retry",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "calendar_create_event_error"
+                },
+                "to_step_id": "lead_submission_followup",
+                "label": "booking_failed",
+                "priority": 10
+              },
+              {
+                "id": "t_create_lead_timeout",
+                "when": {
+                  "kind": "tool_outcome",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "outcome": "calendar_create_event_timeout"
+                },
+                "to_step_id": "lead_submission_followup",
+                "label": "booking_timed_out",
+                "priority": 10
+              },
+              {
+                "id": "t_create_lead_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "submit_lead",
+                "label": "wait",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [
+              {
+                "ref": "calendar.create_event",
+                "mode": "required",
+                "invocation_strategy": "always",
+                "timeout_ms": null,
+                "event_name": null,
+                "args": {
+                  "title": "Ruhu Demo",
+                  "attendee_email": "$fact.email",
+                  "start_time": "$fact.preferred_time",
+                  "channel": "$turn.channel"
+                }
+              }
+            ],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "lead_submission_followup",
+            "name": "Booking Follow-Up",
+            "transitions": [
+              {
+                "id": "t_lead_followup_retry",
+                "when": {
+                  "kind": "outcome",
+                  "event": "booking_request",
+                  "description": "The user still wants to book the demo or asks to try submitting the request again."
+                },
+                "to_step_id": "submit_lead",
+                "label": "booking_requested_retry",
+                "priority": 10
+              },
+              {
+                "id": "t_lead_followup_product",
+                "when": {
+                  "kind": "outcome",
+                  "event": "product_question",
+                  "description": "The user goes back to asking what the platform does, how it works, or which features it offers."
+                },
+                "to_step_id": "answer_product",
+                "label": "resume_product_qa_after_submit_failure",
+                "priority": 20
+              },
+              {
+                "id": "t_lead_followup_pricing",
+                "when": {
+                  "kind": "outcome",
+                  "event": "pricing_question",
+                  "description": "The user shifts into pricing or plan questions while deciding whether to proceed."
+                },
+                "to_step_id": "answer_pricing",
+                "label": "resume_pricing_qa_after_submit_failure",
+                "priority": 20
+              },
+              {
+                "id": "t_lead_followup_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "The user is done for now or wants to end the conversation."
+                },
+                "to_step_id": "closed",
+                "label": "user_closed_after_submit_issue",
+                "priority": 30
+              },
+              {
+                "id": "t_lead_followup_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "lead_submission_followup",
+                "label": "wait",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": "I already have your email and preferred meeting time, but I couldn't complete the calendar booking just now. I can try again, or I can keep answering questions about Ruhu while we sort it out.",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "request_submitted",
+            "name": "Booking Confirmed",
+            "transitions": [],
+            "description": null,
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "closed",
+            "name": "Closed",
+            "transitions": [],
+            "description": null,
+            "say": null,
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": {
+              "disposition": "closed",
+              "summary": null
+            }
+          }
+        ],
+        "summary": "Sales Agent",
+        "order": 0,
+        "entry_channels": [],
+        "resources": {}
+      }
+    ],
+    "scenario_routes": [],
+    "fact_schema": [
+      {
+        "name": "email",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "preferred_time",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_deterministic"
+      }
+    ],
+    "agent_capability_manifest": {
+      "assistant_identity": "I'm Ruhu's sales assistant.",
+      "capabilities": [
+        "answer product questions",
+        "answer pricing questions",
+        "help book a demo"
+      ],
+      "limitations": [
+        "I only use configured tools and grounded product information."
+      ]
+    },
+    "metadata": {}
+  }
+}

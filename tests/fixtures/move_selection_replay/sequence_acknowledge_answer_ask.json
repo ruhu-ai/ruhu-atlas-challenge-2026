@@ -1,0 +1,28 @@
+{
+  "turn_id": "p3:seq:ack_answer_ask:001",
+  "input_context_hash": "p3sequence000000000000000000000000000000000000acknowledge_answer",
+  "move_selection_output": {
+    "sequence": {
+      "moves": [
+        {
+          "move_type": "acknowledge",
+          "rationale": "Acknowledge the side question before answering it.",
+          "confidence": 0.92
+        },
+        {
+          "move_type": "answer",
+          "rationale": "Briefly answer the side question.",
+          "confidence": 0.91
+        },
+        {
+          "move_type": "ask_for_missing_info",
+          "rationale": "Re-ask for the missing email after the digression.",
+          "confidence": 0.9
+        }
+      ],
+      "combined_response_plan": "Got it - briefly answer the question, then ask for the email again.",
+      "sequence_rationale": "ack the digression, answer it, return to capture."
+    }
+  },
+  "committed_deltas": {}
+}

@@ -1,0 +1,20 @@
+{
+  "turn_id": "p3:confirm_understanding:001",
+  "input_context_hash": "p3000000000000000000000000000000000000000000000confirm_understand",
+  "move_selection_output": {
+    "selection": {
+      "move_type": "confirm_understanding",
+      "rationale": "Confirm the user's email before triggering the structural commit.",
+      "confidence": 0.95,
+      "extracted_facts": {"email": "user@example.com"}
+    }
+  },
+  "validation_result": {
+    "outcome": "accepted",
+    "committed_move_type": "confirm_understanding",
+    "committed_state_id": "collect_contact_info",
+    "accepted_facts": {"email": "user@example.com"},
+    "response_constraints": {"move_type": "confirm_understanding"}
+  },
+  "committed_deltas": {}
+}

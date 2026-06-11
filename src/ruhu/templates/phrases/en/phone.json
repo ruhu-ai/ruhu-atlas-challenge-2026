@@ -1,0 +1,23 @@
+{
+  "work_start": [
+    "One second while I check that.",
+    "Okay, I’m checking that now."
+  ],
+  "still_running": [
+    "Still working on that.",
+    "One moment, that’s still processing."
+  ],
+  "interrupt_ack": [
+    "Okay, I stopped that.",
+    "Understood, I’ve stopped that."
+  ],
+  "completion_uncertain": [
+    "I tried to stop that, but I’m still confirming whether it completed."
+  ],
+  "policy_blocked": [
+    "I can’t continue with that until I have your confirmation."
+  ],
+  "repair_no_progress": [
+    "No problem, I can continue with what I have."
+  ]
+}

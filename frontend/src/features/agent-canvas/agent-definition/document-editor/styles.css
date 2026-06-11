@@ -1,0 +1,600 @@
+/* Ruhu document editor — visual treatment for Tiptap nodes.
+ *
+ * Goal: prose-like readability. Labels are inline, lowercase, secondary; the
+ * author's content is the typographic focus. Chrome (icons, prefixes, pills)
+ * is rendered via attribute-driven CSS pseudo-elements so the schema stays
+ * simple HTML.
+ */
+
+.doc-editor {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.doc-editor .ProseMirror {
+  outline: none;
+  padding: 32px max(24px, calc((100% - 760px) / 2)) 96px;
+  min-height: 100%;
+  font-size: 14px;
+  line-height: 1.55;
+  color: hsl(var(--foreground));
+}
+
+.doc-editor .ProseMirror:focus {
+  outline: none;
+}
+
+/* ─── Scenario ─────────────────────────────────────────────────────────── */
+
+.doc-editor [data-scenario] {
+  margin-bottom: 28px;
+}
+
+.doc-editor [data-scenario-name] {
+  font-size: 19px;
+  font-weight: 600;
+  margin: 0 0 14px;
+  line-height: 1.35;
+}
+
+.doc-editor [data-scenario-name]::before {
+  content: 'Scenario: ';
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+}
+
+.doc-editor [data-scenario][data-is-start='true'] [data-scenario-name]::after {
+  content: '  ★ start';
+  font-size: 12px;
+  font-weight: 500;
+  color: rgb(252 211 77);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Step ─────────────────────────────────────────────────────────────── */
+
+.doc-editor [data-step] {
+  margin: 16px 0 0;
+}
+
+.doc-editor [data-step-name] {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.doc-editor [data-step-name]::before {
+  content: '○';
+  position: absolute;
+  left: 0;
+  top: -1px;
+  font-size: 16px;
+  color: hsl(var(--muted-foreground));
+  font-weight: 400;
+}
+
+.doc-editor [data-step][data-is-start='true'] [data-step-name]::after {
+  content: '  · start step';
+  font-size: 11px;
+  font-weight: 500;
+  color: rgb(252 211 77);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Step body — common indentation ───────────────────────────────────── */
+
+.doc-editor [data-say-block],
+.doc-editor [data-direct-answer],
+.doc-editor [data-action-summary],
+.doc-editor [data-event-hints],
+.doc-editor [data-transition] {
+  position: relative;
+  margin: 2px 0 2px 18px;
+}
+
+/* Shared label column — every step-body block has a small lowercase tag in
+ * a fixed-width column on the left. Body text starts at padding-left. */
+.doc-editor [data-say-block],
+.doc-editor [data-direct-answer],
+.doc-editor [data-action-summary],
+.doc-editor [data-transition] {
+  padding-left: 64px;
+  line-height: 1.55;
+}
+
+.doc-editor [data-say-block]::before,
+.doc-editor [data-direct-answer]::before,
+.doc-editor [data-action-summary]::before,
+.doc-editor [data-transition]::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  letter-spacing: 0.04em;
+  width: 56px;
+  line-height: 1.55;
+}
+
+/* ─── Say block ────────────────────────────────────────────────────────── */
+
+.doc-editor [data-say-block] {
+  font-style: italic;
+  color: hsl(var(--foreground));
+}
+
+.doc-editor [data-say-block]::before {
+  content: 'say';
+}
+
+/* ─── Direct answer block ──────────────────────────────────────────────── */
+
+.doc-editor [data-direct-answer] {
+  font-style: italic;
+  color: hsl(var(--foreground));
+}
+
+.doc-editor [data-direct-answer]::before {
+  content: 'direct';
+}
+
+/* ─── Action summary (atom node) ───────────────────────────────────────── */
+
+.doc-editor [data-action-summary] {
+  color: hsl(var(--muted-foreground));
+  font-size: 13px;
+  user-select: none;
+  /* The atom has no editable content; we render the summary inline. */
+}
+
+.doc-editor [data-action-summary]::before {
+  content: 'action';
+}
+
+.doc-editor [data-action-summary]::after {
+  content: attr(data-summary);
+  color: hsl(var(--muted-foreground));
+  font-size: 13px;
+}
+
+/* ─── Transition ───────────────────────────────────────────────────────── */
+
+.doc-editor [data-transition] {
+  font-style: italic;
+  color: hsl(var(--foreground));
+  padding-left: 36px;
+  margin: 2px 0 2px 18px;
+  line-height: 1.55;
+}
+
+/* Static arrow prefix. */
+.doc-editor [data-transition]::before {
+  content: '↳';
+  position: absolute;
+  left: 16px;
+  top: 0;
+  width: auto;
+  font-style: normal;
+  color: hsl(var(--muted-foreground));
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Drag affordance — gripper icon on hover, signals "drag to reorder". */
+.doc-editor [data-transition]::after {
+  content: '⋮⋮';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-style: normal;
+  font-size: 11px;
+  color: hsl(var(--muted-foreground));
+  letter-spacing: -1px;
+  opacity: 0;
+  cursor: grab;
+  transition: opacity 100ms ease-out;
+}
+
+.doc-editor [data-transition]:hover::after {
+  opacity: 0.5;
+}
+
+.doc-editor [data-transition]:active::after {
+  cursor: grabbing;
+  opacity: 1;
+}
+
+/* The pill is rendered by ConditionPicker (React) so it can be clickable.
+ * No CSS ::after is needed for the pill text. */
+
+.doc-editor .doc-transition-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+  font-style: normal;
+  vertical-align: baseline;
+  user-select: none;
+}
+
+.doc-editor .doc-transition-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Condition button — the routing chip. A coloured pill whose tone tells
+ * you at a glance
+ * what kind of routing trigger this is.
+ *
+ *   outcome        — blue   (LLM-evaluated workflow outcome)
+ *   tool_outcome   — green  (deterministic tool result code)
+ *   fact_*         — purple (fact-presence gate)
+ *   guard_failure  — red    (deterministic guard fail)
+ *   otherwise      — slate  (catch-all fallback, deliberately dim)
+ */
+.doc-editor .doc-transition-condition {
+  padding: 1px 8px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  color: hsl(var(--muted-foreground));
+  cursor: pointer;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+.doc-editor .doc-transition-condition:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.doc-editor .doc-transition-condition[data-kind='outcome'] {
+  color: rgb(147 197 253);
+  background: rgba(96, 165, 250, 0.14);
+  border-color: rgba(96, 165, 250, 0.25);
+}
+
+.doc-editor .doc-transition-condition[data-kind='tool_outcome'] {
+  color: rgb(110 231 183);
+  background: rgba(52, 211, 153, 0.14);
+  border-color: rgba(52, 211, 153, 0.25);
+}
+
+.doc-editor .doc-transition-condition[data-kind='fact_present'],
+.doc-editor .doc-transition-condition[data-kind='fact_missing'],
+.doc-editor .doc-transition-condition[data-kind='fact_equals'],
+.doc-editor .doc-transition-condition[data-kind='all_required_facts_present'] {
+  color: rgb(196 181 253);
+  background: rgba(167, 139, 250, 0.14);
+  border-color: rgba(167, 139, 250, 0.25);
+}
+
+.doc-editor .doc-transition-condition[data-kind='guard_failure'] {
+  color: rgb(252 165 165);
+  background: rgba(248, 113, 113, 0.14);
+  border-color: rgba(248, 113, 113, 0.25);
+}
+
+.doc-editor .doc-transition-condition[data-kind='attachment_present'],
+.doc-editor .doc-transition-condition[data-kind='view_ready'] {
+  color: rgb(253 186 116);
+  background: rgba(251, 146, 60, 0.14);
+  border-color: rgba(251, 146, 60, 0.25);
+}
+
+.doc-editor .doc-transition-condition[data-kind='otherwise'] {
+  color: hsl(var(--muted-foreground));
+  background: rgba(255, 255, 255, 0.04);
+  font-style: italic;
+}
+
+/* Arrow + target step ref — clickable to jump to that step. Always neutral
+ * (regardless of condition kind), reads as one connected piece. */
+.doc-editor .doc-transition-target {
+  padding: 1px 4px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+  color: hsl(var(--muted-foreground));
+  font-weight: 500;
+  white-space: pre;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.doc-editor .doc-transition-target:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  color: hsl(var(--foreground));
+}
+
+/* Brief highlight pulse on the destination step after a click-to-jump. */
+.doc-editor .doc-step-jump-highlight {
+  animation: doc-step-pulse 1200ms ease-out;
+}
+
+@keyframes doc-step-pulse {
+  0% { background: rgba(96, 165, 250, 0.18); }
+  100% { background: transparent; }
+}
+
+/* ─── Slash menu ───────────────────────────────────────────────────────── */
+
+.doc-slash-menu {
+  min-width: 240px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 4px;
+  background: hsl(var(--card));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  font-family: inherit;
+}
+
+.doc-slash-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 6px 8px;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: hsl(var(--muted-foreground));
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.doc-slash-menu-item:hover,
+.doc-slash-menu-item-active {
+  background: rgba(255, 255, 255, 0.08);
+  color: hsl(var(--foreground));
+}
+
+.doc-slash-menu-empty {
+  padding: 8px 12px;
+  font-size: 12px;
+  color: hsl(var(--muted-foreground));
+}
+
+.doc-editor .doc-transition-delete {
+  visibility: hidden;
+}
+
+.doc-editor .doc-node-with-toolbar:hover .doc-transition-delete,
+.doc-editor .doc-node-with-toolbar.has-focus .doc-transition-delete {
+  visibility: visible;
+}
+
+/* ─── Event hints (collapsible — see EventHintsNodeView) ───────────────── */
+
+.doc-editor [data-event-hints] {
+  margin: 4px 0 4px 18px;
+  font-size: 13px;
+}
+
+.doc-editor .doc-hints-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  font-size: 12px;
+  color: hsl(var(--muted-foreground));
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.doc-editor .doc-hints-toggle:hover {
+  color: hsl(var(--foreground));
+}
+
+.doc-editor .doc-hints-toggle-arrow {
+  display: inline-block;
+  width: 10px;
+  font-size: 10px;
+}
+
+.doc-editor .doc-hints-summary-keys {
+  margin-left: 4px;
+  color: hsl(var(--muted-foreground));
+  font-size: 12px;
+}
+
+.doc-editor .doc-hints-summary-key {
+  color: rgb(147 197 253);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  margin-right: 6px;
+}
+
+.doc-editor .doc-hints-content {
+  margin-top: 6px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.doc-editor [data-event-hint] {
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 1px 0;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Hint row layout: editable @key pill on the left, description on the right. */
+.doc-editor .doc-hint-row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Editable key input rendered as a pill — visually matches the static
+ * `@event_name` chip used elsewhere. The leading `@` is decorative via CSS. */
+.doc-editor .doc-hint-key-input {
+  flex-shrink: 0;
+  padding: 0 5px 0 14px;
+  position: relative;
+  border-radius: 3px;
+  background: rgba(96, 165, 250, 0.12);
+  color: rgb(147 197 253);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  outline: none;
+  width: 160px;
+  height: 18px;
+}
+
+.doc-editor .doc-hint-key-input:hover {
+  border-color: rgba(147, 197, 253, 0.3);
+}
+
+.doc-editor .doc-hint-key-input:focus {
+  border-color: rgba(147, 197, 253, 0.6);
+  background: rgba(96, 165, 250, 0.18);
+}
+
+.doc-editor .doc-hint-row::before {
+  content: '@';
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 1px;
+  color: rgb(147 197 253);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.doc-editor .doc-hint-description {
+  flex: 1;
+  min-width: 0;
+}
+
+.doc-editor .doc-hints-actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Hover toolbars (Phase 2) ─────────────────────────────────────────── */
+
+.doc-editor .doc-node-with-toolbar {
+  position: relative;
+}
+
+.doc-editor .doc-toolbar {
+  position: absolute;
+  right: 0;
+  top: 2px;
+  display: none;
+  gap: 4px;
+  padding: 2px;
+  background: hsl(var(--card) / 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  z-index: 5;
+}
+
+.doc-editor .doc-toolbar.doc-toolbar-inline {
+  position: static;
+  display: inline-flex;
+  margin-left: 8px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.doc-editor .doc-node-with-toolbar:hover > .doc-toolbar,
+.doc-editor .doc-node-with-toolbar.has-focus > .doc-toolbar,
+.doc-editor .doc-node-with-toolbar:hover > .doc-toolbar.doc-toolbar-inline,
+.doc-editor .doc-node-with-toolbar.has-focus > .doc-toolbar.doc-toolbar-inline {
+  display: flex;
+  visibility: visible;
+}
+
+.doc-editor .doc-toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.doc-editor .doc-toolbar-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.06);
+  color: hsl(var(--foreground));
+}
+
+.doc-editor .doc-toolbar-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.doc-editor .doc-toolbar-btn-danger:hover:not(:disabled) {
+  color: rgb(252 165 165);
+  background: rgba(252, 165, 165, 0.1);
+}
+
+/* Bottom-of-document "Add scenario" button */
+.doc-editor .doc-add-scenario {
+  margin-top: 24px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  background: transparent;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.doc-editor .doc-add-scenario:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: hsl(var(--foreground));
+}
+
+/* ─── Empty state ──────────────────────────────────────────────────────── */
+
+.doc-editor .ProseMirror [data-say-block]:empty,
+.doc-editor .ProseMirror [data-direct-answer]:empty,
+.doc-editor .ProseMirror [data-event-hint]:empty,
+.doc-editor .ProseMirror [data-transition]:empty {
+  min-height: 1.4em;
+}

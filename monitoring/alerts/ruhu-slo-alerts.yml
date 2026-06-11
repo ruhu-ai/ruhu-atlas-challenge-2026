@@ -1,0 +1,214 @@
+# Ruhu SLO-based alert rules — Phase S4
+#
+# SLO definitions:
+#   API availability:   99.9%  (≤ 0.1% error rate, 30-day window)
+#   API p95 latency:    < 1 s  (95th percentile of all non-health requests)
+#   Turn processing p95:< 2 s  (95th percentile of kernel turn duration)
+#   Trace write p99:    < 50 ms (spec §2.1)
+#
+# Alert strategy: multi-window burn-rate per Google SRE "Implementing SLO-based
+# Alerts" chapter.  Two windows fire together to eliminate noise:
+#   - 1-hour window:  detects fast burns (page immediately)
+#   - 6-hour window:  detects slow burns (warning / ticket)
+#
+# Routing: all alerts carry `team=ruhu-platform` for AlertManager routing.
+
+groups:
+  # ── API availability SLO ────────────────────────────────────────────────────
+  - name: ruhu_api_availability_slo
+    rules:
+      # Recording rules — pre-compute error ratio over each window.
+      - record: ruhu:http_error_rate:5m
+        expr: |
+          sum(rate(ruhu_http_requests_total{status_code=~"5.."}[5m]))
+          /
+          sum(rate(ruhu_http_requests_total[5m]))
+
+      - record: ruhu:http_error_rate:1h
+        expr: |
+          sum(rate(ruhu_http_requests_total{status_code=~"5.."}[1h]))
+          /
+          sum(rate(ruhu_http_requests_total[1h]))
+
+      - record: ruhu:http_error_rate:6h
+        expr: |
+          sum(rate(ruhu_http_requests_total{status_code=~"5.."}[6h]))
+          /
+          sum(rate(ruhu_http_requests_total[6h]))
+
+      # Fast burn — 1h rate > 14× budget AND 5m rate > 14× budget.
+      # (14.4× is the standard multiplier for a 1-hour window to catch
+      # incidents that would exhaust the 30-day budget in < 2 hours.)
+      - alert: RuhuApiAvailabilityFastBurn
+        expr: |
+          ruhu:http_error_rate:1h > (14.4 * 0.001)
+          and
+          ruhu:http_error_rate:5m  > (14.4 * 0.001)
+        for: 2m
+        labels:
+          severity: critical
+          team: ruhu-platform
+          slo: api_availability
+        annotations:
+          summary: "Ruhu API fast burn — availability SLO breached"
+          description: |
+            The 1-hour HTTP error rate is {{ $value | humanizePercentage }} —
+            more than 14× the 0.1% SLO budget.  At this rate the 30-day
+            budget will be exhausted in under 2 hours.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/api-availability.md"
+
+      # Slow burn — 6h rate > 6× budget AND 1h rate > 6× budget.
+      - alert: RuhuApiAvailabilitySlowBurn
+        expr: |
+          ruhu:http_error_rate:6h > (6 * 0.001)
+          and
+          ruhu:http_error_rate:1h > (6 * 0.001)
+        for: 15m
+        labels:
+          severity: warning
+          team: ruhu-platform
+          slo: api_availability
+        annotations:
+          summary: "Ruhu API slow burn — availability SLO degrading"
+          description: |
+            The 6-hour HTTP error rate is {{ $value | humanizePercentage }}.
+            Budget burn is accelerating — create a P2 ticket if this
+            persists beyond 30 minutes.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/api-availability.md"
+
+  # ── API latency SLO ─────────────────────────────────────────────────────────
+  - name: ruhu_api_latency_slo
+    rules:
+      # Latency SLO: p95 < 1 s over a 5-minute window.
+      - alert: RuhuApiLatencyBreach
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum(rate(ruhu_http_request_duration_seconds_bucket[5m])) by (le)
+          ) > 1.0
+        for: 5m
+        labels:
+          severity: warning
+          team: ruhu-platform
+          slo: api_latency
+        annotations:
+          summary: "Ruhu API p95 latency exceeds 1 s SLO"
+          description: |
+            The 5-minute p95 request latency is {{ $value | humanizeDuration }},
+            above the 1 s SLO target.  Check DB pool saturation, LLM
+            provider latency, and recent deployments.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/api-latency.md"
+
+      - alert: RuhuApiLatencyCritical
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum(rate(ruhu_http_request_duration_seconds_bucket[5m])) by (le)
+          ) > 5.0
+        for: 2m
+        labels:
+          severity: critical
+          team: ruhu-platform
+          slo: api_latency
+        annotations:
+          summary: "Ruhu API p95 latency critical (> 5 s)"
+          description: |
+            The 5-minute p95 latency is {{ $value | humanizeDuration }}.
+            Service is functionally degraded for most users.  Escalate
+            immediately.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/api-latency.md"
+
+  # ── Turn processing latency ──────────────────────────────────────────────────
+  - name: ruhu_turn_latency
+    rules:
+      - alert: RuhuTurnProcessingLatencyHigh
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum(rate(ruhu_kernel_turn_duration_seconds_bucket[5m])) by (le, channel)
+          ) > 2.0
+        for: 5m
+        labels:
+          severity: warning
+          team: ruhu-platform
+        annotations:
+          summary: "Ruhu turn p95 processing latency high (channel={{ $labels.channel }})"
+          description: |
+            The 5-minute p95 turn processing time for channel
+            {{ $labels.channel }} is {{ $value | humanizeDuration }},
+            above the 2 s target.  Check LLM provider latency and tool
+            execution times.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/turn-latency.md"
+
+  # ── Trace write latency (spec §2.1) ─────────────────────────────────────────
+  - name: ruhu_trace_write_latency
+    rules:
+      - alert: RuhuTraceWriteLatencyBreach
+        expr: |
+          histogram_quantile(
+            0.99,
+            sum(rate(ruhu_trace_write_latency_seconds_bucket[5m])) by (le)
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+          team: ruhu-platform
+        annotations:
+          summary: "Ruhu TurnTrace write p99 latency exceeds 50 ms spec"
+          description: |
+            The p99 TurnTrace write latency is {{ $value | humanizeDuration }},
+            above the 50 ms spec §2.1 target.  This may indicate DB
+            saturation or network latency to the database.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/trace-write.md"
+
+      - alert: RuhuTraceWriteFailures
+        expr: |
+          sum(rate(ruhu_trace_write_failure_total[5m])) > 0.1
+        for: 2m
+        labels:
+          severity: critical
+          team: ruhu-platform
+        annotations:
+          summary: "Ruhu TurnTrace write failures detected"
+          description: |
+            More than 0.1 trace write failures/s detected.  Turns are
+            being rolled back.  Check DB connectivity and disk space.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/trace-write.md"
+
+  # ── Provider health ──────────────────────────────────────────────────────────
+  - name: ruhu_provider_health
+    rules:
+      - alert: RuhuLLMProviderErrorRateHigh
+        expr: |
+          sum(rate(ruhu_provider_error_total[5m])) by (provider, kind)
+          /
+          sum(rate(ruhu_llm_request_duration_seconds_count[5m])) by (provider)
+          > 0.05
+        for: 5m
+        labels:
+          severity: warning
+          team: ruhu-platform
+        annotations:
+          summary: "Ruhu LLM provider {{ $labels.provider }} error rate high (kind={{ $labels.kind }})"
+          description: |
+            Provider {{ $labels.provider }} {{ $labels.kind }} error rate is
+            {{ $value | humanizePercentage }}, above 5%.  Response generation
+            may be degraded or falling back.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/provider-health.md"
+
+  # ── DB pool saturation ───────────────────────────────────────────────────────
+  - name: ruhu_db_pool
+    rules:
+      - alert: RuhuDBPoolOverflowHigh
+        expr: ruhu_db_pool_overflow > 10
+        for: 5m
+        labels:
+          severity: warning
+          team: ruhu-platform
+        annotations:
+          summary: "Ruhu DB pool overflow high (pool={{ $labels.pool }})"
+          description: |
+            The {{ $labels.pool }} DB pool has {{ $value }} overflow connections
+            sustained for 5 minutes.  Consider increasing pool_size or
+            investigating slow queries.
+          runbook_url: "https://github.com/ruhu/ruhu/blob/main/monitoring/runbooks/db-pool.md"

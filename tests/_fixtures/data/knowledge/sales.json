@@ -1,0 +1,22 @@
+{
+  "documents": [
+    {
+      "id": "product_overview",
+      "title": "Ruhu product overview",
+      "tags": ["product", "platform", "voice", "chat"],
+      "content": "Ruhu helps businesses build phone, WhatsApp, and web chat agents with shared state, workflow automation, and human handoff support."
+    },
+    {
+      "id": "workflow_builder",
+      "title": "Workflow builder and integrations",
+      "tags": ["workflow", "integrations", "automation", "builder"],
+      "content": "Ruhu includes a visual workflow builder with triggers, actions, conditions, and integrations so teams can automate customer journeys and back-office tasks."
+    },
+    {
+      "id": "pricing",
+      "title": "Pricing and plans",
+      "tags": ["pricing", "plans", "quote", "billing"],
+      "content": "Ruhu offers flexible pricing based on channels, automation volume, support needs, and deployment requirements, with tailored plans for growing and enterprise teams."
+    }
+  ]
+}

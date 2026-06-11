@@ -1,0 +1,223 @@
+{
+  "agent_id": "support_triage",
+  "name": "Support Triage Agent",
+  "agent_document": {
+    "version": "3.0",
+    "start_scenario_id": "main",
+    "scenarios": [
+      {
+        "id": "main",
+        "name": "Support Triage Agent",
+        "start_step_id": "entry",
+        "steps": [
+          {
+            "id": "entry",
+            "name": "Entry",
+            "transitions": [
+              {
+                "id": "t_entry",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "triage",
+                "label": "start",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": "Hi there! I can help route your support request.",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "triage",
+            "name": "Triage",
+            "transitions": [
+              {
+                "id": "t_account_guard",
+                "when": {
+                  "kind": "guard_failure",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "guard_id": "missing_required_fact:account_id"
+                },
+                "to_step_id": "collect_account_id",
+                "label": "missing_account_id",
+                "priority": 5
+              },
+              {
+                "id": "t_support",
+                "when": {
+                  "kind": "outcome",
+                  "event": "support_request",
+                  "description": "The user needs support with an account, billing, or technical issue."
+                },
+                "to_step_id": "collect_account_id",
+                "label": "support_request_detected",
+                "priority": 10
+              },
+              {
+                "id": "t_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "triage",
+                "label": "stay",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": null,
+            "guards": [
+              {
+                "kind": "fact_required",
+                "value": "account_id",
+                "description": null
+              }
+            ],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": "I can help route billing, account, or technical issues.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "collect_account_id",
+            "name": "Collect Account ID",
+            "transitions": [
+              {
+                "id": "t_have_account",
+                "when": {
+                  "kind": "fact_present",
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null,
+                  "fact_name": "account_id"
+                },
+                "to_step_id": "handoff_support",
+                "label": "account_id_collected",
+                "priority": 5
+              },
+              {
+                "id": "t_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null,
+                  "view_kind": null,
+                  "any_of_kinds": null,
+                  "all_of_kinds": null
+                },
+                "to_step_id": "collect_account_id",
+                "label": "wait",
+                "priority": 100
+              }
+            ],
+            "description": null,
+            "say": null,
+            "guards": [],
+            "fact_requirements": [
+              {
+                "name": "account_id",
+                "purpose": null
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": null,
+            "completion": null
+          },
+          {
+            "id": "handoff_support",
+            "name": "Support Handoff",
+            "transitions": [],
+            "description": null,
+            "say": "Thanks. I have your account ID and I’m routing this to support now.",
+            "guards": [],
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "handoff": {
+              "target_type": "queue",
+              "target": "human_support",
+              "summary": "Thanks. I have your account ID and I’m routing this to support now."
+            },
+            "completion": null
+          }
+        ],
+        "summary": "Support Triage Agent",
+        "order": 0,
+        "entry_channels": [],
+        "resources": {}
+      }
+    ],
+    "scenario_routes": [],
+    "fact_schema": [],
+    "agent_capability_manifest": null,
+    "metadata": {}
+  }
+}

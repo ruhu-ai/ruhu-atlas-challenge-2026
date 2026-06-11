@@ -1,0 +1,18 @@
+{
+  "turn_id": "p3:smalltalk:001",
+  "input_context_hash": "p3000000000000000000000000000000000000000000000000000smalltalk00",
+  "move_selection_output": {
+    "selection": {
+      "move_type": "smalltalk_and_return",
+      "rationale": "User asked how the assistant's day is going; engage briefly and return.",
+      "confidence": 0.86
+    }
+  },
+  "validation_result": {
+    "outcome": "accepted",
+    "committed_move_type": "smalltalk_and_return",
+    "committed_state_id": "collect_contact_info",
+    "response_constraints": {"move_type": "smalltalk_and_return"}
+  },
+  "committed_deltas": {}
+}

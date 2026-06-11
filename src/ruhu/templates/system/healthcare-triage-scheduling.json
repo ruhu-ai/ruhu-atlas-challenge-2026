@@ -1,0 +1,1210 @@
+{
+  "template_id": "gtpl_healthcare_triage",
+  "name": "Healthcare Triage & Scheduling Agent",
+  "slug": "healthcare-triage-scheduling",
+  "description": "A full-service patient-facing voice agent for healthcare providers. Verifies patient identity via two-factor check (member ID + date of birth), triages intent (symptoms, scheduling, prescription refills), and takes action via EHR integrations.\n\nFlow: Entry → Collect member ID → Collect DOB → Identity verification (EHR) → Intent triage → [Symptom assessment → Emergency transfer | Schedule appointment (EHR) | Prescription refill eligibility check + processing (EHR) | General support conversation].\n\nFacts collected: member_id, date_of_birth, patient_name, verified, chief_complaint, preferred_date, preferred_time, appointment_id, prescription_name, pharmacy_id.\nTools required: ehr.verify_patient, ehr.schedule_appointment, ehr.check_refill_eligibility, ehr.process_refill.\nIncludes emergency escalation handoff for urgent symptoms.",
+  "category": "healthcare",
+  "tags": [
+    "healthcare",
+    "patient",
+    "scheduling",
+    "prescription-refills",
+    "identity-verification",
+    "ehr",
+    "triage",
+    "voice",
+    "inbound"
+  ],
+  "default_agent_settings": {
+    "system_prompt": "You are a compassionate and professional patient support agent for a healthcare provider. You speak over voice, so keep responses short and clear. Always verify the patient's identity before discussing any health information — ask for their member ID and date of birth. Once verified, help them with: scheduling or rescheduling appointments, requesting prescription refills (confirm prescription name and pharmacy), or understanding their symptoms. If a patient describes urgent or emergency symptoms, immediately transfer them to emergency services. Never diagnose conditions or recommend medications beyond relaying what the EHR system approves.",
+    "agent_type": "voice",
+    "llm_config": {
+      "provider": "vertex",
+      "model": "gemini-3-flash-preview",
+      "temperature": 1.0,
+      "classifier": {
+        "strategy": "main_llm"
+      }
+    },
+    "voice_config": {
+      "voice_id": "en-US-Chirp3-HD-Kore"
+    }
+  },
+  "is_featured": false,
+  "required_tools": [
+    {
+      "tool_ref": "ehr.check_refill_eligibility",
+      "display_name": "Refill eligibility check",
+      "description": "Checks whether the named prescription is eligible for refill for this patient.",
+      "category": "ehr",
+      "provider_hints": [
+        "epic",
+        "cerner",
+        "athena",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=ehr.check_refill_eligibility",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "ehr.submit_refill_request",
+      "display_name": "Submit refill request",
+      "description": "Submits a prescription refill request to the patient's pharmacy via the EHR.",
+      "category": "ehr",
+      "provider_hints": [
+        "epic",
+        "cerner",
+        "athena",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=ehr.submit_refill_request",
+      "documentation_url": null,
+      "required": false
+    },
+    {
+      "tool_ref": "ehr.verify_patient",
+      "display_name": "Patient identity verification",
+      "description": "Verifies a member's identity against the EHR using member ID + date of birth.",
+      "category": "ehr",
+      "provider_hints": [
+        "epic",
+        "cerner",
+        "athena",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=ehr.verify_patient",
+      "documentation_url": null,
+      "required": true
+    },
+    {
+      "tool_ref": "scheduling.book_appointment",
+      "display_name": "Appointment booking",
+      "description": "Books an appointment at the requested date/time slot for the verified patient.",
+      "category": "scheduling",
+      "provider_hints": [
+        "calendly",
+        "google_calendar",
+        "custom_http"
+      ],
+      "setup_url_path": "canvas?view=library&tool_ref=scheduling.book_appointment",
+      "documentation_url": null,
+      "required": false
+    }
+  ],
+  "agent_document": {
+    "version": "3.0",
+    "start_scenario_id": "main",
+    "scenarios": [
+      {
+        "id": "main",
+        "name": "Healthcare Triage & Scheduling Agent",
+        "start_step_id": "entry",
+        "summary": "A full-service patient-facing voice agent for healthcare providers. Verifies patient identity via two-factor check (member ID + date of birth), triages intent (symptoms, scheduling, prescription refills), and takes action via EHR integrations.\n\nFlow: Entry → Collect member ID → Collect DOB → Identity verification (EHR) → Intent triage → [Symptom assessment → Emergency transfer | Schedule appointment (EHR) | Prescription refill eligibility check + processing (EHR) | General support conversation].\n\nFacts collected: member_id, date_of_birth, patient_name, verified, chief_complaint, preferred_date, preferred_time, appointment_id, prescription_name, pharmacy_id.\nTools required: ehr.verify_patient, ehr.schedule_appointment, ehr.check_refill_eligibility, ehr.process_refill.\nIncludes emergency escalation handoff for urgent symptoms.",
+        "order": 0,
+        "entry_channels": [],
+        "resources": {},
+        "steps": [
+          {
+            "id": "entry",
+            "name": "Entry",
+            "description": null,
+            "say": "Hello! You’ve reached the patient support line. I’m here to help you with scheduling, prescription refills, or health questions. To get started, could you please provide your member ID?",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_entry",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_member_id",
+                "label": "We need the next detail to continue.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "collect_member_id",
+            "name": "Collect Member ID",
+            "description": null,
+            "say": "Ask for the user's member id naturally and make clear it is needed to locate the patient record and insurance context.",
+            "fact_requirements": [
+              {
+                "name": "member_id",
+                "purpose": "to locate the patient record and insurance context"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_have_member_id",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "member_id"
+                },
+                "to_step_id": "collect_date_of_birth",
+                "label": "We already have the member id.",
+                "priority": 5
+              },
+              {
+                "id": "t_wait_member_id",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_member_id",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "collect_date_of_birth",
+            "name": "Collect Date of Birth",
+            "description": null,
+            "say": "Ask for the user's date of birth naturally and make clear it is needed to verify the patient identity before discussing protected health details.",
+            "fact_requirements": [
+              {
+                "name": "date_of_birth",
+                "purpose": "to verify the patient identity before discussing protected health details"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_have_dob",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "date_of_birth"
+                },
+                "to_step_id": "verify_identity",
+                "label": "We already have the date of birth.",
+                "priority": 5
+              },
+              {
+                "id": "t_wait_dob",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_date_of_birth",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "verify_identity",
+            "name": "Verify Patient Identity",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = ehr(action=\"verify_patient\", member_id=vars.get(\"member_id\"), date_of_birth=vars.get(\"date_of_birth\"))\nresult = normalize_tool_result(response, [\"success\", \"error\", \"timeout\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "ehr"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_verified",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "triage_intent",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_verify_failed",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "collect_member_id",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_verify_timeout",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_timeout"
+                },
+                "to_step_id": "triage_intent",
+                "label": "Action code timeout happened.",
+                "priority": 20
+              },
+              {
+                "id": "t_verify_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "verify_identity",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "triage_intent",
+            "name": "Triage Intent",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": "I can help with symptom questions, scheduling an appointment, prescription refills, or general health inquiries.",
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_symptom",
+                "when": {
+                  "kind": "outcome",
+                  "event": "symptom_concern",
+                  "description": "The patient describes a health symptom, pain, illness, injury, or medical concern. Includes emergency signals like chest pain, difficulty breathing, severe bleeding."
+                },
+                "to_step_id": "symptom_triage",
+                "label": "The user is asking about symptom concern.",
+                "priority": 5
+              },
+              {
+                "id": "t_appointment",
+                "when": {
+                  "kind": "outcome",
+                  "event": "appointment_request",
+                  "description": "The patient wants to book, reschedule, or cancel a medical appointment. Mentions a specific date, doctor, or department."
+                },
+                "to_step_id": "collect_appointment_prefs",
+                "label": "The user is asking about appointment request.",
+                "priority": 10
+              },
+              {
+                "id": "t_refill",
+                "when": {
+                  "kind": "outcome",
+                  "event": "prescription_refill",
+                  "description": "The patient needs a medication refill, prescription renewal, or to check prescription status. Mentions a drug name or pharmacy."
+                },
+                "to_step_id": "collect_prescription_info",
+                "label": "The user is asking about prescription refill.",
+                "priority": 10
+              },
+              {
+                "id": "t_general",
+                "when": {
+                  "kind": "outcome",
+                  "event": "general_inquiry",
+                  "description": "The patient has a general non-urgent question about services, hours, insurance coverage, referrals, or test results."
+                },
+                "to_step_id": "general_support",
+                "label": "The user is asking about general inquiry.",
+                "priority": 15
+              },
+              {
+                "id": "t_close_triage",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "The patient is done and ending the conversation."
+                },
+                "to_step_id": "closed",
+                "label": "The user is asking about close.",
+                "priority": 20
+              },
+              {
+                "id": "t_triage_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "triage_intent",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "symptom_triage",
+            "name": "Symptom Triage",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_emergency",
+                "when": {
+                  "kind": "outcome",
+                  "event": "emergency_signal",
+                  "description": "Patient reports chest pain, difficulty breathing, stroke symptoms, severe bleeding, loss of consciousness, or suicidal ideation."
+                },
+                "to_step_id": "emergency_transfer",
+                "label": "The user is asking about emergency signal.",
+                "priority": 1
+              },
+              {
+                "id": "t_urgent",
+                "when": {
+                  "kind": "outcome",
+                  "event": "urgent_symptom",
+                  "description": "Non-emergency but urgent: high fever (>103°F), persistent vomiting, severe headache, significant pain level 7+, symptoms worsening over hours."
+                },
+                "to_step_id": "collect_appointment_prefs",
+                "label": "The user is asking about urgent symptom.",
+                "priority": 5
+              },
+              {
+                "id": "t_routine",
+                "when": {
+                  "kind": "outcome",
+                  "event": "routine_symptom",
+                  "description": "Mild symptoms manageable at home: low-grade fever, minor cold/flu, minor cuts, general fatigue. Patient is stable."
+                },
+                "to_step_id": "collect_appointment_prefs",
+                "label": "The user is asking about routine symptom.",
+                "priority": 10
+              },
+              {
+                "id": "t_self_care",
+                "when": {
+                  "kind": "outcome",
+                  "event": "self_care_request",
+                  "description": "Patient asks for home remedies, self-care advice, or OTC recommendations."
+                },
+                "to_step_id": "self_care_guidance",
+                "label": "The user is asking about self care request.",
+                "priority": 15
+              },
+              {
+                "id": "t_symptom_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "symptom_triage",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "emergency_transfer",
+            "name": "Emergency Transfer",
+            "description": null,
+            "say": "This sounds like a medical emergency. Please call 911 immediately or go to your nearest emergency room. I am now transferring you to our emergency line.",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "handoff": {
+              "target_type": "queue",
+              "target": "human_support",
+              "summary": "This sounds like a medical emergency. Please call 911 immediately or go to your nearest emergency room. I am now transferring you to our emergency line."
+            }
+          },
+          {
+            "id": "collect_appointment_prefs",
+            "name": "Collect Appointment Preferences",
+            "description": null,
+            "say": "Ask for the user's preferred date naturally and make clear it is needed to schedule the appointment on a date that works for the patient.",
+            "fact_requirements": [
+              {
+                "name": "preferred_date",
+                "purpose": "to schedule the appointment on a date that works for the patient"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_have_prefs",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "preferred_date"
+                },
+                "to_step_id": "schedule_appointment",
+                "label": "We already have the preferred date.",
+                "priority": 5
+              },
+              {
+                "id": "t_wait_prefs",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_appointment_prefs",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "schedule_appointment",
+            "name": "Schedule Appointment",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = scheduling(action=\"book_appointment\", member_id=vars.get(\"member_id\"), preferred_date=vars.get(\"preferred_date\"), preferred_time=vars.get(\"preferred_time\"), chief_complaint=vars.get(\"chief_complaint\"))\nresult = normalize_tool_result(response, [\"success\", \"unavailable\", \"error\", \"timeout\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "scheduling"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 10.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_booked",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "appointment_confirmed",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_booking_unavailable",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_unavailable"
+                },
+                "to_step_id": "collect_appointment_prefs",
+                "label": "Action code unavailable happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_booking_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "schedule_fallback",
+                "label": "Action code error happened.",
+                "priority": 15
+              },
+              {
+                "id": "t_booking_timeout",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_timeout"
+                },
+                "to_step_id": "schedule_fallback",
+                "label": "Action code timeout happened.",
+                "priority": 20
+              },
+              {
+                "id": "t_booking_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "schedule_appointment",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "schedule_fallback",
+            "name": "Scheduling Fallback",
+            "description": null,
+            "say": "I’m having trouble accessing our scheduling system right now. Let me connect you with our scheduling team who can book your appointment directly.",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "handoff": {
+              "target_type": "queue",
+              "target": "human_support",
+              "summary": "I’m having trouble accessing our scheduling system right now. Let me connect you with our scheduling team who can book your appointment directly."
+            }
+          },
+          {
+            "id": "appointment_confirmed",
+            "name": "Appointment Confirmed",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "collect_prescription_info",
+            "name": "Collect Prescription Info",
+            "description": null,
+            "say": "Ask for the user's prescription name naturally and make clear it is needed to identify the prescription the patient needs help with.",
+            "fact_requirements": [
+              {
+                "name": "prescription_name",
+                "purpose": "to identify the prescription the patient needs help with"
+              }
+            ],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": false,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_have_rx",
+                "when": {
+                  "kind": "fact_present",
+                  "fact_name": "prescription_name"
+                },
+                "to_step_id": "check_refill_eligibility",
+                "label": "We already have the prescription name.",
+                "priority": 5
+              },
+              {
+                "id": "t_wait_rx",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "collect_prescription_info",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "check_refill_eligibility",
+            "name": "Check Refill Eligibility",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = ehr(action=\"check_refill_eligibility\", member_id=vars.get(\"member_id\"), prescription_name=vars.get(\"prescription_name\"))\nresult = normalize_tool_result(response, [\"eligible\", \"ineligible\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "ehr"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 8.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_refill_eligible",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_eligible"
+                },
+                "to_step_id": "process_refill",
+                "label": "Action code eligible happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_refill_ineligible",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_ineligible"
+                },
+                "to_step_id": "refill_denied",
+                "label": "Action code ineligible happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_refill_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "refill_escalation",
+                "label": "Action code error happened.",
+                "priority": 15
+              },
+              {
+                "id": "t_refill_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "check_refill_eligibility",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "process_refill",
+            "name": "Process Prescription Refill",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": {
+              "code": "response = ehr(action=\"submit_refill_request\", member_id=vars.get(\"member_id\"), prescription_name=vars.get(\"prescription_name\"), pharmacy_id=vars.get(\"pharmacy_id\"))\nresult = normalize_tool_result(response, [\"success\", \"error\"])\n",
+              "callable_functions_code": "def normalize_tool_result(response, allowed_statuses):\n    result = response or {}\n    status = result.get(\"status\")\n    if result.get(\"error\"):\n        if status in (\"timeout\", \"blocked\", \"confirmation_required\", \"cancelled\") and status in allowed_statuses:\n            result[\"status\"] = status\n        else:\n            result[\"status\"] = \"error\"\n        return result\n    if status in allowed_statuses:\n        result[\"status\"] = status\n    else:\n        result[\"status\"] = \"success\"\n    return result",
+              "callable_api_refs": [],
+              "callable_integrations": [
+                "ehr"
+              ],
+              "callable_system_refs": [],
+              "input_schema": {},
+              "timeout_seconds": 10.0
+            },
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_refill_submitted",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_success"
+                },
+                "to_step_id": "refill_confirmed",
+                "label": "Action code success happened.",
+                "priority": 5
+              },
+              {
+                "id": "t_refill_submit_error",
+                "when": {
+                  "kind": "tool_outcome",
+                  "outcome": "action_code_error"
+                },
+                "to_step_id": "refill_escalation",
+                "label": "Action code error happened.",
+                "priority": 10
+              },
+              {
+                "id": "t_refill_submit_wait",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "process_refill",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "refill_confirmed",
+            "name": "Refill Confirmed",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "refill_denied",
+            "name": "Refill Denied",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "follow_up_required",
+              "summary": null
+            }
+          },
+          {
+            "id": "refill_escalation",
+            "name": "Refill Escalation",
+            "description": null,
+            "say": "I wasn’t able to process that refill automatically. Let me connect you with a member of our pharmacy team to help you further.",
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "handoff": {
+              "target_type": "queue",
+              "target": "human_support",
+              "summary": "I wasn’t able to process that refill automatically. Let me connect you with a member of our pharmacy team to help you further."
+            }
+          },
+          {
+            "id": "general_support",
+            "name": "General Support",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [
+              {
+                "ref": "knowledge.lookup",
+                "mode": "optional",
+                "invocation_strategy": "on_missing_context",
+                "timeout_ms": null,
+                "event_name": "knowledge_lookup",
+                "args": {
+                  "query": "$turn.text"
+                }
+              }
+            ],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "balanced",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [
+              {
+                "id": "t_general_appointment",
+                "when": {
+                  "kind": "outcome",
+                  "event": "appointment_request",
+                  "description": "Patient pivots to wanting to book an appointment."
+                },
+                "to_step_id": "collect_appointment_prefs",
+                "label": "The user is asking about appointment request.",
+                "priority": 5
+              },
+              {
+                "id": "t_general_refill",
+                "when": {
+                  "kind": "outcome",
+                  "event": "prescription_refill",
+                  "description": "Patient pivots to asking about a prescription refill."
+                },
+                "to_step_id": "collect_prescription_info",
+                "label": "The user is asking about prescription refill.",
+                "priority": 5
+              },
+              {
+                "id": "t_general_symptom",
+                "when": {
+                  "kind": "outcome",
+                  "event": "symptom_concern",
+                  "description": "Patient reveals a health symptom or medical concern."
+                },
+                "to_step_id": "symptom_triage",
+                "label": "The user is asking about symptom concern.",
+                "priority": 5
+              },
+              {
+                "id": "t_general_close",
+                "when": {
+                  "kind": "outcome",
+                  "event": "close",
+                  "description": "Patient is satisfied and ending the conversation."
+                },
+                "to_step_id": "closed",
+                "label": "The user is asking about close.",
+                "priority": 20
+              },
+              {
+                "id": "t_general_stay",
+                "when": {
+                  "kind": "otherwise",
+                  "value": null
+                },
+                "to_step_id": "general_support",
+                "label": "We are still working through the current step.",
+                "priority": 100
+              }
+            ]
+          },
+          {
+            "id": "self_care_guidance",
+            "name": "Self-care Guidance",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          },
+          {
+            "id": "closed",
+            "name": "Closed",
+            "description": null,
+            "say": null,
+            "fact_requirements": [],
+            "tool_policy": [],
+            "action_config": null,
+            "response_policy": {
+              "answer_directly_first": true,
+              "ask_clarifying_question_only_if_needed": true,
+              "voice_style": "concise",
+              "direct_answer_prompt": null,
+              "render_with_llm": true,
+              "deterministic_fallback_text": null,
+              "response_max_sentences": null,
+              "include_recent_history": true,
+              "include_known_facts": true
+            },
+            "workload_class": "interactive",
+            "execution_isolation": "subprocess",
+            "transitions": [],
+            "completion": {
+              "disposition": "resolved",
+              "summary": null
+            }
+          }
+        ]
+      }
+    ],
+    "scenario_routes": [],
+    "fact_schema": [
+      {
+        "name": "member_id",
+        "type": "string",
+        "required": true,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.95,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "date_of_birth",
+        "type": "string",
+        "required": true,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.95,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "patient_name",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "verified",
+        "type": "boolean",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "chief_complaint",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.75,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "preferred_date",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.85,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "preferred_time",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.85,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "appointment_id",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_only",
+        "confidence_threshold": 1.0,
+        "conflict_policy": "prefer_deterministic"
+      },
+      {
+        "name": "prescription_name",
+        "type": "string",
+        "required": false,
+        "source_policy": "model_allowed",
+        "confidence_threshold": 0.8,
+        "conflict_policy": "prefer_latest_high_confidence"
+      },
+      {
+        "name": "pharmacy_id",
+        "type": "string",
+        "required": false,
+        "source_policy": "deterministic_first",
+        "confidence_threshold": 0.85,
+        "conflict_policy": "prefer_deterministic"
+      }
+    ],
+    "agent_capability_manifest": {
+      "assistant_identity": "I'm your healthcare support assistant.",
+      "capabilities": [
+        "help with scheduling",
+        "help with prescription refill flows",
+        "triage support requests to the right path"
+      ],
+      "limitations": [
+        "I do not replace emergency services or licensed medical judgment."
+      ]
+    },
+    "metadata": {
+      "source_graph_version": "1.0.0"
+    }
+  }
+}
